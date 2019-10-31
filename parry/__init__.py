@@ -1,0 +1,1 @@
+from parry import main
