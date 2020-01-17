@@ -1,13 +1,12 @@
 import sys, os
-cwd = os.getcwd()
-sys.path.append(cwd + "/pyglet")
+#sys.path.append(os.getcwd() + "/../pyglet")
 
 #Import statements
 import pyglet
 from pyglet.window import key
 
 #Create game window
-pacman_window = pyglet.window.Window(800, 800)
+window = pyglet.window.Window()
 
 def init():
     pass
