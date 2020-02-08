@@ -1,2 +1,0 @@
-/usr/bin/ar qc libWM-GDC-Project-Parry_core.a  CMakeFiles/WM-GDC-Project-Parry_core.dir/src/actor.cpp.o CMakeFiles/WM-GDC-Project-Parry_core.dir/src/master_logic.cpp.o CMakeFiles/WM-GDC-Project-Parry_core.dir/src/master_view.cpp.o CMakeFiles/WM-GDC-Project-Parry_core.dir/src/room.cpp.o CMakeFiles/WM-GDC-Project-Parry_core.dir/src/view.cpp.o
-/usr/bin/ranlib libWM-GDC-Project-Parry_core.a

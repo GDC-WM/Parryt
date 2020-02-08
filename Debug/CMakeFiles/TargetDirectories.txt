@@ -1,4 +1,0 @@
-/home/ak/WM-GDC-Project-Parry/Debug/CMakeFiles/edit_cache.dir
-/home/ak/WM-GDC-Project-Parry/Debug/CMakeFiles/WM-GDC-Project-Parry_core.dir
-/home/ak/WM-GDC-Project-Parry/Debug/CMakeFiles/rebuild_cache.dir
-/home/ak/WM-GDC-Project-Parry/Debug/CMakeFiles/application_layer.dir

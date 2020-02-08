@@ -1,1 +1,0 @@
-/usr/bin/c++   -std=c++11 -g  -rdynamic CMakeFiles/application_layer.dir/bin/application_layer.cpp.o  -o application_layer  libWM-GDC-Project-Parry_core.a 
