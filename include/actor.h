@@ -17,7 +17,7 @@ class Actor {
         int orientation; // orientation of the actor
 
     public:
-        Actor(ActorType type, double x, double y, double width, double height);
+        Actor(double x, double y, double width, double height);
 
         void setX(double x) { this->x = x; };
 
@@ -26,6 +26,10 @@ class Actor {
         void setY(double y) { this->y = y; };
 
         double getY(void) { return this->y; };
+
+        double getCenterX(void) { return (this->x + this->width / 2); };
+
+        double getCenterY(void) { return (this->y + this->height / 2); };
 
         void setPos(double x, double y) { this->x = x; this->y = y; };
 
@@ -109,7 +113,7 @@ class Actor {
 		 *
 		 * window -- window to draw itself on
 		 */
-		virtual void draw(std::shared_ptr<sf::RenderWindow> window) = 0;
+		virtual void draw(sf::RenderWindow &window) = 0;
 
 };
 

@@ -3,8 +3,7 @@
 #include "math.h"
 #define PI 3.14159265
 
-Actor::Actor(ActorType type, double x, double y, double width, double height) {
-    this->type = type;
+Actor::Actor(double x, double y, double width, double height) {
     this->x = x;
     this->y = y;
     this->width = width;
