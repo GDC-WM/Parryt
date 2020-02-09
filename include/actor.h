@@ -1,6 +1,8 @@
 #ifndef ACTOR_H
 #define ACTOR_H
 
+#include <SFML/Graphics.hpp>
+
 /*
 * Base class that all actors in the game inherit from
 */
