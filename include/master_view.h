@@ -19,7 +19,7 @@ class MasterView {
 	private:
 		std::shared_ptr<sf::RenderWindow> window;
 		std::shared_ptr<MasterLogic> logic;
-		std::shared_ptr<PlayerView> player;
+		//std::shared_ptr<PlayerView> player;
 
 	public:
 		MasterView(std::shared_ptr<sf::RenderWindow> window);

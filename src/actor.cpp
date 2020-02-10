@@ -70,3 +70,7 @@ bool Actor::liesInsideSquare(Actor &a) {
         a.getY() + a.getHeight() >= this->y + this->height
     );
 }
+
+void Actor::draw(sf::RenderWindow &window) {
+
+}
