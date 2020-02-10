@@ -11,8 +11,7 @@ void MasterView::init(std::shared_ptr<MasterLogic> logic) {
 }
 
 void MasterView::reset(void) {
-	this->enemies.clear();
-	this->rangeEnemies.clear();
+
 }
 
 void MasterView::update(float delta) {
