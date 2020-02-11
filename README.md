@@ -1,10 +1,10 @@
 # Parryt
-*A platformer game to show that we can in fact successfully code things (using C++ and the SFML graphics library).
-*Will involve a satisfying parrying mechanic.
+* A platformer game to show that we can in fact successfully code things (using C++ and the SFML graphics library).
+* Will involve a satisfying parrying mechanic.
 
 ## Install on Linux:
-*Install cmake, g++, SFML, git, and SFML-dev from your package manager (specific names depend on your distribution)
-*Run the following commands from within the directory you would like the game to be:
+* Install cmake, g++, SFML, git, and SFML-dev from your package manager (specific names depend on your distribution)
+* Run the following commands from within the directory you would like the game to be:
 1. ```git clone https://github.com/aaronamk/WM-GDC-Project-Parry.git```
 2. ```mkdir WM-GDC-Project-Parry/Release```
 3. ```cd WM-GDC-Project-Parry/Release```
