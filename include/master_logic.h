@@ -18,10 +18,9 @@ class MasterLogic {
 		std::list<std::shared_ptr<Room>> roomList;
 		std::list<std::shared_ptr<Room>>::iterator currentRoom;
 		std::list<std::shared_ptr<Actor>> actorList;
-
-	public:
 		bool paused = true;
 
+	public:
 		/*
 		 * Main method
 		 */
