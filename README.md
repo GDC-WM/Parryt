@@ -1,13 +1,10 @@
-# Project Parry
-- A platformer game to show that we can in fact successfully code things (using C++ and the SFML graphics library).
-
-- Will involve a satisfying parrying mechanic.
-
+# Parryt
+* A platformer game to show that we can in fact successfully code things (using C++ and the SFML graphics library).
+* Will involve a satisfying parrying mechanic.
 
 ## Install on Linux:
-
-- Install cmake, g++, SFML, git, and SFML-dev from your package manager (specific names depend on your distribution)
-- Run the following commands from within the directory you would like the game to be:
+* Install cmake, g++, SFML, git, and SFML-dev from your package manager (specific names depend on your distribution)
+* Run the following commands from within the directory you would like the game to be:
 1. ```git clone https://github.com/aaronamk/WM-GDC-Project-Parry.git```
 2. ```mkdir WM-GDC-Project-Parry/Release```
 3. ```cd WM-GDC-Project-Parry/Release```
@@ -15,9 +12,7 @@
 4. ```make```
 5. ```./application_layer.exe```
 
-
 ## Install on Windows:
-
 **Download CMake**
 1. Follow this link and go to “Download Latest Release”: https://cmake.org/ 
 2. Under Binary distributions, download the appropriate installer for your OS. (you can install the zip file but you will have to manually add CMake to your path if you do) 
@@ -42,7 +37,6 @@
 **Compile and Run Games**
 1. Open the game file and create a new folder called “Debug”
 2. In terminal in the Debug directory, type cmake .. -G “MinGW Makefiles” If cmake is working properly, you should see something like this: 
-
 -- The C compiler identification is GNU 7.3.0 
 -- The CXX compiler identification is GNU 7.3.0 
 -- Check for working C compiler: C:/Program Files/mingw64/bin/gcc.exe 
@@ -63,5 +57,4 @@
 -- Configuring done 
 -- Generating done 
 -- Build files have been written to: C:/Users/Zack HDoubler/source/repos/Escape-The-City/Debug 
-
 5. Then type mingw32-make If MinGW and SFML is working properly then you should see increasing percentages as the game compiles.
