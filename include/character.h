@@ -33,11 +33,11 @@ class Character : public Actor, public std::enable_shared_from_this<Character> {
 
 		void setHealth(double health) { this->health = health; };
 
-		int getHealth(void) { return this->health; };
+		const int getHealth(void) { return this->health; };
 
 		void setMaxHealth(double health) { this->maxHealth = health; };
 
-		int getMaxHealth(void) { return this->maxHealth; };
+		const int getMaxHealth(void) { return this->maxHealth; };
 
 		void update(float delta) override;
 };

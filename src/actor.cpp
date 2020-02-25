@@ -17,11 +17,11 @@ void Actor::update(float delta) {
     this->y += this->ySpeed * delta;
 }
 
-double Actor::getSpeed(void) {
+const double Actor::getSpeed(void) {
     return sqrt(pow(this->xSpeed, 2) + pow(this->ySpeed, 2));
 }
 
-double Actor::getDirection(void) {
+const double Actor::getDirection(void) {
     return (atan2(this->ySpeed, this->xSpeed) * 180.0 / PI);
 }
 
@@ -37,7 +37,7 @@ void Actor::setOrientation(Actor &a) {
     this->orientation = atan(yDiff / xDiff) * 180 / PI;
 }
 
-bool Actor::collidesSquare(Actor &a) {
+const bool Actor::collidesSquare(Actor &a) {
     return (
         a.getX() <= this->x + this->width &&
         a.getX() + a.getWidth() >= this->x &&
@@ -46,7 +46,7 @@ bool Actor::collidesSquare(Actor &a) {
     );
 }
 
-bool Actor::collidesCircle(Actor &a) {
+const bool Actor::collidesCircle(Actor &a) {
     return (
         sqrt(pow(this->getCenterX() - a.getCenterX(), 2) +
         pow(this->getCenterY() - a.getCenterY(), 2)) <
@@ -54,7 +54,7 @@ bool Actor::collidesCircle(Actor &a) {
     );
 }
 
-bool Actor::collidesCircle(Actor &a, int range) {
+const bool Actor::collidesCircle(Actor &a, int range) {
     return (
         sqrt(pow(this->getCenterX() - a.getCenterX(), 2) +
         pow(this->getCenterY() - a.getCenterY(), 2)) <
@@ -62,7 +62,7 @@ bool Actor::collidesCircle(Actor &a, int range) {
     );
 }
 
-bool Actor::liesInsideSquare(Actor &a) {
+const bool Actor::liesInsideSquare(Actor &a) {
     return (
         a.getX() <= this->x &&
         a.getX() + a.getWidth() >= this->x + this->width &&
