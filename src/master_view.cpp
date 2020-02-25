@@ -1,19 +1,15 @@
 #include "master_view.h"
+#include "player_view.h"
 #include "master_logic.h"
-#include <iostream>
 
-MasterView::MasterView(std::shared_ptr<sf::RenderWindow> window) {
-	this->window = window;
-}
-
-void MasterView::init(std::shared_ptr<MasterLogic> logic) {
+MasterView::MasterView(std::shared_ptr<MasterLogic> logic, std::shared_ptr<sf::RenderWindow> window) {
 	this->logic = logic;
+	this->window = window;
 }
 
 void MasterView::reset(void) {
 
 }
 
-void MasterView::update(float delta) {
-
+void MasterView::update(float dt) {
 }

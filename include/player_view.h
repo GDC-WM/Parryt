@@ -8,7 +8,7 @@
 #include "view.h"
 #include "character.h"
 
-/*
+/**
  * Draw the screen for the player
  */
 class PlayerView : public View {

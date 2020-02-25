@@ -7,39 +7,38 @@
 #include "master_view.h"
 
 int main(int argc, char** argv) {
-    // game window
-    std::shared_ptr<sf::RenderWindow> window = std::make_shared<sf::RenderWindow>(sf::VideoMode(1200,900,32), "Project Parry", sf::Style::Titlebar | sf::Style::Close);
+	// game window
+	std::shared_ptr<sf::RenderWindow> window = std::make_shared<sf::RenderWindow>(sf::VideoMode(1200,900,32), "Project Parry", sf::Style::Titlebar | sf::Style::Close);
 
-    // game clock
-    sf::Clock clock;
+	// game clock
+	sf::Clock clock;
 
-    // delta time
-    float delta;
+	// delta time
+	float dt;
 
-    std::shared_ptr<MasterLogic> logic = std::make_shared<MasterLogic>();
-    std::shared_ptr<MasterView> view = std::make_shared<MasterView>(window);
-    view->init(logic);
-    logic->init(view);
-    logic->startMenu();
+	std::shared_ptr<MasterLogic> logic = std::make_shared<MasterLogic>();
+	std::shared_ptr<MasterView> view = std::make_shared<MasterView>(logic, window);
+	logic->init(view);
+	logic->startDemo();
 
-    // game loop
-    while (window->isOpen()) {
-        delta = clock.getElapsedTime().asSeconds();
-        clock.restart();
+	// game loop
+	while (window->isOpen()) {
+		dt = clock.getElapsedTime().asSeconds();
+		clock.restart();
 
-        window->clear(sf::Color::Black);
+		window->clear(sf::Color::Black);
 
-        logic->update(delta);
-        view->update(delta);
+		logic->update(dt);
+		view->update(dt);
 
-        window->display();
+		window->display();
 
-        //check for window closed event
-        sf::Event Event;
-        while (window->pollEvent(Event))
-            if (Event.type == sf::Event::Closed) window->close();
-    }
+		//check for window closed event
+		sf::Event Event;
+		while (window->pollEvent(Event))
+			if (Event.type == sf::Event::Closed) window->close();
+	}
 
-    // Done.
-    return 0;
+	// Done.
+	return 0;
 }
