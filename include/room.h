@@ -20,7 +20,7 @@ class Room : public std::enable_shared_from_this<Room> {
 		/**
 		 * Return the list of actors.
 		 */
-		std::list<std::shared_ptr<Actor>> getActorList(void) { return this->actorList; };
+		std::list<std::shared_ptr<Actor>> &getActorList(void) { return this->actorList; };
 
 		void reset(void);
 };
