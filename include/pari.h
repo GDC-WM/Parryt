@@ -16,7 +16,7 @@ class Pari : public Character {
 	public:
 		Pari(double x, double y);
 
-		void draw(sf::RenderWindow &window) override;
+		const void draw(sf::RenderWindow &window) override;
 };
 
 #endif

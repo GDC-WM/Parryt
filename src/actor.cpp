@@ -12,9 +12,9 @@ Actor::Actor(double x, double y, double width, double height) {
     this->ySpeed = 0;
 }
 
-void Actor::update(float delta) {
-    this->x += this->xSpeed * delta;
-    this->y += this->ySpeed * delta;
+void Actor::update(const float &dt) {
+    this->x += this->xSpeed * dt;
+    this->y += this->ySpeed * dt;
 }
 
 const double Actor::getSpeed(void) {
@@ -71,6 +71,6 @@ const bool Actor::liesInsideSquare(Actor &a) {
     );
 }
 
-void Actor::draw(sf::RenderWindow &window) {
+const void Actor::draw(sf::RenderWindow &window) {
 
 }

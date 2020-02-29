@@ -24,8 +24,8 @@ void PlayerView::pollInput() {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) ;
 }
 
-void PlayerView::update(float dt) {
+void PlayerView::update(const float &dt) {
     this->pollInput();
 
-	for (auto actor : this->logic->getCurrentRoom()->getActorList()) actor->draw(*this->window);
+	for (auto actor : this->logic->getCurrentRoom().getActorList()) actor->draw(*this->window);
 }

@@ -106,14 +106,14 @@ class Actor {
 
 		const bool liesInsideSquare(Actor &a);
 
-		virtual void update(float delta);
+		virtual void update(const float &dt);
 
 		/*
 		 * Draw actor.
 		 *
 		 * window -- window to draw itself on
 		 */
-		virtual void draw(sf::RenderWindow &window);
+		virtual const void draw(sf::RenderWindow &window);
 
 };
 

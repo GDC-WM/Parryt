@@ -24,7 +24,7 @@ class PlayerView : public View {
     public:
         PlayerView(std::shared_ptr<MasterLogic> logic, std::shared_ptr<Character> character, std::shared_ptr<sf::RenderWindow> window);
 
-        void update(float dt);
+        void update(const float &dt);
 };
 
 #endif

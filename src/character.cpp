@@ -31,7 +31,7 @@ void Character::move(void) {
 
 }
 
-void Character::update(float dt) {
+void Character::update(const float &dt) {
     Actor::update(dt);
 }
 
