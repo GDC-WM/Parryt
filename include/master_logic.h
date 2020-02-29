@@ -15,8 +15,8 @@ class MasterView;
 class MasterLogic {
 	private:
 		std::shared_ptr<MasterView> view;
-		std::list<Room> roomList;
-		std::list<Room>::iterator currentRoom;
+		std::list<std::shared_ptr<Room>> roomList;
+		std::list<std::shared_ptr<Room>>::iterator currentRoom;
 		bool paused = false;
 
 	public:
@@ -44,7 +44,7 @@ class MasterLogic {
 		/**
 		 *
 		 */
-		Room getCurrentRoom(void) { return *this->currentRoom; };
+		std::shared_ptr<Room> getCurrentRoom(void) { return *(this->currentRoom); };
 
 		/**
 		 *

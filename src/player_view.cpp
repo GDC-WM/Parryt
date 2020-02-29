@@ -26,7 +26,5 @@ void PlayerView::pollInput() {
 void PlayerView::update(float dt) {
     this->pollInput();
 
-	for (std::shared_ptr<Actor> actor : this->logic->getCurrentRoom().getActorList()) {
-		actor->draw(*this->window);
-	}
+	for (auto actor : this->logic->getCurrentRoom()->getActorList()) actor->draw(*this->window);
 }

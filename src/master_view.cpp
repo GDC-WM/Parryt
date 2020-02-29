@@ -12,4 +12,5 @@ void MasterView::reset(void) {
 }
 
 void MasterView::update(float dt) {
+	for (auto view : this->viewList) view->update(dt);
 }
