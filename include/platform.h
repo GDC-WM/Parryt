@@ -14,7 +14,7 @@ class Platform : public Actor {
 	public:
 		Platform(double x, double y, double width);
 
-		const void draw(sf::RenderWindow &window) override;
+		sf::Shape &getShape(void) override;
 };
 
 #endif
