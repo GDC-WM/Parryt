@@ -44,7 +44,7 @@ class MasterLogic {
 		/**
 		 *
 		 */
-		const Room &getCurrentRoom(void) { return *(this->currentRoom); };
+		const Room &getCurrentRoom(void) const { return *(this->currentRoom); };
 
 		/**
 		 *

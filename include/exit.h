@@ -19,11 +19,11 @@ class Exit : public Actor {
 
 		Exit(double x, double y, double width, double height, std::shared_ptr<Exit> destination);
 
-		const std::shared_ptr<Exit> getDestination(void) { return this->destination; };
+		const std::shared_ptr<Exit> getDestination(void) const { return this->destination; };
 
 		void setDestination(std::shared_ptr<Exit> destination) { this->destination = destination; };
 
-		const std::shared_ptr<Room> getRoom(void) { return this->room; };
+		const std::shared_ptr<Room> getRoom(void) const { return this->room; };
 
 		void setRoom(std::shared_ptr<Room> room) { this->room = room; };
 };
