@@ -8,6 +8,7 @@
 
 PlayerView::PlayerView(std::shared_ptr<MasterLogic> logic, std::shared_ptr<Character> character, std::shared_ptr<sf::RenderWindow> window)
     : View(logic) {
+	this->logic = logic;
     this->character = character;
     this->window = window;
 }
