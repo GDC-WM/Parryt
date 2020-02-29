@@ -71,6 +71,6 @@ const bool Actor::liesInsideSquare(Actor &a) {
     );
 }
 
-void Actor::draw(sf::RenderWindow &window) {
+const void Actor::draw(sf::RenderWindow &window) {
 
 }

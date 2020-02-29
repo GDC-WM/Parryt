@@ -113,7 +113,7 @@ class Actor {
 		 *
 		 * window -- window to draw itself on
 		 */
-		virtual void draw(sf::RenderWindow &window);
+		virtual const void draw(sf::RenderWindow &window);
 
 };
 

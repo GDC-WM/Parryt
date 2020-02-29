@@ -10,9 +10,7 @@ Pari::Pari(double x, double y) : Character(x, y, 64, 64, 10, 180, 200) {
 	this->shape.setFillColor(sf::Color::Green);
 }
 
-void Pari::draw(sf::RenderWindow &window) {
+const void Pari::draw(sf::RenderWindow &window) {
 		this->shape.setPosition(this->x, this->y);
 		window.draw(shape);
-		std::cout << "drawn";
-
 }
