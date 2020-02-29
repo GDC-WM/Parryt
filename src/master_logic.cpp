@@ -4,6 +4,7 @@
 #include "actor.h"
 #include "room.h"
 #include "exit.h"
+#include "platform.h"
 #include "pari.h"
 
 void MasterLogic::init(std::shared_ptr<MasterView> view) {
@@ -19,6 +20,10 @@ void MasterLogic::startDemo(void) {
 	std::shared_ptr<Pari> pari = std::make_shared<Pari>(0,0);
 	this->currentRoom->addActor(pari);
 	this->view->addView(pari);
+
+	// Add Platform
+	std::shared_ptr<Platform> platform1 = std::make_shared<Platform>(300, 400, 200);
+	this->currentRoom->addActor(platform1);
 }
 
 void MasterLogic::startMenu(void) {
