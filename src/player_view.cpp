@@ -27,5 +27,8 @@ void PlayerView::pollInput() {
 void PlayerView::update(const float &dt) {
     this->pollInput();
 
-	for (auto actor : this->logic->getCurrentRoom().getActorList()) actor->draw(*this->window);
+	for (auto actor : this->logic->getCurrentRoom().getActorList()) {
+		actor->getShape().setPosition(actor->getX(), actor->getY());
+		this->window->draw(actor->getShape());
+	}
 }

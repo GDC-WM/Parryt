@@ -109,11 +109,9 @@ class Actor {
 		virtual void update(const float &dt);
 
 		/*
-		 * Draw actor.
-		 *
-		 * window -- window to draw itself on
+		 * Return shape to draw.
 		 */
-		virtual const void draw(sf::RenderWindow &window);
+		virtual sf::Shape &getShape(void) = 0;
 
 };
 
