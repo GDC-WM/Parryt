@@ -13,13 +13,13 @@ void MasterLogic::init(std::shared_ptr<MasterView> view) {
 	// Create room
 	this->roomList.push_front(std::make_shared<Room>());
 	this->currentRoom = this->roomList.begin();
-
+	std::cout << "herhe";
 }
 
 void MasterLogic::startDemo(void) {
 	// Add pari
 	std::shared_ptr<Pari> pari = std::make_shared<Pari>(0,0);
-	this->getCurrentRoom()->getActorList().push_front(pari);
+	this->getCurrentRoom()->getActorList().push_back(pari);
 	this->view->addView(pari);
 }
 
