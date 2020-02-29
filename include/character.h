@@ -39,7 +39,7 @@ class Character : public Actor, public std::enable_shared_from_this<Character> {
 
 		const int getMaxHealth(void) { return this->maxHealth; };
 
-		void update(float delta) override;
+		void update(const float &dt) override;
 };
 
 #endif

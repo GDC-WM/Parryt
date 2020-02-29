@@ -106,7 +106,7 @@ class Actor {
 
 		const bool liesInsideSquare(Actor &a);
 
-		virtual void update(float delta);
+		virtual void update(const float &dt);
 
 		/*
 		 * Draw actor.

@@ -17,7 +17,7 @@ void MasterLogic::startDemo(void) {
 
 	// Add pari
 	std::shared_ptr<Pari> pari = std::make_shared<Pari>(0,0);
-	this->getCurrentRoom().addActor(pari);
+	this->currentRoom->addActor(pari);
 	this->view->addView(pari);
 }
 
@@ -28,14 +28,14 @@ void MasterLogic::startMenu(void) {
 void MasterLogic::reset(void) {
 	this->roomList.clear();
 
-	this->getCurrentRoom().reset();
+	this->currentRoom->reset();
 }
 
-void MasterLogic::update(float dt) {
+void MasterLogic::update(const float &dt) {
 	if (!this->paused) {
         // Update all actors in the actor list
-        if (this->getCurrentRoom().getActorList().size() > 0) {
-            for (std::shared_ptr<Actor> actor : this->getCurrentRoom().getActorList()) actor->update(dt);
+        if (this->currentRoom->getActorList().size() > 0) {
+            for (std::shared_ptr<Actor> actor : this->currentRoom->getActorList()) actor->update(dt);
         }
 	}
 }

@@ -44,7 +44,7 @@ class MasterLogic {
 		/**
 		 *
 		 */
-		Room &getCurrentRoom(void) { return *(this->currentRoom); };
+		const Room &getCurrentRoom(void) { return *(this->currentRoom); };
 
 		/**
 		 *
@@ -59,7 +59,7 @@ class MasterLogic {
 		/**
 		 *
 		 */
-		void update(float dt);
+		void update(const float &dt);
 };
 
 #endif
