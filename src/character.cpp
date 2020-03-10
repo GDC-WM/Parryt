@@ -52,7 +52,5 @@ void Character::update(const float &dt) {
     if (this->xSpeed > 0) this->xSpeed -= 0.3;
     if (this->getY() < 335) { this->ySpeed += 0.4 * this->mass; }
     else if (this->getY() >= 335) { ySpeed = 0; }
-
-
 }
 
