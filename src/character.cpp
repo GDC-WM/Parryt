@@ -11,13 +11,13 @@
 
 
 Character::Character(double x, double y, double width, double height, double mass, double maxSpeed, int maxHealth,
-                     float maxJumpHeight)
+                     float maxJump)
         : Actor(x, y, width, height) {
     this->mass = mass;
     this->maxSpeed = maxSpeed;
     this->health =
     this->maxHealth = maxHealth;
-    this->maxJumpHeight = maxJumpHeight;
+    this->maxJump = maxJump;
 }
 
 void Character::damage(float d) {

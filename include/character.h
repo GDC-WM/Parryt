@@ -15,11 +15,11 @@ class Character : public Actor, public std::enable_shared_from_this<Character> {
 		int maxHealth;
 		float health;
 		int mass;
-		double maxSpeed, maxJumpHeight;
+		double maxSpeed, maxJump;
 
 
 public:
-		Character(double x, double y, double width, double height, double mass, double maxSpeed, int maxHealth, float maxJumpHeight);
+		Character(double x, double y, double width, double height, double mass, double maxSpeed, int maxHealth, float maxJump);
 
 		virtual void damage(float d);
 
