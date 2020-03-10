@@ -21,7 +21,11 @@ void PlayerView::pollInput() {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) ;
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) this->character->goLeft();
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) ;
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)&&sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+        /*jump down from platform*/;
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) this->character->goRight();
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) this->character->jump();
+
 }
 
 void PlayerView::update(const float &dt) {

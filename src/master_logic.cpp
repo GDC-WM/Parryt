@@ -17,19 +17,22 @@ void MasterLogic::startDemo(void) {
 	this->currentRoom = this->roomList.begin();
 
 	// Add pari
-	std::shared_ptr<Pari> pari = std::make_shared<Pari>(0,0);
+	std::shared_ptr<Pari> pari = std::make_shared<Pari>(300,335);
 	this->currentRoom->addActor(pari);
 	this->view->addView(pari);
 
 	// Add Platform
-	std::shared_ptr<Platform> platform1 = std::make_shared<Platform>(300, 400, 200);
-	this->currentRoom->addActor(platform1);
+    std::shared_ptr<Platform> platform1 = std::make_shared<Platform>(300, 400, 200);
+    this->currentRoom->addActor(platform1);
+
+    // Add Another Platform
+    std::shared_ptr<Platform> platform2 = std::make_shared<Platform>(700, 400, 200);
+    this->currentRoom->addActor(platform2);
 }
 
 void MasterLogic::startMenu(void) {
 
 }
-
 void MasterLogic::reset(void) {
 	this->roomList.clear();
 
