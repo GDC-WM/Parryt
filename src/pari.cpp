@@ -4,7 +4,7 @@
 #include <iostream>
 
 
-Pari::Pari(double x, double y) : Character(x, y, 64, 64, 10, 180, 200) {
+Pari::Pari(double x, double y) : Character(x, y, 64, 64, 10, 180, 200, 20) {
 	this->shape.setFillColor(sf::Color::Green);
 
 
