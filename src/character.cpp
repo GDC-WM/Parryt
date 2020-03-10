@@ -9,7 +9,6 @@
 #include "actor.h"
 #include "character.h"
 
-
 Character::Character(double x, double y, double width, double height, double mass, double maxSpeed, int maxHealth,
                      float maxJump)
         : Actor(x, y, width, height) {
