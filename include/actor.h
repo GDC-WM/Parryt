@@ -3,6 +3,8 @@
 
 #include <SFML/Graphics.hpp>
 
+enum class ActorState { GROUNDED, AIRBORNE };
+
 /*
 * Base class that all actors in the game inherit from
 */
@@ -15,43 +17,46 @@ class Actor {
 		 */
 		double x, y, width, height, xSpeed, ySpeed;
 		int orientation; // orientation of the actor
+		ActorState state;
 
 	public:
 		Actor(double x, double y, double width, double height);
 
 		void setX(double x) { this->x = x; };
 
-		const double getX(void) { return this->x; };
+		const double &getX(void) const { return this->x; };
 
 		void setY(double y) { this->y = y; };
 
-		const double getY(void) { return this->y; };
+		const double &getY(void) const { return this->y; };
 
-		const double getCenterX(void) { return (this->x + this->width / 2); };
+		const double getCenterX(void) const { return (this->x + this->width / 2); };
 
-		const double getCenterY(void) { return (this->y + this->height / 2); };
+		const double getCenterY(void) const { return (this->y + this->height / 2); };
 
 		void setPos(double x, double y) { this->x = x; this->y = y; };
 
-		const double getWidth(void) { return this->width; };
+		const double &getWidth(void) const { return this->width; };
 
 		void setWidth(double w) { this->width = w; };
 
-		const double getHeight(void) { return this->height; };
+		const double &getHeight(void) const { return this->height; };
 
 		void setHeight(double h) { this->height = h; };
 
 		void setDimensions(double width, double height) { this->width = width; this->height = height; };
 
-		const double getXSpeed(void) { return this->xSpeed; };
+		const double &getXSpeed(void) const { return this->xSpeed; };
 
-		const double getYSpeed(void) { return this->ySpeed; };
+		const double &getYSpeed(void) const { return this->ySpeed; };
 
-		const double getSpeed(void);
+		const double &getSpeed(void); const
 
 		void hardStop(void) { this->xSpeed = this->ySpeed = 0; };
 
-		const double getDirection(void);
+		const ActorState &getState(void) const { return (this->state); };
+
+		const double &getDirection(void); const
 
 		/**
 		 * Sets the orientation of the actor.
@@ -78,7 +83,7 @@ class Actor {
 		/**
 		 * Returns the orientation of the actor.
 		 */
-		const int getOrientation() { return this->orientation; };
+		const int &getOrientation() { return this->orientation; };
 
 		/**
 		 * Calculates if square Actor a is touching this square actor.
@@ -111,7 +116,7 @@ class Actor {
 		/*
 		 * Return shape to draw.
 		 */
-		virtual sf::Shape &getShape(void) = 0;
+		virtual sf::Shape &getShape(void) const = 0;
 
 };
 
