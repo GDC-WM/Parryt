@@ -39,9 +39,8 @@ void Character::goRight(void) {
 }
 
 void Character::jump(void) {
-    this->ySpeed -= 8;
-
-    //track original y from jump and check against maxjumpheight
+    if (this->jumping) { this->ySpeed -= this->maxJump*.35; }
+    //track original y from jump and checkzx against maxjumpheight
     //limit goRight and goLeft functions while jumping?
 }
 
@@ -49,7 +48,10 @@ void Character::update(const float &dt) {
     Actor::update(dt);
     if (this->xSpeed < 0) this->xSpeed += 0.3;
     if (this->xSpeed > 0) this->xSpeed -= 0.3;
-    if (this->getY() < 335) { this->ySpeed += 0.4 * this->mass; }
-    else if (this->getY() >= 335) { ySpeed = 0; }
+    if (this->getY() < 335) this->ySpeed += 0.4 * this->mass;
+    else if (this->getY() >= 335) {
+        ySpeed = 0;
+        this->jumping = true;
+    }
 }
 

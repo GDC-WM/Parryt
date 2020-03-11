@@ -37,7 +37,7 @@ public:
 
 		const int getMaxHealth(void) { return this->maxHealth; };
 
-        bool jumping;
+        bool jumping = true;
 
         void jump(void);
 
