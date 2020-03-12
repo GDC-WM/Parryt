@@ -24,7 +24,7 @@ void PlayerView::pollInput() {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)&&sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
         /*jump down from platform*/;
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) this->character->goRight();
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) this->character->jump();
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) /* set intitial height and don't update if in air*/ this->character->jump();
 
 }
 
