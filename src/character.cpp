@@ -40,7 +40,7 @@ void Character::goRight(void) {
 
 void Character::jump(void) {
 	if (this->jumping) { this->ySpeed -= this->maxJump*.35; }
-	//track original y from jump and checkzx against maxjumpheight
+	//track original y from jump and checks against maxjumpheight
 	//limit goRight and goLeft functions while jumping?
 }
 

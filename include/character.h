@@ -39,6 +39,8 @@ public:
 
         bool jumping = true;
 
+        float initialJump;
+
         void jump(void);
 
 		void goLeft(void);
