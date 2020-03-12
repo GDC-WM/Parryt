@@ -44,6 +44,11 @@ void Character::jump(void) {
 	//limit goRight and goLeft functions while jumping?
 }
 
+void Character::land(void){
+    this->ySpeed = 0;
+    this->isGrounded = true;
+
+}
 void Character::update(const float &dt) {
 	Actor::update(dt);
 	if (this->xSpeed < 0) this->xSpeed += 0.3;
