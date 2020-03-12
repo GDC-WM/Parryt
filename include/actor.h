@@ -50,13 +50,13 @@ class Actor {
 
 		const double &getYSpeed(void) const { return this->ySpeed; };
 
-		const double &getSpeed(void); const
+		const double getSpeed(void) const;
 
 		void hardStop(void) { this->xSpeed = this->ySpeed = 0; };
 
 		const ActorState &getState(void) const { return (this->state); };
 
-		const double &getDirection(void); const
+		const double getDirection(void) const;
 
 		/**
 		 * Sets the orientation of the actor.
@@ -116,8 +116,7 @@ class Actor {
 		/*
 		 * Return shape to draw.
 		 */
-		virtual sf::Shape &getShape(void) const = 0;
-
+		virtual sf::Shape &getShape(void) = 0;
 };
 
 #endif

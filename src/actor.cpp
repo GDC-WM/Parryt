@@ -17,11 +17,11 @@ void Actor::update(const float &dt) {
 	this->y += this->ySpeed * dt;
 }
 
-const double Actor::getSpeed(void) {
+const double Actor::getSpeed(void) const {
 	return sqrt(pow(this->xSpeed, 2) + pow(this->ySpeed, 2));
 }
 
-const double Actor::getDirection(void) {
+const double Actor::getDirection(void) const {
 	return (atan2(this->ySpeed, this->xSpeed) * 180.0 / PI);
 }
 
