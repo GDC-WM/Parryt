@@ -15,7 +15,8 @@ class Character : public Actor, public std::enable_shared_from_this<Character> {
 		int maxHealth;
 		float health;
 		int mass;
-		double maxSpeed, maxJump;
+		double maxSpeed, jumpSpeed, maxJump, jumpPosition;
+        bool jumping = false;
 
 public:
 		Character(double x, double y, double width, double height, double mass, double maxSpeed, int maxHealth, float maxJump);
@@ -36,10 +37,6 @@ public:
 
 		const int getMaxHealth(void) { return this->maxHealth; };
 
-        bool jumping = true;
-
-        bool isGrounded;
-
         void jump(void);
 
 		void goLeft(void);
@@ -47,8 +44,6 @@ public:
 		void goRight(void);
 
 		void update(const float &dt) override;
-
-        void land(void);
 };
 
 #endif

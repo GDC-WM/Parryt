@@ -17,6 +17,7 @@ Character::Character(double x, double y, double width, double height, double mas
 	this->health =
 	this->maxHealth = maxHealth;
 	this->maxJump = maxJump;
+	this->jumpSpeed = 800;
 }
 
 void Character::damage(float d) {
@@ -39,16 +40,15 @@ void Character::goRight(void) {
 }
 
 void Character::jump(void) {
-	if (this->jumping) { this->ySpeed -= this->maxJump*.35; }
+	if (this->jumping && (this->getY() > this->maxJump)) this->ySpeed = -this->jumpSpeed;
+	if (this->state == ActorState::GROUNDED) {
+		this->ySpeed = -this->jumpSpeed;
+		this->jumpPosition = this->getY();
+	}
 	//track original y from jump and checkzx against maxjumpheight
 	//limit goRight and goLeft functions while jumping?
 }
 
-void Character::land(void){
-    this->ySpeed = 0;
-    this->isGrounded = true;
-
-}
 void Character::update(const float &dt) {
 	Actor::update(dt);
 	if (this->xSpeed < 0) this->xSpeed += 0.3;
