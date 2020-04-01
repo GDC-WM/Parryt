@@ -3,11 +3,20 @@
 
 #include <SFML/Graphics.hpp>
 
-enum class ActorState { GROUNDED, AIRBORNE };
+/**
+ * Independent: Not affected by external forces
+ * Grounded: currently on a physical actor
+ * Airborne: in the air (not on a physical actor)
+ */
+enum class ActorState { INDEPENDENT, GROUNDED, AIRBORNE };
+
+enum class CardinalDirection { NORTH, SOUTH, EAST, WEST };
+
+class Actor;
 
 /*
-* Base class that all actors in the game inherit from
-*/
+ * Base class that all actors in the game inherit from
+ */
 class Actor {
 	protected:
 		/**
@@ -20,6 +29,8 @@ class Actor {
 		ActorState state;
 
 	public:
+		virtual const bool isPhysical(void) const { return false; };
+
 		Actor(double x, double y, double width, double height);
 
 		void setX(double x) { this->x = x; };
@@ -91,7 +102,14 @@ class Actor {
 		 *
 		 * a -- the actor for comparison
 		 */
-		const bool collidesSquare(Actor &a);
+		const bool collidesSquare(const Actor &a);
+
+		/**
+		 * Returns the square actor created by the overlap of another actor and the current actor.
+		 *
+		 * a -- the actor it is overlapping withactor
+		 */
+		const Actor getSquareOverlap(const Actor &a);
 
 		/**
 		 * Calculates if circular Actor a is touching this circular actor.
@@ -99,7 +117,7 @@ class Actor {
 		 *
 		 * a -- the actor for comparison
 		 */
-		const bool collidesCircle(Actor &a);
+		const bool collidesCircle(const Actor &a);
 
 		/**
 		 * Calculates if Actor a is within a range of this actor.
@@ -107,16 +125,17 @@ class Actor {
 		 * a -- the actor for comparison
 		 * range -- the distance away from the actor to check within
 		 */
-		const bool collidesCircle(Actor &a, int range);
+		const bool collidesCircle(const Actor &a, int range);
 
-		const bool liesInsideSquare(Actor &a);
+		const bool liesInsideSquare(const Actor &a);
+
 
 		virtual void update(const float &dt);
 
 		/*
 		 * Return shape to draw.
 		 */
-		virtual sf::Shape &getShape(void) = 0;
+		virtual sf::Shape &getShape(void);
 };
 
 #endif

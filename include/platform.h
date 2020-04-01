@@ -12,6 +12,8 @@ class Platform : public Actor {
 		sf::RectangleShape shape;
 
 	public:
+		virtual const bool isPhysical(void) const override { return true; };
+
 		Platform(double x, double y, double width);
 
 		sf::Shape &getShape(void) override;

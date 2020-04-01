@@ -36,6 +36,7 @@ void MasterLogic::startDemo(void) {
 void MasterLogic::startMenu(void) {
 
 }
+
 void MasterLogic::reset(void) {
 	this->roomList.clear();
 
@@ -45,6 +46,9 @@ void MasterLogic::reset(void) {
 void MasterLogic::checkCollisions(void) {
 	// check if in air or grounded
 	for (std::shared_ptr<Actor> actor : this->currentRoom->getActorList()) {
+		//if (actor->isPhysical() && actor->) {
+
+		//}
 	}
 }
 

@@ -16,9 +16,9 @@ class Character : public Actor, public std::enable_shared_from_this<Character> {
 		float health;
 		int mass;
 		double maxSpeed, jumpSpeed, maxJump, jumpPosition;
-        bool jumping = false;
+		bool jumping = false;
 
-public:
+	public:
 		Character(double x, double y, double width, double height, double mass, double maxSpeed, int maxHealth, float maxJump);
 
 		virtual void damage(float d);
@@ -37,7 +37,7 @@ public:
 
 		const int getMaxHealth(void) { return this->maxHealth; };
 
-        void jump(void);
+		void jump(void);
 
 		void goLeft(void);
 
