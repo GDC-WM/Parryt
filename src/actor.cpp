@@ -46,7 +46,7 @@ const bool Actor::collidesSquare(const Actor &a) {
 	);
 }
 
-const Actor Actor::getSquareOverlap(const Actor &a) {
+const Actor &Actor::getSquareOverlap(const Actor &a) {
 	double x, y, w, h;
 	if (a.getX() <= this->x + this->width) ;
 	else if (a.getX() + a.getWidth() > this->x) ;

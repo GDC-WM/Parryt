@@ -110,7 +110,7 @@ class Actor {
 		 *
 		 * a -- the actor it is overlapping withactor
 		 */
-		const Actor getSquareOverlap(const Actor &a);
+		const Actor &getSquareOverlap(const Actor &a);
 
 		/**
 		 * Calculates if circular Actor a is touching this circular actor. (the
@@ -136,7 +136,7 @@ class Actor {
 		/*
 		 * Return shape to draw.
 		 */
-		virtual sf::Shape &getShape(void);
+		virtual sf::Shape &getShape(void) = 0;
 };
 
 #endif
