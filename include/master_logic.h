@@ -60,6 +60,8 @@ class MasterLogic {
 		 *
 		 */
 		void update(const float &dt);
+
+		sf::Event event;
 };
 
 #endif

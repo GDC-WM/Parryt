@@ -30,6 +30,9 @@ class Room : public std::enable_shared_from_this<Room> {
 		void addActor(std::shared_ptr<Actor> actor) { this->actorList.push_back(actor); };
 
 		void reset(void);
+
+        void update(const float &dt);
+
 };
 
 #endif

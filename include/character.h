@@ -11,17 +11,15 @@
 * The parent class for all movable characters
 */
 class Character : public Actor, public std::enable_shared_from_this<Character> {
-	private:
-		void move(void);
-
 	protected:
 		int maxHealth;
 		float health;
 		int mass;
-		double maxSpeed;
+		double maxSpeed, jumpSpeed, maxJump, jumpPosition;
+		bool jumping = false;
 
 	public:
-		Character(double x, double y, double width, double height, double mass, double maxSpeed, int maxHealth);
+		Character(double x, double y, double width, double height, double mass, double maxSpeed, int maxHealth, float maxJump);
 
 		virtual void damage(float d);
 
@@ -38,6 +36,12 @@ class Character : public Actor, public std::enable_shared_from_this<Character> {
 		void setMaxHealth(double health) { this->maxHealth = health; };
 
 		const int getMaxHealth(void) { return this->maxHealth; };
+
+		void jump(void);
+
+		void goLeft(void);
+
+		void goRight(void);
 
 		void update(const float &dt) override;
 };
