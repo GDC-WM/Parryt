@@ -12,8 +12,6 @@ enum class ActorState { INDEPENDENT, GROUNDED, AIRBORNE };
 
 enum class CardinalDirection { NORTH, SOUTH, EAST, WEST };
 
-class Actor;
-
 /*
  * Base class that all actors in the game inherit from
  */
@@ -29,9 +27,9 @@ class Actor {
 		ActorState state;
 
 	public:
-		virtual const bool isPhysical(void) const { return false; };
-
 		Actor(double x, double y, double width, double height);
+
+		virtual const bool isPhysical(void) const { return false; };
 
 		void setX(double x) { this->x = x; };
 
