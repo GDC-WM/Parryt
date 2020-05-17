@@ -5,12 +5,12 @@
 #include <list>
 #include <memory>
 
-#include "master_logic.h"
-#include "actor.h"
-#include "pari.h"
+#include "master_logic.hpp"
+#include "actor.hpp"
+#include "pari.hpp"
 
-#include "view.h"
-#include "player_view.h"
+#include "view.hpp"
+#include "player_view.hpp"
 
 /**
  * Manages all of the different views and game states

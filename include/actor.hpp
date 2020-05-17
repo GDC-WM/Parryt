@@ -31,11 +31,13 @@ class Actor {
 
 		virtual const bool isPhysical(void) const { return false; };
 
+		const ActorState &getState(void) const { return (this->state); };
+
 		void setX(double x) { this->x = x; };
 
-		const double &getX(void) const { return this->x; };
-
 		void setY(double y) { this->y = y; };
+
+		const double &getX(void) const { return this->x; };
 
 		const double &getY(void) const { return this->y; };
 
@@ -45,13 +47,13 @@ class Actor {
 
 		void setPos(double x, double y) { this->x = x; this->y = y; };
 
-		const double &getWidth(void) const { return this->width; };
-
 		void setWidth(double w) { this->width = w; };
 
-		const double &getHeight(void) const { return this->height; };
-
 		void setHeight(double h) { this->height = h; };
+
+		const double &getWidth(void) const { return this->width; };
+
+		const double &getHeight(void) const { return this->height; };
 
 		void setDimensions(double width, double height) { this->width = width; this->height = height; };
 
@@ -62,8 +64,6 @@ class Actor {
 		const double getSpeed(void) const;
 
 		void hardStop(void) { this->xSpeed = this->ySpeed = 0; };
-
-		const ActorState &getState(void) const { return (this->state); };
 
 		const double getDirection(void) const;
 
@@ -127,7 +127,6 @@ class Actor {
 		const bool collidesCircle(const Actor &a, int range);
 
 		const bool liesInsideSquare(const Actor &a);
-
 
 		virtual void update(const float &dt);
 

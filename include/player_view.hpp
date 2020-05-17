@@ -5,8 +5,8 @@
 #include <list>
 #include <memory>
 
-#include "view.h"
-#include "character.h"
+#include "view.hpp"
+#include "character.hpp"
 
 /**
  * Draw the screen for the player

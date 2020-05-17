@@ -1,6 +1,6 @@
-#include "exit.h"
-#include "actor.h"
-#include "room.h"
+#include "exit.hpp"
+#include "actor.hpp"
+#include "room.hpp"
 #include <list>
 #include <memory>
 

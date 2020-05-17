@@ -4,8 +4,8 @@
 #include <list>
 #include <memory>
 
-#include "actor.h"
-#include "room.h"
+#include "actor.hpp"
+#include "room.hpp"
 
 class MasterView;
 

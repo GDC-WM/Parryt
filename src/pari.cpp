@@ -1,6 +1,6 @@
 #include <SFML/Graphics.hpp>
 
-#include "pari.h"
+#include "pari.hpp"
 #include <iostream>
 
 

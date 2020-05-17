@@ -1,7 +1,7 @@
 #ifndef PLATFORM_H
 #define PLATFORM_H
 
-#include "actor.h"
+#include "actor.hpp"
 
 /**
  * Draw the screen for the player

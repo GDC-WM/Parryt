@@ -3,8 +3,8 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "actor.h"
-#include "character.h"
+#include "actor.hpp"
+#include "character.hpp"
 
 /**
  * The main character

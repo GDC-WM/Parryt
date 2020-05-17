@@ -6,8 +6,8 @@
 
 #define PI 3.14159265
 
-#include "actor.h"
-#include "character.h"
+#include "actor.hpp"
+#include "character.hpp"
 
 Character::Character(double x, double y, double width, double height, double mass, double maxSpeed, int maxHealth,
 					 float maxJump)

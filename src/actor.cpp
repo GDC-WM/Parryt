@@ -1,4 +1,4 @@
-#include "actor.h"
+#include "actor.hpp"
 
 #include "math.h"
 #define PI 3.14159265
@@ -38,12 +38,10 @@ void Actor::setOrientation(Actor &a) {
 }
 
 const bool Actor::collidesSquare(const Actor &a) {
-	return (
-		a.getX() <= this->x + this->width &&
-		a.getX() + a.getWidth() >= this->x &&
-		a.getY() <= this->y + this->height &&
-		a.getY() + a.getHeight() >= this->y
-	);
+	return (a.getX() <= this->x + this->width
+	     && a.getY() <= this->y + this->height
+	     && a.getX() + a.getWidth()  >= this->x
+	     && a.getY() + a.getHeight() >= this->y);
 }
 
 const Actor &Actor::getSquareOverlap(const Actor &a) {
@@ -54,28 +52,22 @@ const Actor &Actor::getSquareOverlap(const Actor &a) {
 }
 
 const bool Actor::collidesCircle(const Actor &a) {
-	return (
-		sqrt(pow(this->getCenterX() - a.getCenterX(), 2) +
-		pow(this->getCenterY() - a.getCenterY(), 2)) <
-		(this->getHeight() / 2) + (a.getHeight() / 2)
-	);
+	return (sqrt(pow(this->getCenterX() - a.getCenterX(), 2)
+	           + pow(this->getCenterY() - a.getCenterY(), 2))
+	      < (this->getHeight() / 2) + (a.getHeight() / 2));
 }
 
 const bool Actor::collidesCircle(const Actor &a, int range) {
-	return (
-		sqrt(pow(this->getCenterX() - a.getCenterX(), 2) +
-		pow(this->getCenterY() - a.getCenterY(), 2)) <
-		range
-	);
+	return (sqrt(pow(this->getCenterX() - a.getCenterX(), 2)
+	           + pow(this->getCenterY() - a.getCenterY(), 2))
+	      < range);
 }
 
 const bool Actor::liesInsideSquare(const Actor &a) {
-	return (
-		a.getX() <= this->x &&
-		a.getX() + a.getWidth() >= this->x + this->width &&
-		a.getY() <= this->y &&
-		a.getY() + a.getHeight() >= this->y + this->height
-	);
+	return (a.getX() <= this->x
+	     && a.getY() <= this->y
+	     && a.getX() + a.getWidth()  >= this->x + this->width
+	     && a.getY() + a.getHeight() >= this->y + this->height);
 }
 
 sf::Shape &getShape(void) {

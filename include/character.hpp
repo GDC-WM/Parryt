@@ -5,7 +5,7 @@
 #include <iostream>
 #include <list>
 
-#include "actor.h"
+#include "actor.hpp"
 
 /*
 * The parent class for all movable characters

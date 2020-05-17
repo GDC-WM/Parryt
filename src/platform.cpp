@@ -1,7 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
-#include "platform.h"
+#include "platform.hpp"
 
 Platform::Platform(double x, double y, double width) : Actor(x, y, width, 10) {
 	this->shape.setFillColor(sf::Color::White);

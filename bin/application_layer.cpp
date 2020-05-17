@@ -3,8 +3,8 @@
 #include <memory>
 #include <iostream>
 
-#include "master_logic.h"
-#include "master_view.h"
+#include "master_logic.hpp"
+#include "master_view.hpp"
 
 int main(int argc, char** argv) {
 	// game window
