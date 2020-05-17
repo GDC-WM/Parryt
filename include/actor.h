@@ -97,23 +97,24 @@ class Actor {
 		const int &getOrientation() { return this->orientation; };
 
 		/**
-		 * Calculates if square Actor a is touching this square actor.
-		 * (the outer pixels are next to eachother, or the actors are overlapping).
+		 * Calculates if square Actor a is touching this square actor. (the
+		 * outer pixels are next to eachother, or the actors are overlapping).
 		 *
 		 * a -- the actor for comparison
 		 */
 		const bool collidesSquare(const Actor &a);
 
 		/**
-		 * Returns the square actor created by the overlap of another actor and the current actor.
+		 * Returns the square actor created by the overlap of another actor and
+		 * the current actor.
 		 *
 		 * a -- the actor it is overlapping withactor
 		 */
 		const Actor getSquareOverlap(const Actor &a);
 
 		/**
-		 * Calculates if circular Actor a is touching this circular actor.
-		 * (the outer pixels are next to eachother, or the actors are overlapping).
+		 * Calculates if circular Actor a is touching this circular actor. (the
+		 * outer pixels are next to eachother, or the actors are overlapping).
 		 *
 		 * a -- the actor for comparison
 		 */
