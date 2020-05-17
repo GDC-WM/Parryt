@@ -1,11 +1,11 @@
-#include "master_logic.h"
-#include "master_view.h"
+#include "master_logic.hpp"
+#include "master_view.hpp"
 
-#include "actor.h"
-#include "room.h"
-#include "exit.h"
-#include "platform.h"
-#include "pari.h"
+#include "actor.hpp"
+#include "room.hpp"
+#include "exit.hpp"
+#include "platform.hpp"
+#include "pari.hpp"
 
 void MasterLogic::init(std::shared_ptr<MasterView> view) {
 	this->view = view;

@@ -4,8 +4,8 @@
 #include <list>
 #include <memory>
 
-#include "actor.h"
-#include "master_logic.h"
+#include "actor.hpp"
+#include "master_logic.hpp"
 
 class View {
     protected:

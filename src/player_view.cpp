@@ -2,9 +2,9 @@
 #include <list>
 #include <memory>
 
-#include "view.h"
-#include "player_view.h"
-#include "character.h"
+#include "view.hpp"
+#include "player_view.hpp"
+#include "character.hpp"
 
 PlayerView::PlayerView(std::shared_ptr<MasterLogic> logic, std::shared_ptr<Character> character, std::shared_ptr<sf::RenderWindow> window)
 	: View(logic) {

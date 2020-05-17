@@ -4,7 +4,7 @@
 #include <list>
 #include <memory>
 
-#include "actor.h"
+#include "actor.hpp"
 
 /*
  * Handles state management between the two rooms and all of the different actor lists

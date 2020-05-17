@@ -3,8 +3,8 @@
 
 #include <memory>
 
-#include "actor.h"
-#include "room.h"
+#include "actor.hpp"
+#include "room.hpp"
 
 /*
  * Exits to each of the rooms

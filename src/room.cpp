@@ -1,5 +1,5 @@
-#include "actor.h"
-#include "room.h"
+#include "actor.hpp"
+#include "room.hpp"
 
 void Room::reset(void) {
     actorList.clear();

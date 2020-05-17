@@ -1,6 +1,6 @@
-#include "master_view.h"
-#include "player_view.h"
-#include "master_logic.h"
+#include "master_view.hpp"
+#include "player_view.hpp"
+#include "master_logic.hpp"
 
 MasterView::MasterView(std::shared_ptr<MasterLogic> logic, std::shared_ptr<sf::RenderWindow> window) {
 	this->logic = logic;
