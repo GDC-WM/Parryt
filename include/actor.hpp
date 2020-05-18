@@ -1,7 +1,9 @@
 #ifndef ACTOR_H
 #define ACTOR_H
 
+#include <iostream>
 #include <SFML/Graphics.hpp>
+
 
 /**
  * Independent: Not affected by external forces
@@ -12,10 +14,14 @@ enum class ActorState { INDEPENDENT, GROUNDED, AIRBORNE };
 
 enum class CardinalDirection { NORTH, SOUTH, EAST, WEST };
 
+
 /*
  * Base class that all actors in the game inherit from
  */
 class Actor {
+	private:
+		sf::RectangleShape shape;
+
 	protected:
 		/**
 		 * x and y -- the coordinates of the top left pixel
@@ -27,7 +33,7 @@ class Actor {
 		ActorState state;
 
 	public:
-		Actor(double x, double y, double width, double height);
+		Actor(const double &x, const double &y, const double &width, const double &height);
 
 		virtual const bool isPhysical(void) const { return false; };
 
@@ -72,7 +78,7 @@ class Actor {
 		 *
 		 * d -- direction to face
 		 */
-		void setOrientation(int d) { this->orientation = d; };
+		void setOrientation(const int &d) { this->orientation = d; };
 
 		/**
 		 * Sets the orientation of the actor.
@@ -80,19 +86,19 @@ class Actor {
 		 * x -- x coordinate to face
 		 * y -- y coordinate to face
 		 */
-		void setOrientation(int x, int y);
+		void setOrientation(const int &x, const int &y);
 
 		/**
 		 * Sets the orientation of the actor.
 		 *
 		 * a -- the actor to face towards
 		 */
-		void setOrientation(Actor &a);
+		void setOrientation(const Actor &a);
 
 		/**
 		 * Returns the orientation of the actor.
 		 */
-		const int &getOrientation() { return this->orientation; };
+		const int &getOrientation() const { return this->orientation; };
 
 		/**
 		 * Calculates if square Actor a is touching this square actor. (the
@@ -100,7 +106,7 @@ class Actor {
 		 *
 		 * a -- the actor for comparison
 		 */
-		const bool collidesSquare(const Actor &a);
+		const bool collidesSquare(const Actor &a) const;
 
 		/**
 		 * Returns the square actor created by the overlap of another actor and
@@ -108,7 +114,7 @@ class Actor {
 		 *
 		 * a -- the actor it is overlapping withactor
 		 */
-		const Actor &getSquareOverlap(const Actor &a);
+		const Actor &getSquareOverlap(const Actor &a) const;
 
 		/**
 		 * Calculates if circular Actor a is touching this circular actor. (the
@@ -116,7 +122,7 @@ class Actor {
 		 *
 		 * a -- the actor for comparison
 		 */
-		const bool collidesCircle(const Actor &a);
+		const bool collidesCircle(const Actor &a) const;
 
 		/**
 		 * Calculates if Actor a is within a range of this actor.
@@ -124,16 +130,18 @@ class Actor {
 		 * a -- the actor for comparison
 		 * range -- the distance away from the actor to check within
 		 */
-		const bool collidesCircle(const Actor &a, int range);
+		const bool collidesCircle(const Actor &a, int range) const;
 
-		const bool liesInsideSquare(const Actor &a);
+		const bool liesInsideSquare(const Actor &a) const;
 
 		virtual void update(const float &dt);
 
-		/*
+		void setShapePos(const double &x, const double &y) { this->shape.setPosition(x, y);std::cout << this->shape.getPosition().x; };
+
+		/**
 		 * Return shape to draw.
 		 */
-		virtual sf::Shape &getShape(void) = 0;
+		virtual const sf::Shape &getShape(void) const { return this->shape; };
 };
 
 #endif

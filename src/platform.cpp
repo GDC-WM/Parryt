@@ -5,10 +5,10 @@
 
 Platform::Platform(double x, double y, double width) : Actor(x, y, width, 10) {
 	this->shape.setFillColor(sf::Color::White);
+	this->shape.setSize(sf::Vector2f(this->width, this->height));
 	this->state = ActorState::INDEPENDENT;
 }
 
-sf::Shape &Platform::getShape(void) {
-	this->shape.setSize(sf::Vector2f(this->width, this->height));
+const sf::Shape &Platform::getShape(void) const {
 	return (this->shape);
 }

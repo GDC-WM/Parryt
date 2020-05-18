@@ -2,6 +2,8 @@
 #include <list>
 #include <memory>
 
+#include <iostream>
+
 #include "view.hpp"
 #include "player_view.hpp"
 #include "character.hpp"
@@ -24,7 +26,7 @@ void PlayerView::pollInput() {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)&&sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
         /*jump down from platform*/;
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) this->character->goRight();
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) /* set initial height and don't update if in air*/ this->character->jump();
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) /* set initial height and don't update if in air*/ this->character->jump();
 
 }
 
@@ -32,7 +34,7 @@ void PlayerView::update(const float &dt) {
 	this->pollInput();
 
 	for (auto actor : this->logic->getCurrentRoom().getActorList()) {
-		actor->getShape().setPosition(actor->getX(), actor->getY());
+		actor->setShapePos(actor->getX(), actor->getY());
 		this->window->draw(actor->getShape());
 	}
 }

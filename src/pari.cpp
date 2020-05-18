@@ -6,6 +6,7 @@
 
 Pari::Pari(double x, double y) : Character(x, y, 64, 64, 10, 180, 200, 50) {
 	this->shape.setFillColor(sf::Color::Green);
+	this->shape.setSize(sf::Vector2f(this->width, this->height));
 
 //placeholder to link base png as Pari
 //        sf::Texture texture;
@@ -15,13 +16,6 @@ Pari::Pari(double x, double y) : Character(x, y, 64, 64, 10, 180, 200, 50) {
 //        sprite.setTextureRect(sf::IntRect(0, 0, 64, 64));
 }
 
-sf::Shape &Pari::getShape(void) {
-	this->shape.setSize(sf::Vector2f(this->width, this->height));
+const sf::Shape &Pari::getShape(void) const {
 	return (this->shape);
 }
-
-
-
-
-
-

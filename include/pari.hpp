@@ -6,6 +6,7 @@
 #include "actor.hpp"
 #include "character.hpp"
 
+
 /**
  * The main character
  */
@@ -16,7 +17,7 @@ class Pari : public Character {
 	public:
 		Pari(double x, double y);
 
-		sf::Shape &getShape(void) override;
+		const sf::Shape &getShape(void) const override;
 };
 
 #endif
