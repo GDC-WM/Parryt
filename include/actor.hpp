@@ -5,14 +5,14 @@
 #include <SFML/Graphics.hpp>
 
 
-/**
- * Independent: Not affected by external forces
- * Grounded: currently on a physical actor
- * Airborne: in the air (not on a physical actor)
- */
-enum class ActorState { INDEPENDENT, GROUNDED, AIRBORNE };
-
 enum class CardinalDirection { NORTH, SOUTH, EAST, WEST };
+
+
+enum class ActorState {
+	INDEPENDENT, // other actors don't affect it
+	GROUNDED,    // resting on a physical actor
+	AIRBORNE     // not resting on a physical actor (in the air)
+};
 
 
 /*
@@ -22,20 +22,23 @@ class Actor {
 	private:
 		sf::RectangleShape shape;
 
+
 	protected:
-		/**
-		 * x and y -- the coordinates of the top left pixel
-		 * width and height -- the number of pixels on the sides
-		 * speed -- magnitude of the speed of the actor
-		 */
-		double x, y, width, height, xSpeed, ySpeed;
-		int orientation; // orientation of the actor
-		ActorState state;
+		bool physical;         // it affects other actors
+		ActorState state;      // state of the actor
+
+		double x, y;           // coordinates of the top left pixel
+		double width, height;  // the number of pixels on the sides
+		double xSpeed, ySpeed; // magnitude of the speed of the actor
+		int orientation;       // orientation of the actor
+
 
 	public:
 		Actor(const double &x, const double &y, const double &width, const double &height);
 
-		virtual const bool isPhysical(void) const { return false; };
+		virtual const bool isPhysical(void) const { return physical; };
+
+		void setState(ActorState s) { this->state = s; };
 
 		const ActorState &getState(void) const { return (this->state); };
 
@@ -132,16 +135,23 @@ class Actor {
 		 */
 		const bool collidesCircle(const Actor &a, int range) const;
 
+		/**
+		 * Calculates if this actor lies entirely inside another actor
+		 *
+		 * a -- the actor for comparison
+		 * range -- the distance away from the actor to check within
+		 */
 		const bool liesInsideSquare(const Actor &a) const;
 
 		virtual void update(const float &dt);
 
-		void setShapePos(const double &x, const double &y) { this->shape.setPosition(x, y);std::cout << this->shape.getPosition().x; };
+		void setShapePos(const double &x, const double &y) { this->shape.setPosition(x, y); };
 
 		/**
 		 * Return shape to draw.
 		 */
 		virtual const sf::Shape &getShape(void) const { return this->shape; };
 };
+
 
 #endif
