@@ -2,8 +2,6 @@
 #include <list>
 #include <memory>
 
-#include <iostream>
-
 #include "view.hpp"
 #include "player_view.hpp"
 #include "character.hpp"
