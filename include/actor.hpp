@@ -19,11 +19,8 @@ enum class ActorState {
  * Base class that all actors in the game inherit from
  */
 class Actor {
-	private:
-		sf::RectangleShape shape;
-
-
 	protected:
+		sf::RectangleShape shape;
 		bool physical;         // it affects other actors
 		ActorState state;      // state of the actor
 

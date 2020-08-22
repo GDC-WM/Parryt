@@ -15,7 +15,3 @@ Pari::Pari(double x, double y) : Character(x, y, 64, 64, 10, 180, 200, 50) {
 //        sprite.setTexture(texture);
 //        sprite.setTextureRect(sf::IntRect(0, 0, 64, 64));
 }
-
-const sf::Shape &Pari::getShape(void) const {
-	return (this->shape);
-}
