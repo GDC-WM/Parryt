@@ -32,7 +32,7 @@ void MasterLogic::startDemo(void) {
 	this->currentRoom->addActor(platform1);
 
 	// Add Another Platform
-	std::shared_ptr<Platform> platform2 = std::make_shared<Platform>(700, 400, 200);
+	std::shared_ptr<Platform> platform2 = std::make_shared<Platform>(700, 200, 200);
 	this->currentRoom->addActor(platform2);
 }
 
@@ -66,13 +66,21 @@ void MasterLogic::checkCollisions(void) {
 				bool airborne = true;
 				for (std::shared_ptr<Actor> physicalActor : physicalActors) {
 					if (actor->collidesSquare(*physicalActor)) {
-						airborne = false;
+						airborne = false; //still grounded
 						break;
-					} //still grounded
+					}
 				}
 				if (airborne) actor->setState(ActorState::AIRBORNE);
 			}break;
+
 			case ActorState::AIRBORNE : {
+				for (std::shared_ptr<Actor> physicalActor : physicalActors) {
+					if (actor->collidesSquare(*physicalActor)) {
+						actor->setState(ActorState::GROUNDED);
+						actor->setYSpeed(0);
+						break;
+					} //still grounded
+				}
 			}break;
 		}
 	}
