@@ -10,12 +10,11 @@
 #include "character.hpp"
 
 Character::Character(double x, double y, double width, double height, double mass, double maxSpeed, int maxHealth,
-					 float maxJump)
+                     float maxJump)
 		: Actor(x, y, width, height) {
 	this->mass = mass;
 	this->maxSpeed = maxSpeed;
-	this->health =
-	this->maxHealth = maxHealth;
+	this->health = this->maxHealth = maxHealth;
 	this->maxJump = maxJump;
 	this->jumpSpeed = 800;
 }

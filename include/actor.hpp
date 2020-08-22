@@ -1,35 +1,41 @@
 #ifndef ACTOR_H
 #define ACTOR_H
 
+#include <iostream>
 #include <SFML/Graphics.hpp>
 
-/**
- * Independent: Not affected by external forces
- * Grounded: currently on a physical actor
- * Airborne: in the air (not on a physical actor)
- */
-enum class ActorState { INDEPENDENT, GROUNDED, AIRBORNE };
 
 enum class CardinalDirection { NORTH, SOUTH, EAST, WEST };
+
+
+enum class ActorState {
+	INDEPENDENT, // other actors don't affect it
+	GROUNDED,    // resting on a physical actor
+	AIRBORNE     // not resting on a physical actor (in the air)
+};
+
 
 /*
  * Base class that all actors in the game inherit from
  */
 class Actor {
 	protected:
-		/**
-		 * x and y -- the coordinates of the top left pixel
-		 * width and height -- the number of pixels on the sides
-		 * speed -- magnitude of the speed of the actor
-		 */
-		double x, y, width, height, xSpeed, ySpeed;
-		int orientation; // orientation of the actor
-		ActorState state;
+		sf::RectangleShape shape;
+		bool physical;         // it affects other actors
+		ActorState state;      // state of the actor
+
+		double x, y;           // coordinates of the top left pixel
+		double width, height;  // the number of pixels on the sides
+		double xSpeed, ySpeed; // magnitude of the speed of the actor
+		int orientation;       // orientation of the actor
+
 
 	public:
-		Actor(double x, double y, double width, double height);
+		Actor(const double &x, const double &y, const double &width, const double &height);
 
-		virtual const bool isPhysical(void) const { return false; };
+		virtual const bool isPhysical(void) const { return physical; };
+
+		void setState(ActorState s) { this->state = s; };
 
 		const ActorState &getState(void) const { return (this->state); };
 
@@ -72,7 +78,7 @@ class Actor {
 		 *
 		 * d -- direction to face
 		 */
-		void setOrientation(int d) { this->orientation = d; };
+		void setOrientation(const int &d) { this->orientation = d; };
 
 		/**
 		 * Sets the orientation of the actor.
@@ -80,19 +86,19 @@ class Actor {
 		 * x -- x coordinate to face
 		 * y -- y coordinate to face
 		 */
-		void setOrientation(int x, int y);
+		void setOrientation(const int &x, const int &y);
 
 		/**
 		 * Sets the orientation of the actor.
 		 *
 		 * a -- the actor to face towards
 		 */
-		void setOrientation(Actor &a);
+		void setOrientation(const Actor &a);
 
 		/**
 		 * Returns the orientation of the actor.
 		 */
-		const int &getOrientation() { return this->orientation; };
+		const int &getOrientation() const { return this->orientation; };
 
 		/**
 		 * Calculates if square Actor a is touching this square actor. (the
@@ -100,7 +106,7 @@ class Actor {
 		 *
 		 * a -- the actor for comparison
 		 */
-		const bool collidesSquare(const Actor &a);
+		const bool collidesSquare(const Actor &a) const;
 
 		/**
 		 * Returns the square actor created by the overlap of another actor and
@@ -108,7 +114,7 @@ class Actor {
 		 *
 		 * a -- the actor it is overlapping withactor
 		 */
-		const Actor &getSquareOverlap(const Actor &a);
+		const Actor &getSquareOverlap(const Actor &a) const;
 
 		/**
 		 * Calculates if circular Actor a is touching this circular actor. (the
@@ -116,7 +122,7 @@ class Actor {
 		 *
 		 * a -- the actor for comparison
 		 */
-		const bool collidesCircle(const Actor &a);
+		const bool collidesCircle(const Actor &a) const;
 
 		/**
 		 * Calculates if Actor a is within a range of this actor.
@@ -124,16 +130,25 @@ class Actor {
 		 * a -- the actor for comparison
 		 * range -- the distance away from the actor to check within
 		 */
-		const bool collidesCircle(const Actor &a, int range);
+		const bool collidesCircle(const Actor &a, int range) const;
 
-		const bool liesInsideSquare(const Actor &a);
+		/**
+		 * Calculates if this actor lies entirely inside another actor
+		 *
+		 * a -- the actor for comparison
+		 * range -- the distance away from the actor to check within
+		 */
+		const bool liesInsideSquare(const Actor &a) const;
 
 		virtual void update(const float &dt);
 
-		/*
+		void setShapePos(const double &x, const double &y) { this->shape.setPosition(x, y); };
+
+		/**
 		 * Return shape to draw.
 		 */
-		virtual sf::Shape &getShape(void) = 0;
+		virtual const sf::Shape &getShape(void) const { return this->shape; };
 };
+
 
 #endif
