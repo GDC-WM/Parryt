@@ -24,6 +24,7 @@ class Actor {
 		bool physical;         // it affects other actors
 		ActorState state;      // state of the actor
 
+		int mass;
 		double x, y;           // coordinates of the top left pixel
 		double width, height;  // the number of pixels on the sides
 		double xSpeed, ySpeed; // magnitude of the speed of the actor
@@ -33,11 +34,15 @@ class Actor {
 	public:
 		Actor(const double &x, const double &y, const double &width, const double &height);
 
-		virtual const bool isPhysical(void) const { return physical; };
+		const bool isPhysical(void) const { return physical; };
 
 		void setState(ActorState s) { this->state = s; };
 
 		const ActorState &getState(void) const { return (this->state); };
+
+		void setMass(double mass) { this->mass = mass; };
+
+		const int getMass(void) const { return this->mass; };
 
 		void setX(double x) { this->x = x; };
 
@@ -62,6 +67,10 @@ class Actor {
 		const double &getHeight(void) const { return this->height; };
 
 		void setDimensions(double width, double height) { this->width = width; this->height = height; };
+
+		void setXSpeed(double x) { this->xSpeed = x; };
+
+		void setYSpeed(double y) { this->ySpeed = y; };
 
 		const double &getXSpeed(void) const { return this->xSpeed; };
 

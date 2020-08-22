@@ -14,8 +14,7 @@ class Character : public Actor, public std::enable_shared_from_this<Character> {
 	protected:
 		int maxHealth;
 		float health;
-		int mass;
-		double maxSpeed, jumpSpeed, maxJump, jumpPosition;
+		double maxSpeed, jumpSpeed, maxJump, jumpStart;
 		bool jumping = false;
 
 	public:
@@ -27,15 +26,13 @@ class Character : public Actor, public std::enable_shared_from_this<Character> {
 
 		void setMaxSpeed(double maxSpeed) { this->maxSpeed = maxSpeed; };
 
-		void setMass(double mass) { this->mass = mass; };
-
 		void setHealth(double health) { this->health = health; };
 
-		const int getHealth(void) { return this->health; };
+		const int getHealth(void) const { return this->health; };
 
 		void setMaxHealth(double health) { this->maxHealth = health; };
 
-		const int getMaxHealth(void) { return this->maxHealth; };
+		const int getMaxHealth(void) const { return this->maxHealth; };
 
 		void jump(void);
 

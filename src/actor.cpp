@@ -42,7 +42,8 @@ const bool Actor::collidesSquare(const Actor &a) const {
 	return (a.getX() <= this->x + this->width
 	     && a.getY() <= this->y + this->height
 	     && a.getX() + a.getWidth()  >= this->x
-	     && a.getY() + a.getHeight() >= this->y);
+	     && a.getY() + a.getHeight() >= this->y
+	     && this != &a);
 }
 
 
@@ -57,14 +58,16 @@ const Actor &Actor::getSquareOverlap(const Actor &a) const {
 const bool Actor::collidesCircle(const Actor &a) const {
 	return (sqrt(pow(this->getCenterX() - a.getCenterX(), 2)
 	           + pow(this->getCenterY() - a.getCenterY(), 2))
-	      < this->getHeight() / 2 + a.getHeight() / 2);
+	      < this->getHeight() / 2 + a.getHeight() / 2
+	     && this != &a);
 }
 
 
 const bool Actor::collidesCircle(const Actor &a, int range) const {
 	return (sqrt(pow(this->getCenterX() - a.getCenterX(), 2)
 	           + pow(this->getCenterY() - a.getCenterY(), 2))
-	      < range);
+	      < range
+	     && this != &a);
 }
 
 
@@ -72,7 +75,8 @@ const bool Actor::liesInsideSquare(const Actor &a) const {
 	return (a.getX() <= this->x
 	     && a.getY() <= this->y
 	     && a.getX() + a.getWidth()  >= this->x + this->width
-	     && a.getY() + a.getHeight() >= this->y + this->height);
+	     && a.getY() + a.getHeight() >= this->y + this->height
+	     && this != &a);
 }
 
 

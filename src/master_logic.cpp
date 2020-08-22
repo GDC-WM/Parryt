@@ -22,7 +22,8 @@ void MasterLogic::startDemo(void) {
 	this->currentRoom->addActor(ground);
 
 	// Add pari
-	std::shared_ptr<Pari> pari = std::make_shared<Pari>(300,335);
+	std::shared_ptr<Pari> pari = std::make_shared<Pari>(300,340);
+	pari->setState(ActorState::GROUNDED);
 	this->currentRoom->addActor(pari);
 	this->view->addView(pari);
 
@@ -31,7 +32,7 @@ void MasterLogic::startDemo(void) {
 	this->currentRoom->addActor(platform1);
 
 	// Add Another Platform
-	std::shared_ptr<Platform> platform2 = std::make_shared<Platform>(700, 400, 200);
+	std::shared_ptr<Platform> platform2 = std::make_shared<Platform>(700, 200, 200);
 	this->currentRoom->addActor(platform2);
 }
 
@@ -59,16 +60,28 @@ void MasterLogic::checkCollisions(void) {
 
 		// respond based on actor's state
 		switch (actor->getState()) {
-			case ActorState::INDEPENDENT :
-				continue; // skip independent actors
-			case ActorState::GROUNDED :
-				for (std::shared_ptr<Actor> physicalActor : this->currentRoom->getActorList()) {
-					if (actor->collidesSquare(*physicalActor)) break; //still grounded
+			case ActorState::INDEPENDENT : continue; // skip independent actors
+
+			case ActorState::GROUNDED : {
+				bool airborne = true;
+				for (std::shared_ptr<Actor> physicalActor : physicalActors) {
+					if (actor->collidesSquare(*physicalActor)) {
+						airborne = false; //still grounded
+						break;
+					}
 				}
-				actor->setState(ActorState::AIRBORNE);
-				break;
-			case ActorState::AIRBORNE :
-				break;
+				if (airborne) actor->setState(ActorState::AIRBORNE);
+			}break;
+
+			case ActorState::AIRBORNE : {
+				for (std::shared_ptr<Actor> physicalActor : physicalActors) {
+					if (actor->collidesSquare(*physicalActor)) {
+						actor->setState(ActorState::GROUNDED);
+						actor->setYSpeed(0);
+						break;
+					} //still grounded
+				}
+			}break;
 		}
 	}
 }
@@ -76,9 +89,16 @@ void MasterLogic::checkCollisions(void) {
 
 void MasterLogic::update(const float &dt) {
 	if (!this->paused) {
-		// Update all actors in the actor list
+		// update all actors in the actor list
 		if (this->currentRoom->getActorList().size() > 0) {
-			for (std::shared_ptr<Actor> actor : this->currentRoom->getActorList()) actor->update(dt);
+			for (std::shared_ptr<Actor> actor : this->currentRoom->getActorList()) {
+				actor->update(dt);
+
+				// apply gravity to airborne actors
+				if (actor->getState() == ActorState::AIRBORNE) {
+					actor->setYSpeed(actor->getYSpeed() + 0.4 * actor->getMass());
+				}
+			}
 			this->checkCollisions();
 		}
 	}
