@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <list>
 #include <memory>
+#include <iostream>
 
 #include "view.hpp"
 #include "player_view.hpp"
@@ -32,8 +33,20 @@ void PlayerView::pollInput() {
 void PlayerView::update(const float &dt) {
 	this->pollInput();
 
+	// draw actors
 	for (auto actor : this->logic->getCurrentRoom().getActorList()) {
 		actor->setShapePos(actor->getX(), actor->getY());
 		this->window->draw(actor->getShape());
 	}
+
+	// follow character
+	sf::View curView = this->window->getView();
+	if (this->character->getCenterX() + 50 < curView.getCenter().x) {
+		curView.setCenter(sf::Vector2f(curView.getCenter().x - 0.3, this->character->getCenterY()));
+	}
+	else if (this->character->getCenterX() - 50 > this->window->getView().getCenter().x) {
+		curView.setCenter(sf::Vector2f(curView.getCenter().x + 0.3, this->character->getCenterY()));
+	}
+	else curView.setCenter(sf::Vector2f(curView.getCenter().x, this->character->getCenterY()));
+	this->window->setView(curView);
 }
