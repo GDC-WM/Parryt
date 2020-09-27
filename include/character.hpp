@@ -14,17 +14,14 @@ class Character : public Actor, public std::enable_shared_from_this<Character> {
 	protected:
 		int maxHealth;
 		float health;
-		double maxSpeed, jumpSpeed, maxJump, jumpStart;
-		bool jumping = false;
+
 
 	public:
-		Character(double x, double y, double width, double height, double mass, double maxSpeed, int maxHealth, float maxJump);
+		Character(float x, float y);
 
 		virtual void damage(float d);
 
 		void heal(int healAmount);
-
-		void setMaxSpeed(double maxSpeed) { this->maxSpeed = maxSpeed; };
 
 		void setHealth(double health) { this->health = health; };
 

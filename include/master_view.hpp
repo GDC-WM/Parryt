@@ -26,6 +26,9 @@ class MasterView {
 
 		void reset();
 
+		/**
+		 * Polymorphic way to add a view
+		 */
 		void addView(std::shared_ptr<Pari> p) { this->viewList.push_back(std::make_shared<PlayerView>(this->logic, p, this->window)); };
 
 		/**

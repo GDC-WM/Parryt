@@ -47,11 +47,6 @@ class MasterLogic {
 		const Room &getCurrentRoom(void) const { return *(this->currentRoom); };
 
 		/**
-		 * Check what actors are colliding and respond accordingly
-		 */
-		void checkCollisions(void);
-
-		/**
 		 * Resets master logic
 		 */
 		void reset(void);
