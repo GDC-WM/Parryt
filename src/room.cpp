@@ -17,3 +17,7 @@ void Room::addActor(std::shared_ptr<Actor> actor) {
 void Room::reset(void) {
     actorList.clear();
 }
+
+void Room::update(const float &dt) {
+	this->world->Step(dt, 8, 3);
+}

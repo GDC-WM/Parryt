@@ -12,6 +12,9 @@
  * The main character
  */
 class Pari : public Character {
+	private:
+		b2PolygonShape shape;
+
 	public:
 		Pari(double x, double y);
 };

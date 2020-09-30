@@ -4,9 +4,16 @@
 #include <iostream>
 
 
-Pari::Pari(double x, double y) : Character(x, y, 64, 64, 10, 180, 200, 50) {
-	this->shape.setFillColor(sf::Color::Green);
-	this->shape.setSize(sf::Vector2f(this->width, this->height));
+Pari::Pari(double x, double y) : Character(x, y) {
+	// fix shape to body
+	this->fixtureDef.shape = &this->shape;
+	this->fixtureDef.density = 1.0f;
+	this->fixtureDef.friction = 0.3f;
+	this->body->CreateFixture(&fixtureDef);
+
+	// set drawable
+	this->drawable.setFillColor(sf::Color::Green);
+	this->drawable.setSize(sf::Vector2f(64, 64));
 
 //placeholder to link base png as Pari
 //        sf::Texture texture;

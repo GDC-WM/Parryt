@@ -35,11 +35,12 @@ void PlayerView::update(const float &dt) {
 
 	// draw actors
 	for (auto actor : this->logic->getCurrentRoom().getActorList()) {
-		actor->setDrawablePos(actor->getX(), actor->getY());
+		actor->setDrawablePos(actor->getBody()->GetPosition().x, actor->getBody()->GetPosition().y);
 		this->window->draw(actor->getDrawable());
 	}
 
 	// screen follow character
+	/*
 	sf::View curView = this->window->getView();
 	if (this->character->getCenterX() + 50 < curView.getCenter().x) {
 		curView.setCenter(sf::Vector2f(curView.getCenter().x - 0.3, this->character->getCenterY()));
@@ -49,4 +50,5 @@ void PlayerView::update(const float &dt) {
 	}
 	else curView.setCenter(sf::Vector2f(curView.getCenter().x, this->character->getCenterY()));
 	this->window->setView(curView);
+	*/
 }

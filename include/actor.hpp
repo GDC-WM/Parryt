@@ -13,6 +13,7 @@
 class Actor {
 	protected:
 		b2BodyDef bodyDef;
+		b2FixtureDef fixtureDef;
 		b2Body *body;
 		sf::RectangleShape drawable;
 		std::shared_ptr<b2World> world;
@@ -25,7 +26,7 @@ class Actor {
 
 		b2BodyDef &getBodyDef(void) { return this->bodyDef; };
 
-		void setWorld(std::shared_ptr<b2World> world) ;
+		void setWorld(std::shared_ptr<b2World> world);
 
 		b2Body *getBody(void) { return this->body; };
 

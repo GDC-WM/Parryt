@@ -33,7 +33,7 @@ class Room : public std::enable_shared_from_this<Room> {
 
 		void reset(void);
 
-        void update(const float &dt);
+		void update(const float &dt);
 
 };
 

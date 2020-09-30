@@ -3,9 +3,14 @@
 
 #include "platform.hpp"
 
-Platform::Platform(double x, double y, double width) : Actor(x, y, width, Platform::HEIGHT) {
-	this->shape.setFillColor(sf::Color::White);
-	this->shape.setSize(sf::Vector2f(this->width, this->height));
-	this->state = ActorState::INDEPENDENT;
-	this->physical = true;
+Platform::Platform(double x, double y, double width) : Actor(x, y) {
+	// fix shape to body
+	this->fixtureDef.shape = &this->shape;
+	this->fixtureDef.density = 1.0f;
+	this->fixtureDef.friction = 0.3f;
+	this->body->CreateFixture(&fixtureDef);
+
+	// set drawable
+	this->drawable.setFillColor(sf::Color::White);
+	this->drawable.setSize(sf::Vector2f(width, 5));
 }
