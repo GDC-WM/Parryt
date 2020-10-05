@@ -4,6 +4,8 @@
 #include "platform.hpp"
 
 Platform::Platform(double x, double y, double width) : Actor(x, y) {
+	this->shape.SetAsBox(this->HEIGHT, width);
+
 	// fix shape to body
 	this->bodyDef.type = b2_staticBody;
 	this->fixtureDef.shape = &this->shape;

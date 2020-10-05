@@ -28,7 +28,6 @@ void Character::goRight(void) {
 
 void Character::jump(void) {
 	this->body->SetLinearVelocity(b2Vec2(0,50));
-	std::cout << this->body->GetPosition().y;
 }
 
 void Character::update(const float &dt) {
