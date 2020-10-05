@@ -5,10 +5,10 @@
 
 Platform::Platform(double x, double y, double width) : Actor(x, y) {
 	// fix shape to body
+	this->bodyDef.type = b2_staticBody;
 	this->fixtureDef.shape = &this->shape;
 	this->fixtureDef.density = 1.0f;
 	this->fixtureDef.friction = 0.3f;
-	this->body->CreateFixture(&fixtureDef);
 
 	// set drawable
 	this->drawable.setFillColor(sf::Color::White);

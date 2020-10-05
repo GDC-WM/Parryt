@@ -9,7 +9,6 @@ Pari::Pari(double x, double y) : Character(x, y) {
 	this->fixtureDef.shape = &this->shape;
 	this->fixtureDef.density = 1.0f;
 	this->fixtureDef.friction = 0.3f;
-	this->body->CreateFixture(&fixtureDef);
 
 	// set drawable
 	this->drawable.setFillColor(sf::Color::Green);

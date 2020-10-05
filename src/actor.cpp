@@ -12,6 +12,7 @@ Actor::Actor(float x, float y) {
 void Actor::setWorld(std::shared_ptr<b2World> world) {
 	this->world = world;
 	this->body = this->world->CreateBody(&this->bodyDef);
+	this->body->CreateFixture(&this->fixtureDef);
 }
 
 void Actor::update(const float &dt) {
