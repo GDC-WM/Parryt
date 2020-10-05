@@ -1,16 +1,11 @@
 #include <memory>
-#include <iostream>
-#include <list>
-
-#include "math.h"
-
-#define PI 3.14159265
+#include <box2d/box2d.h>
 
 #include "actor.hpp"
 #include "character.hpp"
 
 Character::Character(float x, float y) : Actor(x, y) {
-	this->bodyDef.type = b2_kinematicBody;
+	this->bodyDef.type = b2_dynamicBody;
 }
 
 void Character::damage(float d) {
@@ -25,12 +20,15 @@ void Character::heal(int healAmount) {
 }
 
 void Character::goLeft(void) {
+
 }
 
 void Character::goRight(void) {
 }
 
 void Character::jump(void) {
+	this->body->SetLinearVelocity(b2Vec2(0,50));
+	std::cout << this->body->GetPosition().y;
 }
 
 void Character::update(const float &dt) {

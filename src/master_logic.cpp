@@ -1,10 +1,14 @@
+#include <list>
+#include <memory>
+
 #include "master_logic.hpp"
 #include "master_view.hpp"
 
-#include "actor.hpp"
 #include "room.hpp"
+#include "actor.hpp"
 #include "exit.hpp"
 #include "platform.hpp"
+#include "character.hpp"
 #include "pari.hpp"
 
 
@@ -50,6 +54,7 @@ void MasterLogic::reset(void) {
 void MasterLogic::update(const float &dt) {
 	if (!this->paused) {
 		// update all actors in the actor list
+		this->currentRoom->update(0.05);
 		if (this->currentRoom->getActorList().size() > 0) {
 			for (std::shared_ptr<Actor> actor : this->currentRoom->getActorList()) {
 				actor->update(dt);

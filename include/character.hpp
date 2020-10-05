@@ -2,8 +2,7 @@
 #define CHARACTER_H
 
 #include <memory>
-#include <iostream>
-#include <list>
+#include <box2d/box2d.h>
 
 #include "actor.hpp"
 

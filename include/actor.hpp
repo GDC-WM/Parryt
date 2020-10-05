@@ -1,10 +1,11 @@
 #ifndef ACTOR_H
 #define ACTOR_H
 
+
 #include <memory>
-#include <iostream>
 #include <box2d/box2d.h>
 #include <SFML/Graphics.hpp>
+#include <iostream>
 
 
 /*

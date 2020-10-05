@@ -2,6 +2,7 @@
 #define PARI_H
 
 
+#include <box2d/box2d.h>
 #include <SFML/Graphics.hpp>
 
 #include "actor.hpp"

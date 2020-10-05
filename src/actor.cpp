@@ -1,7 +1,8 @@
-#include "actor.hpp"
+#include <memory>
+#include <box2d/box2d.h>
+#include <SFML/Graphics.hpp>
 
-#include "math.h"
-#define PI 3.14159265
+#include "actor.hpp"
 
 
 Actor::Actor(float x, float y) {
@@ -14,6 +15,7 @@ void Actor::setWorld(std::shared_ptr<b2World> world) {
 	this->body = this->world->CreateBody(&this->bodyDef);
 	this->body->CreateFixture(&this->fixtureDef);
 }
+
 
 void Actor::update(const float &dt) {
 }

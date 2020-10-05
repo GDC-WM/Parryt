@@ -1,10 +1,13 @@
+#include <box2d/box2d.h>
 #include <SFML/Graphics.hpp>
 
+#include "actor.hpp"
+#include "character.hpp"
 #include "pari.hpp"
-#include <iostream>
 
 
 Pari::Pari(double x, double y) : Character(x, y) {
+	this->shape.SetAsBox(64,64);
 	// fix shape to body
 	this->fixtureDef.shape = &this->shape;
 	this->fixtureDef.density = 1.0f;
