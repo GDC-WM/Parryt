@@ -3,7 +3,7 @@
 
 #include <memory>
 #include <iostream>
-#include "box2d/box2d.h"
+#include <box2d/box2d.h>
 #include <SFML/Graphics.hpp>
 
 
@@ -22,8 +22,6 @@ class Actor {
 	public:
 		Actor(float x, float y);
 
-		virtual void update(const float &dt);
-
 		b2BodyDef &getBodyDef(void) { return this->bodyDef; };
 
 		void setWorld(std::shared_ptr<b2World> world);
@@ -37,7 +35,9 @@ class Actor {
 		 */
 		virtual const sf::Shape &getDrawable(void) const { return this->drawable; };
 
-		~Actor() { this->world->DestroyBody(this->body); }
+		virtual void update(const float &dt);
+
+		virtual ~Actor() { this->world->DestroyBody(this->body); }
 };
 
 

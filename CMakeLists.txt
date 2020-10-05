@@ -47,6 +47,10 @@ file(GLOB EXECLIST bin/*cpp)
 #################################################
 
 
+#############
+# Find Box2D #
+#############
+find_package(box2d REQUIRED)
 
 #############
 # Find SFML #
@@ -117,5 +121,6 @@ foreach(EXEC ${EXECLIST})
     target_link_libraries(${EXECNAME} LINK_PUBLIC ${LIBNAME})
   endif()
 
+  target_link_libraries(${EXECNAME} PRIVATE box2d::box2d)
   message("-- Adding executable: ${EXECNAME}")
 endforeach(EXEC)
