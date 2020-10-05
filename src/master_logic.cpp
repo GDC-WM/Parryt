@@ -26,7 +26,7 @@ void MasterLogic::startDemo(void) {
 	this->currentRoom->addActor(ground);
 
 	// Add pari
-	std::shared_ptr<Pari> pari = std::make_shared<Pari>(300,340);
+	std::shared_ptr<Pari> pari = std::make_shared<Pari>(300,740);
 	this->currentRoom->addActor(pari);
 	this->view->addView(pari);
 

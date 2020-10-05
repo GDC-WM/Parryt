@@ -13,14 +13,19 @@
  */
 class Actor {
 	protected:
+		std::shared_ptr<b2World> world;
 		b2BodyDef bodyDef;
 		b2FixtureDef fixtureDef;
 		b2Body *body;
+		b2PolygonShape shape;
+
 		sf::RectangleShape drawable;
-		std::shared_ptr<b2World> world;
 
 
 	public:
+		/**
+		 * y and x Position of the middle of the actor
+		 */
 		Actor(float x, float y);
 
 		b2BodyDef &getBodyDef(void) { return this->bodyDef; };
@@ -29,12 +34,15 @@ class Actor {
 
 		b2Body *getBody(void) { return this->body; };
 
-		void setDrawablePos(const double &x, const double &y) { this->drawable.setPosition(x, y); };
+		/**
+		 * Update and return drawable.
+		 */
+		virtual const sf::Shape &getDrawable(void) { this->updateDrawable(); return this->drawable; };
 
 		/**
-		 * Return drawable.
+		 * Update drawable based on the state of the body
 		 */
-		virtual const sf::Shape &getDrawable(void) const { return this->drawable; };
+		void updateDrawable(void);
 
 		virtual void update(const float &dt);
 

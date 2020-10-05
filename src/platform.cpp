@@ -1,6 +1,7 @@
+#include <box2d/box2d.h>
 #include <SFML/Graphics.hpp>
-#include <iostream>
 
+#include "actor.hpp"
 #include "platform.hpp"
 
 Platform::Platform(double x, double y, double width) : Actor(x, y) {
@@ -14,5 +15,5 @@ Platform::Platform(double x, double y, double width) : Actor(x, y) {
 
 	// set drawable
 	this->drawable.setFillColor(sf::Color::White);
-	this->drawable.setSize(sf::Vector2f(width, 5));
+	this->drawable.setSize(sf::Vector2f(width * 2, this->HEIGHT * 2));
 }

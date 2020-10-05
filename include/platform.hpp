@@ -1,15 +1,15 @@
 #ifndef PLATFORM_H
 #define PLATFORM_H
 
+
+#include <box2d/box2d.h>
+
 #include "actor.hpp"
 
 /**
  * Draw the screen for the player
  */
 class Platform : public Actor {
-
-	private:
-		b2PolygonShape shape;
 
 	public:
 		static constexpr double HEIGHT = 10;

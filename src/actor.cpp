@@ -17,5 +17,11 @@ void Actor::setWorld(std::shared_ptr<b2World> world) {
 }
 
 
+void Actor::updateDrawable(void) {
+	this->drawable.setPosition(-this->getBody()->GetPosition().x, -this->getBody()->GetPosition().y);
+	//TODO: set the rotation
+}
+
+
 void Actor::update(const float &dt) {
 }

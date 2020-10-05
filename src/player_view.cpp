@@ -34,21 +34,16 @@ void PlayerView::update(const float &dt) {
 	this->pollInput();
 
 	// draw actors
-	for (auto actor : this->logic->getCurrentRoom().getActorList()) {
-		actor->setDrawablePos(actor->getBody()->GetPosition().x, actor->getBody()->GetPosition().y);
-		this->window->draw(actor->getDrawable());
-	}
+	for (auto actor : this->logic->getCurrentRoom().getActorList()) { this->window->draw(actor->getDrawable()); }
 
 	// screen follow character
-	/*
 	sf::View curView = this->window->getView();
-	if (this->character->getCenterX() + 50 < curView.getCenter().x) {
-		curView.setCenter(sf::Vector2f(curView.getCenter().x - 0.3, this->character->getCenterY()));
+	if (this->character->getDrawable().getPosition().x + 50 < curView.getCenter().x) {
+		curView.setCenter(sf::Vector2f(curView.getCenter().x - 0.3, this->character->getDrawable().getPosition().y));
 	}
-	else if (this->character->getCenterX() - 50 > this->window->getView().getCenter().x) {
-		curView.setCenter(sf::Vector2f(curView.getCenter().x + 0.3, this->character->getCenterY()));
+	else if (this->character->getDrawable().getPosition().x - 50 > this->window->getView().getCenter().x) {
+		curView.setCenter(sf::Vector2f(curView.getCenter().x + 0.3, this->character->getDrawable().getPosition().y));
 	}
-	else curView.setCenter(sf::Vector2f(curView.getCenter().x, this->character->getCenterY()));
+	else curView.setCenter(sf::Vector2f(curView.getCenter().x, this->character->getDrawable().getPosition().y));
 	this->window->setView(curView);
-	*/
 }
