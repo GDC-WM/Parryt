@@ -6,7 +6,7 @@
 
 
 Platform::Platform(double x, double y, double width) : Actor(x, y) {
-	this->shape.SetAsBox(this->HEIGHT, width);
+	this->shape.SetAsBox(width, this->HEIGHT);
 
 	// fix shape to body
 	this->bodyDef.type = b2_staticBody;
