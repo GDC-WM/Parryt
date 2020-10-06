@@ -1,11 +1,13 @@
 #ifndef ROOM_H
 #define ROOM_H
 
+
 #include <list>
 #include <memory>
 
 #include "box2d/box2d.h"
 #include "actor.hpp"
+
 
 /*
  * Handles state management between the two rooms and all of the different actor lists
@@ -36,5 +38,6 @@ class Room : public std::enable_shared_from_this<Room> {
 		void update(const float &dt);
 
 };
+
 
 #endif

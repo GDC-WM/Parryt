@@ -23,5 +23,12 @@ void Actor::updateDrawable(void) {
 }
 
 
+const sf::Vector2f Actor::getDrawableCenter(void) const {
+	return sf::Vector2f(this->drawable.getPosition().x + this->drawable.getSize().x / 2,
+	                    this->drawable.getPosition().y + this->drawable.getSize().y / 2);
+}
+
+
 void Actor::update(const float &dt) {
+
 }

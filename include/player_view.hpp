@@ -1,12 +1,14 @@
 #ifndef PLAYER_VIEW_H
 #define PLAYER_VIEW_H
 
+
 #include <SFML/Graphics.hpp>
 #include <list>
 #include <memory>
 
 #include "view.hpp"
 #include "character.hpp"
+
 
 /**
  * Draw the screen for the player
@@ -26,5 +28,6 @@ class PlayerView : public View {
 
 		void update(const float &dt);
 };
+
 
 #endif

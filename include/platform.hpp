@@ -17,4 +17,5 @@ class Platform : public Actor {
 		Platform(double x, double y, double width);
 };
 
+
 #endif

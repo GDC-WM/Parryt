@@ -7,7 +7,7 @@
 
 
 Pari::Pari(double x, double y) : Character(x, y) {
-	this->shape.SetAsBox(64,64);
+	this->shape.SetAsBox(this->WIDTH, this->HEIGHT);
 	// fix shape to body
 	this->fixtureDef.shape = &this->shape;
 	this->fixtureDef.density = 1.0f;
@@ -15,7 +15,7 @@ Pari::Pari(double x, double y) : Character(x, y) {
 
 	// set drawable
 	this->drawable.setFillColor(sf::Color::Green);
-	this->drawable.setSize(sf::Vector2f(64, 64));
+	this->drawable.setSize(sf::Vector2f(this->WIDTH * 2,this->HEIGHT * 2));
 
 //placeholder to link base png as Pari
 //        sf::Texture texture;

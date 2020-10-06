@@ -18,6 +18,7 @@ class Actor {
 		b2FixtureDef fixtureDef;
 		b2Body *body;
 		b2PolygonShape shape;
+		b2Vec2 dimensions;
 
 		sf::RectangleShape drawable;
 
@@ -35,14 +36,16 @@ class Actor {
 		b2Body *getBody(void) { return this->body; };
 
 		/**
-		 * Update and return drawable.
+		 * Return drawable.
 		 */
-		virtual const sf::Shape &getDrawable(void) { this->updateDrawable(); return this->drawable; };
+		virtual const sf::Shape &getDrawable(void) { return this->drawable; };
 
 		/**
 		 * Update drawable based on the state of the body
 		 */
 		void updateDrawable(void);
+
+		const sf::Vector2f getDrawableCenter(void) const;
 
 		virtual void update(const float &dt);
 

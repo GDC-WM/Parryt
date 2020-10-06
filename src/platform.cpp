@@ -4,6 +4,7 @@
 #include "actor.hpp"
 #include "platform.hpp"
 
+
 Platform::Platform(double x, double y, double width) : Actor(x, y) {
 	this->shape.SetAsBox(this->HEIGHT, width);
 

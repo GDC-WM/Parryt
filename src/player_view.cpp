@@ -16,9 +16,9 @@ PlayerView::PlayerView(std::shared_ptr<MasterLogic> logic, std::shared_ptr<Chara
 	this->window = window;
 
 	// set view to center on the character
-	sf::View curView = this->window->getView();
-	curView.setCenter(this->character->getDrawable().getPosition());
-	this->window->setView(curView);
+	sf::View view = this->window->getView();
+	view.setCenter(this->character->getDrawableCenter());
+	this->window->setView(view);
 }
 
 
@@ -43,16 +43,15 @@ void PlayerView::update(const float &dt) {
 	for (auto actor : this->logic->getCurrentRoom().getActorList()) actor->updateDrawable();
 
 	// screen follow character
-	sf::Vector2f characterPosition = this->character->getDrawable().getPosition();
-	sf::View curView = this->window->getView();
-	sf::Vector2f newCenter = curView.getCenter();
+	sf::Vector2f characterPosition = this->character->getDrawableCenter();
+	sf::View view = this->window->getView();
+	sf::Vector2f newCenter(view.getCenter().x, characterPosition.y);
 
-	newCenter.y = characterPosition.y;
-	if (characterPosition.x + 50 < curView.getCenter().x) newCenter.x -= 0.3;
-	else if (characterPosition.x - 50 > curView.getCenter().x) newCenter.x += 0.3;
+	if (characterPosition.x + 50 < view.getCenter().x) newCenter.x -= 0.3;
+	else if (characterPosition.x - 50 > view.getCenter().x) newCenter.x += 0.3;
 
-	curView.setCenter(newCenter);
-	this->window->setView(curView);
+	view.setCenter(newCenter);
+	this->window->setView(view);
 
 	// draw the screen
 	for (auto actor : this->logic->getCurrentRoom().getActorList()) this->window->draw(actor->getDrawable());

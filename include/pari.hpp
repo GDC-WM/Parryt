@@ -17,6 +17,10 @@ class Pari : public Character {
 		b2PolygonShape shape;
 
 	public:
+		static constexpr double HEIGHT = 32;
+
+		static constexpr double WIDTH = 32;
+
 		Pari(double x, double y);
 };
 

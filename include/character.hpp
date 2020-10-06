@@ -1,6 +1,7 @@
 #ifndef CHARACTER_H
 #define CHARACTER_H
 
+
 #include <memory>
 #include <box2d/box2d.h>
 
@@ -38,5 +39,6 @@ class Character : public Actor, public std::enable_shared_from_this<Character> {
 
 		void update(const float &dt) override;
 };
+
 
 #endif
