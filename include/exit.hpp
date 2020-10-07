@@ -1,10 +1,12 @@
 #ifndef EXIT_H
 #define EXIT_H
 
+
 #include <memory>
 
 #include "actor.hpp"
 #include "room.hpp"
+
 
 /*
  * Exits to each of the rooms
@@ -27,5 +29,6 @@ class Exit : public Actor {
 
 		void setRoom(std::shared_ptr<Room> room) { this->room = room; };
 };
+
 
 #endif

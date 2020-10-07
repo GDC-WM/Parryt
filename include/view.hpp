@@ -1,11 +1,13 @@
 #ifndef VIEW_H
 #define VIEW_H
 
+
 #include <list>
 #include <memory>
 
 #include "actor.hpp"
 #include "master_logic.hpp"
+
 
 class View {
     protected:
@@ -16,5 +18,6 @@ class View {
 
         virtual void update(const float &dt) = 0;
 };
+
 
 #endif

@@ -1,13 +1,20 @@
 #ifndef MASTER_LOGIC_H
 #define MASTER_LOGIC_H
 
+
 #include <list>
 #include <memory>
 
-#include "actor.hpp"
 #include "room.hpp"
+#include "actor.hpp"
+#include "exit.hpp"
+#include "platform.hpp"
+#include "character.hpp"
+#include "pari.hpp"
+
 
 class MasterView;
+
 
 /**
  * Main logic class that controls everything.
@@ -30,7 +37,6 @@ class MasterLogic {
 		 */
 		void init(std::shared_ptr<MasterView> mv);
 
-
 		/**
 		 * Start main menu
 		 */
@@ -47,11 +53,6 @@ class MasterLogic {
 		const Room &getCurrentRoom(void) const { return *(this->currentRoom); };
 
 		/**
-		 * Check what actors are colliding and respond accordingly
-		 */
-		void checkCollisions(void);
-
-		/**
 		 * Resets master logic
 		 */
 		void reset(void);
@@ -63,5 +64,6 @@ class MasterLogic {
 
 		sf::Event event;
 };
+
 
 #endif

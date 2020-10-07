@@ -38,6 +38,7 @@ int main(int argc, char** argv) {
 		while (window->pollEvent(Event))
 			if (Event.type == sf::Event::Closed) window->close();
 	}
+	//TODO: separate constant rate physics loop
 
 	// Done.
 	return 0;

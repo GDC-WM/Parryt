@@ -1,16 +1,17 @@
 #ifndef MASTER_VIEW_H
 #define MASTER_VIEW_H
 
+
 #include <SFML/Graphics.hpp>
 #include <list>
 #include <memory>
 
 #include "master_logic.hpp"
+#include "view.hpp"
+#include "player_view.hpp"
 #include "actor.hpp"
 #include "pari.hpp"
 
-#include "view.hpp"
-#include "player_view.hpp"
 
 /**
  * Manages all of the different views and game states
@@ -26,6 +27,9 @@ class MasterView {
 
 		void reset();
 
+		/**
+		 * Polymorphic way to add a view
+		 */
 		void addView(std::shared_ptr<Pari> p) { this->viewList.push_back(std::make_shared<PlayerView>(this->logic, p, this->window)); };
 
 		/**
@@ -33,5 +37,6 @@ class MasterView {
 		 */
 		void update(float dt);
 };
+
 
 #endif
