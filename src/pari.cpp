@@ -14,8 +14,9 @@ Pari::Pari(double x, double y) : Character(x, y) {
 	this->fixtureDef.friction = 0.3f;
 
 	// set drawable
+	this->drawable.setOrigin(this->WIDTH, this->HEIGHT);
 	this->drawable.setFillColor(sf::Color::Green);
-	this->drawable.setSize(sf::Vector2f(this->WIDTH * 2,this->HEIGHT * 2));
+	this->drawable.setSize(sf::Vector2f(this->WIDTH * 2, this->HEIGHT * 2));
 
 //placeholder to link base png as Pari
 //        sf::Texture texture;

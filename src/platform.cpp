@@ -15,6 +15,7 @@ Platform::Platform(double x, double y, double width) : Actor(x, y) {
 	this->fixtureDef.friction = 0.3f;
 
 	// set drawable
+	this->drawable.setOrigin(width, this->HEIGHT);
 	this->drawable.setFillColor(sf::Color::White);
 	this->drawable.setSize(sf::Vector2f(width * 2, this->HEIGHT * 2));
 }
