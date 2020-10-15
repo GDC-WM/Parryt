@@ -1,4 +1,5 @@
 #include <memory>
+#include <math.h>
 #include <box2d/box2d.h>
 #include <SFML/Graphics.hpp>
 
@@ -18,8 +19,9 @@ void Actor::setWorld(std::shared_ptr<b2World> world) {
 
 
 void Actor::updateDrawable(void) {
-	this->drawable.setPosition(this->getBody()->GetPosition().x - this->drawable.getSize().x / 2,
-	                          -this->getBody()->GetPosition().y - this->drawable.getSize().y / 2);
+	this->drawable.setPosition(this->getBody()->GetPosition().x,
+	                          -this->getBody()->GetPosition().y);
+	this->drawable.setRotation(this->getBody()->GetAngle() * 180 / M_PI);
 	//TODO: set the rotation
 }
 
