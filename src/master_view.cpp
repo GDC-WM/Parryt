@@ -1,4 +1,3 @@
-#include <SFML/Graphics.hpp>
 #include <list>
 #include <memory>
 
@@ -10,9 +9,8 @@
 #include "pari.hpp"
 
 
-MasterView::MasterView(std::shared_ptr<MasterLogic> logic, std::shared_ptr<sf::RenderWindow> window) {
+MasterView::MasterView(std::shared_ptr<MasterLogic> logic) {
 	this->logic = logic;
-	this->window = window;
 }
 
 

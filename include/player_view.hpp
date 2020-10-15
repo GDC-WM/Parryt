@@ -23,8 +23,10 @@ class PlayerView : public View {
 
 		void pollInput(void);
 
+		void listen(void);
+
 	public:
-		PlayerView(std::shared_ptr<MasterLogic> logic, std::shared_ptr<Character> character, std::shared_ptr<sf::RenderWindow> window);
+		PlayerView(std::shared_ptr<MasterLogic> logic, std::shared_ptr<Character> character);
 
 		void update(const float &dt);
 };

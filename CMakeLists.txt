@@ -60,7 +60,7 @@ endif()
 # C++ Options #
 ###############
 # Enable C++17
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++20")
 
 # determine build type
 # 1) use build type if specified by the user.

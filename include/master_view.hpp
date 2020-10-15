@@ -2,7 +2,6 @@
 #define MASTER_VIEW_H
 
 
-#include <SFML/Graphics.hpp>
 #include <list>
 #include <memory>
 
@@ -18,19 +17,18 @@
  */
 class MasterView {
 	private:
-		std::shared_ptr<sf::RenderWindow> window;
 		std::shared_ptr<MasterLogic> logic;
 		std::list<std::shared_ptr<View>> viewList;
 
 	public:
-		MasterView(std::shared_ptr<MasterLogic> logic, std::shared_ptr<sf::RenderWindow> window);
+		MasterView(std::shared_ptr<MasterLogic> logic);
 
 		void reset();
 
 		/**
 		 * Polymorphic way to add a view
 		 */
-		void addView(std::shared_ptr<Pari> p) { this->viewList.push_back(std::make_shared<PlayerView>(this->logic, p, this->window)); };
+		void addView(std::shared_ptr<Pari> p) { this->viewList.push_back(std::make_shared<PlayerView>(this->logic, p)); };
 
 		/**
 		 * Create a view for the new enemy from logic and add the view to the enemyview list

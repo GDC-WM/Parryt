@@ -24,6 +24,7 @@ class MasterLogic {
 		std::shared_ptr<MasterView> view;
 		std::list<Room> roomList;
 		std::list<Room>::iterator currentRoom;
+		bool terminated = false;
 		bool paused = false;
 
 	public:
@@ -56,6 +57,16 @@ class MasterLogic {
 		 * Resets master logic
 		 */
 		void reset(void);
+
+		/**
+		 * Terminate the application?
+		 */
+		bool isTerminated(void) { return this->terminated; };
+
+		/**
+		 * Terminate the application
+		 */
+		void terminate(void) { this->terminated = true; };
 
 		/**
 		 *
