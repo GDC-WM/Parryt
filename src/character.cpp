@@ -32,7 +32,7 @@ void Character::goRight(void) {
 
 
 void Character::jump(void) {
-	this->body->SetLinearVelocity(b2Vec2(0,500));
+	this->body->SetLinearVelocity(b2Vec2(0,10));
 }
 
 
