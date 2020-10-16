@@ -24,15 +24,17 @@ void Character::heal(int healAmount) {
 
 
 void Character::goLeft(void) {
+	this->body->SetLinearVelocity(b2Vec2(-10, this->body->GetLinearVelocity().y));
 }
 
 
 void Character::goRight(void) {
+	this->body->SetLinearVelocity(b2Vec2(10, this->body->GetLinearVelocity().y));
 }
 
 
 void Character::jump(void) {
-	this->body->SetLinearVelocity(b2Vec2(0,10));
+	this->body->SetLinearVelocity(b2Vec2(this->body->GetLinearVelocity().x, 10));
 }
 
 

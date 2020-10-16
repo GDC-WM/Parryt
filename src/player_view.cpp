@@ -37,14 +37,15 @@ void PlayerView::pollInput(void) {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) this->character->jump();
 }
 
+
 void PlayerView::listen(void) {
-		sf::Event Event;
-		while (window->pollEvent(Event)) {
-			if (Event.type == sf::Event::Closed) {
-				window->close();
-				this->logic->terminate();
-			}
+	sf::Event Event;
+	while (window->pollEvent(Event)) {
+		if (Event.type == sf::Event::Closed) {
+			window->close();
+			this->logic->terminate();
 		}
+	}
 }
 
 
