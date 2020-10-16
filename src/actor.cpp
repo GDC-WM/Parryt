@@ -22,7 +22,6 @@ void Actor::updateDrawable(void) {
 	this->drawable.setPosition(this->getBody()->GetPosition().x,
 	                          -this->getBody()->GetPosition().y);
 	this->drawable.setRotation(-this->getBody()->GetAngle() * 180 / M_PI);
-	//TODO: set the rotation
 }
 
 

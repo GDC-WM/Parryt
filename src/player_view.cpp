@@ -19,6 +19,7 @@ PlayerView::PlayerView(std::shared_ptr<MasterLogic> logic, std::shared_ptr<Chara
 
 	// set view to center on the character
 	sf::View view = this->window->getView();
+	view.setSize(sf::Vector2f(50, 50));
 	view.setCenter(this->character->getDrawableCenter());
 	this->window->setView(view);
 }
@@ -64,8 +65,8 @@ void PlayerView::update(const float &dt) {
 	sf::View view = this->window->getView();
 	sf::Vector2f newCenter(view.getCenter().x, characterPosition.y);
 
-	if (characterPosition.x + 50 < view.getCenter().x) newCenter.x -= 0.3;
-	else if (characterPosition.x - 50 > view.getCenter().x) newCenter.x += 0.3;
+	if (characterPosition.x + 10 < view.getCenter().x) newCenter.x -= 0.3;
+	else if (characterPosition.x - 10 > view.getCenter().x) newCenter.x += 0.3;
 
 	view.setCenter(newCenter);
 	this->window->setView(view);
