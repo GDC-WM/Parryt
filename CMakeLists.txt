@@ -41,8 +41,7 @@ file(GLOB EXECLIST bin/*cpp)
 #############
 # Find Box2D #
 #############
-find_package(box2d REQUIRED)
-message("-- Locating Box2D")
+add_subdirectory(3rd_party/Box2D-cmake)
 
 #############
 # Find SFML #
@@ -114,6 +113,6 @@ foreach(EXEC ${EXECLIST})
   endif()
 
   # link in box2d
-  target_link_libraries(${EXECNAME} PRIVATE box2d::box2d)
+  target_link_libraries(${EXECNAME} PRIVATE tobanteGaming::Box2D)
   message("-- Adding executable: ${EXECNAME}")
 endforeach(EXEC)
