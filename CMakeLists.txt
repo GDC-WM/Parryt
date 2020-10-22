@@ -114,6 +114,6 @@ foreach(EXEC ${EXECLIST})
   endif()
 
   # link in box2d
-  target_link_libraries(${EXECNAME} PRIVATE box2d::box2d)
+  target_link_libraries(${EXECNAME} PRIVATE box2d)
   message("-- Adding executable: ${EXECNAME}")
 endforeach(EXEC)
