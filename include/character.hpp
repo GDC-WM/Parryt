@@ -12,6 +12,9 @@
 */
 class Character : public Actor, public std::enable_shared_from_this<Character> {
 	protected:
+		float acceleration;
+		float jumpImpulse;
+		float maxSpeed;
 		int maxHealth;
 		float health;
 

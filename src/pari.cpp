@@ -13,6 +13,11 @@ Pari::Pari(double x, double y) : Character(x, y) {
 	this->fixtureDef.density = 1.0f;
 	this->fixtureDef.friction = 0.3f;
 
+	this->acceleration = 50;
+	this->jumpImpulse = 5;
+	this->maxSpeed = 10;
+	this->maxHealth = 100;
+
 	// set drawable
 	this->drawable.setOrigin(this->WIDTH, this->HEIGHT);
 	this->drawable.setFillColor(sf::Color::Green);

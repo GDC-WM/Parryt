@@ -31,7 +31,7 @@ void MasterLogic::startDemo(void) {
 	this->view->addView(pari);
 
 	// Add Platform
-	std::shared_ptr<Platform> platform1 = std::make_shared<Platform>(150, 100, 20);
+	std::shared_ptr<Platform> platform1 = std::make_shared<Platform>(5, 10, 20);
 	this->currentRoom->addActor(platform1);
 
 	// Add Another Platform
