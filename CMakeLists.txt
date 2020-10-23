@@ -17,6 +17,7 @@ project(parryt)
 # Minimum Cmake Version
 cmake_minimum_required(VERSION 2.6)
 
+
 #####################
 # Setup Environment #
 #####################
@@ -44,6 +45,7 @@ file(GLOB EXECLIST bin/*cpp)
 find_package(box2d REQUIRED)
 message("-- Locating Box2D")
 
+
 #############
 # Find SFML #
 #############
@@ -56,11 +58,12 @@ if(NOT SFML_FOUND)
   message(FATAL_ERROR " * Make sure LIB includes the directory where the SFML libraries are installed.\n * Make sure INCLUDE includes the directory where the SFML header files are installed.")
 endif()
 
+
 ###############
 # C++ Options #
 ###############
 # Enable C++17
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++20")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
 
 # determine build type
 # 1) use build type if specified by the user.
@@ -94,6 +97,7 @@ if(${CMAKE_BUILD_TYPE} STREQUAL "PROFILE")
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pg")
 endif()
 
+
 #######################
 # Set Compile Targets #
 #######################
@@ -114,6 +118,6 @@ foreach(EXEC ${EXECLIST})
   endif()
 
   # link in box2d
-  target_link_libraries(${EXECNAME} PRIVATE box2d::box2d)
+  target_link_libraries(${EXECNAME} PRIVATE box2d)
   message("-- Adding executable: ${EXECNAME}")
 endforeach(EXEC)
