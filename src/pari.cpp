@@ -6,7 +6,7 @@
 #include "pari.hpp"
 
 
-Pari::Pari(double x, double y) : Character(x, y) {
+Pari::Pari(float x, float y) : Character(x, y) {
 	this->shape.SetAsBox(this->WIDTH, this->HEIGHT);
 	// fix shape to body
 	this->fixtureDef.shape = &this->shape;
@@ -14,7 +14,7 @@ Pari::Pari(double x, double y) : Character(x, y) {
 	this->fixtureDef.friction = 0.3f;
 
 	this->acceleration = 50;
-	this->jumpImpulse = 5;
+	this->jumpImpulse = 50;
 	this->maxSpeed = 10;
 	this->maxHealth = 100;
 
