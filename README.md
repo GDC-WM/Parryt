@@ -3,14 +3,23 @@
 * Will involve a satisfying parrying mechanic.
 
 ## Install on Linux:
-* Install cmake, g++, SFML (and possibly SFML-dev), box2d and git from your package manager (specific names depend on your distribution)
+* Install cmake, g++, SFML (and possibly SFML-dev), randr, doxygen, and git from your package manager (specific names depend on your distribution)
 * Run the following commands from within the directory you would like the game to be:
 1. ```git clone https://github.com/aaronamk/WM-GDC-Project-Parry.git```
-2. ```mkdir WM-GDC-Project-Parry/Release```
-3. ```cd WM-GDC-Project-Parry/Release```
-3. ```cmake ..```
-4. ```make```
-5. ```./application_layer.exe```
+2. ```cd WM-GDC-Project-Parry```
+3. ```git submodule update --init --recursive```
+4. ```mkdir build```
+5. ```cd build```
+6. ```cmake -DBOX2D_BUILD_DOCS=ON ..```
+7. ```cmake -build .```
+8. ```sudo cmake --build . --target install```
+9. ```cd ../..```
+10. ```mkdir Debug```
+11. ```cd Debug```
+12. ```cmake ..```
+13. ```make```
+14. ```./application_layer.exe```
+
 
 ## Install on Mac:
 * Install Homebrew and follow instructions for Linux.
