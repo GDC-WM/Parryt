@@ -18,7 +18,7 @@
 11. ```cd Debug```
 12. ```cmake ..```
 13. ```make```
-14. ```./application_layer.exe```
+14. ```./paryt```
 
 
 ## Install on Mac:
