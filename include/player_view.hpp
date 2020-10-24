@@ -14,21 +14,20 @@
  * Draw the screen for the player
  */
 class PlayerView : public View {
+	public:
+		PlayerView(std::shared_ptr<MasterLogic> logic, std::shared_ptr<Character> character);
+
+		void update(const float &dt);
+
+
 	private:
 		std::shared_ptr<sf::RenderWindow> window;
-
 		std::shared_ptr<MasterLogic> logic;
-
 		std::shared_ptr<Character> character;
 
 		void pollInput(void);
 
 		void listen(void);
-
-	public:
-		PlayerView(std::shared_ptr<MasterLogic> logic, std::shared_ptr<Character> character);
-
-		void update(const float &dt);
 };
 
 

@@ -35,16 +35,24 @@ void PlayerView::pollInput(void) {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) this->character->goLeft();
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) /*jump down from platform*/;
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) this->character->goRight();
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) this->character->jump();
 }
 
 
 void PlayerView::listen(void) {
-	sf::Event Event;
-	while (window->pollEvent(Event)) {
-		if (Event.type == sf::Event::Closed) {
-			window->close();
-			this->logic->terminate();
+	sf::Event event;
+	while (window->pollEvent(event)) {
+		switch (event.type) {
+			case sf::Event::Closed:
+				window->close();
+				this->logic->terminate();
+				break;
+			case sf::Event::KeyPressed:
+				switch (event.key.code) {
+					case sf::Keyboard::Space:
+						this->character->jump();
+						break;
+				}
+				break;
 		}
 	}
 }

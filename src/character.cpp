@@ -38,10 +38,6 @@ void Character::goRight(void) {
 
 
 void Character::jump(void) {
+	this->body->SetLinearVelocity(b2Vec2(this->body->GetLinearVelocity().x, 0));
 	this->body->ApplyLinearImpulseToCenter(b2Vec2(0, this->jumpImpulse), true);
-}
-
-
-void Character::update(const float &dt) {
-	Actor::update(dt);
 }
