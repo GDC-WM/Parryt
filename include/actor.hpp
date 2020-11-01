@@ -9,20 +9,15 @@
 
 
 /*
+ * Define what side of the fight that the actor is on
+ */
+enum class Allegiance { PARROT, PIRATE, NEUTRAL };
+
+
+/*
  * Base class that all actors in the game inherit from
  */
 class Actor {
-	protected:
-		std::shared_ptr<b2World> world;
-		b2BodyDef bodyDef;
-		b2FixtureDef fixtureDef;
-		b2Body *body;
-		b2PolygonShape shape;
-		b2Vec2 dimensions;
-
-		sf::RectangleShape drawable;
-
-
 	public:
 		/**
 		 * y and x Position of the middle of the actor
@@ -34,6 +29,8 @@ class Actor {
 		void setWorld(std::shared_ptr<b2World> world);
 
 		b2Body *getBody(void) { return this->body; };
+
+		const Allegiance &getAllegiance(void) const { return this->allegiance; };
 
 		/**
 		 * Return drawable.
@@ -50,6 +47,18 @@ class Actor {
 		virtual void update(const float &dt);
 
 		virtual ~Actor() { this->world->DestroyBody(this->body); }
+
+
+	protected:
+		Allegiance allegiance = Allegiance::NEUTRAL; // neutral default
+		std::shared_ptr<b2World> world;
+		b2BodyDef bodyDef;
+		b2FixtureDef fixtureDef;
+		b2Body *body;
+		b2PolygonShape shape;
+		b2Vec2 dimensions;
+
+		sf::RectangleShape drawable;
 };
 
 
