@@ -6,6 +6,7 @@
 
 
 Character::Character(float x, float y) : Actor(x, y) {
+	bodyDef.fixedRotation = true;
 	this->bodyDef.type = b2_dynamicBody;
 }
 
