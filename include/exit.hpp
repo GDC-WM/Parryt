@@ -12,10 +12,6 @@
  * Exits to each of the rooms
  */
 class Exit : public Actor {
-	protected:
-		std::shared_ptr<Exit> destination;
-		std::shared_ptr<Room> room;
-
 	public:
 		Exit(float x, float y, std::shared_ptr<Exit> destination);
 
@@ -28,6 +24,11 @@ class Exit : public Actor {
 		const std::shared_ptr<Room> getRoom(void) const { return this->room; };
 
 		void setRoom(std::shared_ptr<Room> room) { this->room = room; };
+
+
+	protected:
+		std::shared_ptr<Exit> destination;
+		std::shared_ptr<Room> room;
 };
 
 

@@ -10,7 +10,6 @@
  * Draw the screen for the player
  */
 class Platform : public Actor {
-
 	public:
 		static constexpr float HEIGHT = 0.1;
 
