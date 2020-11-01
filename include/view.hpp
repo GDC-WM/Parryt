@@ -1,5 +1,5 @@
-#ifndef VIEW_H
-#define VIEW_H
+#ifndef VIEW_HPP
+#define VIEW_HPP
 
 
 #include <list>

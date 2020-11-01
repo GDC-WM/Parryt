@@ -1,5 +1,5 @@
-#ifndef PARI_H
-#define PARI_H
+#ifndef PARI_HPP
+#define PARI_HPP
 
 
 #include <box2d/box2d.h>

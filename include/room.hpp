@@ -1,5 +1,5 @@
-#ifndef ROOM_H
-#define ROOM_H
+#ifndef ROOM_HPP
+#define ROOM_HPP
 
 
 #include <list>

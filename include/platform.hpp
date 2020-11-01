@@ -1,5 +1,5 @@
-#ifndef PLATFORM_H
-#define PLATFORM_H
+#ifndef PLATFORM_HPP
+#define PLATFORM_HPP
 
 
 #include <box2d/box2d.h>

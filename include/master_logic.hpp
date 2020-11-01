@@ -1,5 +1,5 @@
-#ifndef MASTER_LOGIC_H
-#define MASTER_LOGIC_H
+#ifndef MASTER_LOGIC_HPP
+#define MASTER_LOGIC_HPP
 
 
 #include <list>

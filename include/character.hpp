@@ -1,5 +1,5 @@
-#ifndef CHARACTER_H
-#define CHARACTER_H
+#ifndef CHARACTER_HPP
+#define CHARACTER_HPP
 
 
 #include <memory>
