@@ -5,7 +5,7 @@
 #include "platform.hpp"
 
 
-Platform::Platform(double x, double y, double width) : Actor(x, y) {
+Platform::Platform(float x, float y, float width) : Actor(x, y) {
 	this->shape.SetAsBox(width, this->HEIGHT);
 
 	// fix shape to body
