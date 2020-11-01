@@ -1,5 +1,5 @@
-#ifndef PLATFORM_H
-#define PLATFORM_H
+#ifndef PLATFORM_HPP
+#define PLATFORM_HPP
 
 
 #include <box2d/box2d.h>
@@ -12,9 +12,9 @@
 class Platform : public Actor {
 
 	public:
-		static constexpr double HEIGHT = 0.1;
+		static constexpr float HEIGHT = 0.1;
 
-		Platform(double x, double y, double width);
+		Platform(float x, float y, float width);
 };
 
 

@@ -1,5 +1,5 @@
-#ifndef EXIT_H
-#define EXIT_H
+#ifndef EXIT_HPP
+#define EXIT_HPP
 
 
 #include <memory>
@@ -17,9 +17,9 @@ class Exit : public Actor {
 		std::shared_ptr<Room> room;
 
 	public:
-		Exit(double x, double y, std::shared_ptr<Exit> destination);
+		Exit(float x, float y, std::shared_ptr<Exit> destination);
 
-		Exit(double x, double y, double width, double height, std::shared_ptr<Exit> destination);
+		Exit(float x, float y, float width, float height, std::shared_ptr<Exit> destination);
 
 		const std::shared_ptr<Exit> getDestination(void) const { return this->destination; };
 
