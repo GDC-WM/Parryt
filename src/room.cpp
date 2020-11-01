@@ -22,5 +22,13 @@ void Room::reset(void) {
 
 
 void Room::update(const float &dt) {
-	this->world->Step(dt / 1000, 8, 3); // convert from milliseconds to seconds
+	// step the box2d clock forward
+	this->world->Step(dt / 1000, 8, 3); // convert milliseconds to seconds
+
+	// update all actors in the actor list
+	if (this->actorList.size() > 0) {
+		for (std::shared_ptr<Actor> actor : this->actorList) {
+			actor->update(dt);
+		}
+	}
 }

@@ -54,7 +54,7 @@ class MasterLogic {
 		const Room &getCurrentRoom(void) const { return *(this->currentRoom); };
 
 		/**
-		 * Resets master logic
+		 * Resets master logic to default state
 		 */
 		void reset(void);
 
