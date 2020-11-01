@@ -53,12 +53,7 @@ void MasterLogic::reset(void) {
 
 void MasterLogic::update(const float &dt) {
 	if (!this->paused) {
-		// update all actors in the actor list
+		// update the room
 		this->currentRoom->update(dt);
-		if (this->currentRoom->getActorList().size() > 0) {
-			for (std::shared_ptr<Actor> actor : this->currentRoom->getActorList()) {
-				actor->update(dt);
-			}
-		}
 	}
 }

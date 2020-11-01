@@ -20,13 +20,6 @@ class MasterView;
  * Main logic class that controls everything.
  */
 class MasterLogic {
-	private:
-		std::shared_ptr<MasterView> view;
-		std::list<Room> roomList;
-		std::list<Room>::iterator currentRoom;
-		bool terminated = false;
-		bool paused = false;
-
 	public:
 		/**
 		 * Main method
@@ -54,7 +47,7 @@ class MasterLogic {
 		const Room &getCurrentRoom(void) const { return *(this->currentRoom); };
 
 		/**
-		 * Resets master logic
+		 * Resets master logic to default state
 		 */
 		void reset(void);
 
@@ -74,6 +67,14 @@ class MasterLogic {
 		void update(const float &dt);
 
 		sf::Event event;
+
+
+	private:
+		std::shared_ptr<MasterView> view;
+		std::list<Room> roomList;
+		std::list<Room>::iterator currentRoom;
+		bool terminated = false;
+		bool paused = false;
 };
 
 
