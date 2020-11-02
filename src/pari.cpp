@@ -7,16 +7,18 @@
 
 
 Pari::Pari(float x, float y) : Character(x, y) {
-	this->shape.SetAsBox(this->WIDTH, this->HEIGHT);
-	// fix shape to body
-	this->fixtureDef.shape = &this->shape;
-	this->fixtureDef.density = 1.0f;
-	this->fixtureDef.friction = 0.3f;
+	this->allegiance = Allegiance::PIRATE;
 
 	this->acceleration = 50;
 	this->jumpImpulse = 50;
 	this->maxSpeed = 10;
 	this->maxHealth = 100;
+
+	// fix shape to body
+	this->shape.SetAsBox(this->WIDTH, this->HEIGHT);
+	this->fixtureDef.shape = &this->shape;
+	this->fixtureDef.density = 1.0f;
+	this->fixtureDef.friction = 0.3f;
 
 	// set drawable
 	this->drawable.setOrigin(this->WIDTH, this->HEIGHT);

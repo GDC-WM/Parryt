@@ -1,5 +1,5 @@
 #include <memory>
-#include <math.h>
+#include <cmath>
 #include <box2d/box2d.h>
 #include <SFML/Graphics.hpp>
 
