@@ -15,11 +15,11 @@ PlayerView::PlayerView(std::shared_ptr<MasterLogic> logic, std::shared_ptr<Chara
 
 	// set window
 	this->window = std::make_shared<sf::RenderWindow>
-			(sf::VideoMode(1200, 900, 32), "Parryt", sf::Style::Titlebar | sf::Style::Close);
+			(sf::VideoMode(1280, 720, 32), "Parryt", sf::Style::Titlebar | sf::Style::Close);
 
 	// set view to center on the character
 	sf::View view = this->window->getView();
-	view.setSize(sf::Vector2f(50, 50));
+	view.setSize(sf::Vector2f(64, 36));
 	view.setCenter(this->character->getDrawableCenter());
 	this->window->setView(view);
 }
@@ -55,16 +55,6 @@ void PlayerView::listen(void) {
 				break;
 		}
 	}
-	// make sprite
-	sf::Texture texture;
-	texture.loadFromFile("/home/jbcallv/WM-GDC-Project-Parry/resources/running-sequence.png");
-	sf::Sprite sprite(texture, sf::IntRect(0,0,800,800));
-
-
-
-	window->clear();
-	window->draw(sprite);
-	window->display();
 }
 
 
@@ -83,14 +73,21 @@ void PlayerView::update(const float &dt) {
 	sf::View view = this->window->getView();
 	sf::Vector2f newCenter(view.getCenter().x, characterPosition.y);
 
-	if (characterPosition.x + 10 < view.getCenter().x) newCenter.x -= 0.3;
-	else if (characterPosition.x - 10 > view.getCenter().x) newCenter.x += 0.3;
+	if (characterPosition.x + 10 < view.getCenter().x) newCenter.x -= 0.15;
+	else if (characterPosition.x - 10 > view.getCenter().x) newCenter.x += 0.15;
 
 	view.setCenter(newCenter);
 	this->window->setView(view);
 
 	// draw actors
 	for (auto actor : this->logic->getCurrentRoom().getActorList()) this->window->draw(actor->getDrawable());
+
+	// make test sprite
+	sf::Texture texture;
+	texture.loadFromFile("../resources/running-sequence.png");
+	sf::Sprite sprite(texture, sf::IntRect(0,0,64,64));
+	sprite.setScale(0.1,0.1);
+	this->window->draw(sprite);
 
 	// display screen
 	window->display();

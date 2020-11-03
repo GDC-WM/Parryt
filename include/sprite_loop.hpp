@@ -1,14 +1,18 @@
-#ifndef SPRITE_READER_HPP
-#define SPRITE_READER_HPP
+#ifndef SPRITE_LOOP_HPP
+#define SPRITE_LOOP_HPP
 
 #include <SFML/Graphics.hpp>
 
 class SpriteReader {
 		public:
+			SpriteReader(std::string spriteSheet);
+
 			/**
-			 * @param sprite is the image to switch to
+			 * Step to the next image in the loop
+			 *
+			 * @return returns the next image
 			 */
-			void stepToNextImage(sf::Sprite sprite);
+			sf::Sprite step(void);
 
 			/**
 			 * @param sprite is the sprite we wish to change position
@@ -18,7 +22,7 @@ class SpriteReader {
 			void setImgPosition(sf::Sprite sprite, int x, int y);
 
 		private:
-				sf::Texture texture;
+				sf::Texture spriteSheet;
 };
 
 #endif
