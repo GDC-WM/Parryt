@@ -9,6 +9,10 @@
 
 int main(int argc, char** argv) {
 
+	sf::Texture texture;
+	texture.loadFromFile("resources/Parryt-2.png");
+	sf::Sprite sprite(texture, sf::IntRect(0,0,800,800));
+
 	std::shared_ptr<MasterLogic> logic = std::make_shared<MasterLogic>();
 	std::shared_ptr<MasterView> view = std::make_shared<MasterView>(logic);
 	logic->init(view);
@@ -25,6 +29,7 @@ int main(int argc, char** argv) {
 		view->update(16);
 
 		std::this_thread::sleep_for(std::chrono::milliseconds(16) - dt);
+
 	}
 
 	/*

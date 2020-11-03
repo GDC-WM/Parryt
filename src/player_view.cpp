@@ -55,6 +55,16 @@ void PlayerView::listen(void) {
 				break;
 		}
 	}
+	// make sprite
+	sf::Texture texture;
+	texture.loadFromFile("/home/jbcallv/WM-GDC-Project-Parry/resources/running-sequence.png");
+	sf::Sprite sprite(texture, sf::IntRect(0,0,800,800));
+
+
+
+	window->clear();
+	window->draw(sprite);
+	window->display();
 }
 
 
