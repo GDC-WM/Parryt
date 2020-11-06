@@ -48,6 +48,7 @@ class Cannon : public Actor {
 
 
 	private:
+		b2PolygonShape shape;
 		float rotationVelocity = 0;
 };
 
