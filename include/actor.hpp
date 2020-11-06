@@ -55,7 +55,6 @@ class Actor {
 		b2BodyDef bodyDef;
 		b2FixtureDef fixtureDef;
 		b2Body *body;
-		b2PolygonShape shape;
 		b2Vec2 dimensions;
 
 		sf::RectangleShape drawable;

@@ -14,6 +14,10 @@ class Platform : public Actor {
 		static constexpr float HEIGHT = 0.1;
 
 		Platform(float x, float y, float width);
+
+
+	private:
+		b2PolygonShape shape;
 };
 
 
