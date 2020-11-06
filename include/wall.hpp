@@ -14,6 +14,10 @@ class Wall : public Actor {
 		static constexpr float WIDTH = 0.1;
 
 		Wall(float x, float y, float height);
+
+
+	private:
+		b2PolygonShape shape;
 };
 
 

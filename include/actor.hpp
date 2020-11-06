@@ -32,6 +32,8 @@ class Actor {
 
 		const Allegiance &getAllegiance(void) const { return this->allegiance; };
 
+		void setAllegiance(Allegiance allegiance) { this->allegiance = allegiance; };
+
 		/**
 		 * Return drawable.
 		 */
@@ -42,6 +44,9 @@ class Actor {
 		 */
 		void updateDrawable(void);
 
+		/**
+		 * Get the center of the drawable
+		 */
 		const sf::Vector2f getDrawableCenter(void) const;
 
 		virtual void update(const float &dt);

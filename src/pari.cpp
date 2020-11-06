@@ -7,7 +7,7 @@
 
 
 Pari::Pari(float x, float y) : Character(x, y) {
-	this->allegiance = Allegiance::PIRATE;
+	this->allegiance = Allegiance::PARROT;
 
 	this->acceleration = 60;
 	this->jumpImpulse = 50;
