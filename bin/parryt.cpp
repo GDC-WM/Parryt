@@ -25,6 +25,7 @@ int main(int argc, char** argv) {
 		view->update(16);
 
 		std::this_thread::sleep_for(std::chrono::milliseconds(16) - dt);
+
 	}
 
 	/*
