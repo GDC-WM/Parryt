@@ -15,9 +15,9 @@ class SpriteLoop {
 		 * @param divisionSize the vector size of a sprite in pixels (x,y) on the sprite sheet
 		 * @param startFrame the number of the first frame on the sprite sheet in the animation
 		 * @param frames the number of frames in the sequence
-		 * @param refreshRate the rate that the animation runs at (frames per second)
+		 * @param frameTime the time between each frame of the animation
 		 */
-		SpriteLoop(std::string spriteSheet, sf::Vector2f divisionSize, int startFrame, int frames, float refreshRate);
+		SpriteLoop(std::string spriteSheet, sf::Vector2f divisionSize, int startFrame, int frames, float frameTime);
 
 		/**
 		 * @return the current sprite
@@ -35,7 +35,7 @@ class SpriteLoop {
 		sf::Sprite sprite;
 		int startFrame;
 		int frames;
-		float refreshRate;
+		float frameTime;
 
 };
 
