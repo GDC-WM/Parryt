@@ -8,6 +8,7 @@
 #include "actor.hpp"
 #include "exit.hpp"
 #include "platform.hpp"
+#include "wall.hpp"
 #include "character.hpp"
 #include "pari.hpp"
 
@@ -37,6 +38,11 @@ void MasterLogic::startDemo(void) {
 	// Add Another Platform
 	std::shared_ptr<Platform> platform2 = std::make_shared<Platform>(200, 75, 20);
 	this->currentRoom->addActor(platform2);
+
+	// Add Wall
+	std::shared_ptr<Wall> wall1 = std::make_shared<Wall>(10, 2, 4);
+	this->currentRoom->addActor(wall1);
+
 }
 
 
