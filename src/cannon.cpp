@@ -3,6 +3,7 @@
 
 #include "actor.hpp"
 #include "cannon.hpp"
+#include "cannonball.hpp"
 
 
 Cannon::Cannon(float x, float y) : Actor(x, y) {
@@ -23,6 +24,7 @@ Cannon::Cannon(float x, float y) : Actor(x, y) {
 
 
 void Cannon::shoot(void) {
+	Cannonball(this->body->GetPosition().x, this->body->GetPosition().y, 20);
 }
 
 
