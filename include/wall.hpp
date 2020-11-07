@@ -13,7 +13,7 @@ class Wall : public Actor {
 	public:
 		static constexpr float WIDTH = 0.1;
 
-		Wall(float x, float y, float height);
+		Wall(b2Vec2 position, float height);
 };
 
 

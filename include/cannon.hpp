@@ -17,7 +17,7 @@ class Cannon: public Actor {
 		static constexpr float ROTATION_SPEED = M_PI / 4; // per second
 		float orientation = M_PI / 2;
 
-		Cannon(float x, float y);
+		Cannon(b2Vec2 position);
 
 		/*
 		 * returns where the cannon is rotateed

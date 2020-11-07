@@ -5,7 +5,7 @@
 #include "wall.hpp"
 
 
-Wall::Wall(float x, float y, float height) : Actor(x, y) {
+Wall::Wall(b2Vec2 position, float height) : Actor(position) {
 	this->shape.SetAsBox(this->WIDTH, height);
 
 	// fix shape to body
