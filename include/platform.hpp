@@ -13,7 +13,7 @@ class Platform : public Actor {
 	public:
 		static constexpr float HEIGHT = 0.1;
 
-		Platform(float x, float y, float width);
+		Platform(b2Vec2 position, float width);
 };
 
 

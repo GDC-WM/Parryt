@@ -22,7 +22,7 @@ class Actor {
 		/**
 		 * y and x Position of the middle of the actor
 		 */
-		Actor(float x, float y);
+		Actor(b2Vec2 position);
 
 		b2BodyDef &getBodyDef(void) { return this->bodyDef; };
 

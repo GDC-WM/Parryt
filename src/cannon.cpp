@@ -5,7 +5,7 @@
 #include "cannon.hpp"
 
 
-Cannon::Cannon(float x, float y) : Actor(x, y) {
+Cannon::Cannon(b2Vec2 position) : Actor(position) {
 	this->allegiance = Allegiance::PIRATE;
 
 	// fix shape to body

@@ -6,8 +6,8 @@
 #include "actor.hpp"
 
 
-Actor::Actor(float x, float y) {
-	this->bodyDef.position.Set(x, y);
+Actor::Actor(b2Vec2 position) {
+	this->bodyDef.position = position;
 }
 
 

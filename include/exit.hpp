@@ -13,9 +13,9 @@
  */
 class Exit : public Actor {
 	public:
-		Exit(float x, float y, std::shared_ptr<Exit> destination);
+		Exit(b2Vec2 position, std::shared_ptr<Exit> destination);
 
-		Exit(float x, float y, float width, float height, std::shared_ptr<Exit> destination);
+		Exit(b2Vec2 position, float width, float height, std::shared_ptr<Exit> destination);
 
 		const std::shared_ptr<Exit> getDestination(void) const { return this->destination; };
 

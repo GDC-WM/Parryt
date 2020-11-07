@@ -18,7 +18,7 @@ class Pari : public Character {
 
 		static constexpr float HEIGHT = 1.9;
 
-		Pari(float x, float y);
+		Pari(b2Vec2 position);
 
 
 	private:

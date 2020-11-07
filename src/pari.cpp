@@ -6,7 +6,7 @@
 #include "pari.hpp"
 
 
-Pari::Pari(float x, float y) : Character(x, y) {
+Pari::Pari(b2Vec2 position) : Character(position) {
 	this->allegiance = Allegiance::PIRATE;
 
 	this->acceleration = 60;
