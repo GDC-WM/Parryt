@@ -14,6 +14,8 @@ class Wall : public Actor {
 		static constexpr float WIDTH = 0.1;
 
 		Wall(b2Vec2 position, float height);
+
+		virtual void draw(std::shared_ptr<sf::RenderWindow> window);
 };
 
 

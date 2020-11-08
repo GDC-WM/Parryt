@@ -20,6 +20,8 @@ class Pari : public Character {
 
 		Pari(b2Vec2 position);
 
+		void draw(std::shared_ptr<sf::RenderWindow> window) override;
+
 
 	private:
 		b2PolygonShape shape;

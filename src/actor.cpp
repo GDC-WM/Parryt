@@ -18,19 +18,12 @@ void Actor::setWorld(std::shared_ptr<b2World> world) {
 }
 
 
-void Actor::updateDrawable(void) {
-	this->drawable.setPosition(this->getBody()->GetPosition().x,
-	                          -this->getBody()->GetPosition().y);
-	this->drawable.setRotation(-this->getBody()->GetAngle() * 180 / M_PI);
+void Actor::update(const float &dt) {
+
 }
 
 
 const sf::Vector2f Actor::getDrawableCenter(void) const {
 	return sf::Vector2f(this->drawable.getPosition().x + this->drawable.getSize().x / 2,
 	                    this->drawable.getPosition().y + this->drawable.getSize().y / 2);
-}
-
-
-void Actor::update(const float &dt) {
-
 }

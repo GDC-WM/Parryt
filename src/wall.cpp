@@ -19,3 +19,10 @@ Wall::Wall(b2Vec2 position, float height) : Actor(position) {
 	this->drawable.setFillColor(sf::Color::White);
 	this->drawable.setSize(sf::Vector2f(this->WIDTH * 2, height * 2));
 }
+
+
+void Wall::draw(std::shared_ptr<sf::RenderWindow> window) {
+	this->drawable.setPosition(this->getBody()->GetPosition().x,
+	                          -this->getBody()->GetPosition().y);
+	window->draw(drawable);
+}

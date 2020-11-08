@@ -14,6 +14,8 @@ class Platform : public Actor {
 		static constexpr float HEIGHT = 0.1;
 
 		Platform(b2Vec2 position, float width);
+
+		virtual void draw(std::shared_ptr<sf::RenderWindow> window);
 };
 
 
