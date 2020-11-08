@@ -1,5 +1,5 @@
-#ifndef PLATFORM_HPP
-#define PLATFORM_HPP
+#ifndef WALL_HPP
+#define WALL_HPP
 
 
 #include <box2d/box2d.h>
@@ -9,11 +9,11 @@
 /**
  * Draw the screen for the player
  */
-class Platform : public Actor {
+class Wall : public Actor {
 	public:
-		static constexpr float HEIGHT = 0.1;
+		static constexpr float WIDTH = 0.1;
 
-		Platform(b2Vec2 position, float width);
+		Wall(b2Vec2 position, float height);
 
 		virtual void draw(std::shared_ptr<sf::RenderWindow> window);
 };

@@ -2,11 +2,11 @@
 #include <SFML/Graphics.hpp>
 
 #include "actor.hpp"
-#include "platform.hpp"
+#include "wall.hpp"
 
 
-Platform::Platform(b2Vec2 position, float width) : Actor(position) {
-	this->shape.SetAsBox(width, this->HEIGHT);
+Wall::Wall(b2Vec2 position, float height) : Actor(position) {
+	this->shape.SetAsBox(this->WIDTH, height);
 
 	// fix shape to body
 	this->bodyDef.type = b2_staticBody;
@@ -15,13 +15,13 @@ Platform::Platform(b2Vec2 position, float width) : Actor(position) {
 	this->fixtureDef.friction = 0.3f;
 
 	// set drawable
-	this->drawable.setOrigin(width, this->HEIGHT);
+	this->drawable.setOrigin(this->WIDTH, height);
 	this->drawable.setFillColor(sf::Color::White);
-	this->drawable.setSize(sf::Vector2f(width * 2, this->HEIGHT * 2));
+	this->drawable.setSize(sf::Vector2f(this->WIDTH * 2, height * 2));
 }
 
 
-void Platform::draw(std::shared_ptr<sf::RenderWindow> window) {
+void Wall::draw(std::shared_ptr<sf::RenderWindow> window) {
 	this->drawable.setPosition(this->getBody()->GetPosition().x,
 	                          -this->getBody()->GetPosition().y);
 	window->draw(drawable);

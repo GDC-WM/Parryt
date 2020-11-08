@@ -1,5 +1,5 @@
-#ifndef CHARACTER_H
-#define CHARACTER_H
+#ifndef CHARACTER_HPP
+#define CHARACTER_HPP
 
 
 #include <memory>
@@ -11,13 +11,8 @@
 * The parent class for all movable characters
 */
 class Character : public Actor, public std::enable_shared_from_this<Character> {
-	protected:
-		int maxHealth;
-		float health;
-
-
 	public:
-		Character(float x, float y);
+		Character(b2Vec2 position);
 
 		virtual void damage(float d);
 
@@ -37,7 +32,15 @@ class Character : public Actor, public std::enable_shared_from_this<Character> {
 
 		void goRight(void);
 
-		void update(const float &dt) override;
+
+	protected:
+		float jumpImpulse;
+		int maxJumps;
+		int jumpCounter = 0;
+		float acceleration;
+		float maxSpeed;
+		int maxHealth;
+		float health;
 };
 
 

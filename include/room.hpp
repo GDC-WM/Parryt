@@ -1,5 +1,5 @@
-#ifndef ROOM_H
-#define ROOM_H
+#ifndef ROOM_HPP
+#define ROOM_HPP
 
 
 #include <list>
@@ -13,11 +13,6 @@
  * Handles state management between the two rooms and all of the different actor lists
  */
 class Room : public std::enable_shared_from_this<Room> {
-	private:
-		// Actor list
-		std::shared_ptr<b2World> world;
-		std::list<std::shared_ptr<Actor>> actorList;
-
 	public:
 		Room(void);
 
@@ -37,6 +32,11 @@ class Room : public std::enable_shared_from_this<Room> {
 
 		void update(const float &dt);
 
+
+	private:
+		// Actor list
+		std::shared_ptr<b2World> world;
+		std::list<std::shared_ptr<Actor>> actorList;
 };
 
 

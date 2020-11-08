@@ -1,5 +1,5 @@
-#ifndef PARI_H
-#define PARI_H
+#ifndef PARI_HPP
+#define PARI_HPP
 
 
 #include <box2d/box2d.h>
@@ -13,15 +13,19 @@
  * The main character
  */
 class Pari : public Character {
-	private:
-		b2PolygonShape shape;
-
 	public:
-		static constexpr double HEIGHT = 2;
+		static constexpr float WIDTH = 0.5;
 
-		static constexpr double WIDTH = 0.5;
+		static constexpr float HEIGHT = 1.9;
 
-		Pari(double x, double y);
+		Pari(b2Vec2 position);
+
+		void draw(std::shared_ptr<sf::RenderWindow> window) override;
+
+
+	private:
+		sf::Texture texture;
+		sf::Sprite sprite;
 };
 
 

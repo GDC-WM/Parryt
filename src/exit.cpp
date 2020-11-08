@@ -6,10 +6,10 @@
 #include "room.hpp"
 
 
-Exit::Exit(double x, double y, std::shared_ptr<Exit> destination) : Actor(x, y) {
+Exit::Exit(b2Vec2 position, std::shared_ptr<Exit> destination) : Actor(position) {
 	this->destination = destination;
 }
 
-Exit::Exit(double x, double y, double width, double height, std::shared_ptr<Exit> destination) : Actor(x, y) {
+Exit::Exit(b2Vec2 position, float width, float height, std::shared_ptr<Exit> destination) : Actor(position) {
 	this->destination = destination;
 }

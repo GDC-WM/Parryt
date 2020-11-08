@@ -1,5 +1,5 @@
-#ifndef VIEW_H
-#define VIEW_H
+#ifndef VIEW_HPP
+#define VIEW_HPP
 
 
 #include <list>
@@ -10,13 +10,14 @@
 
 
 class View {
-    protected:
-        std::shared_ptr<MasterLogic> logic;
-
     public:
         View(std::shared_ptr<MasterLogic> logic);
 
         virtual void update(const float &dt) = 0;
+
+
+    protected:
+        std::shared_ptr<MasterLogic> logic;
 };
 
 

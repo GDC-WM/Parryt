@@ -5,7 +5,8 @@
 #include "character.hpp"
 
 
-Character::Character(float x, float y) : Actor(x, y) {
+Character::Character(b2Vec2 position) : Actor(position) {
+	bodyDef.fixedRotation = true;
 	this->bodyDef.type = b2_dynamicBody;
 }
 
@@ -24,20 +25,20 @@ void Character::heal(int healAmount) {
 
 
 void Character::goLeft(void) {
-	this->body->SetLinearVelocity(b2Vec2(-10, this->body->GetLinearVelocity().y));
+	if (this->body->GetLinearVelocity().x > -this->maxSpeed) {
+		this->body->ApplyForceToCenter(b2Vec2(-this->acceleration, 0), true);
+	}
 }
 
 
 void Character::goRight(void) {
-	this->body->SetLinearVelocity(b2Vec2(10, this->body->GetLinearVelocity().y));
+	if (this->body->GetLinearVelocity().x < this->maxSpeed) {
+		this->body->ApplyForceToCenter(b2Vec2(this->acceleration, 0), true);
+	}
 }
 
 
 void Character::jump(void) {
-	this->body->SetLinearVelocity(b2Vec2(this->body->GetLinearVelocity().x, 10));
-}
-
-
-void Character::update(const float &dt) {
-	Actor::update(dt);
+	this->body->SetLinearVelocity(b2Vec2(this->body->GetLinearVelocity().x, 0));
+	this->body->ApplyLinearImpulseToCenter(b2Vec2(0, this->jumpImpulse), true);
 }

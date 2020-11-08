@@ -6,22 +6,41 @@
 #include "pari.hpp"
 
 
-Pari::Pari(double x, double y) : Character(x, y) {
-	this->shape.SetAsBox(this->WIDTH, this->HEIGHT);
+Pari::Pari(b2Vec2 position) : Character(position) {
+	this->allegiance = Allegiance::PIRATE;
+
+	this->acceleration = 60;
+	this->jumpImpulse = 50;
+	this->maxSpeed = 10;
+	this->maxHealth = 100;
+
 	// fix shape to body
+	this->shape.SetAsBox(this->WIDTH, this->HEIGHT);
 	this->fixtureDef.shape = &this->shape;
 	this->fixtureDef.density = 1.0f;
-	this->fixtureDef.friction = 0.3f;
+	this->fixtureDef.friction = 2.4f;
 
 	// set drawable
+	texture.loadFromFile("../resources/running-sequence.png");
+	this->sprite = sf::Sprite(texture, sf::IntRect(0,0,64,64));
+	sprite.setScale(0.08,0.08);
+	this->sprite.setOrigin(this->WIDTH, this->HEIGHT);
+
+
+	// set old drawable
 	this->drawable.setOrigin(this->WIDTH, this->HEIGHT);
 	this->drawable.setFillColor(sf::Color::Green);
 	this->drawable.setSize(sf::Vector2f(this->WIDTH * 2, this->HEIGHT * 2));
+}
 
-//placeholder to link base png as Pari
-//        sf::Texture texture;
-//        if(!texture.loadFromFile("/Users/*/./ParryT/WM-GDC-Parryt/src/Parryt-2.png")){std::cout<<"daaaang"<<std::endl; system("pause");}
-//        sf::Sprite sprite;
-//        sprite.setTexture(texture);
-//        sprite.setTextureRect(sf::IntRect(0, 0, 64, 64));
+
+void Pari::draw(std::shared_ptr<sf::RenderWindow> window) {
+	// old drawable
+	this->drawable.setPosition(this->getBody()->GetPosition().x,
+	                          -this->getBody()->GetPosition().y);
+	//window->draw(drawable);
+
+	this->sprite.setPosition(this->body->GetPosition().x - this->WIDTH - 2,
+	                        -this->body->GetPosition().y - this->HEIGHT - 1);
+	window->draw(this->sprite);
 }
