@@ -66,20 +66,19 @@ void PlayerView::update(const float &dt) {
 	// clear screen
 	window->clear(sf::Color::Black);
 
+	// draw actors
+	for (auto actor : this->logic->getCurrentRoom().getActorList()) actor->draw(window);
+
 	// screen follow character
 	sf::Vector2f characterPosition = sf::Vector2f(this->character->getBody()->GetPosition().x,
 	                                             -this->character->getBody()->GetPosition().y);
 	sf::View view = this->window->getView();
 	sf::Vector2f newCenter(view.getCenter().x, characterPosition.y);
-
 	if (characterPosition.x + 10 < view.getCenter().x) newCenter.x -= 0.15;
 	else if (characterPosition.x - 10 > view.getCenter().x) newCenter.x += 0.15;
 
 	view.setCenter(newCenter);
 	this->window->setView(view);
-
-	// draw actors
-	for (auto actor : this->logic->getCurrentRoom().getActorList()) actor->draw(window);
 
 	// make test sprite
 	sf::Texture texture;
