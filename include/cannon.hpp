@@ -46,6 +46,8 @@ class Cannon: public Actor {
 
 		void update(const float &dt) override;
 
+		virtual void draw(std::shared_ptr<sf::RenderWindow> window);
+
 
 	private:
 		float rotationVelocity = 0;

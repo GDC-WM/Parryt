@@ -20,7 +20,8 @@ PlayerView::PlayerView(std::shared_ptr<MasterLogic> logic, std::shared_ptr<Chara
 	// set view to center on the character
 	sf::View view = this->window->getView();
 	view.setSize(sf::Vector2f(64, 36));
-	view.setCenter(this->character->getDrawableCenter());
+	view.setCenter(sf::Vector2f(this->character->getBody()->GetPosition().x,
+                               -this->character->getBody()->GetPosition().y));
 	this->window->setView(view);
 }
 
@@ -65,22 +66,19 @@ void PlayerView::update(const float &dt) {
 	// clear screen
 	window->clear(sf::Color::Black);
 
-	// update drawables
-	for (auto actor : this->logic->getCurrentRoom().getActorList()) actor->updateDrawable();
+	// draw actors
+	for (auto actor : this->logic->getCurrentRoom().getActorList()) actor->draw(window);
 
 	// screen follow character
-	sf::Vector2f characterPosition = this->character->getDrawableCenter();
+	sf::Vector2f characterPosition = sf::Vector2f(this->character->getBody()->GetPosition().x,
+	                                             -this->character->getBody()->GetPosition().y);
 	sf::View view = this->window->getView();
 	sf::Vector2f newCenter(view.getCenter().x, characterPosition.y);
-
 	if (characterPosition.x + 10 < view.getCenter().x) newCenter.x -= 0.15;
 	else if (characterPosition.x - 10 > view.getCenter().x) newCenter.x += 0.15;
 
 	view.setCenter(newCenter);
 	this->window->setView(view);
-
-	// draw actors
-	for (auto actor : this->logic->getCurrentRoom().getActorList()) this->window->draw(actor->getDrawable());
 
 	// make test sprite
 	sf::Texture texture;

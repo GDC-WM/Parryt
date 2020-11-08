@@ -2,6 +2,7 @@
 #define ACTOR_HPP
 
 
+#include <list>
 #include <memory>
 #include <box2d/box2d.h>
 #include <SFML/Graphics.hpp>
@@ -32,19 +33,19 @@ class Actor {
 
 		const Allegiance &getAllegiance(void) const { return this->allegiance; };
 
+		virtual void update(const float &dt);
+
+		/**
+		 * Tell actor to draw itself
+		 */
+		virtual void draw(std::shared_ptr<sf::RenderWindow> window) {};
+
 		/**
 		 * Return drawable.
 		 */
 		virtual const sf::Shape &getDrawable(void) { return this->drawable; };
 
-		/**
-		 * Update drawable based on the state of the body
-		 */
-		void updateDrawable(void);
-
 		const sf::Vector2f getDrawableCenter(void) const;
-
-		virtual void update(const float &dt);
 
 		virtual ~Actor() { this->world->DestroyBody(this->body); }
 
