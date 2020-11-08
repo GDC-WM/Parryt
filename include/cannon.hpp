@@ -12,10 +12,11 @@
  */
 class Cannon : public Actor {
 	public:
-		static constexpr float WIDTH = 0.5;
+		static constexpr float WIDTH = 0.8;
 		static constexpr float HEIGHT = 0.5;
+		sf::Vector2f barrelDimensions{2, 0.3};
+		float barrelAngle = M_PI / 2;
 		static constexpr float ROTATION_SPEED = M_PI / 4; // per second
-		float orientation = M_PI / 2;
 
 		Cannon(b2Vec2 position);
 
@@ -52,7 +53,8 @@ class Cannon : public Actor {
 	private:
 		b2PolygonShape shape;
 		float rotationVelocity = 0;
-		sf::RectangleShape drawable;
+		sf::RectangleShape carriage;
+		sf::RectangleShape barrel;
 };
 
 
