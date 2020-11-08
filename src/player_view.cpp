@@ -80,13 +80,6 @@ void PlayerView::update(const float &dt) {
 	view.setCenter(newCenter);
 	this->window->setView(view);
 
-	// make test sprite
-	sf::Texture texture;
-	texture.loadFromFile("../resources/running-sequence.png");
-	sf::Sprite sprite(texture, sf::IntRect(0,0,64,64));
-	sprite.setScale(0.1,0.1);
-	this->window->draw(sprite);
-
 	// display screen
 	window->display();
 }

@@ -45,8 +45,6 @@ class Actor {
 		 */
 		virtual const sf::Shape &getDrawable(void) { return this->drawable; };
 
-		const sf::Vector2f getDrawableCenter(void) const;
-
 		virtual ~Actor() { this->world->DestroyBody(this->body); }
 
 
