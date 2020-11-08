@@ -1,5 +1,5 @@
-#ifndef WALL_HPP
-#define WALL_HPP
+#ifndef CANNONBALL_HPP
+#define CANNONBALL_HPP
 
 
 #include <box2d/box2d.h>
@@ -9,16 +9,18 @@
 /**
  * Draw the screen for the player
  */
-class Wall : public Actor {
+class Cannonball : public Actor {
 	public:
-		static constexpr float WIDTH = 0.1;
+		static constexpr float RADIUS = 0.5;
 
-		Wall(b2Vec2 position, float height);
+		Cannonball(b2Vec2 position, float damage);
 
 		virtual void draw(std::shared_ptr<sf::RenderWindow> window);
 
+
 	private:
-		b2PolygonShape shape;
+		b2CircleShape shape;
+		float damage;
 		sf::RectangleShape drawable;
 };
 

@@ -10,7 +10,7 @@
 /**
  * Draw the screen for the player
  */
-class Cannon: public Actor {
+class Cannon : public Actor {
 	public:
 		static constexpr float WIDTH = 0.5;
 		static constexpr float HEIGHT = 0.5;
@@ -50,7 +50,9 @@ class Cannon: public Actor {
 
 
 	private:
+		b2PolygonShape shape;
 		float rotationVelocity = 0;
+		sf::RectangleShape drawable;
 };
 
 

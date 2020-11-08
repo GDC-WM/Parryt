@@ -24,6 +24,8 @@ class Pari : public Character {
 
 
 	private:
+		sf::RectangleShape drawable;
+		b2PolygonShape shape;
 		sf::Texture texture;
 		sf::Sprite sprite;
 };

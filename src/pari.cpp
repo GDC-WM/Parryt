@@ -7,7 +7,7 @@
 
 
 Pari::Pari(b2Vec2 position) : Character(position) {
-	this->allegiance = Allegiance::PIRATE;
+	this->allegiance = Allegiance::PARROT;
 
 	this->acceleration = 60;
 	this->jumpImpulse = 50;

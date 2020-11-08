@@ -33,17 +33,14 @@ class Actor {
 
 		const Allegiance &getAllegiance(void) const { return this->allegiance; };
 
+		void setAllegiance(Allegiance allegiance) { this->allegiance = allegiance; };
+
 		virtual void update(const float &dt);
 
 		/**
 		 * Tell actor to draw itself
 		 */
 		virtual void draw(std::shared_ptr<sf::RenderWindow> window) {};
-
-		/**
-		 * Return drawable.
-		 */
-		virtual const sf::Shape &getDrawable(void) { return this->drawable; };
 
 		virtual ~Actor() { this->world->DestroyBody(this->body); }
 
@@ -54,10 +51,7 @@ class Actor {
 		b2BodyDef bodyDef;
 		b2FixtureDef fixtureDef;
 		b2Body *body;
-		b2PolygonShape shape;
 		b2Vec2 dimensions;
-
-		sf::RectangleShape drawable;
 };
 
 
