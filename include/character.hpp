@@ -12,7 +12,7 @@
 */
 class Character : public Actor, public std::enable_shared_from_this<Character> {
 	public:
-		Character(float x, float y);
+		Character(b2Vec2 position);
 
 		virtual void damage(float d);
 

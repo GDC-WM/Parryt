@@ -13,12 +13,15 @@ class Cannonball : public Actor {
 	public:
 		static constexpr float RADIUS = 0.5;
 
-		Cannonball(float x, float y, float damage);
+		Cannonball(b2Vec2 position, float damage);
+
+		virtual void draw(std::shared_ptr<sf::RenderWindow> window);
 
 
 	private:
 		b2CircleShape shape;
 		float damage;
+		sf::RectangleShape drawable;
 };
 
 

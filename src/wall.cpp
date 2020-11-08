@@ -5,7 +5,7 @@
 #include "wall.hpp"
 
 
-Wall::Wall(float x, float y, float height) : Actor(x, y) {
+Wall::Wall(b2Vec2 position, float height) : Actor(position) {
 	this->shape.SetAsBox(this->WIDTH, height);
 
 	// fix shape to body
@@ -18,4 +18,11 @@ Wall::Wall(float x, float y, float height) : Actor(x, y) {
 	this->drawable.setOrigin(this->WIDTH, height);
 	this->drawable.setFillColor(sf::Color::White);
 	this->drawable.setSize(sf::Vector2f(this->WIDTH * 2, height * 2));
+}
+
+
+void Wall::draw(std::shared_ptr<sf::RenderWindow> window) {
+	this->drawable.setPosition(this->getBody()->GetPosition().x,
+	                          -this->getBody()->GetPosition().y);
+	window->draw(drawable);
 }

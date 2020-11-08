@@ -6,7 +6,7 @@
 #include "cannonball.hpp"
 
 
-Cannon::Cannon(float x, float y) : Actor(x, y) {
+Cannon::Cannon(b2Vec2 position) : Actor(position) {
 	this->allegiance = Allegiance::PIRATE;
 
 	// fix shape to body
@@ -24,10 +24,18 @@ Cannon::Cannon(float x, float y) : Actor(x, y) {
 
 
 void Cannon::shoot(void) {
-	Cannonball(this->body->GetPosition().x, this->body->GetPosition().y, 20);
+	Cannonball(this->body->GetPosition(), 20);
 }
 
 
 void Cannon::update(const float &dt) {
 	this->orientation += this->rotationVelocity;
+}
+
+
+void Cannon::draw(std::shared_ptr<sf::RenderWindow> window) {
+	this->drawable.setPosition(this->getBody()->GetPosition().x,
+	                          -this->getBody()->GetPosition().y);
+	this->drawable.setRotation(-this->orientation * 180 / M_PI);
+	window->draw(drawable);
 }

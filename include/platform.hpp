@@ -13,11 +13,13 @@ class Platform : public Actor {
 	public:
 		static constexpr float HEIGHT = 0.1;
 
-		Platform(float x, float y, float width);
+		Platform(b2Vec2 position, float width);
 
+		virtual void draw(std::shared_ptr<sf::RenderWindow> window);
 
 	private:
 		b2PolygonShape shape;
+		sf::RectangleShape drawable;
 };
 
 

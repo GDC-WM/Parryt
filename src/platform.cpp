@@ -5,7 +5,7 @@
 #include "platform.hpp"
 
 
-Platform::Platform(float x, float y, float width) : Actor(x, y) {
+Platform::Platform(b2Vec2 position, float width) : Actor(position) {
 	this->shape.SetAsBox(width, this->HEIGHT);
 
 	// fix shape to body
@@ -18,4 +18,11 @@ Platform::Platform(float x, float y, float width) : Actor(x, y) {
 	this->drawable.setOrigin(width, this->HEIGHT);
 	this->drawable.setFillColor(sf::Color::White);
 	this->drawable.setSize(sf::Vector2f(width * 2, this->HEIGHT * 2));
+}
+
+
+void Platform::draw(std::shared_ptr<sf::RenderWindow> window) {
+	this->drawable.setPosition(this->getBody()->GetPosition().x,
+	                          -this->getBody()->GetPosition().y);
+	window->draw(drawable);
 }

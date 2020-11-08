@@ -5,7 +5,7 @@
 #include "cannonball.hpp"
 
 
-Cannonball::Cannonball(float x, float y, float damage) : Actor(x, y) {
+Cannonball::Cannonball(b2Vec2 position, float damage) : Actor(position) {
 	this->allegiance = Allegiance::PIRATE;
 
 	// fix shape to body
@@ -18,4 +18,12 @@ Cannonball::Cannonball(float x, float y, float damage) : Actor(x, y) {
 	this->drawable.setOrigin(this->RADIUS, this->RADIUS);
 	this->drawable.setFillColor(sf::Color::Black);
 	this->drawable.setSize(sf::Vector2f(this->RADIUS * 2, this->RADIUS * 2));
+}
+
+
+void Cannonball::draw(std::shared_ptr<sf::RenderWindow> window) {
+	this->drawable.setPosition(this->getBody()->GetPosition().x,
+	                          -this->getBody()->GetPosition().y);
+	this->drawable.setRotation(-this->body->GetAngle() * 180 / M_PI);
+	window->draw(drawable);
 }

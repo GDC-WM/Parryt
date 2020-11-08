@@ -18,11 +18,16 @@ class Pari : public Character {
 
 		static constexpr float HEIGHT = 1.9;
 
-		Pari(float x, float y);
+		Pari(b2Vec2 position);
+
+		void draw(std::shared_ptr<sf::RenderWindow> window) override;
 
 
 	private:
+		sf::RectangleShape drawable;
 		b2PolygonShape shape;
+		sf::Texture texture;
+		sf::Sprite sprite;
 };
 
 
