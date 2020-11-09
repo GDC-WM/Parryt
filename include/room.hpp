@@ -4,9 +4,9 @@
 
 #include <list>
 #include <memory>
+#include <box2d/box2d.h>
 
-#include "box2d/box2d.h"
-#include "actor.hpp"
+class Actor;
 
 
 /*
@@ -17,6 +17,11 @@ class Room : public std::enable_shared_from_this<Room> {
 		Room(void);
 
 		/**
+		 * Return the world
+		 */
+		const std::shared_ptr<b2World> getWorld(void) const { return this->world; };
+
+		/**
 		 * Return the list of actors.
 		 */
 		const std::list<std::shared_ptr<Actor>> &getActorList(void) const { return this->actorList; };
@@ -24,7 +29,7 @@ class Room : public std::enable_shared_from_this<Room> {
 		/**
 		 * Add an actor to the list
 		 *
-		 * actor -- actor to add
+		 * @param actor actor to add
 		 */
 		void addActor(std::shared_ptr<Actor> actor);
 

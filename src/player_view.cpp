@@ -67,7 +67,7 @@ void PlayerView::update(const float &dt) {
 	window->clear(sf::Color::Black);
 
 	// draw actors
-	for (auto actor : this->logic->getCurrentRoom().getActorList()) actor->draw(window);
+	for (auto actor : this->logic->getCurrentRoom()->getActorList()) actor->draw(window);
 
 	// screen follow character
 	sf::Vector2f characterPosition = sf::Vector2f(this->character->getBody()->GetPosition().x,

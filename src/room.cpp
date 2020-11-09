@@ -1,5 +1,6 @@
-#include "box2d/box2d.h"
+#include <list>
 #include <memory>
+#include <box2d/box2d.h>
 
 #include "actor.hpp"
 #include "room.hpp"
@@ -11,7 +12,7 @@ Room::Room(void) {
 
 
 void Room::addActor(std::shared_ptr<Actor> actor) {
-	actor->setWorld(this->world);
+	actor->setRoom(this->shared_from_this());
 	this->actorList.push_back(actor);
 }
 
