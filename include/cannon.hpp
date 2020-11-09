@@ -12,16 +12,16 @@
  */
 class Cannon : public Actor {
 	public:
-		static constexpr float WIDTH = 0.8;
-		static constexpr float HEIGHT = 0.5;
-		sf::Vector2f barrelDimensions{2, 0.3};
+		static constexpr float WIDTH = 1;
+		static constexpr float HEIGHT = 0.8;
+		sf::Vector2f barrelDimensions{1.5, 0.5};
 		float barrelAngle = M_PI / 2;
-		static constexpr float ROTATION_SPEED = M_PI / 4; // per second
+		static constexpr float ROTATION_SPEED = M_PI / 6; // per second
 
 		Cannon(b2Vec2 position);
 
 		/*
-		 * returns where the cannon is rotateed
+		 * returns angle of the barrel
 		 */
 		float getOrientation(void);
 
@@ -33,12 +33,12 @@ class Cannon : public Actor {
 		/*
 		 * Rotate the cannon clockwise
 		 */
-		void rotateClockwise(void) { this->rotationVelocity = this->ROTATION_SPEED; };
+		void rotateClockwise(void) { this->rotationVelocity = -this->ROTATION_SPEED / 60; };
 
 		/*
 		 * Rotate the cannon counterclockwise
 		 */
-		void rotateCounterclockwise(void) { this->rotationVelocity = -this->ROTATION_SPEED; };
+		void rotateCounterclockwise(void) { this->rotationVelocity = this->ROTATION_SPEED / 60; };
 
 		/*
 		 * Stop rotation

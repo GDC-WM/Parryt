@@ -34,7 +34,7 @@ void MasterLogic::startDemo(void) {
 	this->view->addView(pari);
 
 	// Add cannon
-	std::shared_ptr<Cannon> cannon = std::make_shared<Cannon>(b2Vec2(10,2));
+	std::shared_ptr<Cannon> cannon = std::make_shared<Cannon>(b2Vec2(1,1));
 	this->currentRoom->addActor(cannon);
 	this->view->addView(cannon);
 
@@ -49,7 +49,6 @@ void MasterLogic::startDemo(void) {
 	// Add Wall
 	std::shared_ptr<Wall> wall1 = std::make_shared<Wall>(b2Vec2(10, 2), 4);
 	this->currentRoom->addActor(wall1);
-
 }
 
 

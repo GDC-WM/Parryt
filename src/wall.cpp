@@ -12,7 +12,7 @@ Wall::Wall(b2Vec2 position, float height) : Actor(position) {
 	this->bodyDef.type = b2_staticBody;
 	this->fixtureDef.shape = &this->shape;
 	this->fixtureDef.density = 1.0f;
-	this->fixtureDef.friction = 0.3f;
+	this->fixtureDef.friction = 0.1f;
 
 	// set drawable
 	this->drawable.setOrigin(this->WIDTH, height);
