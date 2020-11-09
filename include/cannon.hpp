@@ -55,6 +55,8 @@ class Cannon : public Actor {
 		float rotationVelocity = 0;
 		sf::RectangleShape carriage;
 		sf::RectangleShape barrel;
+
+		int temp = 0;
 };
 
 

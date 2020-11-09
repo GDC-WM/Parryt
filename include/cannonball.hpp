@@ -21,7 +21,7 @@ class Cannonball : public Actor {
 	private:
 		b2CircleShape shape;
 		float damage;
-		sf::RectangleShape drawable;
+		sf::CircleShape drawable;
 };
 
 
