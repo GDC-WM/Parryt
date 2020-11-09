@@ -44,7 +44,7 @@ class MasterLogic {
 		/**
 		 *
 		 */
-		const Room &getCurrentRoom(void) const { return *(this->currentRoom); };
+		std::shared_ptr<Room> getCurrentRoom(void) const { return *(this->currentRoom); };
 
 		/**
 		 * Resets master logic to default state
@@ -71,8 +71,8 @@ class MasterLogic {
 
 	private:
 		std::shared_ptr<MasterView> view;
-		std::list<Room> roomList;
-		std::list<Room>::iterator currentRoom;
+		std::list<std::shared_ptr<Room>> roomList;
+		std::list<std::shared_ptr<Room>>::iterator currentRoom;
 		bool terminated = false;
 		bool paused = false;
 };

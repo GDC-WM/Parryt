@@ -8,6 +8,8 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
+#include "room.hpp"
+
 
 /*
  * Define what side of the fight that the actor is on
@@ -27,7 +29,7 @@ class Actor {
 
 		b2BodyDef &getBodyDef(void) { return this->bodyDef; };
 
-		void setWorld(std::shared_ptr<b2World> world);
+		void setRoom(std::shared_ptr<Room> room);
 
 		b2Body *getBody(void) { return this->body; };
 
@@ -35,19 +37,19 @@ class Actor {
 
 		void setAllegiance(Allegiance allegiance) { this->allegiance = allegiance; };
 
-		virtual void update(const float &dt);
+		virtual void update(const float &dt) {};
 
 		/**
 		 * Tell actor to draw itself
 		 */
 		virtual void draw(std::shared_ptr<sf::RenderWindow> window) {};
 
-		virtual ~Actor() { this->world->DestroyBody(this->body); }
+		virtual ~Actor() { this->room->getWorld()->DestroyBody(this->body); }
 
 
 	protected:
 		Allegiance allegiance = Allegiance::NEUTRAL; // neutral default
-		std::shared_ptr<b2World> world;
+		std::shared_ptr<Room> room;
 		b2BodyDef bodyDef;
 		b2FixtureDef fixtureDef;
 		b2Body *body;

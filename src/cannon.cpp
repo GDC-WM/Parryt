@@ -11,6 +11,7 @@ Cannon::Cannon(b2Vec2 position) : Actor(position) {
 
 	// fix shape to body
 	this->bodyDef.type = b2_staticBody;
+	this->bodyDef.enabled = false;
 	this->shape.SetAsBox(this->WIDTH, this->HEIGHT);
 	this->fixtureDef.shape = &this->shape;
 	this->fixtureDef.density = 1.0f;
@@ -32,12 +33,15 @@ Cannon::Cannon(b2Vec2 position) : Actor(position) {
 
 void Cannon::shoot(void) {
 	std::shared_ptr<Cannonball> cannonball = std::make_shared<Cannonball>(this->body->GetPosition(), 20);
-	//this->room->addActor(cannonball); // give actors access to the room they are in
+	this->room->addActor(cannonball); // give actors access to the room they are in
+	cannonball->getBody()->ApplyLinearImpulseToCenter(b2Vec2(cos(this->barrelAngle) * 50,
+	                                                         sin(this->barrelAngle) * 50), true);
 }
 
 
 void Cannon::update(const float &dt) {
 	this->barrelAngle += this->rotationVelocity;
+	if (temp++ % 60 == 0) this->shoot();
 }
 
 

@@ -10,14 +10,15 @@ Cannonball::Cannonball(b2Vec2 position, float damage) : Actor(position) {
 
 	// fix shape to body
 	this->shape.m_radius = this->RADIUS;
+	this->bodyDef.type = b2_dynamicBody;
 	this->fixtureDef.shape = &this->shape;
 	this->fixtureDef.density = 1.0f;
 	this->fixtureDef.friction = 2.4f;
 
 	// set drawable
 	this->drawable.setOrigin(this->RADIUS, this->RADIUS);
-	this->drawable.setFillColor(sf::Color::Black);
-	this->drawable.setSize(sf::Vector2f(this->RADIUS * 2, this->RADIUS * 2));
+	this->drawable.setFillColor(sf::Color::Blue);
+	this->drawable.setRadius(this->RADIUS);
 }
 
 
