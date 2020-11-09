@@ -11,6 +11,8 @@
 #include "wall.hpp"
 #include "character.hpp"
 #include "pari.hpp"
+#include "cannon.hpp"
+#include "cannonball.hpp"
 
 
 void MasterLogic::init(std::shared_ptr<MasterView> view) {
@@ -31,6 +33,11 @@ void MasterLogic::startDemo(void) {
 	this->currentRoom->addActor(pari);
 	this->view->addView(pari);
 
+	// Add cannon
+	std::shared_ptr<Cannon> cannon = std::make_shared<Cannon>(b2Vec2(1,1));
+	this->currentRoom->addActor(cannon);
+	this->view->addView(cannon);
+
 	// Add Platform
 	std::shared_ptr<Platform> platform1 = std::make_shared<Platform>(b2Vec2(5, 10), 20);
 	this->currentRoom->addActor(platform1);
@@ -42,7 +49,6 @@ void MasterLogic::startDemo(void) {
 	// Add Wall
 	std::shared_ptr<Wall> wall1 = std::make_shared<Wall>(b2Vec2(10, 2), 4);
 	this->currentRoom->addActor(wall1);
-
 }
 
 

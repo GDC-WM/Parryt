@@ -16,26 +16,39 @@ Cannon::Cannon(b2Vec2 position) : Actor(position) {
 	this->fixtureDef.density = 1.0f;
 	this->fixtureDef.friction = 0.3f;
 
-	// set drawable
-	this->drawable.setOrigin(this->WIDTH, this->HEIGHT);
-	this->drawable.setFillColor(sf::Color::Red);
-	this->drawable.setSize(sf::Vector2f(this->WIDTH * 2, this->HEIGHT * 2));
+	// set carriage
+	this->carriage.setOrigin(this->WIDTH, this->HEIGHT);
+	this->carriage.setFillColor(sf::Color::Red);
+	this->carriage.setSize(sf::Vector2f(this->WIDTH * 2, this->HEIGHT * 2));
+
+	// set barrel
+	this->barrel.setOrigin(0, this->barrelDimensions.y);
+	this->barrel.setFillColor(sf::Color::White);
+	this->barrel.setSize(sf::Vector2f(this->barrelDimensions.x * 2, this->barrelDimensions.y * 2));
+
+	this->rotateClockwise(); // for demoing, rotate clockwise
 }
 
 
 void Cannon::shoot(void) {
-	Cannonball(this->body->GetPosition(), 20);
+	std::shared_ptr<Cannonball> cannonball = std::make_shared<Cannonball>(this->body->GetPosition(), 20);
+	//this->room->addActor(cannonball); // give actors access to the room they are in
 }
 
 
 void Cannon::update(const float &dt) {
-	this->orientation += this->rotationVelocity;
+	this->barrelAngle += this->rotationVelocity;
 }
 
 
 void Cannon::draw(std::shared_ptr<sf::RenderWindow> window) {
-	this->drawable.setPosition(this->getBody()->GetPosition().x,
+	this->carriage.setPosition(this->getBody()->GetPosition().x,
 	                          -this->getBody()->GetPosition().y);
-	this->drawable.setRotation(-this->orientation * 180 / M_PI);
-	window->draw(drawable);
+	this->carriage.setRotation(-this->body->GetAngle() * 180 / M_PI);
+	window->draw(carriage);
+
+	this->barrel.setPosition(this->getBody()->GetPosition().x,
+	                        -this->getBody()->GetPosition().y);
+	this->barrel.setRotation(-this->barrelAngle * 180 / M_PI);
+	window->draw(barrel);
 }
