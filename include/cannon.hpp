@@ -57,6 +57,11 @@ class Cannon : public Actor {
 		sf::RectangleShape carriage;
 		sf::RectangleShape barrel;
 
+		sf::Texture carriageTexture;
+		sf::Sprite carriageSprite;
+		sf::Texture barrelTexture;
+		sf::Sprite barrelSprite;
+
 		int loadingCounter = 0;
 };
 

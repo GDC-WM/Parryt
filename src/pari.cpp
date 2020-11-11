@@ -26,7 +26,6 @@ Pari::Pari(b2Vec2 position) : Character(position) {
 	sprite.setScale(0.08,0.08);
 	this->sprite.setOrigin(this->WIDTH, this->HEIGHT);
 
-
 	// set old drawable
 	this->drawable.setOrigin(this->WIDTH, this->HEIGHT);
 	this->drawable.setFillColor(sf::Color::Green);

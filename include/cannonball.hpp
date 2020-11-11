@@ -22,6 +22,8 @@ class Cannonball : public Actor {
 		b2CircleShape shape;
 		float damage;
 		sf::CircleShape drawable;
+		sf::Texture texture;
+		sf::Sprite sprite;
 };
 
 
