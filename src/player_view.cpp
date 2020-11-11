@@ -1,16 +1,14 @@
 #include <SFML/Graphics.hpp>
 #include <list>
 #include <memory>
-#include <iostream>
 
 #include "view.hpp"
 #include "player_view.hpp"
 #include "character.hpp"
 
 
-PlayerView::PlayerView(std::shared_ptr<MasterLogic> logic, std::shared_ptr<Character> character)
-		: View(logic) {
-	this->logic = logic;
+PlayerView::PlayerView(std::shared_ptr<MasterLogic> logic, std::shared_ptr<Character> character) : View(logic) {
+	this->logic = logic; // TODO: this happens in view as well, but segfault if not set here
 	this->character = character;
 
 	// set window

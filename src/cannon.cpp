@@ -26,12 +26,13 @@ Cannon::Cannon(b2Vec2 position) : Actor(position) {
 	this->barrel.setOrigin(0, this->barrelDimensions.y);
 	this->barrel.setFillColor(sf::Color::White);
 	this->barrel.setSize(sf::Vector2f(this->barrelDimensions.x * 2, this->barrelDimensions.y * 2));
-
-	this->rotateClockwise(); // for demoing, rotate clockwise
 }
 
 
 void Cannon::shoot(void) {
+	if (this->loadingCounter > 0) return;
+
+	this->loadingCounter = this->LOAD_TIME;
 	std::shared_ptr<Cannonball> cannonball = std::make_shared<Cannonball>(this->body->GetPosition(), 20);
 	this->room->addActor(cannonball); // give actors access to the room they are in
 	cannonball->getBody()->ApplyLinearImpulseToCenter(b2Vec2(cos(this->barrelAngle) * 50,
@@ -41,7 +42,7 @@ void Cannon::shoot(void) {
 
 void Cannon::update(const float &dt) {
 	this->barrelAngle += this->rotationVelocity;
-	if (temp++ % 60 == 0) this->shoot();
+	if (this->loadingCounter > 0) this->loadingCounter--;
 }
 
 
