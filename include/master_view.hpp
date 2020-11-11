@@ -11,6 +11,7 @@
 #include "actor.hpp"
 #include "pari.hpp"
 #include "cannon.hpp"
+#include "cannon_view.hpp"
 
 
 /**
@@ -30,7 +31,7 @@ class MasterView {
 		/**
 		 * Add CannonView
 		 */
-		void addView(std::shared_ptr<Cannon> a) {  }; //TODO: Add CannonView
+		void addView(std::shared_ptr<Cannon> a) { this->viewList.push_back(std::make_shared<CannonView>(this->logic, a)); };
 
 		/**
 		 * Create a view for the new enemy from logic and add the view to the enemyview list
