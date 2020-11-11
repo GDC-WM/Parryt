@@ -14,6 +14,7 @@ class Cannon : public Actor {
 	public:
 		static constexpr float WIDTH = 1;
 		static constexpr float HEIGHT = 0.8;
+		static constexpr int LOAD_TIME = 90; // milliseconds
 		sf::Vector2f barrelDimensions{1.5, 0.5};
 		float barrelAngle = M_PI / 2;
 		static constexpr float ROTATION_SPEED = M_PI / 6; // per second
@@ -56,7 +57,7 @@ class Cannon : public Actor {
 		sf::RectangleShape carriage;
 		sf::RectangleShape barrel;
 
-		int temp = 0;
+		int loadingCounter = 0;
 };
 
 
