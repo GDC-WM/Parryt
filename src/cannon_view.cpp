@@ -8,6 +8,7 @@
 
 CannonView::CannonView(std::shared_ptr<MasterLogic> logic, std::shared_ptr<Cannon> cannon) : View(logic) {
 	this->cannon = cannon;
+	this->cannon->rotateClockwise();
 }
 
 void CannonView::update(const float &dt) {
