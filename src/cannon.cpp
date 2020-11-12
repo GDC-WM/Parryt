@@ -21,13 +21,13 @@ Cannon::Cannon(b2Vec2 position) : Actor(position) {
 	carriageTexture.loadFromFile("../resources/cannon-carriage.png");
 	this->carriageSprite = sf::Sprite(carriageTexture, sf::IntRect(0,0,64,64));
 	carriageSprite.setScale(0.08,0.08);
-	this->carriageSprite.setOrigin(this->WIDTH, this->HEIGHT);
+	this->carriageSprite.setOrigin(this->WIDTH * 14, this->HEIGHT * 14 - 10);
 
 	// set barrel
 	barrelTexture.loadFromFile("../resources/cannon-barrel.png");
 	this->barrelSprite = sf::Sprite(barrelTexture, sf::IntRect(0,0,64,64));
 	barrelSprite.setScale(0.08,0.08);
-	this->barrelSprite.setOrigin(this->WIDTH, this->HEIGHT);
+	this->barrelSprite.setOrigin(15, 21.5);
 
 	// set old carriage
 	this->carriage.setOrigin(this->WIDTH, this->HEIGHT);
@@ -62,20 +62,20 @@ void Cannon::draw(std::shared_ptr<sf::RenderWindow> window) {
 	this->carriage.setPosition(this->getBody()->GetPosition().x,
 	                          -this->getBody()->GetPosition().y);
 	this->carriage.setRotation(-this->body->GetAngle() * 180 / M_PI);
-	window->draw(carriage);
+	//window->draw(carriage);
 
 	this->barrel.setPosition(this->getBody()->GetPosition().x,
 	                        -this->getBody()->GetPosition().y);
 	this->barrel.setRotation(-this->barrelAngle * 180 / M_PI);
-	window->draw(barrel);
+	//window->draw(barrel);
 
 	this->barrelSprite.setPosition(this->getBody()->GetPosition().x,
-	                        -this->getBody()->GetPosition().y);
+	                              -this->getBody()->GetPosition().y - this->barrelDimensions.y);
 	this->barrelSprite.setRotation(-this->barrelAngle * 180 / M_PI);
 	window->draw(barrelSprite);
 
 	this->carriageSprite.setPosition(this->getBody()->GetPosition().x,
-	                          -this->getBody()->GetPosition().y);
+	                                -this->getBody()->GetPosition().y);
 	this->carriageSprite.setRotation(-this->body->GetAngle() * 180 / M_PI);
 	window->draw(carriageSprite);
 }
