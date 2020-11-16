@@ -23,6 +23,7 @@ cmake_minimum_required(VERSION 2.6)
 #####################
 # set to include custom modules
 set(CMAKE_MODULE_PATH $ENV{CMAKE_MODULE_PATH} ${parryt_SOURCE_DIR}/cmake)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # set build type if specified by environment
 if((NOT CMAKE_BUILD_TYPE) AND (NOT $ENV{CMAKE_BUILD_TYPE} STREQUAL ""))
