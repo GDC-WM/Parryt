@@ -11,7 +11,7 @@
  */
 class Cannonball : public Actor {
 	public:
-		static constexpr float RADIUS = 0.5;
+		static constexpr float RADIUS = 0.7;
 
 		Cannonball(b2Vec2 position, float damage);
 
@@ -22,6 +22,8 @@ class Cannonball : public Actor {
 		b2CircleShape shape;
 		float damage;
 		sf::CircleShape drawable;
+		sf::Texture texture;
+		sf::Sprite sprite;
 };
 
 

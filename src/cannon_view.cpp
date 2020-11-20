@@ -11,6 +11,7 @@ CannonView::CannonView(std::shared_ptr<MasterLogic> logic, std::shared_ptr<Canno
 	this->cannon->rotateClockwise();
 }
 
+
 void CannonView::update(const float &dt) {
 	this->cannon->shoot();
 }
