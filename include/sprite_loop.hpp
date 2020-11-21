@@ -22,7 +22,7 @@ class SpriteLoop {
 		/**
 		 * @return the current sprite
 		 */
-		sf::Sprite &getSprite(void){ return this->sprite; };
+		sf::Sprite &getSprite(void) { return this->sprite; };
 
 		/**
 		 * Reset the animation to the first frame in the sequence.
