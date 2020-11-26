@@ -32,12 +32,15 @@ class Character : public Actor, public std::enable_shared_from_this<Character> {
 
 		void goRight(void);
 
+		void stop(void);
+
 
 	protected:
 		float jumpImpulse;
 		int maxJumps;
 		int jumpCounter = 0;
 		float acceleration;
+	    float deceleration;
 		float maxSpeed;
 		int maxHealth;
 		float health;
