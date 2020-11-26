@@ -1,9 +1,9 @@
 #include <memory>
+#include <cmath>
 #include <box2d/box2d.h>
 
 #include "actor.hpp"
 #include "character.hpp"
-
 
 Character::Character(b2Vec2 position) : Actor(position) {
 	bodyDef.fixedRotation = true;
@@ -34,6 +34,12 @@ void Character::goLeft(void) {
 void Character::goRight(void) {
 	if (this->body->GetLinearVelocity().x < this->maxSpeed) {
 		this->body->ApplyForceToCenter(b2Vec2(this->acceleration, 0), true);
+	}
+}
+
+void Character::stop(void) {
+	if (this->body->GetLinearVelocity().x > 0) {
+		this->body->ApplyForceToCenter(b2Vec2(int(-1 * (this->body->GetLinearVelocity().x)/abs(this->body->GetLinearVelocity().x) * this->decceleration), 0), true);
 	}
 }
 
