@@ -38,8 +38,9 @@ void Character::goRight(void) {
 }
 
 void Character::stop(void) {
-	if (this->body->GetLinearVelocity().x > 0) {
-		this->body->ApplyForceToCenter(b2Vec2(int(-1 * (this->body->GetLinearVelocity().x)/abs(this->body->GetLinearVelocity().x) * this->decceleration), 0), true);
+	float velocity = this->body->GetLinearVelocity().x;
+	if (velocity != 0) {
+		this->body->ApplyForceToCenter(b2Vec2(-velocity / abs(velocity) * this->deceleration, 0), true);
 	}
 }
 

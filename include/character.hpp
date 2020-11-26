@@ -40,7 +40,7 @@ class Character : public Actor, public std::enable_shared_from_this<Character> {
 		int maxJumps;
 		int jumpCounter = 0;
 		float acceleration;
-	    float decceleration;
+	    float deceleration;
 		float maxSpeed;
 		int maxHealth;
 		float health;
