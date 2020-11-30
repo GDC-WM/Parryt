@@ -29,7 +29,7 @@ void MasterLogic::startDemo(void) {
 	this->getCurrentRoom()->addActor(ground);
 
 	// Add pari
-	std::shared_ptr<Pari> pari = std::make_shared<Pari>(b2Vec2(10,2));
+	std::shared_ptr<Pari> pari = std::make_shared<Pari>(b2Vec2(-13,2));
 	this->getCurrentRoom()->addActor(pari);
 	this->view->addView(pari);
 
