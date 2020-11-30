@@ -16,7 +16,8 @@ Wall::Wall(b2Vec2 position, float height) : Actor(position) {
 
 	// set drawable
 	this->drawable.setOrigin(this->WIDTH, height);
-	this->drawable.setFillColor(sf::Color::Black);
+	sf::Color color(71, 40, 11);
+	this->drawable.setFillColor(color);
 	this->drawable.setSize(sf::Vector2f(this->WIDTH * 2, height * 2));
 }
 
