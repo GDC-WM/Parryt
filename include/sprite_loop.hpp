@@ -31,7 +31,13 @@ class SpriteLoop {
 
 
 	private:
-		sf::Texture spriteSheet;
+		SpriteLoop spriteloop(std::string spriteSheet, sf::Vector2f divisionSize, int startFrame, int frames, float frameTime);
+		float frameTime;
+		int frames;
+		int startFrame;
+		sf::Vector2f divisionSize;
+		std::string spriteSheet;
+		sf::Texture spriteTexture;
 		sf::Sprite sprite;
 		int startFrame;
 		int frames;

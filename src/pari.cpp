@@ -4,6 +4,7 @@
 #include "actor.hpp"
 #include "character.hpp"
 #include "pari.hpp"
+#include "sprite_loop.hpp"
 
 
 Pari::Pari(b2Vec2 position) : Character(position) {
@@ -42,5 +43,7 @@ void Pari::draw(std::shared_ptr<sf::RenderWindow> window) {
 
 	this->sprite.setPosition(this->body->GetPosition().x - this->WIDTH - 2,
 	                        -this->body->GetPosition().y - this->HEIGHT - 1);
+	
+		
 	window->draw(this->sprite);
 }
