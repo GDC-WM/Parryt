@@ -29,6 +29,8 @@ class SpriteLoop {
 		 */
 		void reset(void);
 
+		void setFrame(int frame);
+
 
 	private:
 		SpriteLoop spriteloop(std::string spriteSheet, sf::Vector2f divisionSize, int startFrame, int frames, float frameTime);
