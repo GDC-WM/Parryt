@@ -27,11 +27,10 @@ PlayerView::PlayerView(std::shared_ptr<MasterLogic> logic, std::shared_ptr<Chara
 // TODO: tie this method to the physics loop
 void PlayerView::pollInput(void) {
 	// mouse
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) ;
+	//if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) ;
 
 	// keyboard
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) ;	
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) /*jump down from platform*/;
+	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) /*jump down from platform*/;
 	bool left = sf::Keyboard::isKeyPressed(sf::Keyboard::A);
 	bool right = sf::Keyboard::isKeyPressed(sf::Keyboard::D);
 	if (left) this->character->goLeft();
@@ -53,8 +52,10 @@ void PlayerView::listen(void) {
 					case sf::Keyboard::Space:
 						this->character->jump();
 						break;
+					default:; // ignore other keys
 				}
 				break;
+			default:; // ignore other events
 		}
 	}
 }
@@ -91,7 +92,7 @@ void PlayerView::update(const float &dt) {
 	view.setCenter(newCenter);
 	this->window->setView(view);
 
-	
+
 	// display screen
 	window->display();
 }
