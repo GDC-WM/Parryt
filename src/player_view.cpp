@@ -43,19 +43,19 @@ void PlayerView::listen(void) {
 	sf::Event event;
 	while (window->pollEvent(event)) {
 		switch (event.type) {
-			case sf::Event::Closed :
+			case sf::Event::Closed:
 				window->close();
 				this->logic->terminate();
 				break;
-			case sf::Event::KeyPressed :
+			case sf::Event::KeyPressed:
 				switch (event.key.code) {
-					case sf::Keyboard::Space :
+					case sf::Keyboard::Space:
 						this->character->jump();
 						break;
-					default :; // ignore other keys
+					default:; // ignore other keys
 				}
 				break;
-			default :; // ignore other events
+			default:; // ignore other events
 		}
 	}
 }
@@ -92,7 +92,7 @@ void PlayerView::update(const float &dt) {
 	view.setCenter(newCenter);
 	this->window->setView(view);
 
-	
+
 	// display screen
 	window->display();
 }
