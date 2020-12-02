@@ -68,6 +68,16 @@ void PlayerView::update(const float &dt) {
 	// clear screen
 	window->clear(sf::Color::Black);
 
+	// background test
+	sf::Texture texture;
+	texture.loadFromFile("../resources/demo_background.png");
+	sf::Sprite sprite;
+	sf::Vector2u size = texture.getSize();
+	sprite.setTexture(texture);
+	sprite.setOrigin(size.x/2, size.y/2 + 150);
+	sprite.setScale(0.07,0.07);
+	this->window->draw(sprite);
+
 	// draw actors
 	for (auto actor : this->logic->getCurrentRoom()->getActorList()) actor->draw(window);
 
@@ -82,6 +92,7 @@ void PlayerView::update(const float &dt) {
 	view.setCenter(newCenter);
 	this->window->setView(view);
 
+	
 	// display screen
 	window->display();
 }
