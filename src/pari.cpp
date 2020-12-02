@@ -44,6 +44,5 @@ void Pari::draw(std::shared_ptr<sf::RenderWindow> window) {
 	this->sprite.setPosition(this->body->GetPosition().x - this->WIDTH - 2,
 	                        -this->body->GetPosition().y - this->HEIGHT - 1);
 
-	this->spriteloop();
 	window->draw(this->sprite);
 }
