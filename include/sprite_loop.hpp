@@ -3,6 +3,15 @@
 
 
 #include <SFML/Graphics.hpp>
+#include <chrono>
+
+
+struct Loop {
+	int start, frames;
+	float frameTime;
+
+	//Loop{const int &start; const int &frames};
+};
 
 
 /**
@@ -12,17 +21,17 @@ class SpriteLoop {
 	public:
 		/**
 		 * @param spriteSheet filename
-		 * @param divisionSize the vector size of a sprite in pixels (x,y) on the sprite sheet
-		 * @param startFrame the number of the first frame on the sprite sheet in the animation
-		 * @param frames the number of frames in the sequence
+		 * @param spriteSize the vector size of a sprite in pixels (x,y) on the sprite sheet
 		 * @param frameTime the time between each frame of the animation
 		 */
-		SpriteLoop(std::string spriteSheet, sf::Vector2f divisionSize, int startFrame, int frames, float frameTime);
+		SpriteLoop(const std::string &spriteSheet, const sf::Vector2f &spriteSize);
 
 		/**
 		 * @return the current sprite
 		 */
 		sf::Sprite &getSprite(void) { return this->sprite; };
+
+		void setLoop(const Loop &loop) { this->loop = loop; };
 
 		/**
 		 * Reset the animation to the first frame in the sequence.
@@ -33,11 +42,14 @@ class SpriteLoop {
 	private:
 		sf::Texture texture;
 		sf::Sprite sprite;
-		sf::Vector2f divisionSize;
+		sf::Vector2f spriteSize;
+		Loop loop;
 		int startFrame;
 		int frames;
 		float frameTime;
+		std::chrono::system_clock::time_point startTime;
 
+		void setFrame(const int &frame);
 };
 
 

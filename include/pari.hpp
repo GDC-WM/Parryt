@@ -25,10 +25,11 @@ class Pari : public Character {
 
 
 	private:
-		SpriteLoop runLoop { "../resources/running-sequence.png", sf::Vector2f(64, 64), 1, 5, 20 };
 		sf::RectangleShape drawable;
-		b2PolygonShape shape;
 		sf::Texture texture;
+		b2PolygonShape shape;
+		Loop runLoop{1, 5, 20};
+		std::unique_ptr<SpriteLoop> loop;
 		sf::Sprite sprite;
 };
 
