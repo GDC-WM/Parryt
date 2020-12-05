@@ -31,8 +31,3 @@ void SpriteSheet::setFrame(const int &frame) {
 	this->spriteRect.left = this->spriteRect.width * (globalFrame % this->sheetSize.x); // remainder
 	this->sprite.setTextureRect(this->spriteRect);
 }
-
-
-void SpriteSheet::reset(void) {
-	this->startTime = std::chrono::system_clock::now();
-}

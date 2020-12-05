@@ -36,6 +36,7 @@ class Character : public Actor, public std::enable_shared_from_this<Character> {
 
 
 	protected:
+		Direction lookDirection = Direction::RIGHT;
 		float jumpImpulse;
 		int maxJumps;
 		int jumpCounter = 0;
@@ -44,6 +45,7 @@ class Character : public Actor, public std::enable_shared_from_this<Character> {
 		float maxSpeed;
 		int maxHealth;
 		float health;
+		//TODO: give every character a SpriteSheet?
 };
 
 

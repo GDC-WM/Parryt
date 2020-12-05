@@ -5,8 +5,23 @@
 #include <SFML/Graphics.hpp>
 #include <chrono>
 
+//TODO: move this into seperate file, make it a class?
+struct Loop {
+	int start, frames, frameTime;
+	Loop mirror() {
+		Loop mirrorLoop = *this;
+		mirrorLoop.start += frames;
+		return mirrorLoop;
+	};
 
-struct Loop { int start, frames, frameTime; };
+	bool operator==(Loop l) {
+		return l.start == this->start
+		    && l.frames == this->frames
+		    && l.frameTime == this->frameTime;
+	}
+
+	bool operator!=(Loop l) { return !operator==(l); }
+};
 
 
 /**
@@ -21,9 +36,16 @@ class SpriteSheet {
 		SpriteSheet(const std::string &spriteSheet, const sf::Vector2i &spriteSize);
 
 		/**
-		 * @return the current sprite
+		 * First updates the sprite to the proper frame, then returns
+		 *
+		 * @return the sprite
 		 */
 		sf::Sprite &getSprite(void);
+
+		/**
+		 * @return the current loop.
+		 */
+		const Loop &getLoop(void) { return this->loop; };
 
 		/**
 		 * Set the loop within the sprite sheet.
@@ -44,7 +66,7 @@ class SpriteSheet {
 		/**
 		 * Reset the animation to the first frame in the sequence.
 		 */
-		void reset(void);
+		void restart(void) { this->startTime = std::chrono::system_clock::now(); };
 
 
 	private:
