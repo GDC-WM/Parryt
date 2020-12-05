@@ -1,5 +1,5 @@
-#ifndef SPRITE_LOOP_HPP
-#define SPRITE_LOOP_HPP
+#ifndef SPRITE_SHEET_HPP
+#define SPRITE_SHEET_HPP
 
 
 #include <SFML/Graphics.hpp>
@@ -10,15 +10,15 @@ struct Loop { int start, frames, frameTime; };
 
 
 /**
- * Facilitates creating a sequence of sprites from a spritesheet.
+ * Facilitates creating an animation from a spritesheet.
  */
-class SpriteLoop {
+class SpriteSheet {
 	public:
 		/**
 		 * @param spriteSheet filename
 		 * @param spriteSize the vector size of a sprite in pixels (x,y) on the sprite sheet
 		 */
-		SpriteLoop(const std::string &spriteSheet, const sf::Vector2i &spriteSize);
+		SpriteSheet(const std::string &spriteSheet, const sf::Vector2i &spriteSize);
 
 		/**
 		 * @return the current sprite

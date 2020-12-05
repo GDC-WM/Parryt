@@ -7,7 +7,7 @@
 
 #include "actor.hpp"
 #include "character.hpp"
-#include "sprite_loop.hpp"
+#include "sprite_sheet.hpp"
 
 
 /**
@@ -30,7 +30,7 @@ class Pari : public Character {
 		b2PolygonShape shape;
 		Loop runLoop{0, 6, 200};
 		Loop standLoop{0, 1, 200};
-		std::unique_ptr<SpriteLoop> spriteSheet;
+		std::unique_ptr<SpriteSheet> spriteSheet;
 		sf::Sprite sprite;
 };
 

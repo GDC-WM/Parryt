@@ -1,10 +1,10 @@
 #include <SFML/Graphics.hpp>
 #include <chrono>
 
-#include "sprite_loop.hpp"
+#include "sprite_sheet.hpp"
 
 
-SpriteLoop::SpriteLoop(const std::string &spriteSheet, const sf::Vector2i &spriteSize) {
+SpriteSheet::SpriteSheet(const std::string &spriteSheet, const sf::Vector2i &spriteSize) {
 	this->texture.loadFromFile(spriteSheet);
 	this->sheetSize.x = this->texture.getSize().x / spriteSize.x;
 	this->sheetSize.y = this->texture.getSize().y / spriteSize.y;
@@ -16,7 +16,7 @@ SpriteLoop::SpriteLoop(const std::string &spriteSheet, const sf::Vector2i &sprit
 }
 
 
-sf::Sprite &SpriteLoop::getSprite(void) {
+sf::Sprite &SpriteSheet::getSprite(void) {
 	using ms = std::chrono::milliseconds;
 	ms dt = std::chrono::duration_cast<ms>(std::chrono::system_clock::now() - this->startTime);
 	int n = dt.count() / this->loop.frameTime;
@@ -25,7 +25,7 @@ sf::Sprite &SpriteLoop::getSprite(void) {
 }
 
 
-void SpriteLoop::setFrame(const int &frame) {
+void SpriteSheet::setFrame(const int &frame) {
 	int globalFrame = this->loop.start + frame;
 	this->spriteRect.top = this->spriteRect.height * (globalFrame / this->sheetSize.x); // rounds down
 	this->spriteRect.left = this->spriteRect.width * (globalFrame % this->sheetSize.x); // remainder
@@ -33,6 +33,6 @@ void SpriteLoop::setFrame(const int &frame) {
 }
 
 
-void SpriteLoop::reset(void) {
+void SpriteSheet::reset(void) {
 	this->startTime = std::chrono::system_clock::now();
 }

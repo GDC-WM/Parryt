@@ -4,7 +4,7 @@
 #include "actor.hpp"
 #include "character.hpp"
 #include "pari.hpp"
-#include "sprite_loop.hpp"
+#include "sprite_sheet.hpp"
 
 
 Pari::Pari(b2Vec2 position) : Character(position) {
@@ -22,7 +22,7 @@ Pari::Pari(b2Vec2 position) : Character(position) {
 	this->fixtureDef.density = 1.0f;
 	this->fixtureDef.friction = 2.4f;
 
-	this->spriteSheet = std::make_unique<SpriteLoop>("../resources/running-sequence.png", sf::Vector2i(64, 64));
+	this->spriteSheet = std::make_unique<SpriteSheet>("../resources/running-sequence.png", sf::Vector2i(64, 64));
 	this->spriteSheet->setLoop(this->runLoop);
 
 	// set drawable
@@ -44,7 +44,7 @@ void Pari::draw(std::shared_ptr<sf::RenderWindow> window) {
 	//window->draw(drawable);
 
 
-	if (this->body->GetLinearVelocity().x > 0) this->spriteSheet->setLoop(this->runLoop);
+	if (this->body->GetLinearVelocity().x > 0.1) this->spriteSheet->setLoop(this->runLoop);
 	else this->spriteSheet->setLoop(this->standLoop);
 
 	this->spriteSheet->getSprite().setPosition(this->body->GetPosition().x - this->WIDTH - 2,
