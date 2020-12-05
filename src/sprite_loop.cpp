@@ -4,30 +4,35 @@
 #include "sprite_loop.hpp"
 
 
-SpriteLoop::SpriteLoop(const std::string &spriteSheet, const sf::Vector2f &spriteSize) {
+SpriteLoop::SpriteLoop(const std::string &spriteSheet, const sf::Vector2i &spriteSize) {
 	this->texture.loadFromFile(spriteSheet);
-	this->sprite = sf::Sprite(texture, sf::IntRect(0, 0, 64,64));
-	this->sprite.setScale(0.08,0.08);
-	std::chrono::system_clock::time_point startTime = std::chrono::system_clock::now();
-	int iter = 0;
+	this->sheetSize.x = this->texture.getSize().x / spriteSize.x;
+	this->sheetSize.y = this->texture.getSize().y / spriteSize.y;
 
-	/*
-	for(int i = startFrame; i < frames; i++){
-		if(divisionSize.x*iter == this->sprite.getSize().x){
-			divisionSize.y+=divisionSize.y;
-			iter = 0;
-		}
-		this->sprite.setOrigin(divisionSize.x*iter, divisionSize.y);
-		iter++;
-	}
-	*/
+	this->spriteRect = sf::IntRect(sf::Vector2i(0,0), spriteSize);
+	this->sprite = sf::Sprite(texture, this->spriteRect);
+	this->sprite.setScale(0.08,0.08);
+	this->startTime = std::chrono::system_clock::now();
+}
+
+
+sf::Sprite &SpriteLoop::getSprite(void) {
+	using ms = std::chrono::milliseconds;
+	ms dt = std::chrono::duration_cast<ms>(std::chrono::system_clock::now() - this->startTime);
+	int n = dt.count() / this->loop.frameTime;
+	this->setFrame(n % this->loop.frames);
+	return (this->sprite);
 }
 
 
 void SpriteLoop::setFrame(const int &frame) {
+	int globalFrame = this->loop.start + frame;
+	this->spriteRect.top = this->spriteRect.height * (globalFrame / this->sheetSize.x); // rounds down
+	this->spriteRect.left = this->spriteRect.width * (globalFrame % this->sheetSize.x); // remainder
+	this->sprite.setTextureRect(this->spriteRect);
 }
 
 
 void SpriteLoop::reset(void) {
-
+	this->startTime = std::chrono::system_clock::now();
 }

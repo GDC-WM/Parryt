@@ -7,10 +7,7 @@
 
 
 struct Loop {
-	int start, frames;
-	float frameTime;
-
-	//Loop{const int &start; const int &frames};
+	int start, frames, frameTime;
 };
 
 
@@ -24,13 +21,16 @@ class SpriteLoop {
 		 * @param spriteSize the vector size of a sprite in pixels (x,y) on the sprite sheet
 		 * @param frameTime the time between each frame of the animation
 		 */
-		SpriteLoop(const std::string &spriteSheet, const sf::Vector2f &spriteSize);
+		SpriteLoop(const std::string &spriteSheet, const sf::Vector2i &spriteSize);
 
 		/**
 		 * @return the current sprite
 		 */
-		sf::Sprite &getSprite(void) { return this->sprite; };
+		sf::Sprite &getSprite(void);
 
+		/**
+		 * Set the loop within the sprite sheet.
+		 */
 		void setLoop(const Loop &loop) { this->loop = loop; };
 
 		/**
@@ -42,13 +42,15 @@ class SpriteLoop {
 	private:
 		sf::Texture texture;
 		sf::Sprite sprite;
-		sf::Vector2f spriteSize;
+		sf::IntRect spriteRect; // pixels
+		sf::Vector2i sheetSize;  // rows/columns
 		Loop loop;
 		int startFrame;
-		int frames;
-		float frameTime;
 		std::chrono::system_clock::time_point startTime;
 
+		/**
+		 * Set the frame within the frame loop.
+		 */
 		void setFrame(const int &frame);
 };
 

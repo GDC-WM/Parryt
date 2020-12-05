@@ -28,8 +28,9 @@ class Pari : public Character {
 		sf::RectangleShape drawable;
 		sf::Texture texture;
 		b2PolygonShape shape;
-		Loop runLoop{1, 5, 20};
-		std::unique_ptr<SpriteLoop> loop;
+		Loop runLoop{0, 6, 200};
+		Loop standLoop{0, 1, 200};
+		std::unique_ptr<SpriteLoop> spriteSheet;
 		sf::Sprite sprite;
 };
 

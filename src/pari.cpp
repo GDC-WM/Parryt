@@ -22,8 +22,8 @@ Pari::Pari(b2Vec2 position) : Character(position) {
 	this->fixtureDef.density = 1.0f;
 	this->fixtureDef.friction = 2.4f;
 
-	this->loop = std::make_unique<SpriteLoop>("../resources/running-sequence.png", sf::Vector2f(64, 64));
-	this->loop->setLoop(this->runLoop);
+	this->spriteSheet = std::make_unique<SpriteLoop>("../resources/running-sequence.png", sf::Vector2i(64, 64));
+	this->spriteSheet->setLoop(this->runLoop);
 
 	// set drawable
 	this->sprite = sf::Sprite(texture, sf::IntRect(0,0,64,64));
@@ -43,8 +43,12 @@ void Pari::draw(std::shared_ptr<sf::RenderWindow> window) {
 	                          -this->getBody()->GetPosition().y);
 	//window->draw(drawable);
 
-	this->sprite.setPosition(this->body->GetPosition().x - this->WIDTH - 2,
+
+	if (this->body->GetLinearVelocity().x > 0) this->spriteSheet->setLoop(this->runLoop);
+	else this->spriteSheet->setLoop(this->standLoop);
+
+	this->spriteSheet->getSprite().setPosition(this->body->GetPosition().x - this->WIDTH - 2,
 	                        -this->body->GetPosition().y - this->HEIGHT - 1);
 
-	window->draw(this->sprite);
+	window->draw(this->spriteSheet->getSprite());
 }
