@@ -80,7 +80,7 @@ void PlayerView::drawScreen(void) {
 	//hung mast
 	sf::Texture mast;
 	texture.loadFromFile("../resources/mast.png");
-	sf::Sprite mass(texture, sf::IntRect(0,0,128,256));
+	sf::Sprite mass(texture, sf::IntRect(0,0,128,512));
 	mass.setPosition(sf::Vector2f(12, -102));
 	mass.setScale(.2,.2);
 	this->window->draw(mass);
