@@ -67,7 +67,7 @@ void PlayerView::drawScreen(void) {
 
 	// background test
 	sf::Texture texture;
-	texture.loadFromFile("../resources/demo_background.png");
+	texture.loadFromFile("../resources/demo-background.png");
 	sf::Sprite sprite;
 	sf::Vector2u size = texture.getSize();
 	texture.setRepeated(true);

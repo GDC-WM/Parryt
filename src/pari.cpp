@@ -57,6 +57,7 @@ void Pari::draw(std::shared_ptr<sf::RenderWindow> window) {
 		this->spriteSheet->setLoop(newLoop);
 		this->spriteSheet->restart();
 	}
+	std::cout << this->body->GetLinearVelocity().x << "\n";
 
 	this->spriteSheet->getSprite().setPosition(this->body->GetPosition().x - 32 * .08,
 	                                          -this->body->GetPosition().y - 32 * .08 - 0.5);
