@@ -76,7 +76,7 @@ void PlayerView::update(const float &dt) {
 	texture.setRepeated(true);
 	sprite.setTexture(texture);
 	sprite.setOrigin(size.x/2, size.y/2 + 150);
-	sprite.setScale(0.07,0.07);
+	sprite.setScale(0.05,0.05);
 	sprite.setTextureRect(sf::IntRect(0,0,1280,720));
 	this->window->draw(sprite);
 
@@ -84,7 +84,7 @@ void PlayerView::update(const float &dt) {
 	sf::Texture barrel;
 	texture.loadFromFile("../resources/barrel-sajj-ejjitionj.png");
 	sf::Sprite barr(texture, sf::IntRect(0,0,64,64));
-	barr.setPosition(sf::Vector2f(12, -6));
+	barr.setPosition(sf::Vector2f(12, -4));
 	barr.setScale(.1,.1);
 	this->window->draw(barr);
 
