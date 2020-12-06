@@ -61,10 +61,7 @@ void PlayerView::listen(void) {
 }
 
 
-void PlayerView::update(const float &dt) {
-	this->pollInput();
-	this->listen();
-
+void PlayerView::drawScreen(void) {
 	// clear screen
 	window->clear(sf::Color::Black);
 
@@ -75,14 +72,14 @@ void PlayerView::update(const float &dt) {
 	sf::Vector2u size = texture.getSize();
 	texture.setRepeated(true);
 	sprite.setTexture(texture);
-	sprite.setOrigin(size.x/2, size.y/2 + 150);
-	sprite.setScale(0.05,0.05);
-	sprite.setTextureRect(sf::IntRect(0,0,1280,720));
+	sprite.setOrigin(size.x / 2 + 1500, size.y / 2 + 150);
+	sprite.setScale(0.05, 0.05);
+	sprite.setTextureRect(sf::IntRect(0, 0, 100000, 500));
 	this->window->draw(sprite);
 
-	// barrel time
+	// barrel
 	sf::Texture barrel;
-	texture.loadFromFile("../resources/barrel-sajj-ejjitionj.png");
+	texture.loadFromFile("../resources/barrel.png");
 	sf::Sprite barr(texture, sf::IntRect(0,0,64,64));
 	barr.setPosition(sf::Vector2f(12, -4));
 	barr.setScale(.1,.1);
@@ -102,7 +99,13 @@ void PlayerView::update(const float &dt) {
 	view.setCenter(newCenter);
 	this->window->setView(view);
 
-
 	// display screen
 	window->display();
+}
+
+
+void PlayerView::update(const float &dt) {
+	this->pollInput();
+	this->listen();
+	this->drawScreen();
 }
