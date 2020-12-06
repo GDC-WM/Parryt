@@ -29,7 +29,7 @@ class Pari : public Character {
 		sf::Texture texture;
 		b2PolygonShape shape;
 		Loop runLoop { 0, 6, 200 };
-		Loop standLoop { 0, 1, 200 };
+		Loop standLoop { 22, 3, 200 };
 		std::unique_ptr<SpriteSheet> spriteSheet;
 		sf::Sprite sprite;
 };
