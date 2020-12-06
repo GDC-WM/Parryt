@@ -4,6 +4,7 @@
 #include "actor.hpp"
 #include "character.hpp"
 #include "pari.hpp"
+#include "sprite_sheet.hpp"
 
 
 Pari::Pari(b2Vec2 position) : Character(position) {
@@ -21,11 +22,13 @@ Pari::Pari(b2Vec2 position) : Character(position) {
 	this->fixtureDef.density = 1.0f;
 	this->fixtureDef.friction = 2.4f;
 
+	this->spriteSheet = std::make_unique<SpriteSheet>("../resources/pari.png", sf::Vector2i(64, 64));
+	this->spriteSheet->setLoop(this->standLoop);
+
 	// set drawable
-	texture.loadFromFile("../resources/running-sequence.png");
 	this->sprite = sf::Sprite(texture, sf::IntRect(0,0,64,64));
-	sprite.setScale(0.08,0.08);
-	this->sprite.setOrigin(this->WIDTH, this->HEIGHT);
+	sprite.setScale(0.08,0.08); //hardcoding bad
+	this->sprite.setOrigin(32 * .08, 32 * .08);
 
 	// set old drawable
 	this->drawable.setOrigin(this->WIDTH, this->HEIGHT);
@@ -40,7 +43,23 @@ void Pari::draw(std::shared_ptr<sf::RenderWindow> window) {
 	                          -this->getBody()->GetPosition().y);
 	//window->draw(drawable);
 
-	this->sprite.setPosition(this->body->GetPosition().x - this->WIDTH - 2,
-	                        -this->body->GetPosition().y - this->HEIGHT - 1);
-	window->draw(this->sprite);
+	// set animation
+	Loop newLoop;
+	if (abs(this->body->GetLinearVelocity().x) > 0.1) {
+		newLoop = this->runLoop; //hardcoding bad
+	}
+	else newLoop = this->standLoop;
+
+	// use mirrored sprite if facing left
+	if (this->lookDirection == Direction::LEFT) newLoop = newLoop.mirror();
+
+	if (newLoop != this->spriteSheet->getLoop()) {
+		this->spriteSheet->setLoop(newLoop);
+		this->spriteSheet->restart();
+	}
+
+	this->spriteSheet->getSprite().setPosition(this->body->GetPosition().x - 32 * .08,
+	                                          -this->body->GetPosition().y - 32 * .08 - 0.5);
+
+	window->draw(this->spriteSheet->getSprite());
 }

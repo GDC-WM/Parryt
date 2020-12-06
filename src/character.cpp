@@ -28,6 +28,7 @@ void Character::goLeft(void) {
 	if (this->body->GetLinearVelocity().x > -this->maxSpeed) {
 		this->body->ApplyForceToCenter(b2Vec2(-this->acceleration, 0), true);
 	}
+	this->lookDirection = Direction::LEFT;
 }
 
 
@@ -35,6 +36,7 @@ void Character::goRight(void) {
 	if (this->body->GetLinearVelocity().x < this->maxSpeed) {
 		this->body->ApplyForceToCenter(b2Vec2(this->acceleration, 0), true);
 	}
+	this->lookDirection = Direction::RIGHT;
 }
 
 void Character::stop(void) {

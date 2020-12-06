@@ -18,6 +18,12 @@ enum class Allegiance { PARROT, PIRATE, NEUTRAL };
 
 
 /*
+ * Define a direction
+ */
+enum class Direction { FRONT, BACK, LEFT, RIGHT, UP, DOWN };
+
+
+/*
  * Base class that all actors in the game inherit from
  */
 class Actor {
