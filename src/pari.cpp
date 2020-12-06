@@ -22,7 +22,7 @@ Pari::Pari(b2Vec2 position) : Character(position) {
 	this->fixtureDef.density = 1.0f;
 	this->fixtureDef.friction = 2.4f;
 
-	this->spriteSheet = std::make_unique<SpriteSheet>("../resources/running-sequence.png", sf::Vector2i(64, 64));
+	this->spriteSheet = std::make_unique<SpriteSheet>("../resources/pari.png", sf::Vector2i(64, 64));
 	this->spriteSheet->setLoop(this->standLoop);
 
 	// set drawable
