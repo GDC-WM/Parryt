@@ -75,9 +75,9 @@ void PlayerView::update(const float &dt) {
 	sf::Vector2u size = texture.getSize();
 	texture.setRepeated(true);
 	sprite.setTexture(texture);
-	sprite.setOrigin(size.x/2, size.y/2 + 150);
+	sprite.setOrigin(size.x/2+1500, size.y/2+150);
 	sprite.setScale(0.05,0.05);
-	sprite.setTextureRect(sf::IntRect(0,0,1280,720));
+	sprite.setTextureRect(sf::IntRect(0,0,100000,500));
 	this->window->draw(sprite);
 
 	// barrel time
