@@ -13,6 +13,7 @@
 #include "pari.hpp"
 #include "cannon.hpp"
 #include "cannonball.hpp"
+#include "mast.hpp"
 
 
 void MasterLogic::init(std::shared_ptr<MasterView> view) {
@@ -38,6 +39,7 @@ void MasterLogic::startDemo(void) {
 	this->getCurrentRoom()->addActor(cannon);
 	this->view->addView(cannon);
 
+		
 	// Add Platform
 	// std::shared_ptr<Platform> platform1 = std::make_shared<Platform>(b2Vec2(31.9, 7.5), 20);
 	// this->getCurrentRoom()->addActor(platform1);
