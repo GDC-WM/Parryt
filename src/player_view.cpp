@@ -77,6 +77,15 @@ void PlayerView::drawScreen(void) {
 	sprite.setTextureRect(sf::IntRect(0, 0, 100000, 500));
 	this->window->draw(sprite);
 
+	//hung mast
+	sf::Texture mast;
+	texture.loadFromFile("../resources/mast.png");
+	sf::Sprite mass(texture, sf::IntRect(0,0,128,512));
+	mass.setPosition(sf::Vector2f(12, -40));
+	mass.setScale(.2,.2);
+	this->window->draw(mass);
+
+
 	// barrel
 	sf::Texture barrel;
 	texture.loadFromFile("../resources/barrel.png");
@@ -85,13 +94,6 @@ void PlayerView::drawScreen(void) {
 	barr.setScale(.1,.1);
 	this->window->draw(barr);
 
-	//hung mast
-	sf::Texture mast;
-	texture.loadFromFile("../resources/mast.png");
-	sf::Sprite mass(texture, sf::IntRect(0,0,64,64));
-	barr.setPosition(sf::Vector2f(12, -4));
-	barr.setScale(.1,2);
-	this->window->draw(mass);
 
 
 	// draw actors

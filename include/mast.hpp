@@ -5,12 +5,11 @@
 #include <box2d/box2d.h>
 
 #include "actor.hpp"
-#include "platform.hpp"
 
 
 class Mast : public Actor {
 	public:
-		static constexpr float WIDTH = 0.1;
+		static constexpr float height = 0.1;
 
 		Mast(b2Vec2 position, float height);
 
@@ -21,7 +20,6 @@ class Mast : public Actor {
         sf::RectangleShape drawable;
 		sf::Texture texture;
         sf::Sprite sprite;
-        Platform platform;
 	};
 
 
