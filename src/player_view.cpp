@@ -85,6 +85,15 @@ void PlayerView::drawScreen(void) {
 	barr.setScale(.1,.1);
 	this->window->draw(barr);
 
+	//hung mast
+	sf::Texture mast;
+	texture.loadFromFile("../resources/mast.png");
+	sf::Sprite mass(texture, sf::IntRect(0,0,64,64));
+	barr.setPosition(sf::Vector2f(12, -4));
+	barr.setScale(.1,2);
+	this->window->draw(mass);
+
+
 	// draw actors
 	for (auto actor : this->logic->getCurrentRoom()->getActorList()) actor->draw(window);
 
