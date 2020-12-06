@@ -7,6 +7,7 @@
 
 #include "actor.hpp"
 #include "character.hpp"
+#include "sprite_sheet.hpp"
 
 
 /**
@@ -25,8 +26,11 @@ class Pari : public Character {
 
 	private:
 		sf::RectangleShape drawable;
-		b2PolygonShape shape;
 		sf::Texture texture;
+		b2PolygonShape shape;
+		Loop runLoop { 0, 6, 170 };
+		Loop standLoop { 22, 3, 400 };
+		std::unique_ptr<SpriteSheet> spriteSheet;
 		sf::Sprite sprite;
 };
 
