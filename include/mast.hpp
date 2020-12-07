@@ -5,6 +5,7 @@
 #include <box2d/box2d.h>
 
 #include "actor.hpp"
+#include "platform.hpp"
 
 
 class Mast : public Actor {
@@ -17,6 +18,7 @@ class Mast : public Actor {
 
 	private:
 		b2PolygonShape shape;
+        b2Vec2 coords;
         sf::RectangleShape drawable;
 		sf::Texture texture;
         sf::Sprite sprite;
