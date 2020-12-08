@@ -50,6 +50,7 @@ void PlayerView::listen(void) {
 			case sf::Event::KeyPressed:
 				switch (event.key.code) {
 					case sf::Keyboard::Space:
+					case sf::Keyboard::W:
 						this->character->jump();
 						break;
 					default:; // ignore other keys
@@ -61,18 +62,12 @@ void PlayerView::listen(void) {
 }
 
 
-void PlayerView::viewFollow(void) {
-	// convert box2d vector to SFML vector
-	sf::Vector2f characterPosition = sf::Vector2f(this->character->getBody()->GetPosition().x,
-	                                             -this->character->getBody()->GetPosition().y);
+void PlayerView::viewFollow(const Actor &actor) {
 	sf::View view = this->window->getView();
 
-	sf::Vector2f newCenter(view.getCenter().x, characterPosition.y);
-	if (characterPosition.x + 10 < view.getCenter().x) newCenter.x -= 0.15;
-	else if (characterPosition.x - 10 > view.getCenter().x) newCenter.x += 0.15;
+	b2Vec2 actorPosition = actor.getBody()->GetPosition();
+	view.setCenter(actorPosition.x, -actorPosition.y);
 
-	// update view
-	view.setCenter(newCenter);
 	this->window->setView(view);
 }
 
@@ -112,8 +107,8 @@ void PlayerView::drawScreen(void) {
 	// draw actors
 	for (auto actor : this->logic->getCurrentRoom()->getActorList()) actor->draw(window);
 
-	// screen follow character
-	this->viewFollow();
+	// follow character
+	this->viewFollow(*this->character);
 
 	// display screen
 	window->display();
