@@ -37,6 +37,14 @@ class Actor {
 
 		void setRoom(std::shared_ptr<Room> room);
 
+		/**
+		 * @return const pointer to the body
+		 */
+		const b2Body *getBody(void) const { return this->body; };
+
+		/**
+		 * @return pointer to the body
+		 */
 		b2Body *getBody(void) { return this->body; };
 
 		const Allegiance &getAllegiance(void) const { return this->allegiance; };

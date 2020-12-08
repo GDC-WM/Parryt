@@ -50,6 +50,7 @@ void PlayerView::listen(void) {
 			case sf::Event::KeyPressed:
 				switch (event.key.code) {
 					case sf::Keyboard::Space:
+					case sf::Keyboard::W:
 						this->character->jump();
 						break;
 					default:; // ignore other keys
@@ -61,6 +62,16 @@ void PlayerView::listen(void) {
 }
 
 
+void PlayerView::viewFollow(const Actor &actor) {
+	sf::View view = this->window->getView();
+
+	b2Vec2 actorPosition = actor.getBody()->GetPosition();
+	view.setCenter(actorPosition.x, -actorPosition.y);
+
+	this->window->setView(view);
+}
+
+
 void PlayerView::drawScreen(void) {
 	// clear screen
 	window->clear(sf::Color::Black);
@@ -68,45 +79,33 @@ void PlayerView::drawScreen(void) {
 	// background test
 	sf::Texture texture;
 	texture.loadFromFile("../resources/demo-background.png");
-	sf::Sprite sprite;
+	sf::Sprite background(texture, sf::IntRect(0, 0, 100000, 500));
 	sf::Vector2u size = texture.getSize();
 	texture.setRepeated(true);
-	sprite.setTexture(texture);
-	sprite.setOrigin(size.x / 2 + 1500, size.y / 2 + 150);
-	sprite.setScale(0.05, 0.05);
-	sprite.setTextureRect(sf::IntRect(0, 0, 100000, 500));
-	this->window->draw(sprite);
-	
-	//hung mast
-	sf::Texture mast;
+	background.setTexture(texture);
+	background.setOrigin(size.x / 2 + 1500, size.y / 2 + 150);
+	background.setScale(0.05, 0.05);
+	this->window->draw(background);
+
+	// temporary mast drawing
 	texture.loadFromFile("../resources/mast.png");
-	sf::Sprite mass(texture, sf::IntRect(0,0,128,512));
-	mass.setPosition(sf::Vector2f(12, -102));
-	mass.setScale(.2,.2);
-	this->window->draw(mass);
+	sf::Sprite mast(texture, sf::IntRect(0, 0, 128, 512));
+	mast.setPosition(sf::Vector2f(12, -102));
+	mast.setScale(.2, .2);
+	this->window->draw(mast);
 
-	// barrel
-	sf::Texture barrel;
+	// temporary barrel drawing
 	texture.loadFromFile("../resources/barrel.png");
-	sf::Sprite barr(texture, sf::IntRect(0,0,64,64));
-	barr.setPosition(sf::Vector2f(12, -4));
-	barr.setScale(.1,.1);
-	this->window->draw(barr);
-
+	sf::Sprite barrel(texture, sf::IntRect(0,0,64,64));
+	barrel.setPosition(sf::Vector2f(12, -4));
+	barrel.setScale(.1,.1);
+	this->window->draw(barrel);
 
 	// draw actors
 	for (auto actor : this->logic->getCurrentRoom()->getActorList()) actor->draw(window);
 
-	// screen follow character
-	sf::Vector2f characterPosition = sf::Vector2f(this->character->getBody()->GetPosition().x,
-	                                             -this->character->getBody()->GetPosition().y);
-	sf::View view = this->window->getView();
-	sf::Vector2f newCenter(view.getCenter().x, characterPosition.y);
-	if (characterPosition.x + 10 < view.getCenter().x) newCenter.x -= 0.15;
-	else if (characterPosition.x - 10 > view.getCenter().x) newCenter.x += 0.15;
-
-	view.setCenter(newCenter);
-	this->window->setView(view);
+	// follow character
+	this->viewFollow(*this->character);
 
 	// display screen
 	window->display();

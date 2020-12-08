@@ -36,6 +36,13 @@ class PlayerView : public View {
 		void listen(void);
 
 		/**
+		 * Center the view on an actor.
+		 *
+		 * @param actor to center on
+		 */
+		void viewFollow(const Actor &actor);
+
+		/**
 		 * Draw the screen.
 		 */
 		void drawScreen(void);
