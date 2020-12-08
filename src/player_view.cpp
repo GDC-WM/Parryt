@@ -79,30 +79,27 @@ void PlayerView::drawScreen(void) {
 	// background test
 	sf::Texture texture;
 	texture.loadFromFile("../resources/demo-background.png");
-	sf::Sprite sprite;
+	sf::Sprite background(texture, sf::IntRect(0, 0, 100000, 500));
 	sf::Vector2u size = texture.getSize();
 	texture.setRepeated(true);
-	sprite.setTexture(texture);
-	sprite.setOrigin(size.x / 2 + 1500, size.y / 2 + 150);
-	sprite.setScale(0.05, 0.05);
-	sprite.setTextureRect(sf::IntRect(0, 0, 100000, 500));
-	this->window->draw(sprite);
+	background.setTexture(texture);
+	background.setOrigin(size.x / 2 + 1500, size.y / 2 + 150);
+	background.setScale(0.05, 0.05);
+	this->window->draw(background);
 
 	// temporary mast drawing
-	sf::Texture mast;
 	texture.loadFromFile("../resources/mast.png");
-	sf::Sprite mass(texture, sf::IntRect(0, 0, 128, 512));
-	mass.setPosition(sf::Vector2f(12, -102));
-	mass.setScale(.2, .2);
-	this->window->draw(mass);
+	sf::Sprite mast(texture, sf::IntRect(0, 0, 128, 512));
+	mast.setPosition(sf::Vector2f(12, -102));
+	mast.setScale(.2, .2);
+	this->window->draw(mast);
 
 	// temporary barrel drawing
-	sf::Texture barrel;
 	texture.loadFromFile("../resources/barrel.png");
-	sf::Sprite barr(texture, sf::IntRect(0,0,64,64));
-	barr.setPosition(sf::Vector2f(12, -4));
-	barr.setScale(.1,.1);
-	this->window->draw(barr);
+	sf::Sprite barrel(texture, sf::IntRect(0,0,64,64));
+	barrel.setPosition(sf::Vector2f(12, -4));
+	barrel.setScale(.1,.1);
+	this->window->draw(barrel);
 
 	// draw actors
 	for (auto actor : this->logic->getCurrentRoom()->getActorList()) actor->draw(window);
