@@ -38,6 +38,11 @@ class PlayerView : public View {
 		/**
 		 * Draw the screen.
 		 */
+		void viewFollow(void);
+
+		/**
+		 * Draw the screen.
+		 */
 		void drawScreen(void);
 };
 

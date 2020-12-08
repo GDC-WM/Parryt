@@ -61,6 +61,22 @@ void PlayerView::listen(void) {
 }
 
 
+void PlayerView::viewFollow(void) {
+	// convert box2d vector to SFML vector
+	sf::Vector2f characterPosition = sf::Vector2f(this->character->getBody()->GetPosition().x,
+	                                             -this->character->getBody()->GetPosition().y);
+	sf::View view = this->window->getView();
+
+	sf::Vector2f newCenter(view.getCenter().x, characterPosition.y);
+	if (characterPosition.x + 10 < view.getCenter().x) newCenter.x -= 0.15;
+	else if (characterPosition.x - 10 > view.getCenter().x) newCenter.x += 0.15;
+
+	// update view
+	view.setCenter(newCenter);
+	this->window->setView(view);
+}
+
+
 void PlayerView::drawScreen(void) {
 	// clear screen
 	window->clear(sf::Color::Black);
@@ -76,16 +92,16 @@ void PlayerView::drawScreen(void) {
 	sprite.setScale(0.05, 0.05);
 	sprite.setTextureRect(sf::IntRect(0, 0, 100000, 500));
 	this->window->draw(sprite);
-	
-	//hung mast
+
+	// temporary mast drawing
 	sf::Texture mast;
 	texture.loadFromFile("../resources/mast.png");
-	sf::Sprite mass(texture, sf::IntRect(0,0,128,512));
+	sf::Sprite mass(texture, sf::IntRect(0, 0, 128, 512));
 	mass.setPosition(sf::Vector2f(12, -102));
-	mass.setScale(.2,.2);
+	mass.setScale(.2, .2);
 	this->window->draw(mass);
 
-	// barrel
+	// temporary barrel drawing
 	sf::Texture barrel;
 	texture.loadFromFile("../resources/barrel.png");
 	sf::Sprite barr(texture, sf::IntRect(0,0,64,64));
@@ -93,20 +109,11 @@ void PlayerView::drawScreen(void) {
 	barr.setScale(.1,.1);
 	this->window->draw(barr);
 
-
 	// draw actors
 	for (auto actor : this->logic->getCurrentRoom()->getActorList()) actor->draw(window);
 
 	// screen follow character
-	sf::Vector2f characterPosition = sf::Vector2f(this->character->getBody()->GetPosition().x,
-	                                             -this->character->getBody()->GetPosition().y);
-	sf::View view = this->window->getView();
-	sf::Vector2f newCenter(view.getCenter().x, characterPosition.y);
-	if (characterPosition.x + 10 < view.getCenter().x) newCenter.x -= 0.15;
-	else if (characterPosition.x - 10 > view.getCenter().x) newCenter.x += 0.15;
-
-	view.setCenter(newCenter);
-	this->window->setView(view);
+	this->viewFollow();
 
 	// display screen
 	window->display();
