@@ -25,9 +25,27 @@ class PlayerView : public View {
 		std::shared_ptr<MasterLogic> logic;
 		std::shared_ptr<Character> character;
 
+		/**
+		 * Poll input methods and react accordingly.
+		 */
 		void pollInput(void);
 
+		/**
+		 * Poll input events and react accordingly.
+		 */
 		void listen(void);
+
+		/**
+		 * Center the view on an actor.
+		 *
+		 * @param actor to center on
+		 */
+		void viewFollow(const Actor &actor);
+
+		/**
+		 * Draw the screen.
+		 */
+		void drawScreen(void);
 };
 
 

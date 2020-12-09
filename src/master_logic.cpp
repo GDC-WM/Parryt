@@ -13,6 +13,7 @@
 #include "pari.hpp"
 #include "cannon.hpp"
 #include "cannonball.hpp"
+#include "mast.hpp"
 
 
 void MasterLogic::init(std::shared_ptr<MasterView> view) {
@@ -25,26 +26,31 @@ void MasterLogic::startDemo(void) {
 	this->roomList.push_front(std::make_shared<Room>());
 	this->currentRoom = this->roomList.begin();
 
-	std::shared_ptr<Platform> ground = std::make_shared<Platform>(b2Vec2(0, 0), 50);
+	std::shared_ptr<Platform> ground = std::make_shared<Platform>(b2Vec2(30, -2), 1000);
 	this->getCurrentRoom()->addActor(ground);
 
 	// Add pari
-	std::shared_ptr<Pari> pari = std::make_shared<Pari>(b2Vec2(-13,2));
+	std::shared_ptr<Pari> pari = std::make_shared<Pari>(b2Vec2(-13,0));
 	this->getCurrentRoom()->addActor(pari);
 	this->view->addView(pari);
 
 	//Add cannon
-	std::shared_ptr<Cannon> cannon = std::make_shared<Cannon>(b2Vec2(13.5,8.3));
+	std::shared_ptr<Cannon> cannon = std::make_shared<Cannon>(b2Vec2(15.2,3.2));
 	this->getCurrentRoom()->addActor(cannon);
 	this->view->addView(cannon);
 
+	//Add platform
+	for(int i = 0; i<32; i+=2){
+		std::shared_ptr<Platform> mast_plat = std::make_shared<Platform>(b2Vec2(24.8, 2.8+3.2*i), 3.2);
+		this->getCurrentRoom()->addActor(mast_plat);
+	}
 	// Add Platform
-	std::shared_ptr<Platform> platform1 = std::make_shared<Platform>(b2Vec2(31.9, 7.5), 20);
-	this->getCurrentRoom()->addActor(platform1);
+	// std::shared_ptr<Platform> platform1 = std::make_shared<Platform>(b2Vec2(31.9, 7.5), 20);
+	// this->getCurrentRoom()->addActor(platform1);
 
 	// Add Wall
-	std::shared_ptr<Wall> wall1 = std::make_shared<Wall>(b2Vec2(12, 3.8), 3.7);
-	this->getCurrentRoom()->addActor(wall1);
+	// std::shared_ptr<Wall> wall1 = std::make_shared<Wall>(b2Vec2(12, 3.8), 3.7);
+	// this->getCurrentRoom()->addActor(wall1);
 }
 
 

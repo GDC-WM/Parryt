@@ -16,7 +16,7 @@ class Cannon : public Actor {
 		static constexpr float HEIGHT = 1.2;
 		static constexpr int LOAD_TIME = 90; // milliseconds
 		sf::Vector2f barrelDimensions{2, 0.5};
-		float barrelAngle = M_PI / 2;
+		float barrelAngle = M_PI / 4;
 		static constexpr float ROTATION_SPEED = M_PI / 6; // per second
 
 		Cannon(b2Vec2 position);

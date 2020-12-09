@@ -28,6 +28,7 @@ void Character::goLeft(void) {
 	if (this->body->GetLinearVelocity().x > -this->maxSpeed) {
 		this->body->ApplyForceToCenter(b2Vec2(-this->acceleration, 0), true);
 	}
+	this->lookDirection = Direction::LEFT;
 }
 
 
@@ -35,13 +36,21 @@ void Character::goRight(void) {
 	if (this->body->GetLinearVelocity().x < this->maxSpeed) {
 		this->body->ApplyForceToCenter(b2Vec2(this->acceleration, 0), true);
 	}
+	this->lookDirection = Direction::RIGHT;
 }
 
+
 void Character::stop(void) {
-	float velocity = this->body->GetLinearVelocity().x;
-	if (velocity != 0) {
-		this->body->ApplyForceToCenter(b2Vec2(-velocity / abs(velocity) * this->deceleration, 0), true);
+	b2Vec2 velocity = this->body->GetLinearVelocity();
+	if (abs(velocity.x) >= 0.3) {
+		float stopForce = -velocity.x / abs(velocity.x) * this->deceleration;
+		//TODO: stephen make ^this^ not dumb
+		this->body->ApplyForceToCenter(b2Vec2(stopForce, 0), true);
+		return;
 	}
+	// catch micro-oscillation because stephen
+	velocity.x = 0;
+	this->body->SetLinearVelocity(velocity);
 }
 
 
