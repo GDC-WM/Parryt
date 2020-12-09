@@ -95,7 +95,7 @@ void PlayerView::drawScreen(void) {
 	shipbot.setRepeated(true);
 	ship.setTexture(shipbot);
 	ship.setOrigin(sizu.x / 2 + 1500, sizu.y / 2);
-	ship.setPosition(sf::Vector2f(12, 45.1));
+	ship.setPosition(sf::Vector2f(0, 45.2));
 	ship.setScale(0.125, 0.125);
 	this->window->draw(ship);
 
