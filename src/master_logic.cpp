@@ -41,7 +41,7 @@ void MasterLogic::startDemo(void) {
 
 	//Add platform
 	for(int i = 0; i<32; i+=2){
-		std::shared_ptr<Platform> mast_plat = std::make_shared<Platform>(b2Vec2(24.8, 2.8+3.2*i), 3.2);
+		std::shared_ptr<Platform> mast_plat = std::make_shared<Platform>(b2Vec2(24.8, -4.8+3.2*i), 3.2);
 		this->getCurrentRoom()->addActor(mast_plat);
 	}
 	// Add Platform
