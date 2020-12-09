@@ -79,13 +79,26 @@ void PlayerView::drawScreen(void) {
 	// background test
 	sf::Texture texture;
 	texture.loadFromFile("../resources/demo-background.png");
-	sf::Sprite background(texture, sf::IntRect(0, 0, 100000, 500));
+	sf::Sprite background(texture, sf::IntRect(0, 0, 100000, 512));
 	sf::Vector2u size = texture.getSize();
 	texture.setRepeated(true);
 	background.setTexture(texture);
 	background.setOrigin(size.x / 2 + 1500, size.y / 2 + 150);
 	background.setScale(0.125, 0.125);
 	this->window->draw(background);
+
+	// shipbottom
+	sf::Texture shipbot;
+	shipbot.loadFromFile("../resources/shipbottom.png");
+	sf::Sprite ship(shipbot, sf::IntRect(0, 0, 100000, 512));
+	sf::Vector2u sizu = shipbot.getSize();
+	shipbot.setRepeated(true);
+	ship.setTexture(shipbot);
+	ship.setOrigin(sizu.x / 2 + 1500, sizu.y / 2);
+	ship.setPosition(sf::Vector2f(12, 45.1));
+	ship.setScale(0.125, 0.125);
+	this->window->draw(ship);
+
 
 	// temporary mast drawing
 	texture.loadFromFile("../resources/mast.png");
