@@ -84,20 +84,20 @@ void PlayerView::drawScreen(void) {
 	texture.setRepeated(true);
 	background.setTexture(texture);
 	background.setOrigin(size.x / 2 + 1500, size.y / 2 + 150);
-	background.setScale(0.05, 0.05);
+	background.setScale(0.125, 0.125);
 	this->window->draw(background);
 
 	// temporary mast drawing
 	texture.loadFromFile("../resources/mast.png");
 	sf::Sprite mast(texture, sf::IntRect(0, 0, 128, 512));
-	mast.setPosition(sf::Vector2f(12, -102));
+	mast.setPosition(sf::Vector2f(12, -92));
 	mast.setScale(.2, .2);
 	this->window->draw(mast);
 
 	// temporary barrel drawing
 	texture.loadFromFile("../resources/barrel.png");
 	sf::Sprite barrel(texture, sf::IntRect(0,0,64,64));
-	barrel.setPosition(sf::Vector2f(12, -4));
+	barrel.setPosition(sf::Vector2f(12, 4));
 	barrel.setScale(.1,.1);
 	this->window->draw(barrel);
 
