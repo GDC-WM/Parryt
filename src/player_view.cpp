@@ -74,7 +74,7 @@ void PlayerView::viewFollow(const Actor &actor) {
 
 void PlayerView::drawScreen(void) {
 	// clear screen
-	window->clear(sf::Color::Black);
+	this->window->clear(sf::Color::Black);
 
 	// temporary background
 	sf::Texture texture;
@@ -114,13 +114,13 @@ void PlayerView::drawScreen(void) {
 	this->window->draw(barrel);
 
 	// draw actors
-	for (auto actor : this->logic->getCurrentRoom()->getActorList()) actor->draw(window);
+	for (auto actor : this->logic->getCurrentRoom()->getActorList()) actor->draw(this->window);
 
 	// follow character
 	this->viewFollow(*this->character);
 
 	// display screen
-	window->display();
+	this->window->display();
 }
 
 
