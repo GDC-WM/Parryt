@@ -79,25 +79,38 @@ void PlayerView::drawScreen(void) {
 	// background test
 	sf::Texture texture;
 	texture.loadFromFile("../resources/demo-background.png");
-	sf::Sprite background(texture, sf::IntRect(0, 0, 100000, 500));
+	sf::Sprite background(texture, sf::IntRect(0, 0, 100000, 512));
 	sf::Vector2u size = texture.getSize();
 	texture.setRepeated(true);
 	background.setTexture(texture);
 	background.setOrigin(size.x / 2 + 1500, size.y / 2 + 150);
-	background.setScale(0.05, 0.05);
+	background.setScale(0.125, 0.125);
 	this->window->draw(background);
+
+	// shipbottom
+	sf::Texture shipbot;
+	shipbot.loadFromFile("../resources/shipbottom.png");
+	sf::Sprite ship(shipbot, sf::IntRect(0, 0, 100000, 512));
+	sf::Vector2u sizu = shipbot.getSize();
+	shipbot.setRepeated(true);
+	ship.setTexture(shipbot);
+	ship.setOrigin(sizu.x / 2 + 1500, sizu.y / 2);
+	ship.setPosition(sf::Vector2f(0, 45.2));
+	ship.setScale(0.125, 0.125);
+	this->window->draw(ship);
+
 
 	// temporary mast drawing
 	texture.loadFromFile("../resources/mast.png");
 	sf::Sprite mast(texture, sf::IntRect(0, 0, 128, 512));
-	mast.setPosition(sf::Vector2f(12, -102));
+	mast.setPosition(sf::Vector2f(12, -92));
 	mast.setScale(.2, .2);
 	this->window->draw(mast);
 
 	// temporary barrel drawing
 	texture.loadFromFile("../resources/barrel.png");
 	sf::Sprite barrel(texture, sf::IntRect(0,0,64,64));
-	barrel.setPosition(sf::Vector2f(12, -4));
+	barrel.setPosition(sf::Vector2f(12, 4));
 	barrel.setScale(.1,.1);
 	this->window->draw(barrel);
 

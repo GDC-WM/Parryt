@@ -1,6 +1,7 @@
 # Parryt
-* A platformer game to show that we can in fact successfully code things (using C++ and the SFML graphics library).
+* A platformer game following Pari the parrot man, defender of... parrots.
 * Will involve a satisfying parrying mechanic.
+* Uses C++, the SFML graphics library, and the Box2D physics engine
 
 ![Demo Screenshot](resources/parryt-screenshot.png)
 
@@ -8,7 +9,7 @@
 * Install cmake, g++, SFML (and possibly SFML-dev), randr, doxygen, and git from your package manager (specific names depend on your distribution)
 * Run the following commands from within the directory you would like the game to be:
 1. ```git clone https://github.com/aaronamk/WM-GDC-Project-Parry.git```
-2. ```cd WM-GDC-Project-Parry```
+2. ```cd Parry```
 3. ```git submodule update --init --recursive```
 4. ```mkdir build```
 5. ```cd build```
