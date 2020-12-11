@@ -66,7 +66,7 @@ class SpriteSheet {
 		/**
 		 * Reset the animation to the first frame in the sequence.
 		 */
-		void restart(void) { this->startTime = std::chrono::system_clock::now(); };
+		void restart(void) { this->startTime = std::chrono::steady_clock::now(); };
 
 
 	private:
@@ -75,7 +75,7 @@ class SpriteSheet {
 		sf::IntRect spriteRect; // pixels
 		sf::Vector2i sheetSize; // rows/columns
 		Loop loop;
-		std::chrono::system_clock::time_point startTime;
+		std::chrono::steady_clock::time_point startTime;
 
 		/**
 		 * Set the frame within the frame loop.

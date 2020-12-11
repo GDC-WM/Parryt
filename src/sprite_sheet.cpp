@@ -12,13 +12,13 @@ SpriteSheet::SpriteSheet(const std::string &spriteSheet, const sf::Vector2i &spr
 	this->spriteRect = sf::IntRect(sf::Vector2i(0,0), spriteSize);
 	this->sprite = sf::Sprite(texture, this->spriteRect);
 	this->sprite.setScale(0.08,0.08);
-	this->startTime = std::chrono::system_clock::now();
+	this->startTime = std::chrono::steady_clock::now();
 }
 
 
 sf::Sprite &SpriteSheet::getSprite(void) {
 	using ms = std::chrono::milliseconds;
-	ms dt = std::chrono::duration_cast<ms>(std::chrono::system_clock::now() - this->startTime);
+	ms dt = std::chrono::duration_cast<ms>(std::chrono::steady_clock::now() - this->startTime);
 	int n = dt.count() / this->loop.frameTime;
 	this->setFrame(n % this->loop.frames);
 	return (this->sprite);

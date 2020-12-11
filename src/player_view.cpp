@@ -76,7 +76,7 @@ void PlayerView::drawScreen(void) {
 	// clear screen
 	window->clear(sf::Color::Black);
 
-	// background test
+	// temporary background
 	sf::Texture texture;
 	texture.loadFromFile("../resources/demo-background.png");
 	sf::Sprite background(texture, sf::IntRect(0, 0, 100000, 512));
@@ -87,7 +87,7 @@ void PlayerView::drawScreen(void) {
 	background.setScale(0.125, 0.125);
 	this->window->draw(background);
 
-	// shipbottom
+	// temporary shipbottom
 	sf::Texture shipbot;
 	shipbot.loadFromFile("../resources/shipbottom.png");
 	sf::Sprite ship(shipbot, sf::IntRect(0, 0, 100000, 512));
@@ -98,7 +98,6 @@ void PlayerView::drawScreen(void) {
 	ship.setPosition(sf::Vector2f(0, 45.2));
 	ship.setScale(0.125, 0.125);
 	this->window->draw(ship);
-
 
 	// temporary mast drawing
 	texture.loadFromFile("../resources/mast.png");
