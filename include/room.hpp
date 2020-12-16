@@ -33,6 +33,13 @@ class Room : public std::enable_shared_from_this<Room> {
 		 */
 		void addActor(std::shared_ptr<Actor> actor);
 
+		/**
+		 * Remove an actor from the list
+		 *
+		 * @param actor actor to remove
+		 */
+		void removeActor(std::shared_ptr<Actor> actor);
+
 		void reset(void);
 
 		void update(const float &dt);

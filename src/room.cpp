@@ -17,6 +17,11 @@ void Room::addActor(std::shared_ptr<Actor> actor) {
 }
 
 
+void Room::removeActor(std::shared_ptr<Actor> actor) {
+	this->actorList.remove(actor);
+}
+
+
 void Room::reset(void) {
     actorList.clear();
 }
