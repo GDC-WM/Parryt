@@ -27,13 +27,19 @@ Pari::Pari(b2Vec2 position) : Character(position) {
 
 	// set drawable
 	this->sprite = sf::Sprite(texture, sf::IntRect(0,0,64,64));
-	sprite.setScale(0.08,0.08); //hardcoding bad
+	this->sprite.setScale(0.08,0.08); //hardcoding bad
 	this->sprite.setOrigin(32 * .08, 32 * .08);
 
 	// set old drawable
 	this->drawable.setOrigin(this->WIDTH, this->HEIGHT);
 	this->drawable.setFillColor(sf::Color::Green);
 	this->drawable.setSize(sf::Vector2f(this->WIDTH * 2, this->HEIGHT * 2));
+}
+
+
+void Pari::jump(void) {
+	this->spriteSheet->setOneShot(this->jumpLoop);
+	Character::jump();
 }
 
 
