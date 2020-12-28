@@ -26,7 +26,7 @@ class Character : public Actor, public std::enable_shared_from_this<Character> {
 
 		const int getMaxHealth(void) const { return this->maxHealth; };
 
-		void jump(void);
+		virtual void jump(void);
 
 		void goLeft(void);
 
