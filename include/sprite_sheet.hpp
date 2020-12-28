@@ -45,14 +45,14 @@ class SpriteSheet {
 		/**
 		 * @return the current loop.
 		 */
-		const Loop &getLoop(void) { return this->loop; };
+		const Loop &getLoop(void) { return this->baseLoop; };
 
 		/**
 		 * Set the loop within the sprite sheet.
 		 *
 		 * @param loop new loop
 		 */
-		void setLoop(const Loop &loop) { this->loop = loop; };
+		void setLoop(const Loop &loop);
 
 		/**
 		 * Set the loop within the sprite sheet.
@@ -61,7 +61,14 @@ class SpriteSheet {
 		 * @param frames the number of frames in the sequence
 		 * @param frameTime the time between each frame of the animation
 		 */
-		void setLoop(const int &start, const int &frames, const int &frameTime) { this->loop = {start, frames, frameTime}; };
+		void setLoop(const int &start, const int &frames, const int &frameTime);
+
+		/**
+		 * Run a loop one time, then return to the last loop.
+		 *
+		 * @param loop oneshot loop
+		 */
+		void setOneShot(const Loop &loop);
 
 		/**
 		 * Reset the animation to the first frame in the sequence.
@@ -74,11 +81,12 @@ class SpriteSheet {
 		sf::Sprite sprite;
 		sf::IntRect spriteRect; // pixels
 		sf::Vector2i sheetSize; // rows/columns
-		Loop loop;
+		Loop baseLoop;
+		Loop oneShot;
 		std::chrono::system_clock::time_point startTime;
 
 		/**
-		 * Set the frame within the frame loop.
+		 * Set the frame of the animation
 		 *
 		 * @param frame number ordered left to right, top to bottom
 		 */
