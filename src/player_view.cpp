@@ -41,7 +41,14 @@ void PlayerView::pollInput(void) {
 
 void PlayerView::listen(void) {
 	sf::Event event;
+	//left click to see the coordinates
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left)){
+			sf::Vector2i coords = sf::Mouse::getPosition(*window);
+			sf::Vector2f worldPos = this->window->mapPixelToCoords(coords);
+			std::cout<<" \ny: " << worldPos.y<< " \nx: " << worldPos.x;
+		}
 	while (window->pollEvent(event)) {
+		
 		switch (event.type) {
 			case sf::Event::Closed:
 				window->close();
@@ -53,6 +60,7 @@ void PlayerView::listen(void) {
 					case sf::Keyboard::W:
 						this->character->jump();
 						break;
+
 					default:; // ignore other keys
 				}
 				break;
