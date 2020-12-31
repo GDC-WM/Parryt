@@ -33,8 +33,7 @@ sf::Sprite &SpriteSheet::getSprite(void) {
 
 
 void SpriteSheet::setLoop(const int &start, const int &frames, const int &frameTime) {
-	this->baseLoop = {start, frames, frameTime};
-	this->oneShot = {0, 0, 0};
+	this->setLoop(Loop{start, frames, frameTime});
 }
 
 

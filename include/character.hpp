@@ -37,7 +37,7 @@ class Character : public Actor, public std::enable_shared_from_this<Character> {
 		/**
 		 * @return if the character is resting on the ground
 		 */
-		bool isGrounded(void);
+		const bool &isGrounded(void);
 
 
 	protected:
@@ -46,7 +46,7 @@ class Character : public Actor, public std::enable_shared_from_this<Character> {
 		int maxJumps;
 		int jumpCounter = 0;
 		float acceleration;
-	    float deceleration;
+		float deceleration;
 		float maxSpeed;
 		int maxHealth;
 		float health;
