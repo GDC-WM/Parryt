@@ -59,5 +59,5 @@ void Character::jump(void) {
 	this->body->ApplyLinearImpulseToCenter(b2Vec2(0, this->jumpImpulse), true);
 }
 
-bool Character::isGrounded(void) {
+const bool &Character::isGrounded(void) {
 }
