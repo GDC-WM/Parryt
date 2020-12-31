@@ -73,7 +73,7 @@ class SpriteSheet {
 		/**
 		 * Reset the animation to the first frame in the sequence.
 		 */
-		void restart(void) { this->startTime = std::chrono::system_clock::now(); };
+		void restart(void) { this->startTime = std::chrono::steady_clock::now(); };
 
 
 	private:
@@ -83,7 +83,7 @@ class SpriteSheet {
 		sf::Vector2i sheetSize; // rows/columns
 		Loop baseLoop;
 		Loop oneShot;
-		std::chrono::system_clock::time_point startTime;
+		std::chrono::steady_clock::time_point startTime;
 
 		/**
 		 * Set the frame of the animation

@@ -12,7 +12,7 @@ SpriteSheet::SpriteSheet(const std::string &spriteSheet, const sf::Vector2i &spr
 	this->spriteRect = sf::IntRect(sf::Vector2i(0,0), spriteSize);
 	this->sprite = sf::Sprite(texture, this->spriteRect);
 	this->sprite.setScale(0.08,0.08);
-	this->startTime = std::chrono::system_clock::now();
+	this->startTime = std::chrono::steady_clock::now();
 
 	this->oneShot = {0,0,0}; // default to no oneShot
 }
@@ -20,7 +20,7 @@ SpriteSheet::SpriteSheet(const std::string &spriteSheet, const sf::Vector2i &spr
 
 sf::Sprite &SpriteSheet::getSprite(void) {
 	int dt = std::chrono::duration_cast<std::chrono::milliseconds>
-			(std::chrono::system_clock::now() - this->startTime).count();
+			(std::chrono::steady_clock::now() - this->startTime).count();
 
 	// check for oneshot
 	Loop curLoop = dt < this->oneShot.frameTime * this->oneShot.frames? this->oneShot : this->baseLoop;
@@ -46,7 +46,7 @@ void SpriteSheet::setLoop(const Loop &loop) {
 
 void SpriteSheet::setOneShot(const Loop &loop) {
 	this->oneShot = loop;
-	this->startTime = std::chrono::system_clock::now();
+	this->startTime = std::chrono::steady_clock::now();
 }
 
 
