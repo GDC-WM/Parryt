@@ -34,15 +34,14 @@ void MasterLogic::startDemo(void) {
 	this->getCurrentRoom()->addActor(pari);
 	this->view->addView(pari);
 
-	//Add cannon
+	// Add cannon
 	std::shared_ptr<Cannon> cannon = std::make_shared<Cannon>(b2Vec2(15.2,-5));
 	this->getCurrentRoom()->addActor(cannon);
 	this->view->addView(cannon);
 
-	//Add platform
-	for(int i = 0; i<32; i+=2){
-		std::shared_ptr<Platform> mast_plat = std::make_shared<Platform>(b2Vec2(24.8, -4.8+3.2*i), 3.2);
-		this->getCurrentRoom()->addActor(mast_plat);
+	// Add mast platforms
+	for(int i = 0; i < 32; i += 2) {
+		this->getCurrentRoom()->addActor(std::make_shared<Platform>(b2Vec2(24.8, -4.8+3.2*i), 3.2));
 	}
 	// Add Platform
 	// std::shared_ptr<Platform> platform1 = std::make_shared<Platform>(b2Vec2(31.9, 7.5), 20);

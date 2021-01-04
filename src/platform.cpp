@@ -6,7 +6,19 @@
 
 
 Platform::Platform(b2Vec2 position, float width) : Actor(position) {
-	this->shape.SetAsBox(width, this->HEIGHT);
+	// set shape
+	b2Vec2 vert1 = position;
+	b2Vec2 vert2 = position;
+	vert1.x += width;
+	vert2.x -= width;
+
+	b2Vec2 vert0 = vert1;
+	b2Vec2 vert3 = vert2;
+
+	vert0.y -= 0.1;
+	vert3.y -= 0.1;
+
+	this->shape.SetOneSided(vert0, vert1, vert2, vert3);
 
 	// fix shape to body
 	this->bodyDef.type = b2_staticBody;
@@ -16,7 +28,7 @@ Platform::Platform(b2Vec2 position, float width) : Actor(position) {
 
 	// set drawable
 	this->drawable.setOrigin(width, this->HEIGHT);
-	sf::Color color(71, 40, 11);
+	sf::Color color(255, 0, 0);
 	this->drawable.setFillColor(color);
 	this->drawable.setSize(sf::Vector2f(width * 2, this->HEIGHT * 2));
 }
