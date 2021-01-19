@@ -26,6 +26,7 @@ void MasterLogic::startDemo(void) {
 	this->roomList.push_front(std::make_shared<Room>());
 	this->currentRoom = this->roomList.begin();
 
+	// Add ground
 	std::shared_ptr<Platform> ground = std::make_shared<Platform>(b2Vec2(30, -10), 1000);
 	this->getCurrentRoom()->addActor(ground);
 
