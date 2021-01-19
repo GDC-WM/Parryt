@@ -6,7 +6,8 @@
 
 
 Platform::Platform(b2Vec2 position, float width) : Actor(position) {
-	this->shape.SetAsBox(width, this->HEIGHT);
+	// set shape
+	this->shape.SetTwoSided(b2Vec2(-width,0), b2Vec2(width,0));
 
 	// fix shape to body
 	this->bodyDef.type = b2_staticBody;
@@ -15,8 +16,8 @@ Platform::Platform(b2Vec2 position, float width) : Actor(position) {
 	this->fixtureDef.friction = 0.1f;
 
 	// set drawable
-	this->drawable.setOrigin(width, this->HEIGHT);
-	sf::Color color(71, 40, 11);
+	this->drawable.setOrigin(width, 0);
+	sf::Color color(255, 0, 0);
 	this->drawable.setFillColor(color);
 	this->drawable.setSize(sf::Vector2f(width * 2, this->HEIGHT * 2));
 }

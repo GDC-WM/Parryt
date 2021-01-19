@@ -48,7 +48,6 @@ void PlayerView::listen(void) {
 			std::cout<<" \ny: " << worldPos.y<< " \nx: " << worldPos.x;
 		}
 	while (window->pollEvent(event)) {
-		
 		switch (event.type) {
 			case sf::Event::Closed:
 				window->close();

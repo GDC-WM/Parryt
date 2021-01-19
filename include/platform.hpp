@@ -18,7 +18,7 @@ class Platform : public Actor {
 		virtual void draw(std::shared_ptr<sf::RenderWindow> window);
 
 	private:
-		b2PolygonShape shape;
+		b2EdgeShape shape;
 		sf::RectangleShape drawable;
 };
 
