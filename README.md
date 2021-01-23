@@ -8,20 +8,18 @@
 ## Install on Linux:
 * Install cmake, g++, SFML (and possibly SFML-dev), randr, doxygen, and git from your package manager (specific names depend on your distribution)
 * Run the following commands from within the directory you would like the game to be:
-1. ```git clone https://github.com/aaronamk/WM-GDC-Project-Parry.git```
-2. ```cd Parry```
-3. ```git submodule update --init --recursive```
-4. ```mkdir build```
-5. ```cd build```
-6. ```cmake -DBOX2D_BUILD_DOCS=ON ..```
-7. ```cmake -build .```
-8. ```sudo cmake --build . --target install```
-9. ```cd ../..```
-10. ```mkdir Debug```
-11. ```cd Debug```
-12. ```cmake ..```
-13. ```make```
-14. ```./parryt```
+- ```git clone --recursive https://github.com/GDC-WM/Parryt.git```
+- ```mkdir Parryt/box2d/build```
+- ```cd Parryt/box2d/build```
+- ```cmake -DBOX2D_BUILD_DOCS=ON ..```
+- ```cmake -build .```
+- ```sudo cmake --build . --target INSTALL```
+- ```cd ../..```
+- ```mkdir Debug```
+- ```cd Debug```
+- ```cmake ..```
+- ```make```
+- ```./parryt```
 
 
 ## Install on Mac:
