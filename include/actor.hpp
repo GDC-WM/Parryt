@@ -26,7 +26,7 @@ enum class Direction { FRONT, BACK, LEFT, RIGHT, UP, DOWN };
 /*
  * Base class that all actors in the game inherit from
  */
-class Actor {
+class Actor : public std::enable_shared_from_this<Actor> {
 	public:
 		/**
 		 * y and x Position of the middle of the actor
