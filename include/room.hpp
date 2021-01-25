@@ -49,6 +49,7 @@ class Room : public std::enable_shared_from_this<Room> {
 		// Actor list
 		std::shared_ptr<b2World> world;
 		std::list<std::shared_ptr<Actor>> actorList;
+		std::list<std::shared_ptr<Actor>> killList;
 };
 
 

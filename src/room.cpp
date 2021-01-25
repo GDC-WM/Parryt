@@ -18,7 +18,7 @@ void Room::addActor(std::shared_ptr<Actor> actor) {
 
 
 void Room::removeActor(std::shared_ptr<Actor> actor) {
-	this->actorList.remove(actor);
+	this->killList.push_back(actor);
 }
 
 
@@ -35,6 +35,11 @@ void Room::update(const float &dt) {
 	if (this->actorList.size() > 0) {
 		for (std::shared_ptr<Actor> actor : this->actorList) {
 			actor->update(dt);
+		}
+	}
+	if (this->killList.size() > 0) {
+		for (std::shared_ptr<Actor> actor : this->killList) {
+			this->actorList.remove(actor);
 		}
 	}
 }

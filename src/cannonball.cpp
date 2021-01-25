@@ -31,7 +31,7 @@ Cannonball::Cannonball(b2Vec2 position, float damage) : Actor(position) {
 
 void Cannonball::update(const float &dt) {
 	this->age++;
-	if (this->age > 300) {
+	if (this->age > 900) {
 		this->room->removeActor(this->shared_from_this());
 	}
 }
