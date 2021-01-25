@@ -8,6 +8,8 @@
 Cannonball::Cannonball(b2Vec2 position, float damage) : Actor(position) {
 	this->allegiance = Allegiance::PIRATE;
 
+	this->age = 0;
+
 	// fix shape to body
 	this->shape.m_radius = this->RADIUS;
 	this->bodyDef.type = b2_dynamicBody;
@@ -27,6 +29,12 @@ Cannonball::Cannonball(b2Vec2 position, float damage) : Actor(position) {
 	this->drawable.setRadius(this->RADIUS);
 }
 
+void Cannonball::update(const float &dt) {
+	this->age++;
+	if (this->age > 300) {
+		this->room->removeActor(this->shared_from_this());
+	}
+}
 
 void Cannonball::draw(std::shared_ptr<sf::RenderWindow> window) {
 	this->drawable.setPosition(this->getBody()->GetPosition().x,
