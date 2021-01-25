@@ -37,9 +37,10 @@ void Room::update(const float &dt) {
 			actor->update(dt);
 		}
 	}
-	if (this->killList.size() > 0) {
-		for (std::shared_ptr<Actor> actor : this->killList) {
-			this->actorList.remove(actor);
-		}
+
+	// kill marked actors
+	if (this->killList.size()) {
+		for (std::shared_ptr<Actor> actor : this->killList) this->actorList.remove(actor);
+		this->killList.clear();
 	}
 }
