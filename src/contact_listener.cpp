@@ -14,3 +14,9 @@
 #include "mast.hpp"
 
 
+class ContactListener : public b2ContactListener {
+	public:
+		void BeginContact(b2Contact *contact) {
+			Actor *actor1 = std::static_cast<Actor*>(contact->GetFixtureA()->GetBody()->GetUserData());
+		};
+};
