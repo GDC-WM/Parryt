@@ -6,7 +6,7 @@
 ![Demo Screenshot](resources/parryt-screenshot.png)
 
 ## Install on Linux:
-* Install cmake, g++, SFML (and possibly SFML-dev), randr, doxygen, and git from your package manager (specific names depend on your distribution. To install randr on Ubuntu (Aaron's favorite flavor of Linux) do: sudo apt-get install xorg-dev libglu1-mesa-dev )
+* Install cmake, g++, SFML (and possibly SFML-dev), randr (xorg-dev and libglu1-mesa-dev on Ubuntu), doxygen, and git from your package manager (specific names depend on your distribution.
 * Run the following commands from within the directory you would like the game to be:
 - ```git clone --recursive https://github.com/GDC-WM/Parryt.git```
 - ```mkdir Parryt/box2d/build```
