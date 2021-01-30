@@ -13,7 +13,7 @@
 - ```cd Parryt/box2d/build```
 - ```cmake -DBOX2D_BUILD_DOCS=ON ..```
 - ```cmake -build .```
-- ```sudo cmake --build . --target INSTALL```
+- ```sudo cmake --build . --target install```
 - ```cd ../..```
 - ```mkdir Debug```
 - ```cd Debug```
@@ -24,6 +24,56 @@
 
 ## Install on Mac:
 * Install Homebrew and follow instructions for Linux.
+
+## Install on WSL (Windows Subsytem for Linux)
+
+**Macro Steps**
+
+1. Download WSL2 (Windows Subsytem for Linux) on Windows
+2. Download a Linux distribution (At least Ubuntu 18.04 and 20.02 both worked following these steps)
+3. Set up your freshly installed distribution for package downloading
+4. Download specified packages above (cmake, g++, SFML...)
+5. Download X11 server and configure it, allowing GUIs. 
+6. Run commands starting from ```git clone...``` in the "Linux instrutions section" of the README.
+
+**1. Download WSL2 on windows**
+1. Follow https://docs.microsoft.com/en-us/windows/wsl/install-win10
+
+**2. Download a Linux distribution**
+1. If you have followed WSL2 instructions completely, you will have installed a Linux distribution like Ubuntu
+2. If you have not installed a Linux Distribution, just install Ubuntu from the Windows Store 
+   
+**3. Set up your freshly installed distribution for package downloading**
+1. Open up your distribution
+2. Make a username and password as prompted, note, you won't see the password you typed for security measures
+3. Run the following
+- ```sudo apt update```
+- ```sudo apt install sl```
+- ```sl```
+- If you see a steamlocomotive running through, you are good!
+
+**4. Download specified packages above (cmake, g++, SFML...)**
+
+```sudo apt install cmake, g++, ... as specified above```
+
+**5. Download X11 server and configure it, allowing GUIs.**
+1. Follow https://www.youtube.com/watch?v=4SZXbl9KVsw&t=153s&ab_channel=RickMakes 
+2. Summary: Install VcXsrv windows x server & set a few environment variables
+
+**6. Run commands starting from ```git clone...``` in the "Linux instrutions section" of the README.**
+
+**Issues**
+
+1.  After ```sudo apt update```, ```sudo apt install <packagename>``` yields ```E: Unable to locate package <packagename>```
+
+    Solve: first, try: ```sudo apt update -o Acquire::ForceIPv4=true```
+    If no luck, do you use Symantec antivirus? If so, disable it 
+2. X11 not launching? 
+    
+    Solve: https://github.com/microsoft/WSL/issues/4139
+    
+    TLDR: open windows firewall settings, and remove WSL connection for each of the Domain, Private, and Public profiles  
+
 
 ## Install on Windows (possibly outdated):
 **Download CMake**
