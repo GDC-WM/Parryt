@@ -15,12 +15,15 @@ class Cannonball : public Actor {
 
 		Cannonball(b2Vec2 position, float damage);
 
+		void update(const float &dt) override;	
+		
 		virtual void draw(std::shared_ptr<sf::RenderWindow> window);
 
 
 	private:
 		b2CircleShape shape;
 		float damage;
+		int age;
 		sf::CircleShape drawable;
 		sf::Texture texture;
 		sf::Sprite sprite;
