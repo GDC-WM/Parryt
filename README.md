@@ -63,12 +63,16 @@
 **6. Run commands starting from ```git clone...``` in the "Linux instrutions section" of the README.**
 
 **Issues**
+1. Ubuntu Installer raises error "The requested operation could not be completed due to a virtual disk system limitation"?
+   
+   Go to ```C:\Users\<your username>\AppData\Local\Packages``` and locate the folder in which your linux distribution is installed (for Ubuntu, it is CanonicalGroupLimited...). Right click => properties => advanced => uncheck compress contents to save disk space
 
-1.  After ```sudo apt update```, ```sudo apt install <packagename>``` yields ```E: Unable to locate package <packagename>```
+2.  After ```sudo apt update```, ```sudo apt install <packagename>``` yields ```E: Unable to locate package <packagename>```
 
     Solve: first, try: ```sudo apt update -o Acquire::ForceIPv4=true```
-    If no luck, do you use Symantec antivirus? If so, disable it 
-2. X11 not launching? 
+    If no luck, do you use Symantec antivirus? If so, disable it. If it still
+    doesn't work, also consult the #4139 thread listed in issue #3.
+3. X11 not launching? 
     
     Solve: https://github.com/microsoft/WSL/issues/4139
     
