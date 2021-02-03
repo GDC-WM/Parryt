@@ -57,11 +57,15 @@ void Cannon::update(const float &dt) {
 	if (this->loadingCounter > 0) this->loadingCounter--;
 }
 
+float Cannon::getOrientation(void) {
+		return this->barrelAngle;
+}
+
 
 void Cannon::draw(std::shared_ptr<sf::RenderWindow> window) {
 	this->carriage.setPosition(this->getBody()->GetPosition().x,
 	                          -this->getBody()->GetPosition().y);
-	this->carriage.setRotation(-this->body->GetAngle() * 180 / M_PI);
+	this->carriage.setRotation(this->body->GetAngle() * 180 / M_PI);
 	//window->draw(carriage);
 
 	this->barrel.setPosition(this->getBody()->GetPosition().x,
