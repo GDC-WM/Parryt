@@ -55,6 +55,7 @@ void Cannon::shoot(void) {
 void Cannon::update(const float &dt) {
 	this->barrelAngle += this->rotationVelocity;
 	if (this->loadingCounter > 0) this->loadingCounter--;
+	if (this->barrelAngle * 100 > 630 || this->barrelAngle * 100 < -630) this->barrelAngle = 0;
 }
 
 float Cannon::getOrientation(void) {
