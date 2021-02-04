@@ -1,8 +1,11 @@
+#ifndef CONTACT_FILTER_HPP
+#define CONTACT_FILTER_HPP
+
+
 #include <list>
 #include <memory>
 #include <box2d/b2_world_callbacks.h>
 
-#include "contact_listener.hpp"
 #include "actor.hpp"
 #include "exit.hpp"
 #include "platform.hpp"
@@ -14,7 +17,10 @@
 #include "mast.hpp"
 
 
-void ContactListener::BeginContact(b2Contact *contact) {
-	Actor* actor1 = (Actor*)contact->GetFixtureA()->GetUserData().pointer;
-	Actor* actor2 = (Actor*)contact->GetFixtureB()->GetUserData().pointer;
-}
+class ContactFilter : public b2ContactFilter {
+	public:
+		bool ShouldCollide(b2Fixture *fixa, b2Fixture *fixb) override;
+};
+
+
+#endif

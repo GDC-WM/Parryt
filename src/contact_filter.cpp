@@ -2,7 +2,7 @@
 #include <memory>
 #include <box2d/b2_world_callbacks.h>
 
-#include "contact_listener.hpp"
+#include "contact_filter.hpp"
 #include "actor.hpp"
 #include "exit.hpp"
 #include "platform.hpp"
@@ -14,7 +14,8 @@
 #include "mast.hpp"
 
 
-void ContactListener::BeginContact(b2Contact *contact) {
-	Actor* actor1 = (Actor*)contact->GetFixtureA()->GetUserData().pointer;
-	Actor* actor2 = (Actor*)contact->GetFixtureB()->GetUserData().pointer;
+bool b2ContactFilter::ShouldCollide(b2Fixture *fix1, b2Fixture *fix2) {
+	Actor* actor1 = (Actor*)fix1->GetUserData().pointer;
+	Actor* actor2 = (Actor*)fix2->GetUserData().pointer;
+	return true;
 }
