@@ -15,6 +15,8 @@ class Platform : public Actor {
 
 		Platform(b2Vec2 position, float width);
 
+		bool collides(const Actor &a) override;
+
 		virtual void draw(std::shared_ptr<sf::RenderWindow> window);
 
 	private:
