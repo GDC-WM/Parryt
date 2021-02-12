@@ -2,11 +2,11 @@
 #define ROOM_HPP
 
 
-class Actor;
-
 #include <list>
 #include <memory>
 #include <box2d/box2d.h>
+
+class Actor;
 
 #include "contact_filter.hpp"
 
