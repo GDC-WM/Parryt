@@ -23,6 +23,11 @@ Platform::Platform(b2Vec2 position, float width) : Actor(position) {
 }
 
 
+bool Platform::collides(const Actor &a) {
+	return a.getBody()->GetLinearVelocity().y < 0;
+}
+
+
 void Platform::draw(std::shared_ptr<sf::RenderWindow> window) {
 	this->drawable.setPosition(this->getBody()->GetPosition().x,
 	                          -this->getBody()->GetPosition().y);

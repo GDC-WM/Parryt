@@ -8,6 +8,7 @@
 
 Room::Room(void) {
 	this->world = std::make_shared<b2World>(b2Vec2(0,-10));
+	this->world->SetContactFilter(&filter);
 }
 
 

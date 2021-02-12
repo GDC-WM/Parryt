@@ -5,15 +5,14 @@
 #include <list>
 #include <memory>
 
+class MasterView;
+
 #include "room.hpp"
 #include "actor.hpp"
 #include "exit.hpp"
 #include "platform.hpp"
 #include "character.hpp"
 #include "pari.hpp"
-
-
-class MasterView;
 
 
 /**

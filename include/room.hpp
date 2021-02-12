@@ -8,9 +8,11 @@
 
 class Actor;
 
+#include "contact_filter.hpp"
+
 
 /*
- * Handles state management between the two rooms and all of the different actor lists
+ * A physical space containing a list of all of the actors
  */
 class Room : public std::enable_shared_from_this<Room> {
 	public:
@@ -50,6 +52,7 @@ class Room : public std::enable_shared_from_this<Room> {
 		std::shared_ptr<b2World> world;
 		std::list<std::shared_ptr<Actor>> actorList;
 		std::list<std::shared_ptr<Actor>> killList;
+		b2ContactFilter filter;
 };
 
 
