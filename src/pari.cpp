@@ -15,6 +15,7 @@ Pari::Pari(b2Vec2 position) : Character(position) {
 	this->jumpImpulse = 50;
 	this->maxSpeed = 10;
 	this->maxHealth = 100;
+	this->maxJumps = 2;
 
 	// fix shape to body
 	this->shape.SetAsBox(this->WIDTH, this->HEIGHT);
@@ -37,9 +38,10 @@ Pari::Pari(b2Vec2 position) : Character(position) {
 }
 
 
-void Pari::jump(void) {
-	this->spriteSheet->setOneShot(this->jumpLoop);
-	Character::jump();
+bool Pari::jump(void) {
+	bool jumped = Character::jump();
+	if (jumped) this->spriteSheet->setOneShot(this->jumpLoop);
+	return jumped;
 }
 
 

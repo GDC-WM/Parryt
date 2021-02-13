@@ -8,6 +8,7 @@
 Character::Character(b2Vec2 position) : Actor(position) {
 	bodyDef.fixedRotation = true;
 	this->bodyDef.type = b2_dynamicBody;
+	this->maxJumps = 1;
 }
 
 
@@ -54,11 +55,22 @@ void Character::stop(void) {
 }
 
 
-void Character::jump(void) {
+bool Character::jump(void) {
+	if (this->jumpCounter == this->maxJumps) return false;
+
 	this->body->SetLinearVelocity(b2Vec2(this->body->GetLinearVelocity().x, 0));
 	this->body->ApplyLinearImpulseToCenter(b2Vec2(0, this->jumpImpulse), true);
 	this->jumpCounter++;
+	return true;
 }
+
+
+bool Character::collide(Actor &a) {
+	if (a.getAllegiance() == Allegiance::NEUTRAL
+	 && a.collides(*this)) this->jumpCounter = 0;
+	return this->collides(a);
+}
+
 
 const bool &Character::isGrounded(void) {
 }

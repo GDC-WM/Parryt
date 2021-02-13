@@ -21,7 +21,7 @@ class Pari : public Character {
 
 		Pari(b2Vec2 position);
 
-		void jump(void) override;
+		bool jump(void) override;
 
 		void draw(std::shared_ptr<sf::RenderWindow> window) override;
 
