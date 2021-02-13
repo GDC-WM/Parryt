@@ -20,7 +20,7 @@ enum class Allegiance { PARROT, PIRATE, NEUTRAL };
 /*
  * How does this collide?
  */
-enum class CollisionID { SOLID, PROJECTILE, ONE_WAY };
+enum class CollisionID { SOLID };
 
 
 /*
@@ -58,10 +58,15 @@ class Actor : public std::enable_shared_from_this<Actor> {
 		void setAllegiance(Allegiance allegiance) { this->allegiance = allegiance; };
 
 		/**
-		 * return whether this collides with the given actor
-		 * then update this actor based on collision
+		 * update this actor based on collision
+		 * return whether this would collide with the given actor
 		 */
-		virtual bool collides(const Actor &a) { return true; };
+		virtual bool collide(Actor &a) { return this->collides(a); };
+
+		/**
+		 * return whether this would collide with the given actor
+		 */
+		virtual const bool collides(const Actor &a) const { return true; };
 
 		virtual void update(const float &dt) {};
 

@@ -23,7 +23,7 @@ Platform::Platform(b2Vec2 position, float width) : Actor(position) {
 }
 
 
-bool Platform::collides(const Actor &a) {
+const bool Platform::collides(const Actor &a) const {
 	return a.getBody()->GetLinearVelocity().y < 0;
 }
 
