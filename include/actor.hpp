@@ -35,7 +35,7 @@ enum class Direction { FRONT, BACK, LEFT, RIGHT, UP, DOWN };
 class Actor : public std::enable_shared_from_this<Actor> {
 	public:
 		/**
-		 * y and x Position of the middle of the actor
+		 * X and Y Position of the middle of the actor
 		 */
 		Actor(b2Vec2 position);
 
@@ -58,13 +58,12 @@ class Actor : public std::enable_shared_from_this<Actor> {
 		void setAllegiance(Allegiance allegiance) { this->allegiance = allegiance; };
 
 		/**
-		 * update this actor based on collision
-		 * return whether this would collide with the given actor
+		 * Update this actor based on collision
 		 */
-		virtual bool collide(Actor &a) { return this->collides(a); };
+		virtual void collide(Actor &a) {};
 
 		/**
-		 * return whether this would collide with the given actor
+		 * @return true if this would collide with the given actor
 		 */
 		virtual const bool collides(const Actor &a) const { return true; };
 

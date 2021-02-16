@@ -4,17 +4,17 @@
 
 #include "contact_listener.hpp"
 #include "actor.hpp"
-#include "exit.hpp"
-#include "platform.hpp"
-#include "wall.hpp"
-#include "character.hpp"
-#include "pari.hpp"
-#include "cannon.hpp"
-#include "cannonball.hpp"
-#include "mast.hpp"
 
 
 void ContactListener::BeginContact(b2Contact *contact) {
-	Actor* actor1 = (Actor*)contact->GetFixtureA()->GetUserData().pointer;
-	Actor* actor2 = (Actor*)contact->GetFixtureB()->GetUserData().pointer;
+	// retrieve the actors
+	Actor* actor1 = reinterpret_cast<Actor*>(contact->GetFixtureA()->GetBody()->GetUserData().pointer);
+	Actor* actor2 = reinterpret_cast<Actor*>(contact->GetFixtureB()->GetBody()->GetUserData().pointer);
+
+	// tell the actors that they have collided
+	actor2->collide(*actor1);
+	actor1->collide(*actor2);
 }
+
+
+void ContactListener::EndContact(b2Contact *contact) {}
