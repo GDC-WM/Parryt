@@ -18,30 +18,30 @@
  * Manages all of the different views and game states
  */
 class MasterView {
-	public:
-		MasterView(std::shared_ptr<MasterLogic> logic);
+public:
+	MasterView(std::shared_ptr<MasterLogic> logic);
 
-		void reset();
+	void reset();
 
-		/**
-		 * Add PlayerView
-		 */
-		void addView(std::shared_ptr<Pari> a) { this->viewList.push_back(std::make_shared<PlayerView>(this->logic, a)); };
+	/**
+	 * Add PlayerView
+	 */
+	void addView(std::shared_ptr<Pari> a) { this->viewList.push_back(std::make_shared<PlayerView>(this->logic, a)); };
 
-		/**
-		 * Add CannonView
-		 */
-		void addView(std::shared_ptr<Cannon> a) { this->viewList.push_back(std::make_shared<CannonView>(this->logic, a)); };
+	/**
+	 * Add CannonView
+	 */
+	void addView(std::shared_ptr<Cannon> a) { this->viewList.push_back(std::make_shared<CannonView>(this->logic, a)); };
 
-		/**
-		 * Create a view for the new enemy from logic and add the view to the enemyview list
-		 */
-		void update(float dt);
+	/**
+	 * Create a view for the new enemy from logic and add the view to the enemyview list
+	 */
+	void update(float dt);
 
 
-	private:
-		std::shared_ptr<MasterLogic> logic;
-		std::list<std::shared_ptr<View>> viewList;
+private:
+	std::shared_ptr<MasterLogic> logic;
+	std::list<std::shared_ptr<View>> viewList;
 };
 
 

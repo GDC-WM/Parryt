@@ -19,61 +19,61 @@ class MasterView;
  * Main logic class that controls everything.
  */
 class MasterLogic {
-	public:
-		/**
-		 * Main method
-		 */
-		MasterLogic(void) { };
+public:
+	/**
+	 * Main method
+	 */
+	MasterLogic(void) { };
 
-		/**
-		 *
-		 */
-		void init(std::shared_ptr<MasterView> mv);
+	/**
+	 *
+	 */
+	void init(std::shared_ptr<MasterView> mv);
 
-		/**
-		 * Start main menu
-		 */
-		void startMenu(void);
+	/**
+	 * Start main menu
+	 */
+	void startMenu(void);
 
-		/**
-		 * Start a demo of gameplay
-		 */
-		void startDemo(void);
+	/**
+	 * Start a demo of gameplay
+	 */
+	void startDemo(void);
 
-		/**
-		 *
-		 */
-		std::shared_ptr<Room> getCurrentRoom(void) const { return *(this->currentRoom); };
+	/**
+	 *
+	 */
+	std::shared_ptr<Room> getCurrentRoom(void) const { return *(this->currentRoom); };
 
-		/**
-		 * Resets master logic to default state
-		 */
-		void reset(void);
+	/**
+	 * Resets master logic to default state
+	 */
+	void reset(void);
 
-		/**
-		 * Terminate the application?
-		 */
-		bool isTerminated(void) { return this->terminated; };
+	/**
+	 * Terminate the application?
+	 */
+	bool isTerminated(void) { return this->terminated; };
 
-		/**
-		 * Terminate the application
-		 */
-		void terminate(void) { this->terminated = true; };
+	/**
+	 * Terminate the application
+	 */
+	void terminate(void) { this->terminated = true; };
 
-		/**
-		 *
-		 */
-		void update(const float &dt);
+	/**
+	 *
+	 */
+	void update(const float &dt);
 
-		sf::Event event;
+	sf::Event event;
 
 
-	private:
-		std::shared_ptr<MasterView> view;
-		std::list<std::shared_ptr<Room>> roomList;
-		std::list<std::shared_ptr<Room>>::iterator currentRoom;
-		bool terminated = false;
-		bool paused = false;
+private:
+	std::shared_ptr<MasterView> view;
+	std::list<std::shared_ptr<Room>> roomList;
+	std::list<std::shared_ptr<Room>>::iterator currentRoom;
+	bool terminated = false;
+	bool paused = false;
 };
 
 

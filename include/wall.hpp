@@ -10,16 +10,16 @@
  * Draw the screen for the player
  */
 class Wall : public Actor {
-	public:
-		static constexpr float WIDTH = 0.1;
+public:
+	static constexpr float WIDTH = 0.1;
 
-		Wall(b2Vec2 position, float height);
+	Wall(b2Vec2 position, float height);
 
-		virtual void draw(std::shared_ptr<sf::RenderWindow> window);
+	virtual void draw(std::shared_ptr<sf::RenderWindow> window);
 
-	private:
-		b2PolygonShape shape;
-		sf::RectangleShape drawable;
+private:
+	b2PolygonShape shape;
+	sf::RectangleShape drawable;
 };
 
 

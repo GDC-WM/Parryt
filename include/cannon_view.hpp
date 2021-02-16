@@ -15,15 +15,15 @@
  * Draw the screen for the player
  */
 class CannonView : public View {
-	public:
-		CannonView(std::shared_ptr<MasterLogic> logic, std::shared_ptr<Cannon> cannon);
+public:
+	CannonView(std::shared_ptr<MasterLogic> logic, std::shared_ptr<Cannon> cannon);
 
-		void update(const float &dt) override;
+	void update(const float &dt) override;
 
 
-	private:
-		std::shared_ptr<MasterLogic> logic;
-		std::shared_ptr<Cannon> cannon;
+private:
+	std::shared_ptr<MasterLogic> logic;
+	std::shared_ptr<Cannon> cannon;
 };
 
 
