@@ -9,6 +9,7 @@
 class Actor;
 
 #include "contact_filter.hpp"
+#include "contact_listener.hpp"
 
 
 /*
@@ -52,7 +53,8 @@ class Room : public std::enable_shared_from_this<Room> {
 		std::shared_ptr<b2World> world;
 		std::list<std::shared_ptr<Actor>> actorList;
 		std::list<std::shared_ptr<Actor>> killList;
-		b2ContactFilter filter;
+		ContactFilter contact_filter;
+		ContactListener contact_listener;
 };
 
 
