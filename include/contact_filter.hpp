@@ -9,6 +9,9 @@
 
 class ContactFilter : public b2ContactFilter {
 	public:
+		/**
+		 * @return whether the passed fixtures should collide
+		 */
 		bool ShouldCollide(b2Fixture *fixa, b2Fixture *fixb) override;
 };
 
