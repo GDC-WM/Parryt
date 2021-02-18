@@ -20,7 +20,7 @@ enum class Allegiance { PARROT, PIRATE, NEUTRAL };
 /*
  * How does this collide?
  */
-enum class CollisionID { SOLID };
+enum class CollisionID { SOLID, TARGET, UNSHOOTABLE };
 
 
 /*
@@ -50,6 +50,11 @@ public:
 	void setRoom(std::shared_ptr<Room> room);
 
 	/**
+	 * @return the room the actor is in
+	 */
+	Room getRoom(){return this->room};
+
+	/**
 	 * @return Const pointer to the body
 	 */
 	const b2Body *getBody(void) const { return this->body; };
@@ -65,10 +70,20 @@ public:
 	const Allegiance &getAllegiance(void) const { return this->allegiance; };
 
 	/**
+	 * @return collision ID of the actor
+	 */
+	const CollisionID &getColl(void) const {return this->}
+	/**
 	 * @param allegiance New allegiance of the actor
 	 */
 	void setAllegiance(const Allegiance &allegiance) { this->allegiance = allegiance; };
 
+	/**
+	 * @param CollisionID new collision ID of actor
+	 */
+	void setCollision(const CollisionID &collID) {this->collID = collID; };
+	
+	
 	/**
 	 * Update this actor based on collision
 	 */
@@ -106,6 +121,7 @@ protected:
 	b2FixtureDef fixtureDef;
 	b2Body *body;
 	b2Vec2 dimensions;
+	CollisionID collID = CollisionID::UNSHOOTABLE; //unshootable default
 };
 
 

@@ -20,10 +20,21 @@ public:
 
 	void update(const float &dt) override;
 
+	/**
+	 * @return if target is out of range
+	 */
+	bool targetInRange(void){};
+
+	/**
+	 * updates target if no target or if target out of range
+	 */
+	void updateTarget(){};
+
 
 private:
 	std::shared_ptr<MasterLogic> logic;
 	std::shared_ptr<Cannon> cannon;
+	std::shared_ptr<Actor> target;
 };
 
 
