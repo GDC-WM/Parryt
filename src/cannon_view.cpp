@@ -11,17 +11,16 @@ CannonView::CannonView(std::shared_ptr<MasterLogic> logic, std::shared_ptr<Canno
 	this->cannon->rotateClockwise();
 }
 
-bool CannonView::targetInRange(){
+bool CannonView::targetInRange(std::shared_ptr<Actor> target){
 	//true if in range
 	//false if not
-	//make cannon's target null so that it gets a new target when update target is called
 }
 
 void CannonView::updateTarget(){
 	//if no target: all this
 	std::list<std::shared_ptr<Actor>> actors = this->cannon->getRoom()->getActorList();
 	for(std::shared_ptr<Actor> a : actors){
-		if(a->getAllegiance() == Allegiance::PARROT && a->isTarget()){
+		if(a->getAllegiance() == Allegiance::PARROT && a->isTarget() && this->targetInRange(a)){
 			this->target = a;
 		}
 	}
