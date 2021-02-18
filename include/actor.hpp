@@ -20,7 +20,7 @@ enum class Allegiance { PARROT, PIRATE, NEUTRAL };
 /*
  * How does this collide?
  */
-enum class CollisionID { SOLID};
+enum class CollisionID { SOLID };
 
 
 /*
@@ -69,12 +69,11 @@ public:
 	 */
 	const Allegiance &getAllegiance(void) const { return this->allegiance; };
 
-	
 	/**
 	 * @param allegiance New allegiance of the actor
 	 */
-	void setAllegiance(const Allegiance &allegiance) { this->allegiance = allegiance; }	
-	
+	void setAllegiance(const Allegiance &allegiance) { this->allegiance = allegiance; };
+
 	/**
 	 * Tell the actor it collided with the given actor
 	 *
@@ -105,17 +104,17 @@ public:
 	/**
 	 * @return isTarget
 	 */
-	bool isTarget(){ return this->target; };
+	const bool &isTarget() { return this->target; };
 
 	/**
-	 * @param targetable true if it is a target, false if not
+	 * @param targetable True if it is a target, false if not
 	 */
-	void setTargetable(bool targetable){this->target = targetable;}
+	void setTargetable(bool targetable) { this->target = targetable; };
 
 	/**
 	 * Destroy the world and all bodies in it
 	 */
-	virtual ~Actor() { this->room->getWorld()->DestroyBody(this->body); }
+	virtual ~Actor() { this->room->getWorld()->DestroyBody(this->body); };
 
 
 protected:
@@ -125,7 +124,7 @@ protected:
 	b2FixtureDef fixtureDef;
 	b2Body *body;
 	b2Vec2 dimensions;
-	bool target = false; //false default
+	bool target = false; // false default
 };
 
 

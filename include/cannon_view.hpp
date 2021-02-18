@@ -22,12 +22,12 @@ public:
 
 	/**
 	 * @return if target is out of range
-	 * @param a , target to be checked
+	 * @param a Target to be checked
 	 */
-	bool targetInRange(std::shared_ptr<Actor> a);
+	bool inRange(std::shared_ptr<Actor> actor);
 
 	/**
-	 * updates target if no target or if target out of range
+	 * Update target if no target or if target out of range
 	 */
 	void updateTarget(void);
 
