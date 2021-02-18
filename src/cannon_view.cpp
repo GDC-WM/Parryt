@@ -13,12 +13,11 @@ CannonView::CannonView(std::shared_ptr<LogicController> logic, std::shared_ptr<C
 
 
 bool CannonView::inRange(std::shared_ptr<Actor> actor) {
-	// true if in range
-	// false if not
+	return true; // placeholder
 }
 
 
-void CannonView::updateTarget() {
+void CannonView::updateTarget(void) {
 	// if no target: all this
 	for (std::shared_ptr<Actor> a : this->cannon->getRoom()->getActorList()) {
 		if (a->getAllegiance() == Allegiance::PARROT && a->isTarget() && this->inRange(a)) {
