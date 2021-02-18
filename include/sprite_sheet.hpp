@@ -28,69 +28,69 @@ struct Loop {
  * Facilitates creating an animation from a spritesheet.
  */
 class SpriteSheet {
-	public:
-		/**
-		 * @param spriteSheet filename
-		 * @param spriteSize the vector size of a sprite in pixels (x,y) on the sprite sheet
-		 */
-		SpriteSheet(const std::string &spriteSheet, const sf::Vector2i &spriteSize);
+public:
+	/**
+	 * @param spriteSheet filename
+	 * @param spriteSize the vector size of a sprite in pixels (x,y) on the sprite sheet
+	 */
+	SpriteSheet(const std::string &spriteSheet, const sf::Vector2i &spriteSize);
 
-		/**
-		 * First updates the sprite to the proper frame, then returns
-		 *
-		 * @return the sprite
-		 */
-		sf::Sprite &getSprite(void);
+	/**
+	 * First updates the sprite to the proper frame, then returns
+	 *
+	 * @return the sprite
+	 */
+	sf::Sprite &getSprite(void);
 
-		/**
-		 * @return the current loop.
-		 */
-		const Loop &getLoop(void) { return this->baseLoop; };
+	/**
+	 * @return the current loop.
+	 */
+	const Loop &getLoop(void) { return this->baseLoop; };
 
-		/**
-		 * Set the loop within the sprite sheet.
-		 *
-		 * @param loop new loop
-		 */
-		void setLoop(const Loop &loop);
+	/**
+	 * Set the loop within the sprite sheet.
+	 *
+	 * @param loop new loop
+	 */
+	void setLoop(const Loop &loop);
 
-		/**
-		 * Set the loop within the sprite sheet.
-		 *
-		 * @param start the frame number of the first frame in the sequence
-		 * @param frames the number of frames in the sequence
-		 * @param frameTime the time between each frame of the animation
-		 */
-		void setLoop(const int &start, const int &frames, const int &frameTime);
+	/**
+	 * Set the loop within the sprite sheet.
+	 *
+	 * @param start the frame number of the first frame in the sequence
+	 * @param frames the number of frames in the sequence
+	 * @param frameTime the time between each frame of the animation
+	 */
+	void setLoop(const int &start, const int &frames, const int &frameTime);
 
-		/**
-		 * Run a loop one time, then return to the last loop.
-		 *
-		 * @param loop oneshot loop
-		 */
-		void setOneShot(const Loop &loop);
+	/**
+	 * Run a loop one time, then return to the last loop.
+	 *
+	 * @param loop oneshot loop
+	 */
+	void setOneShot(const Loop &loop);
 
-		/**
-		 * Reset the animation to the first frame in the sequence.
-		 */
-		void restart(void) { this->startTime = std::chrono::steady_clock::now(); };
+	/**
+	 * Reset the animation to the first frame in the sequence.
+	 */
+	void restart(void) { this->startTime = std::chrono::steady_clock::now(); };
 
 
-	private:
-		sf::Texture texture;
-		sf::Sprite sprite;
-		sf::IntRect spriteRect; // pixels
-		sf::Vector2i sheetSize; // rows/columns
-		Loop baseLoop;
-		Loop oneShot;
-		std::chrono::steady_clock::time_point startTime;
+private:
+	sf::Texture texture;
+	sf::Sprite sprite;
+	sf::IntRect spriteRect; // pixels
+	sf::Vector2i sheetSize; // rows/columns
+	Loop baseLoop;
+	Loop oneShot;
+	std::chrono::steady_clock::time_point startTime;
 
-		/**
-		 * Set the frame of the animation
-		 *
-		 * @param frame number ordered left to right, top to bottom
-		 */
-		void setFrame(const int &frame);
+	/**
+	 * Set the frame of the animation
+	 *
+	 * @param frame number ordered left to right, top to bottom
+	 */
+	void setFrame(const int &frame);
 };
 
 

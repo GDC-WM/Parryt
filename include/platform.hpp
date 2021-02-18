@@ -10,16 +10,18 @@
  * Draw the screen for the player
  */
 class Platform : public Actor {
-	public:
-		static constexpr float HEIGHT = 0.1;
+public:
+	static constexpr float HEIGHT = 0.1;
 
-		Platform(b2Vec2 position, float width);
+	Platform(b2Vec2 position, float width);
 
-		virtual void draw(std::shared_ptr<sf::RenderWindow> window);
+	const bool collides(const Actor &a) const override;
 
-	private:
-		b2EdgeShape shape;
-		sf::RectangleShape drawable;
+	virtual void draw(std::shared_ptr<sf::RenderWindow> window) override;
+
+private:
+	b2EdgeShape shape;
+	sf::RectangleShape drawable;
 };
 
 

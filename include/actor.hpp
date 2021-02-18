@@ -18,56 +18,97 @@ enum class Allegiance { PARROT, PIRATE, NEUTRAL };
 
 
 /*
+ * How does this collide?
+ */
+enum class CollisionID { SOLID };
+
+
+/*
  * Define a direction
  */
 enum class Direction { FRONT, BACK, LEFT, RIGHT, UP, DOWN };
 
 
 /*
- * Base class that all actors in the game inherit from
+ * Base class representing a physical object in the game
  */
 class Actor : public std::enable_shared_from_this<Actor> {
-	public:
-		/**
-		 * y and x Position of the middle of the actor
-		 */
-		Actor(b2Vec2 position);
+public:
+	/**
+	 * @param position Vector x and y position of the middle of the actor
+	 */
+	Actor(const b2Vec2 &position);
 
-		b2BodyDef &getBodyDef(void) { return this->bodyDef; };
+	/**
+	 * @return Const pointer to the body
+	 */
+	const b2BodyDef &getBodyDef(void) const { return this->bodyDef; };
 
-		void setRoom(std::shared_ptr<Room> room);
+	/**
+	 * @param room Add the actor to the given room
+	 */
+	void setRoom(std::shared_ptr<Room> room);
 
-		/**
-		 * @return const pointer to the body
-		 */
-		const b2Body *getBody(void) const { return this->body; };
+	/**
+	 * @return Const pointer to the body
+	 */
+	const b2Body *getBody(void) const { return this->body; };
 
-		/**
-		 * @return pointer to the body
-		 */
-		b2Body *getBody(void) { return this->body; };
+	/**
+	 * @return Pointer to the body
+	 */
+	b2Body *getBody(void) { return this->body; };
 
-		const Allegiance &getAllegiance(void) const { return this->allegiance; };
+	/**
+	 * @return Allegiance of the actor
+	 */
+	const Allegiance &getAllegiance(void) const { return this->allegiance; };
 
-		void setAllegiance(Allegiance allegiance) { this->allegiance = allegiance; };
+	/**
+	 * @param allegiance New allegiance of the actor
+	 */
+	void setAllegiance(const Allegiance &allegiance) { this->allegiance = allegiance; };
 
-		virtual void update(const float &dt) {};
+	/**
+	 * Tell the actor it collided with the given actor
+	 *
+	 * @param a Actor it collided with
+	 */
+	virtual void collide(Actor &a) {};
 
-		/**
-		 * Tell actor to draw itself
-		 */
-		virtual void draw(std::shared_ptr<sf::RenderWindow> window) {};
+	/**
+	 * @param a Actor to test collision of
+	 * @return Whether this would collide with the given actor
+	 */
+	virtual const bool collides(const Actor &a) const { return true; };
 
-		virtual ~Actor() { this->room->getWorld()->DestroyBody(this->body); }
+	/**
+	 * Step the actor forward in time
+	 *
+	 * @param dt Time forward in milliseconds
+	 */
+	virtual void update(const float &dt) {};
+
+	/**
+	 * Tell actor to draw itself
+	 *
+	 * @param window Window to draw itself on
+	 */
+	virtual void draw(std::shared_ptr<sf::RenderWindow> window) {};
+
+	/**
+	 * Destroy the world and all bodies in it
+	 */
+	virtual ~Actor() { this->room->getWorld()->DestroyBody(this->body); }
 
 
-	protected:
-		Allegiance allegiance = Allegiance::NEUTRAL; // neutral default
-		std::shared_ptr<Room> room;
-		b2BodyDef bodyDef;
-		b2FixtureDef fixtureDef;
-		b2Body *body;
-		b2Vec2 dimensions;
+protected:
+	Allegiance allegiance = Allegiance::NEUTRAL; // neutral default
+	std::shared_ptr<Room> room;
+	b2BodyDef bodyDef;
+	b2FixtureDef fixtureDef;
+	b2Body *body;
+	b2Vec2 dimensions;
 };
 
 

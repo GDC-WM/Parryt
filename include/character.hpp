@@ -11,46 +11,78 @@
 * The parent class for all movable characters
 */
 class Character : public Actor, public std::enable_shared_from_this<Character> {
-	public:
-		Character(b2Vec2 position);
+public:
+	Character(b2Vec2 position);
 
-		virtual void damage(float d);
+	/**
+	 * @param damage Amount of damage to do
+	 */
+	virtual void damage(float damage);
 
-		void heal(int healAmount);
+	/**
+	 * @param healAmount Amount to heal
+	 */
+	void heal(int healAmount);
 
-		void setHealth(double health) { this->health = health; };
+	/**
+	 * @param health new health
+	 */
+	void setHealth(double health) { this->health = health; };
 
-		const int getHealth(void) const { return this->health; };
+	/**
+	 * @return Current health
+	 */
+	const int getHealth(void) const { return this->health; };
 
-		void setMaxHealth(double health) { this->maxHealth = health; };
+	/**
+	 * @param health Current max health
+	 */
+	void setMaxHealth(double health) { this->maxHealth = health; };
 
-		const int getMaxHealth(void) const { return this->maxHealth; };
+	/**
+	 * @return Current max health
+	 */
+	const int getMaxHealth(void) const { return this->maxHealth; };
 
-		virtual void jump(void);
+	/**
+	 * Make the character jump
+	 */
+	virtual bool jump(void);
 
-		void goLeft(void);
+	/**
+	 * Make the character go left
+	 */
+	void goLeft(void);
 
-		void goRight(void);
+	/**
+	 * Make the character go left
+	 */
+	void goRight(void);
 
-		void stop(void);
+	/**
+	 * Make the character go left
+	 */
+	void stop(void);
 
-		/**
-		 * @return if the character is resting on the ground
-		 */
-		const bool &isGrounded(void);
+	void collide(Actor &a) override;
+
+	/**
+	 * @return if the character is resting on the ground
+	 */
+	const bool &isGrounded(void);
 
 
-	protected:
-		Direction lookDirection = Direction::RIGHT;
-		float jumpImpulse;
-		int maxJumps;
-		int jumpCounter = 0;
-		float acceleration;
-		float deceleration;
-		float maxSpeed;
-		int maxHealth;
-		float health;
-		//TODO: give every character a SpriteSheet?
+protected:
+	Direction lookDirection = Direction::RIGHT;
+	float jumpImpulse;
+	int maxJumps;
+	int jumpCounter = 0;
+	float acceleration;
+	float deceleration;
+	float maxSpeed;
+	int maxHealth;
+	float health;
+	//TODO: give every character a SpriteSheet?
 };
 
 

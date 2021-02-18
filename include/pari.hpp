@@ -14,27 +14,27 @@
  * The main character
  */
 class Pari : public Character {
-	public:
-		static constexpr float WIDTH = 0.5;
+public:
+	static constexpr float WIDTH = 0.5;
 
-		static constexpr float HEIGHT = 1.9;
+	static constexpr float HEIGHT = 1.9;
 
-		Pari(b2Vec2 position);
+	Pari(b2Vec2 position);
 
-		void jump(void) override;
+	bool jump(void) override;
 
-		void draw(std::shared_ptr<sf::RenderWindow> window) override;
+	void draw(std::shared_ptr<sf::RenderWindow> window) override;
 
 
-	private:
-		sf::RectangleShape drawable;
-		sf::Texture texture;
-		b2PolygonShape shape;
-		Loop standLoop { 22, 3, 400 };
-		Loop runLoop { 0, 6, 170 };
-		Loop jumpLoop { 28, 3, 170 };
-		std::unique_ptr<SpriteSheet> spriteSheet;
-		sf::Sprite sprite;
+private:
+	sf::RectangleShape drawable;
+	sf::Texture texture;
+	b2PolygonShape shape;
+	Loop standLoop { 22, 3, 400 };
+	Loop runLoop { 0, 6, 170 };
+	Loop jumpLoop { 28, 3, 170 };
+	std::unique_ptr<SpriteSheet> spriteSheet;
+	sf::Sprite sprite;
 };
 
 

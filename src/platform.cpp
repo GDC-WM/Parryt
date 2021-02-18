@@ -12,14 +12,19 @@ Platform::Platform(b2Vec2 position, float width) : Actor(position) {
 	// fix shape to body
 	this->bodyDef.type = b2_staticBody;
 	this->fixtureDef.shape = &this->shape;
-	this->fixtureDef.density = 1.0f;
-	this->fixtureDef.friction = 0.1f;
+	this->fixtureDef.density = 3.0f;
+	this->fixtureDef.friction = 0.7f;
 
 	// set drawable
 	this->drawable.setOrigin(width, 0);
 	sf::Color color(255, 0, 0);
 	this->drawable.setFillColor(color);
 	this->drawable.setSize(sf::Vector2f(width * 2, this->HEIGHT * 2));
+}
+
+
+const bool Platform::collides(const Actor &a) const {
+	return a.getBody()->GetLinearVelocity().y < 0;
 }
 
 
