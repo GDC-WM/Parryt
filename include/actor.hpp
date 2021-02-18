@@ -50,6 +50,11 @@ public:
 	void setRoom(std::shared_ptr<Room> room);
 
 	/**
+	 * @return the room the actor is in
+	 */
+	std::shared_ptr<Room> getRoom(){return this->room;};
+
+	/**
 	 * @return Const pointer to the body
 	 */
 	const b2Body *getBody(void) const { return this->body; };
@@ -97,9 +102,19 @@ public:
 	virtual void draw(std::shared_ptr<sf::RenderWindow> window) {};
 
 	/**
+	 * @return isTarget
+	 */
+	const bool &isTarget() { return this->target; };
+
+	/**
+	 * @param targetable True if it is a target, false if not
+	 */
+	void setTargetable(bool targetable) { this->target = targetable; };
+
+	/**
 	 * Destroy the world and all bodies in it
 	 */
-	virtual ~Actor() { this->room->getWorld()->DestroyBody(this->body); }
+	virtual ~Actor() { this->room->getWorld()->DestroyBody(this->body); };
 
 
 protected:
@@ -109,6 +124,7 @@ protected:
 	b2FixtureDef fixtureDef;
 	b2Body *body;
 	b2Vec2 dimensions;
+	bool target = false; // false default
 };
 
 
