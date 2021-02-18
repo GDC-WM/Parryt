@@ -20,7 +20,7 @@ enum class Allegiance { PARROT, PIRATE, NEUTRAL };
 /*
  * How does this collide?
  */
-enum class CollisionID { SOLID, TARGET, UNSHOOTABLE };
+enum class CollisionID { SOLID};
 
 
 /*
@@ -52,7 +52,7 @@ public:
 	/**
 	 * @return the room the actor is in
 	 */
-	Room getRoom(){return this->room};
+	std::shared_ptr<Room> getRoom(){return this->room;};
 
 	/**
 	 * @return Const pointer to the body
@@ -69,20 +69,11 @@ public:
 	 */
 	const Allegiance &getAllegiance(void) const { return this->allegiance; };
 
-	/**
-	 * @return collision ID of the actor
-	 */
-	const CollisionID &getColl(void) const {return this->}
+	
 	/**
 	 * @param allegiance New allegiance of the actor
 	 */
-	void setAllegiance(const Allegiance &allegiance) { this->allegiance = allegiance; };
-
-	/**
-	 * @param CollisionID new collision ID of actor
-	 */
-	void setCollision(const CollisionID &collID) {this->collID = collID; };
-	
+	void setAllegiance(const Allegiance &allegiance) { this->allegiance = allegiance; }	
 	
 	/**
 	 * Update this actor based on collision
@@ -109,6 +100,16 @@ public:
 	virtual void draw(std::shared_ptr<sf::RenderWindow> window) {};
 
 	/**
+	 * @return isTarget
+	 */
+	bool isTarget(){ return this->target; };
+
+	/**
+	 * @param targetable true if it is a target, false if not
+	 */
+	void setTargetable(bool targetable){this->target = targetable;}
+
+	/**
 	 * Destroy the world and all bodies in it
 	 */
 	virtual ~Actor() { this->room->getWorld()->DestroyBody(this->body); }
@@ -121,7 +122,7 @@ protected:
 	b2FixtureDef fixtureDef;
 	b2Body *body;
 	b2Vec2 dimensions;
-	CollisionID collID = CollisionID::UNSHOOTABLE; //unshootable default
+	bool target = false; //false default
 };
 
 

@@ -23,12 +23,12 @@ public:
 	/**
 	 * @return if target is out of range
 	 */
-	bool targetInRange(void){};
+	bool targetInRange(void);
 
 	/**
 	 * updates target if no target or if target out of range
 	 */
-	void updateTarget(){};
+	void updateTarget(void);
 
 
 private:
