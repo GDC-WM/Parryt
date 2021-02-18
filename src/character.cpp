@@ -30,7 +30,7 @@ void Character::goLeft(void) {
 		this->body->ApplyForceToCenter(b2Vec2(-this->acceleration, 0), true);
 	}
 	this->lookDirection = Direction::LEFT;
-
+	/* Added this code, since switching directions (left and right) felt too slow - It is positive for left */
 	if (this->body->GetLinearVelocity().x > 6) {
 		this->body->SetLinearVelocity(b2Vec2(6,this->body->GetLinearVelocity().y));
 	}
@@ -43,7 +43,7 @@ void Character::goRight(void) {
 		this->body->ApplyForceToCenter(b2Vec2(this->acceleration, 0), true);
 	}
 	this->lookDirection = Direction::RIGHT;
-
+	/* Same code as above except changing the sign of the integer; Someone can probably better explain how it works than me - It is negative for right */
 	if (this->body->GetLinearVelocity().x < -6) {
 		this->body->SetLinearVelocity(b2Vec2(-6,this->body->GetLinearVelocity().y));
 	}
