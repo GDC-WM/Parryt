@@ -5,7 +5,7 @@
 #include <list>
 #include <memory>
 
-#include "master_logic.hpp"
+#include "logic_controller.hpp"
 #include "view.hpp"
 #include "actor.hpp"
 #include "cannon.hpp"
@@ -16,13 +16,13 @@
  */
 class CannonView : public View {
 public:
-	CannonView(std::shared_ptr<MasterLogic> logic, std::shared_ptr<Cannon> cannon);
+	CannonView(std::shared_ptr<LogicController> logic, std::shared_ptr<Cannon> cannon);
 
 	void update(const float &dt) override;
 
 
 private:
-	std::shared_ptr<MasterLogic> logic;
+	std::shared_ptr<LogicController> logic;
 	std::shared_ptr<Cannon> cannon;
 };
 

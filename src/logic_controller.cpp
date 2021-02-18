@@ -1,8 +1,8 @@
 #include <list>
 #include <memory>
 
-#include "master_logic.hpp"
-#include "master_view.hpp"
+#include "logic_controller.hpp"
+#include "view_controller.hpp"
 
 #include "room.hpp"
 #include "actor.hpp"
@@ -16,12 +16,12 @@
 #include "mast.hpp"
 
 
-void MasterLogic::init(std::shared_ptr<MasterView> view) {
+void LogicController::init(std::shared_ptr<ViewController> view) {
 	this->view = view;
 }
 
 
-void MasterLogic::startDemo(void) {
+void LogicController::startDemo(void) {
 	// Create room
 	this->roomList.push_front(std::make_shared<Room>());
 	this->currentRoom = this->roomList.begin();
@@ -54,18 +54,18 @@ void MasterLogic::startDemo(void) {
 }
 
 
-void MasterLogic::startMenu(void) {
+void LogicController::startMenu(void) {
 
 }
 
 
-void MasterLogic::reset(void) {
+void LogicController::reset(void) {
 	this->roomList.clear();
 	this->getCurrentRoom()->reset();
 }
 
 
-void MasterLogic::update(const float &dt) {
+void LogicController::update(const float &dt) {
 	if (!this->paused) {
 		// update the room
 		this->getCurrentRoom()->update(dt);

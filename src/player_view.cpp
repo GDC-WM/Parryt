@@ -7,7 +7,7 @@
 #include "character.hpp"
 
 
-PlayerView::PlayerView(std::shared_ptr<MasterLogic> logic, std::shared_ptr<Character> character) : View(logic) {
+PlayerView::PlayerView(std::shared_ptr<LogicController> logic, std::shared_ptr<Character> character) : View(logic) {
 	this->logic = logic; // TODO: this happens in view as well, but segfault if not set here
 	this->character = character;
 

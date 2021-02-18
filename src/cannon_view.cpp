@@ -6,7 +6,7 @@
 #include "cannon.hpp"
 
 
-CannonView::CannonView(std::shared_ptr<MasterLogic> logic, std::shared_ptr<Cannon> cannon) : View(logic) {
+CannonView::CannonView(std::shared_ptr<LogicController> logic, std::shared_ptr<Cannon> cannon) : View(logic) {
 	this->cannon = cannon;
 	this->cannon->rotateClockwise();
 }
