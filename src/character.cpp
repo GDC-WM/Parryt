@@ -12,8 +12,8 @@ Character::Character(b2Vec2 position) : Actor(position) {
 }
 
 
-void Character::damage(float d) {
-	this->health -= d;
+void Character::damage(float damage) {
+	this->health -= damage;
 	if (this->health > this->maxHealth) this->health = this->maxHealth;
 	if (this->health < 0) this->health = 0;
 }
@@ -30,6 +30,11 @@ void Character::goLeft(void) {
 		this->body->ApplyForceToCenter(b2Vec2(-this->acceleration, 0), true);
 	}
 	this->lookDirection = Direction::LEFT;
+
+	if (this->body->GetLinearVelocity().x > 6) {
+		this->body->SetLinearVelocity(b2Vec2(6,this->body->GetLinearVelocity().y));
+	}
+
 }
 
 
@@ -38,12 +43,16 @@ void Character::goRight(void) {
 		this->body->ApplyForceToCenter(b2Vec2(this->acceleration, 0), true);
 	}
 	this->lookDirection = Direction::RIGHT;
+
+	if (this->body->GetLinearVelocity().x < -6) {
+		this->body->SetLinearVelocity(b2Vec2(-6,this->body->GetLinearVelocity().y));
+	}
 }
 
 
 void Character::stop(void) {
 	b2Vec2 velocity = this->body->GetLinearVelocity();
-	if (abs(velocity.x) >= 0.3) {
+	if (abs(velocity.x) >= 8.5) {
 		float stopForce = -velocity.x / abs(velocity.x) * this->deceleration;
 		//TODO: stephen make ^this^ not dumb
 		this->body->ApplyForceToCenter(b2Vec2(stopForce, 0), true);
@@ -66,8 +75,7 @@ bool Character::jump(void) {
 
 
 void Character::collide(Actor &a) {
-	if (a.getAllegiance() == Allegiance::NEUTRAL
-	 && a.collides(*this)) this->jumpCounter = 0;
+	if (a.getAllegiance() == Allegiance::NEUTRAL && a.collides(*this)) this->jumpCounter = 0;
 }
 
 

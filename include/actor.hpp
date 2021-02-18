@@ -76,12 +76,15 @@ public:
 	void setAllegiance(const Allegiance &allegiance) { this->allegiance = allegiance; }	
 	
 	/**
-	 * Update this actor based on collision
+	 * Tell the actor it collided with the given actor
+	 *
+	 * @param a Actor it collided with
 	 */
 	virtual void collide(Actor &a) {};
 
 	/**
-	 * @return whether this would collide with the given actor
+	 * @param a Actor to test collision of
+	 * @return Whether this would collide with the given actor
 	 */
 	virtual const bool collides(const Actor &a) const { return true; };
 

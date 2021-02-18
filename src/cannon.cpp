@@ -48,8 +48,8 @@ void Cannon::shoot(void) {
 	this->loadingCounter = this->LOAD_TIME;
 	std::shared_ptr<Cannonball> cannonball = std::make_shared<Cannonball>(this->body->GetPosition(), 20);
 	this->room->addActor(cannonball); // give actors access to the room they are in
-	cannonball->getBody()->ApplyLinearImpulseToCenter(b2Vec2(cos(this->barrelAngle) * 50,
-	                                                         sin(this->barrelAngle) * 50), true);
+	cannonball->getBody()->ApplyLinearImpulseToCenter(b2Vec2(cos(this->barrelAngle) * 150,
+	                                                         sin(this->barrelAngle) * 150), true);
 }
 
 

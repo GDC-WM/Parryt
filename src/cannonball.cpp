@@ -14,8 +14,8 @@ Cannonball::Cannonball(b2Vec2 position, float damage) : Actor(position) {
 	this->shape.m_radius = this->RADIUS;
 	this->bodyDef.type = b2_dynamicBody;
 	this->fixtureDef.shape = &this->shape;
-	this->fixtureDef.density = 1.0f;
-	this->fixtureDef.friction = 2.4f;
+	this->fixtureDef.density = 1.5f;
+	this->fixtureDef.friction = 3.0f;
 
 	// set drawable
 	texture.loadFromFile("../resources/cannonball.png");
