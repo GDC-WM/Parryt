@@ -14,6 +14,7 @@
 #include "cannon.hpp"
 #include "cannonball.hpp"
 #include "mast.hpp"
+#include "grunt.hpp"
 
 
 void MasterLogic::init(std::shared_ptr<MasterView> view) {
@@ -39,6 +40,11 @@ void MasterLogic::startDemo(void) {
 	std::shared_ptr<Cannon> cannon = std::make_shared<Cannon>(b2Vec2(15.2,-5));
 	this->getCurrentRoom()->addActor(cannon);
 	this->view->addView(cannon);
+
+	// Add grunt
+	std::shared_ptr<Grunt> grunt = std::make_shared<Grunt>(b2Vec2(-10,-8));
+	this->getCurrentRoom()->addActor(grunt);
+	//this->view->addView(grunt);
 
 	// Add mast platforms
 	for(int i = 0; i < 32; i += 2) {
