@@ -26,33 +26,29 @@ void Character::heal(int healAmount) {
 
 
 void Character::goLeft(void) {
-	if (this->body->GetLinearVelocity().x > -this->maxSpeed) {
-		this->body->ApplyForceToCenter(b2Vec2(-this->acceleration, 0), true);
-	}
-	this->lookDirection = Direction::LEFT;
+	if (this->body->GetLinearVelocity().x > -this->maxSpeed)
+		this->body->ApplyForceToCenter(b2Vec2(-this->acceleration - 500, 0), true);
 
-	if (this->body->GetLinearVelocity().x > 6) {
-		this->body->SetLinearVelocity(b2Vec2(6,this->body->GetLinearVelocity().y));
-	}
+	/* Refine the lookDirection */
+	if (this->body->GetLinearVelocity().x > -this->maxSpeed && this->body->GetLinearVelocity().x < 0)
+		this->lookDirection = Direction::LEFT;
 
 }
 
 
 void Character::goRight(void) {
-	if (this->body->GetLinearVelocity().x < this->maxSpeed) {
-		this->body->ApplyForceToCenter(b2Vec2(this->acceleration, 0), true);
-	}
-	this->lookDirection = Direction::RIGHT;
-
-	if (this->body->GetLinearVelocity().x < -6) {
-		this->body->SetLinearVelocity(b2Vec2(-6,this->body->GetLinearVelocity().y));
-	}
+	if (this->body->GetLinearVelocity().x < this->maxSpeed)
+		this->body->ApplyForceToCenter(b2Vec2(this->acceleration + 500, 0), true);
+	
+	/* Refine the lookDirection */
+	if (this->body->GetLinearVelocity().x < this->maxSpeed && this->body->GetLinearVelocity().x > 0)
+		this->lookDirection = Direction::RIGHT;
+	
 }
-
 
 void Character::stop(void) {
 	b2Vec2 velocity = this->body->GetLinearVelocity();
-	if (abs(velocity.x) >= 8.5) {
+	if (abs(velocity.x) >= 5) {
 		float stopForce = -velocity.x / abs(velocity.x) * this->deceleration;
 		//TODO: stephen make ^this^ not dumb
 		this->body->ApplyForceToCenter(b2Vec2(stopForce, 0), true);
