@@ -12,8 +12,8 @@ Character::Character(b2Vec2 position) : Actor(position) {
 }
 
 
-void Character::damage(float d) {
-	this->health -= d;
+void Character::damage(float damage) {
+	this->health -= damage;
 	if (this->health > this->maxHealth) this->health = this->maxHealth;
 	if (this->health < 0) this->health = 0;
 }
@@ -72,8 +72,7 @@ bool Character::jump(void) {
 
 
 void Character::collide(Actor &a) {
-	if (a.getAllegiance() == Allegiance::NEUTRAL
-	 && a.collides(*this)) this->jumpCounter = 0;
+	if (a.getAllegiance() == Allegiance::NEUTRAL && a.collides(*this)) this->jumpCounter = 0;
 }
 
 

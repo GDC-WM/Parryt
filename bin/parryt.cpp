@@ -2,12 +2,12 @@
 #include <thread>
 #include <chrono>
 
-#include "master_logic.hpp"
-#include "master_view.hpp"
+#include "logic_controller.hpp"
+#include "view_controller.hpp"
 
 int main(int argc, char** argv) {
-	std::shared_ptr<MasterLogic> logicController = std::make_shared<MasterLogic>();
-	std::shared_ptr<MasterView> viewController = std::make_shared<MasterView>(logicController);
+	std::shared_ptr<LogicController> logicController = std::make_shared<LogicController>();
+	std::shared_ptr<ViewController> viewController = std::make_shared<ViewController>(logicController);
 	logicController->init(viewController);
 	logicController->startDemo();
 

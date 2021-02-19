@@ -1,11 +1,11 @@
-#ifndef MASTER_LOGIC_HPP
-#define MASTER_LOGIC_HPP
+#ifndef LOGIC_CONTROLLER_HPP
+#define LOGIC_CONTROLLER_HPP
 
 
 #include <list>
 #include <memory>
 
-class MasterView;
+class ViewController;
 
 #include "room.hpp"
 #include "actor.hpp"
@@ -18,17 +18,17 @@ class MasterView;
 /**
  * Main logic class that controls everything.
  */
-class MasterLogic {
+class LogicController {
 public:
 	/**
 	 * Main method
 	 */
-	MasterLogic(void) { };
+	LogicController(void) { };
 
 	/**
 	 *
 	 */
-	void init(std::shared_ptr<MasterView> mv);
+	void init(std::shared_ptr<ViewController> mv);
 
 	/**
 	 * Start main menu
@@ -69,7 +69,7 @@ public:
 
 
 private:
-	std::shared_ptr<MasterView> view;
+	std::shared_ptr<ViewController> view;
 	std::list<std::shared_ptr<Room>> roomList;
 	std::list<std::shared_ptr<Room>>::iterator currentRoom;
 	bool terminated = false;

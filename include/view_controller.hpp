@@ -1,11 +1,11 @@
-#ifndef MASTER_VIEW_HPP
-#define MASTER_VIEW_HPP
+#ifndef VIEW_CONTROLLER_HPP
+#define VIEW_CONTROLLER_HPP
 
 
 #include <list>
 #include <memory>
 
-#include "master_logic.hpp"
+#include "logic_controller.hpp"
 #include "view.hpp"
 #include "player_view.hpp"
 #include "actor.hpp"
@@ -17,9 +17,9 @@
 /**
  * Manages all of the different views and game states
  */
-class MasterView {
+class ViewController {
 public:
-	MasterView(std::shared_ptr<MasterLogic> logic);
+	ViewController(std::shared_ptr<LogicController> logic);
 
 	void reset();
 
@@ -40,7 +40,7 @@ public:
 
 
 private:
-	std::shared_ptr<MasterLogic> logic;
+	std::shared_ptr<LogicController> logic;
 	std::list<std::shared_ptr<View>> viewList;
 };
 

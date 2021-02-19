@@ -9,6 +9,7 @@
 
 Pari::Pari(b2Vec2 position) : Character(position) {
 	this->allegiance = Allegiance::PARROT;
+	this->setTargetable(true);
 
 	this->acceleration = 10;
 	this->deceleration = 250;

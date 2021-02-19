@@ -15,14 +15,14 @@
  */
 class PlayerView : public View {
 public:
-	PlayerView(std::shared_ptr<MasterLogic> logic, std::shared_ptr<Character> character);
+	PlayerView(std::shared_ptr<LogicController> logic, std::shared_ptr<Character> character);
 
 	void update(const float &dt);
 
 
 private:
 	std::shared_ptr<sf::RenderWindow> window;
-	std::shared_ptr<MasterLogic> logic;
+	std::shared_ptr<LogicController> logic;
 	std::shared_ptr<Character> character;
 
 	/**
