@@ -43,8 +43,9 @@ void Character::goRight(void) {
 	/* Refine the lookDirection */
 	if (this->body->GetLinearVelocity().x < this->maxSpeed && this->body->GetLinearVelocity().x > 0)
 		this->lookDirection = Direction::RIGHT;
-	
+
 }
+
 
 void Character::stop(void) {
 	b2Vec2 velocity = this->body->GetLinearVelocity();
