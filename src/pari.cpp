@@ -11,18 +11,18 @@ Pari::Pari(b2Vec2 position) : Character(position) {
 	this->allegiance = Allegiance::PARROT;
 	this->setTargetable(true);
 
-	this->acceleration = 130;
-	this->deceleration = 30;
-	this->jumpImpulse = 50;
-	this->maxSpeed = 10;
+	this->acceleration = 380;
+	this->deceleration = 250;
+	this->jumpImpulse = 235;
+	this->maxSpeed = 15;
 	this->maxHealth = 100;
 	this->maxJumps = 2;
 
 	// fix shape to body
 	this->shape.SetAsBox(this->WIDTH, this->HEIGHT);
 	this->fixtureDef.shape = &this->shape;
-	this->fixtureDef.density = 1.0f;
-	this->fixtureDef.friction = 2.4f;
+	this->fixtureDef.density = 2.4f;
+	this->fixtureDef.friction = 0.0f;
 
 	this->spriteSheet = std::make_unique<SpriteSheet>("../resources/pari.png", sf::Vector2i(64, 64));
 	this->spriteSheet->setLoop(this->standLoop);

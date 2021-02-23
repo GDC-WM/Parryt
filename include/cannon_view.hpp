@@ -31,6 +31,12 @@ public:
 	 */
 	void updateTarget(void);
 
+	/**
+	 * adjusts cannon angle to point at target
+	 * @param t , target to aim at
+	 */
+	void aimAt(std::shared_ptr<Actor> t)
+
 
 private:
 	std::shared_ptr<MasterLogic> logic;
