@@ -29,7 +29,6 @@ void Room::reset(void) {
 }
 
 
-
 void Room::update(const float &dt) {
 	// step the box2d clock forward
 	this->world->Step(dt / 1000, 8, 3); // convert milliseconds to seconds

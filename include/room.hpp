@@ -24,7 +24,6 @@ public:
 	 */
 	const std::shared_ptr<b2World> getWorld(void) const { return this->world; };
 
-
 	/**
 	 * Return the list of actors.
 	 */
