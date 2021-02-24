@@ -36,6 +36,9 @@ void PlayerView::pollInput(void) {
 	if (left) this->character->goLeft();
 	if (right) this->character->goRight();
 	if (!(left || right)) this->character->stop();
+	
+	/* Fix the left and right problem causing weird movements... */
+	if (left && right) this->character->stop();
 }
 
 
