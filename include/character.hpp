@@ -55,7 +55,7 @@ public:
 	void goLeft(void);
 
 	/**
-	 * Make the character go left
+	 * Make the character go Right
 	 */
 	void goRight(void);
 
