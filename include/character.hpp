@@ -60,7 +60,7 @@ public:
 	void goRight(void);
 
 	/**
-	 * Make the character go left
+	 * Make the character stop
 	 */
 	void stop(void);
 
