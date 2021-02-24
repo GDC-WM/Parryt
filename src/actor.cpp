@@ -21,3 +21,4 @@ void Actor::setRoom(std::shared_ptr<Room> room) {
 	// connect the actor to its body
 	this->body->GetUserData().pointer = reinterpret_cast<uintptr_t>(this);
 }
+
