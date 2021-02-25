@@ -1,14 +1,15 @@
 #include <list>
 #include <memory>
+#include<cmath>
 
 #include "view.hpp"
 #include "cannon_view.hpp"
 #include "cannon.hpp"
 
-
 CannonView::CannonView(std::shared_ptr<LogicController> logic, std::shared_ptr<Cannon> cannon) : View(logic) {
 	this->cannon = cannon;
-	this->cannon->rotateClockwise();
+	this->logic = logic;
+	//this->cannon->rotateClockwise();
 }
 
 
@@ -26,7 +27,16 @@ void CannonView::updateTarget(void) {
 	}
 }
 
+float round2(float var) {
+	float value = (int) (var * 100 + .5);
+	return (float) value/100;
+}
 
 void CannonView::update(const float &dt) {
 	this->cannon->shoot();
+	this->updateTarget();
+
+	b2Vec2 dist = this->target->getBody()->GetPosition() - this->cannon->getBody()->GetPosition();
+	float targetAngle = atan2(dist.y, dist.x);
+	this->cannon->getOrientation() < targetAngle ? this->cannon->rotCounterclockwise() : this->cannon->rotClockwise();
 }
