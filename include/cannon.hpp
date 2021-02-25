@@ -16,15 +16,14 @@ public:
 	static constexpr float HEIGHT = 1.2;
 	static constexpr int LOAD_TIME = 90; // milliseconds
 	sf::Vector2f barrelDimensions{2, 0.5};
-	float barrelAngle = M_PI / 4;
 	static constexpr float ROTATION_SPEED = M_PI / 6; // per second
 
 	Cannon(b2Vec2 position);
 
 	/*
-	 * returns angle of the barrel
+	 * Returns angle of the barrel
 	 */
-	float getOrientation(void);
+	float getOrientation(void) { return this->barrelAngle; };
 
 	/*
 	 * Fire the cannon
@@ -34,12 +33,12 @@ public:
 	/*
 	 * Rotate the cannon clockwise
 	 */
-	void rotateClockwise(void) { this->rotationVelocity = -this->ROTATION_SPEED / 60; };
+	void rotClockwise(void) { this->rotationVelocity = -this->ROTATION_SPEED / 60; };
 
 	/*
 	 * Rotate the cannon counterclockwise
 	 */
-	void rotateCounterclockwise(void) { this->rotationVelocity = this->ROTATION_SPEED / 60; };
+	void rotCounterclockwise(void) { this->rotationVelocity = this->ROTATION_SPEED / 60; };
 
 	/*
 	 * Stop rotation
@@ -54,6 +53,7 @@ public:
 private:
 	b2PolygonShape shape;
 	float rotationVelocity = 0;
+	float barrelAngle = M_PI / 4;
 	sf::RectangleShape carriage;
 	sf::RectangleShape barrel;
 
