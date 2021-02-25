@@ -12,11 +12,11 @@ CannonView::CannonView(std::shared_ptr<LogicController> logic, std::shared_ptr<C
 }
 
 bool CannonView::inRange(std::shared_ptr<Actor> target){
-	//true if in range
-	//false if not
-	//have to aim cannon at target before we can determine if it is in range auuugh
-	this->aimAt(target);
-	return true;
+	b2Vec2 distTarget = target->getBody()->GetPosition();
+	if(sqrt((pow(distTarget.x, 2) + pow(distTarget.y, 2)))<=this->cannon->getRange()){
+		return true;
+	}
+	return false;
 }
 
 void CannonView::aimAt(std::shared_ptr<Actor> t){
@@ -37,7 +37,9 @@ void CannonView::updateTarget(){
 }
 
 void CannonView::update(const float &dt) {
-	
-	this->cannon->shoot();
 	this->updateTarget();
+	if(this->target != NULL){
+		this->aimAt(this->target);
+		this->cannon->shoot();
+	}	
 }
