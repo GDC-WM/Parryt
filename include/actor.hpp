@@ -104,7 +104,7 @@ public:
 	/**
 	 * @return isTarget
 	 */
-	const bool &isTarget() { return this->target; };
+	const bool &isTargetable() { return this->target; };
 
 	/**
 	 * @param targetable True if it is a target, false if not

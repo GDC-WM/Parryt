@@ -47,6 +47,8 @@ public:
 
 	void update(const float &dt) override;
 
+	const float &getRange(void) const { return this->range; };
+
 	virtual void draw(std::shared_ptr<sf::RenderWindow> window) override;
 
 
@@ -54,6 +56,7 @@ private:
 	b2PolygonShape shape;
 	float rotationVelocity = 0;
 	float barrelAngle = M_PI / 4;
+	float range = 30;
 	sf::RectangleShape carriage;
 	sf::RectangleShape barrel;
 
