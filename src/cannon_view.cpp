@@ -11,13 +11,16 @@ CannonView::CannonView(std::shared_ptr<LogicController> logic, std::shared_ptr<C
 	this->logic = logic;
 }
 
+
 bool CannonView::inRange(std::shared_ptr<Actor> target){
 	b2Vec2 distTarget = target->getBody()->GetPosition();
-	if(sqrt((pow(distTarget.x, 2) + pow(distTarget.y, 2)))<=this->cannon->getRange()){
+	b2Vec2 cannonPos = this->cannon->getBody()->GetPosition();
+	if(sqrt((pow(distTarget.x-cannonPos.x, 2) + pow(distTarget.y-cannonPos.y, 2)))<=this->cannon->getRange()){
 		return true;
 	}
 	return false;
 }
+
 
 void CannonView::aimAt(std::shared_ptr<Actor> t){
 	//calculate angle of target's position using trig
@@ -27,19 +30,27 @@ void CannonView::aimAt(std::shared_ptr<Actor> t){
 	
 }
 
-void CannonView::updateTarget(){
+
+bool CannonView::updateTarget(){
 	std::list<std::shared_ptr<Actor>> actors = this->cannon->getRoom()->getActorList();
 	for(std::shared_ptr<Actor> a : actors){
 		if(a->getAllegiance() == Allegiance::PARROT && a->isTarget() && this->inRange(a)){
 			this->target = a;
+			return true;
 		}
 	}
+	this->target = NULL;
+	return false;
 }
+
 
 void CannonView::update(const float &dt) {
 	this->updateTarget();
 	if(this->target != NULL){
 		this->aimAt(this->target);
 		this->cannon->shoot();
+	}
+	if(!this->updateTarget()){
+		this->cannon->rotateStop();
 	}	
 }
