@@ -54,6 +54,7 @@ void Cannon::shoot(void) {
 
 
 void Cannon::update(const float &dt) {
+    // change barrelangle on frame update
 	this->barrelAngle += this->rotationVelocity;
 	if (this->loadingCounter > 0) this->loadingCounter--;
 }

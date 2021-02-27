@@ -14,6 +14,7 @@ Character::Character(b2Vec2 position) : Actor(position) {
 
 void Character::damage(float damage) {
 	this->health -= damage;
+    // don't update character's health if at max already
 	if (this->health > this->maxHealth) this->health = this->maxHealth;
 	if (this->health < 0) this->health = 0;
 }
@@ -29,7 +30,7 @@ void Character::goLeft(void) {
 	if (this->body->GetLinearVelocity().x > -this->maxSpeed)
 		this->body->ApplyForceToCenter(b2Vec2(-this->acceleration - 500, 0), true);
 
-		/* Refine the lookDirection */
+		// refine the lookDirection
 		if (this->body->GetLinearVelocity().x >= -this->maxSpeed && this->body->GetLinearVelocity().x < 0)
 			this->lookDirection = Direction::LEFT;
 
@@ -39,7 +40,7 @@ void Character::goLeft(void) {
 void Character::goRight(void) {
 	if (this->body->GetLinearVelocity().x < this->maxSpeed)
 		this->body->ApplyForceToCenter(b2Vec2(this->acceleration + 500, 0), true);
-		/* Refine the lookDirection */
+		// refine the lookDirection
 	if (this->body->GetLinearVelocity().x <= this->maxSpeed && this->body->GetLinearVelocity().x > 0)
 		this->lookDirection = Direction::RIGHT;
 

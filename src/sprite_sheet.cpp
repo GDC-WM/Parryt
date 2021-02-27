@@ -5,10 +5,14 @@
 
 
 SpriteSheet::SpriteSheet(const std::string &spriteSheet, const sf::Vector2i &spriteSize) {
+    // load a sprite sheet
 	this->texture.loadFromFile(spriteSheet);
+
+    // calculate sprite dimensions
 	this->sheetSize.x = this->texture.getSize().x / spriteSize.x;
 	this->sheetSize.y = this->texture.getSize().y / spriteSize.y;
 
+    // give sprite a rectangle
 	this->spriteRect = sf::IntRect(sf::Vector2i(0,0), spriteSize);
 	this->sprite = sf::Sprite(texture, this->spriteRect);
 	this->sprite.setScale(0.08,0.08);

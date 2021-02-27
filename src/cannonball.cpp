@@ -6,8 +6,10 @@
 
 
 Cannonball::Cannonball(b2Vec2 position, float damage) : Actor(position) {
+    // set allegiance of cannonball to pirate (enemy) allegiance
 	this->allegiance = Allegiance::PIRATE;
 
+    // cannonball's default age is 0 on spawn
 	this->age = 0;
 
 	// fix shape to body
@@ -30,7 +32,10 @@ Cannonball::Cannonball(b2Vec2 position, float damage) : Actor(position) {
 }
 
 void Cannonball::update(const float &dt) {
+    // increment cannon age on each update frame
 	this->age++;
+
+    // delete cannonballs that are of age 900
 	if (this->age > 900) {
 		this->room->removeActor(this->shared_from_this());
 	}

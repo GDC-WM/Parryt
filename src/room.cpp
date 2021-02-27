@@ -15,11 +15,13 @@ Room::Room(void) {
 
 void Room::addActor(std::shared_ptr<Actor> actor) {
 	actor->setRoom(this->shared_from_this());
+    // add an actor to the actor queue
 	this->actorList.push_back(actor);
 }
 
 
 void Room::removeActor(std::shared_ptr<Actor> actor) {
+    // probably called when actor dies or is killed
 	this->killList.push_back(actor);
 }
 

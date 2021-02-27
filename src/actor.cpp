@@ -7,13 +7,14 @@
 #include "room.hpp"
 
 
+
 Actor::Actor(const b2Vec2 &position) {
 	this->bodyDef.position = position;
 }
 
 
 void Actor::setRoom(std::shared_ptr<Room> room) {
-	// initialize the actor
+	// initialize the actor and set its room
 	this->room = room;
 	this->body = this->room->getWorld()->CreateBody(&this->bodyDef);
 	this->body->CreateFixture(&this->fixtureDef);

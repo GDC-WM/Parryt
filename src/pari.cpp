@@ -7,9 +7,12 @@
 #include "sprite_sheet.hpp"
 
 Pari::Pari(b2Vec2 position) : Character(position) {
+    // give pari good allegiance
 	this->allegiance = Allegiance::PARROT;
+    // can be targeted by enemies
 	this->setTargetable(true);
 
+    // pari movement physics
 	this->acceleration = 10;
 	this->deceleration = 250;
 	this->jumpImpulse = 235;
@@ -23,6 +26,7 @@ Pari::Pari(b2Vec2 position) : Character(position) {
 	this->fixtureDef.density = 2.4f;
 	this->fixtureDef.friction = 0.0f;
 
+    // load pari spritesheet
 	this->spriteSheet = std::make_unique<SpriteSheet>("../resources/pari.png", sf::Vector2i(64, 64));
 	this->spriteSheet->setLoop(this->standLoop);
 
@@ -41,6 +45,7 @@ Pari::Pari(b2Vec2 position) : Character(position) {
 bool Pari::jump(void) {
 	bool jumped = Character::jump();
 	if (jumped) this->spriteSheet->setOneShot(this->jumpLoop);
+    // prevents too many jumps
 	return jumped;
 }
 
