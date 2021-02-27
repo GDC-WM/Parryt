@@ -47,7 +47,7 @@ public:
 
 	void update(const float &dt) override;
 
-	float getRange(void){ return this->range;};
+	const float &getRange(void) const { return this->range; };
 
 	virtual void draw(std::shared_ptr<sf::RenderWindow> window) override;
 
