@@ -28,24 +28,15 @@ public:
 
 	/**
 	 * Update target if no target or if target out of range
-<<<<<<< HEAD
-	 * @return true if found a target, false if not
-=======
 	 *
 	 * @return True if found a target, false if not
->>>>>>> 5e43ac112c2dd9f83a77d07f822a15e6f1c00670
 	 */
 	bool updateTarget(void);
 
 	/**
-<<<<<<< HEAD
-	 * adjusts cannon angle to point at target
-	 * @param t , target to aim at
-=======
 	 * Adjusts cannon angle to point at target
 	 *
 	 * @param t Target to aim at
->>>>>>> 5e43ac112c2dd9f83a77d07f822a15e6f1c00670
 	 */
 	void aimAt(std::shared_ptr<Actor> t);
 
