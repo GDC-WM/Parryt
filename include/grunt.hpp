@@ -7,30 +7,44 @@
 
 #include "actor.hpp"
 #include "character.hpp"
+#include "sprite_sheet.hpp"
 
 
 /*
 *  The basic grunt enemy class
 */
 class Grunt : public Character {
-	public:
-		static constexpr float WIDTH = 0.5;
+public:
+    Grunt(b2Vec2 position);
 
-		static constexpr float HEIGHT = 1.9;
+    /**
+     * @return the enemy's range
+     */
+    int getRange(void){return this->range;};
+        
 
-		Grunt(b2Vec2 position);
+    /**
+     * @return the damage delt by the enemy
+     */
+    int getDMG(void){return this-> dmg;};
 
-		void shoot();
+    /**
+     * @param a The actor to hit
+     */
+    void shoot(std::shared_ptr<Actor> a){};
 
-		void draw(std::shared_ptr<sf::RenderWindow> window) override;
 
-	protected:
-		int reloadCounter = 0;
+	void draw(std::shared_ptr<sf::RenderWindow> window) override;
 
-		sf::RectangleShape drawable;
-		sf::Texture texture;
-		b2PolygonShape shape;
-		sf::Sprite sprite;
+protected:
+	int reloadCounter = 0;
+	int dmg = 10;
+	int range = 10;
+
+	sf::RectangleShape drawable;
+	sf::Texture texture;
+	b2PolygonShape shape;
+	sf::Sprite sprite;
 
 };
 

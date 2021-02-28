@@ -1,5 +1,5 @@
-#ifndef ENEMY_VIEW_HPP
-#define ENEMY_VIEW_HPP
+#ifndef GRUNT_VIEW_HPP
+#define GRUNT_VIEW_HPP
 
 #include <list>
 #include <memory>
@@ -7,14 +7,14 @@
 #include "logic_controller.hpp"
 #include "view.hpp"
 #include "character.hpp"
-#include "enemy.hpp"
+#include "grunt.hpp"
 
 /**
  * Draw the screen for the player
  */
-class EnemyView : public View {
+class GruntView : public View {
 public:
-	EnemyView(std::shared_ptr<LogicController> logic, std::shared_ptr<Enemy> enemy);
+	GruntView(std::shared_ptr<LogicController> logic, std::shared_ptr<Grunt> grunt);
 
 	void update(const float &dt) override;
 
@@ -34,7 +34,7 @@ public:
 	
 
 protected:
-    std::shared_ptr<Enemy> enemy;
+    std::shared_ptr<Grunt> grunt;
     std::shared_ptr<LogicController> logic;
 	std::shared_ptr<Actor> target;
 };
