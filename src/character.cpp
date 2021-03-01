@@ -75,5 +75,5 @@ void Character::collide(Actor &a) {
 }
 
 
-const bool &Character::isGrounded(void) {
-}
+//const bool &Character::isGrounded(void) {
+//}

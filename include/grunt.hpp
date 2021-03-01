@@ -15,13 +15,10 @@
 */
 class Grunt : public Character {
 public:
-    Grunt(b2Vec2 position);
+    static constexpr float WIDTH = 0.5;
+	static constexpr float HEIGHT = 1.9;
 
-    /**
-     * @return the enemy's range
-     */
-    int getRange(void){return this->range;};
-        
+    Grunt(b2Vec2 position);
 
     /**
      * @return the damage delt by the enemy
@@ -29,17 +26,21 @@ public:
     int getDMG(void){return this-> dmg;};
 
     /**
-     * @param a The actor to hit
+     * fires a bullet out of the grunt's weapon
      */
-    void shoot(std::shared_ptr<Actor> a){};
+    void shoot(void);
 
 
 	void draw(std::shared_ptr<sf::RenderWindow> window) override;
 
 protected:
-	int reloadCounter = 0;
+	int bulletCounter = 0;
+    int chamberSize = 5;
+    int refractoryCounter =0;
+    int refractoryTime= 30;
+    int reloadTime = 100;
+    int reloadCounter =0;
 	int dmg = 10;
-	int range = 10;
 
 	sf::RectangleShape drawable;
 	sf::Texture texture;

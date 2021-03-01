@@ -56,7 +56,7 @@ private:
 	b2PolygonShape shape;
 	float rotationVelocity = 0;
 	float barrelAngle = M_PI / 4;
-	float range = 30;
+	float range = 20;
 	sf::RectangleShape carriage;
 	sf::RectangleShape barrel;
 

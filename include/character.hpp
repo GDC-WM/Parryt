@@ -67,9 +67,9 @@ public:
 	void collide(Actor &a) override;
 
 	/**
-	 * @return if the character is resting on the ground
+	 * return if the character is resting on the ground
 	 */
-	const bool &isGrounded(void);
+	//const bool &isGrounded(void);
 
 
 protected:

@@ -9,30 +9,19 @@
 #include "view.hpp"
 #include "actor.hpp"
 #include "cannon.hpp"
+#include "ai_view.hpp"
 
 
 /**
  * Draw the screen for the player
  */
-class CannonView : public View {
+class CannonView : public AIView {
 public:
 	CannonView(std::shared_ptr<LogicController> logic, std::shared_ptr<Cannon> cannon);
 
 	void update(const float &dt) override;
 
-	/**
-	 * @return if target is out of range
-	 * @param a Target to be checked
-	 */
-	bool inRange(std::shared_ptr<Actor> actor);
-
-	/**
-	 * Update target if no target or if target out of range
-	 *
-	 * @return True if found a target, false if not
-	 */
-	bool updateTarget(void);
-
+	
 	/**
 	 * Adjusts cannon angle to point at target
 	 *
@@ -42,9 +31,7 @@ public:
 
 
 private:
-	std::shared_ptr<LogicController> logic;
 	std::shared_ptr<Cannon> cannon;
-	std::shared_ptr<Actor> target;
 };
 
 

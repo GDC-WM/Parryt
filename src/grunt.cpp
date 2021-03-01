@@ -31,6 +31,21 @@ Grunt::Grunt(b2Vec2 position) : Character(position) {
 
 
 void Grunt::shoot() {
+	//check if grunt reloading
+	//should we make it that he can shout x times in a row and then pauses to reload (more realistic)
+	if(this->reloadTime >0){
+		return;
+	}
+	if(this->bulletCounter<=0){
+		this->reloadCounter=reloadTime;
+		return;
+	}
+	if(this->refractoryCounter>0){
+		return;
+	}
+	
+	
+	//create a bullet here and propel it foreward
 	return;
 }
 

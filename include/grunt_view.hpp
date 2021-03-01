@@ -8,35 +8,26 @@
 #include "view.hpp"
 #include "character.hpp"
 #include "grunt.hpp"
+#include "ai_view.hpp"
 
 /**
  * Draw the screen for the player
  */
-class GruntView : public View {
+class GruntView : public AIView {
 public:
 	GruntView(std::shared_ptr<LogicController> logic, std::shared_ptr<Grunt> grunt);
 
 	void update(const float &dt) override;
 
 	/**
-	 * @return if target is out of range
-	 * @param actor Target to be checked
+	 * Aims at a target
+	 * @param target the target to aim at
 	 */
-	bool inRange(std::shared_ptr<Actor> actor);
-
-	/**
-	 * Update target if no target or if target out of range
-	 *
-	 * @return True if found a target, false if not
-	 */
-	bool updateTarget(void);
-
+	void aimAt(std::shared_ptr<Actor> target){};
 	
 
 protected:
-    std::shared_ptr<Grunt> grunt;
-    std::shared_ptr<LogicController> logic;
-	std::shared_ptr<Actor> target;
+    std::shared_ptr<Grunt> grunt;	
 };
 
 
