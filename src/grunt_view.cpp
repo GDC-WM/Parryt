@@ -87,6 +87,8 @@ void GruntView::chase(){
 	if(this->target->getBody()->GetPosition().y > this->grunt->getBody()->GetPosition().y){
 		//target is above pirate
 		this->grunt->jump(); //lol why doesn't he fall???
+
+		//aaron is cool ig
 	}
 	
 }
