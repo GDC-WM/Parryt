@@ -8,7 +8,7 @@
 
 GruntView::GruntView(std::shared_ptr<LogicController> logic, std::shared_ptr<Grunt> grunt) : AIView(logic, grunt) {
 	this->grunt = grunt;
-	this->range = 8;
+	this->range = 7;
 };
 
 
@@ -57,20 +57,26 @@ bool GruntView::updateTarget(const Allegiance allegiance){
 }
 
 void GruntView::patrol(b2Vec2 post){
-	int leftLim = post.x; //5 is arbitrary
-	int rightLim = post.x +5;
+	int leftLim = post.x; //8 is arbitrary
+	int rightLim = post.x +8;
 
 	if(this->grunt->getDirection() == Direction::LEFT){
 		if(this->grunt->getBody()->GetPosition().x <= leftLim){
+			std::cout<<" hit left limit, going right now ";
 			this->grunt->goRight();
+		}else{
+			std::cout<<" facing left going left ";
+			this->grunt->goLeft();
 		}
-		this->grunt->goLeft();
 	}
 	if(this->grunt->getDirection() == Direction::RIGHT){
 		if(this->grunt->getBody()->GetPosition().x >= rightLim){
+			std::cout<<" hit right lim going left now ";
 			this->grunt->goLeft();
+		}else{
+			std::cout<<" facing right going right ";
+			this->grunt->goRight();
 		}
-		this->grunt->goRight();
 	}
 }
 
@@ -86,7 +92,7 @@ void GruntView::chase(){
 	}
 	if(this->target->getBody()->GetPosition().y > this->grunt->getBody()->GetPosition().y){
 		//target is above pirate
-		this->grunt->jump(); //lol why doesn't he fall???
+		this->grunt->jump(); 
 
 		//aaron is cool ig
 	}
@@ -95,12 +101,12 @@ void GruntView::chase(){
 
 
 void GruntView::update(const float &dt){
-	this->patrol(this->grunt->getPost());
 	if (this->updateTarget(Allegiance::PARROT)){
 		this->chase();
 		this->aimAt();
 		this->grunt->shoot();
+	}else{
+		this->patrol(this->grunt->getPost());
 	}
-	this->patrol(this->grunt->getPost());
 }
 
