@@ -8,7 +8,7 @@
 
 GruntView::GruntView(std::shared_ptr<LogicController> logic, std::shared_ptr<Grunt> grunt) : AIView(logic, grunt) {
 	this->grunt = grunt;
-	this->range = 15;
+	this->range = 8;
 };
 
 
@@ -17,7 +17,7 @@ void GruntView::aimAt(){
 }
 
 bool GruntView::updateTarget(const Allegiance allegiance){
-	b2Vec2 dangerZone = b2Vec2(5, 5);
+	b2Vec2 dangerZone = b2Vec2(2, 2);
 	std::list<std::shared_ptr<Actor>> actors = this->actor->getRoom()->getActorList();
 	for (std::shared_ptr<Actor> a : actors){
 		if (a->getAllegiance() == allegiance && a->isTargetable()){
@@ -57,8 +57,8 @@ bool GruntView::updateTarget(const Allegiance allegiance){
 }
 
 void GruntView::patrol(b2Vec2 post){
-	int leftLim = post.x; //8 is arbitrary, he will patrol within 8 ft left and 8 ft right of his post
-	int rightLim = post.x +16;
+	int leftLim = post.x; //5 is arbitrary
+	int rightLim = post.x +5;
 
 	if(this->grunt->getDirection() == Direction::LEFT){
 		if(this->grunt->getBody()->GetPosition().x <= leftLim){
@@ -95,6 +95,7 @@ void GruntView::chase(){
 
 
 void GruntView::update(const float &dt){
+	this->patrol(this->grunt->getPost());
 	if (this->updateTarget(Allegiance::PARROT)){
 		this->chase();
 		this->aimAt();

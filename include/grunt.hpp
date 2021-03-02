@@ -23,11 +23,6 @@ public:
 
     void update(const float &dt);
 
-    /**
-	 * Ambient movement (patrolling)
-	 * //param post the grunt's area of patrol
-	 */
-	//void patrol(b2Vec2 post);
 
     /**
      * returns the damage the grunt deals

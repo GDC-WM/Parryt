@@ -24,7 +24,7 @@ Grunt::Grunt(b2Vec2 position) : Character(position) {
 	// fix shape to body
 	this->shape.SetAsBox(this->WIDTH, this->HEIGHT);
 	this->fixtureDef.shape = &this->shape;
-	this->fixtureDef.density = 1.0f;
+	this->fixtureDef.density = 2.0f;
 	this->fixtureDef.friction = 1.0f;
 
 	// set drawable
