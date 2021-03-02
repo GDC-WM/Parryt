@@ -8,6 +8,15 @@
 
 Grunt::Grunt(b2Vec2 position) : Character(position) {
 	this->allegiance = Allegiance::PIRATE;
+	this->setTargetable(true);
+	this->post = position;
+
+	this->acceleration = 10;
+	this->deceleration = 250;
+	this->jumpImpulse = 235;
+	this->maxSpeed = 15;
+	this->maxHealth = 100;
+	this->maxJumps = 2;
 
 	bodyDef.fixedRotation = true;
 	this->bodyDef.type = b2_dynamicBody;
@@ -16,12 +25,13 @@ Grunt::Grunt(b2Vec2 position) : Character(position) {
 	this->shape.SetAsBox(this->WIDTH, this->HEIGHT);
 	this->fixtureDef.shape = &this->shape;
 	this->fixtureDef.density = 1.0f;
-	this->fixtureDef.friction = 2.4f;
+	this->fixtureDef.friction = 1.0f;
 
 	// set drawable
 	texture.loadFromFile("../resources/pirate.png");
 	this->sprite = sf::Sprite(texture, sf::IntRect(0,0,64,64));
 	sprite.setScale(0.08,0.08); //hardcoding BAD
+	this->sprite.setOrigin(32 * .08, 32 * .08);
 
 	//set old drawable
 	this->drawable.setOrigin(this->WIDTH, this->HEIGHT);
@@ -50,6 +60,8 @@ void Grunt::shoot() {
 }
 
 
+
+
 void Grunt::draw(std::shared_ptr<sf::RenderWindow> window) {
 	// old drawable
 	this->drawable.setPosition(this->getBody()->GetPosition().x,
@@ -61,4 +73,8 @@ void Grunt::draw(std::shared_ptr<sf::RenderWindow> window) {
 	                        -this->getBody()->GetPosition().y);
 
 	window->draw(this->sprite);
+}
+
+void Grunt::update(const float &dt){
+
 }

@@ -19,15 +19,32 @@ public:
 
 	void update(const float &dt) override;
 
+	bool updateTarget(const Allegiance allegiance);
+
 	/**
-	 * Aims at a target
-	 * @param target the target to aim at
+	 * Aims at the target
+	 * 
 	 */
-	void aimAt(std::shared_ptr<Actor> target){};
+	void aimAt();
+
+
+	/**
+	 * Chases the target
+	 */
+	void chase();
+
+
+	/**
+	 * Ambient movement (patrolling)
+	 * @param post the grunt's area of patrol
+	 */
+	void patrol(b2Vec2 post);
 	
 
 protected:
-    std::shared_ptr<Grunt> grunt;	
+    std::shared_ptr<Grunt> grunt;
+	bool facingTarget; //if facing the target and target in range, aggro
+						//if it's not facing the target, only aggro if target is in the patrol zone	
 };
 
 

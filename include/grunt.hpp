@@ -19,11 +19,35 @@ public:
 	static constexpr float HEIGHT = 1.9;
 
     Grunt(b2Vec2 position);
+    
+
+    void update(const float &dt);
 
     /**
-     * @return the damage delt by the enemy
+	 * Ambient movement (patrolling)
+	 * //param post the grunt's area of patrol
+	 */
+	//void patrol(b2Vec2 post);
+
+    /**
+     * returns the damage the grunt deals
+     * @return the damage delt by the grunt
      */
     int getDMG(void){return this-> dmg;};
+
+
+    /**
+     * gives the grunt a post to patrol
+     * @param post the coordinates of the center of their post
+     */
+    void setPost(b2Vec2 post){ this->post = post;};
+
+    /**
+     * returns the grunt's post
+     * @return post
+     */
+    b2Vec2 getPost(){return this->post;};
+
 
     /**
      * fires a bullet out of the grunt's weapon
@@ -41,6 +65,9 @@ protected:
     int reloadTime = 100;
     int reloadCounter =0;
 	int dmg = 10;
+    
+    b2Vec2 post; //default post, should be changed whenever a grunt is added
+                                 // unless only 1 grunt per level
 
 	sf::RectangleShape drawable;
 	sf::Texture texture;

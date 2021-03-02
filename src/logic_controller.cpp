@@ -42,9 +42,9 @@ void LogicController::startDemo(void) {
 	this->view->addView(cannon);
 
 	// Add grunt
-	std::shared_ptr<Grunt> grunt = std::make_shared<Grunt>(b2Vec2(-10,-8));
+	std::shared_ptr<Grunt> grunt = std::make_shared<Grunt>(b2Vec2(20, -5));
 	this->getCurrentRoom()->addActor(grunt);
-	//this->view->addView(grunt);
+	this->view->addView(grunt);
 
 	// Add mast platforms
 	for(int i = 0; i < 32; i += 2) {

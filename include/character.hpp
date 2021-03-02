@@ -44,6 +44,12 @@ public:
 	 */
 	const int getMaxHealth(void) const { return this->maxHealth; };
 
+
+	/**
+	 * @return direction looking
+	 */
+	Direction getDirection(){return this->lookDirection;};
+
 	/**
 	 * Make the character jump
 	 */
