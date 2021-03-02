@@ -43,8 +43,6 @@ public:
 
 protected:
     std::shared_ptr<Grunt> grunt;
-	bool facingTarget; //if facing the target and target in range, aggro
-						//if it's not facing the target, only aggro if target is in the patrol zone	
 };
 
 

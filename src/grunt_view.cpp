@@ -13,7 +13,13 @@ GruntView::GruntView(std::shared_ptr<LogicController> logic, std::shared_ptr<Gru
 
 
 void GruntView::aimAt(){
-	//auuugh
+	//pew pew
+	//theres not really anything to rotate, calculate angle to shoot bullet at?
+	//or just do that in the shoot method? girl idk girl
+	//calculate angle of target's position using trig
+	b2Vec2 targetDist = this->target->getBody()->GetPosition() - this->grunt->getBody()->GetPosition();
+	float targetAngle = atan2(targetDist.y, targetDist.x);
+	this->grunt->setGunAngle(targetAngle);
 }
 
 bool GruntView::updateTarget(const Allegiance allegiance){
@@ -84,11 +90,19 @@ void GruntView::patrol(b2Vec2 post){
 void GruntView::chase(){
 	if(this->target->getBody()->GetPosition().x < this->grunt->getBody()->GetPosition().x){
 		//target is to the left
+		this->aimAt();
+		this->grunt->shoot();
 		this->grunt->goLeft();
+		this->aimAt();
+		this->grunt->shoot();
 	}
-	if(this->target->getBody()->GetPosition().x > this->grunt->getBody()->GetPosition().x){
+	if(this->target->getBody()->GetPosition().x > this->grunt->getBody()->GetPosition().x ){
 		//target is to the right
+		this->aimAt();
+		this->grunt->shoot();
 		this->grunt->goRight();
+		this->aimAt();
+		this->grunt->shoot();
 	}
 	if(this->target->getBody()->GetPosition().y > this->grunt->getBody()->GetPosition().y){
 		//target is above pirate

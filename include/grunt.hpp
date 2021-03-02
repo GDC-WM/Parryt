@@ -50,16 +50,32 @@ public:
     void shoot(void);
 
 
+    /**
+     * returns gun angle
+     * @return the current angle of the gun
+     */
+    float getGunAngle(){return this->gunAngle;};
+
+    
+    /**
+     * sets the gun angle
+     * @param angle the new gun angle
+     */
+    void setGunAngle(float angle){this->gunAngle = angle; };
+
+
 	void draw(std::shared_ptr<sf::RenderWindow> window) override;
 
 protected:
-	int bulletCounter = 0;
+	int bulletCounter = 5;
     int chamberSize = 5;
     int refractoryCounter =0;
     int refractoryTime= 30;
-    int reloadTime = 100;
+    int reloadTime = 50;
     int reloadCounter =0;
 	int dmg = 10;
+
+    int gunAngle = 90;
     
     b2Vec2 post; //default post, should be changed whenever a grunt is added
                                  // unless only 1 grunt per level

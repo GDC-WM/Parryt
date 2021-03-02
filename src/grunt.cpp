@@ -4,6 +4,7 @@
 #include "actor.hpp"
 #include "character.hpp"
 #include "grunt.hpp"
+#include "bullet.hpp"
 
 
 Grunt::Grunt(b2Vec2 position) : Character(position) {
@@ -43,20 +44,26 @@ Grunt::Grunt(b2Vec2 position) : Character(position) {
 void Grunt::shoot() {
 	//check if grunt reloading
 	//should we make it that he can shout x times in a row and then pauses to reload (more realistic)
-	if(this->reloadTime >0){
-		return;
-	}
 	if(this->bulletCounter<=0){
 		this->reloadCounter=reloadTime;
+		return;
+	}
+	if(this->reloadCounter >0){
 		return;
 	}
 	if(this->refractoryCounter>0){
 		return;
 	}
-	
-	
-	//create a bullet here and propel it foreward
-	return;
+
+	this->refractoryCounter = this->refractoryTime;
+	this->bulletCounter--;
+
+	std::shared_ptr<Bullet> bullet = std::make_shared<Bullet>(this->body->GetPosition(), 20);
+	this->room->addActor(bullet); // give actors access to the room they are in
+	bullet->getBody()->ApplyLinearImpulseToCenter(b2Vec2(cos(this->gunAngle) * 150,
+	                                                         sin(this->gunAngle) * 150), true);
+
+
 }
 
 
@@ -76,5 +83,14 @@ void Grunt::draw(std::shared_ptr<sf::RenderWindow> window) {
 }
 
 void Grunt::update(const float &dt){
+	if(this->refractoryCounter>0){
+		this->refractoryCounter--;
+	}
+	if(this->reloadCounter ==0){
+		this->bulletCounter = this->chamberSize;
+	}
+	if(this->reloadCounter>0){
+		this->reloadCounter--;
+	}
 
 }
