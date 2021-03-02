@@ -8,7 +8,7 @@
 
 GruntView::GruntView(std::shared_ptr<LogicController> logic, std::shared_ptr<Grunt> grunt) : AIView(logic, grunt) {
 	this->grunt = grunt;
-	this->range = 7;
+	this->range = 10;
 };
 
 
@@ -62,19 +62,19 @@ void GruntView::patrol(b2Vec2 post){
 
 	if(this->grunt->getDirection() == Direction::LEFT){
 		if(this->grunt->getBody()->GetPosition().x <= leftLim){
-			std::cout<<" hit left limit, going right now ";
+			//std::cout<<" hit left limit, going right now ";
 			this->grunt->goRight();
 		}else{
-			std::cout<<" facing left going left ";
+			//std::cout<<" facing left going left ";
 			this->grunt->goLeft();
 		}
 	}
 	if(this->grunt->getDirection() == Direction::RIGHT){
 		if(this->grunt->getBody()->GetPosition().x >= rightLim){
-			std::cout<<" hit right lim going left now ";
+			//std::cout<<" hit right lim going left now ";
 			this->grunt->goLeft();
 		}else{
-			std::cout<<" facing right going right ";
+			//std::cout<<" facing right going right ";
 			this->grunt->goRight();
 		}
 	}

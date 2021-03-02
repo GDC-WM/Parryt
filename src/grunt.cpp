@@ -13,10 +13,10 @@ Grunt::Grunt(b2Vec2 position) : Character(position) {
 
 	this->acceleration = 10;
 	this->deceleration = 250;
-	this->jumpImpulse = 235;
+	this->jumpImpulse = 200;
 	this->maxSpeed = 15;
 	this->maxHealth = 100;
-	this->maxJumps = 2;
+	this->maxJumps = 1;
 
 	bodyDef.fixedRotation = true;
 	this->bodyDef.type = b2_dynamicBody;
