@@ -1,7 +1,7 @@
 #include <SFML/Audio.hpp>
 #include <iostream>
 
-//  Manages all of the music and sound effects for the game.
+/* Manages all of the music for the game. Will most likely put Sound Effects in a different file. */
 class Sounds{
     public:
         Sounds(std::string musicPath);
