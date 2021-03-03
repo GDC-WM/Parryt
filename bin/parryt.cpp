@@ -12,7 +12,9 @@ int main(int argc, char** argv) {
 	logicController->init(viewController);
 	logicController->startDemo();
 
-	//Add Music to demo - This is terrible I know, but I was only able to come up with this in the few hrs I had.
+	/* Add Music to demo - This is terrible - I know - but this works for now;
+	I would like to add conditionals -- for example, "if this level, then play this music", etc.
+	*/
 	Sounds ShipMusic("../resources/TestMusic.wav");
 	ShipMusic.playTrack();
 
