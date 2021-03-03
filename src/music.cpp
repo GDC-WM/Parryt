@@ -13,13 +13,13 @@ Sounds::~Sounds()
 
 
 void Sounds::stopTrack(){
-    sf::Music music;
+
     music.stop();
     
 }
 
 void Sounds::pauseTrack(){
-    sf::Music music;
+
     music.pause();
     
 }
