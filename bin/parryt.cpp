@@ -4,12 +4,17 @@
 
 #include "logic_controller.hpp"
 #include "view_controller.hpp"
+#include "music.hpp"
 
 int main(int argc, char** argv) {
 	std::shared_ptr<LogicController> logicController = std::make_shared<LogicController>();
 	std::shared_ptr<ViewController> viewController = std::make_shared<ViewController>(logicController);
 	logicController->init(viewController);
 	logicController->startDemo();
+
+	//Add Music to demo - This is terrible I know, but I was only able to come up with this in the few hrs I had.
+	Sounds ShipMusic("../resources/TestMusic.wav");
+	ShipMusic.playTrack();
 
 	// game loop
 	std::chrono::steady_clock::time_point startTime;
