@@ -16,8 +16,8 @@ int main(int argc, char** argv) {
 	Add Music to demo - This is terrible - I know - but this works for now;
 	I would like to add conditionals -- for example, "if this level, then play this music", etc.
 	*/
-	Sounds ShipMusic("../resources/TestMusic.wav");
-	ShipMusic.playTrack();
+	musicTrack ShipTrack("../resources/MainTheme.wav");
+	ShipTrack.playTrack();
 
 	// game loop
 	std::chrono::steady_clock::time_point startTime;

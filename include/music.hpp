@@ -2,13 +2,13 @@
 #include <iostream>
 
 /* Manages all of the music for the game. Will most likely put Sound Effects in a different file. */
-class Sounds{
+class musicTrack{
 
     /* Use these functions to play, pause, stop, and open music files */
 
     public:
-        Sounds(std::string musicPath);
-        ~Sounds();
+        musicTrack(std::string musicPath);
+        ~musicTrack();
         void playTrack();
         void stopTrack();
         void pauseTrack();

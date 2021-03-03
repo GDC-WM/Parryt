@@ -1,15 +1,15 @@
 #include "music.hpp"
 
 
-Sounds::Sounds(std::string musicPath) {music.openFromFile(musicPath);}
+musicTrack::musicTrack(std::string musicPath) {music.openFromFile(musicPath);}
 
-Sounds::~Sounds() {}
+musicTrack::~musicTrack() {}
 
-void Sounds::stopTrack() {music.stop();}
+void musicTrack::stopTrack() {music.stop();}
 
-void Sounds::pauseTrack() {music.pause();}
+void musicTrack::pauseTrack() {music.pause();}
 
-void Sounds::playTrack(){
+void musicTrack::playTrack(){
     music.setVolume(50);
     music.play();
     music.setLoop(true);
