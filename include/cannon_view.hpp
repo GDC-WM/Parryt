@@ -19,15 +19,16 @@ class CannonView : public AIView {
 public:
 	CannonView(std::shared_ptr<LogicController> logic, std::shared_ptr<Cannon> cannon);
 
-	void update(const float &dt) override;
+	bool inRange(std::shared_ptr<Actor> target) override;
 
-	
 	/**
 	 * Adjusts cannon angle to point at target
 	 *
 	 * @param t Target to aim at
 	 */
 	void aimAt(std::shared_ptr<Actor> t);
+
+	void update(const float &dt) override;
 
 
 private:
