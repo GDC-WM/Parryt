@@ -60,20 +60,21 @@ public:
 	void goRight(void);
 
 	/**
+	 * Set movement direction
+	 */
+	void setMovement(void);
+
+	/**
 	 * Make the character go left
 	 */
 	void stop(void);
 
 	void collide(Actor &a) override;
 
-	/**
-	 * @return if the character is resting on the ground
-	 */
-	const bool &isGrounded(void);
-
 
 protected:
-	Direction lookDirection = Direction::RIGHT;
+	Dir lookDir = Dir::right;
+	Dir movementForceDir = Dir::none;
 	float jumpImpulse;
 	int maxJumps;
 	int jumpCounter = 0;

@@ -31,7 +31,7 @@ void Character::goLeft(void) {
 
 		/* Refine the lookDirection */
 		if (this->body->GetLinearVelocity().x >= -this->maxSpeed && this->body->GetLinearVelocity().x < 0)
-			this->lookDirection = Direction::LEFT;
+			this->lookDir = Dir::left;
 
 }
 
@@ -41,7 +41,7 @@ void Character::goRight(void) {
 		this->body->ApplyForceToCenter(b2Vec2(this->acceleration + 500, 0), true);
 		/* Refine the lookDirection */
 	if (this->body->GetLinearVelocity().x <= this->maxSpeed && this->body->GetLinearVelocity().x > 0)
-		this->lookDirection = Direction::RIGHT;
+		this->lookDir = Dir::right;
 
 }
 
@@ -71,9 +71,5 @@ bool Character::jump(void) {
 
 
 void Character::collide(Actor &a) {
-	if (a.getAllegiance() == Allegiance::NEUTRAL && a.collides(*this)) this->jumpCounter = 0;
-}
-
-
-const bool &Character::isGrounded(void) {
+	if (a.getAllegiance() == Allegiance::neutral && a.collides(*this)) this->jumpCounter = 0;
 }

@@ -8,7 +8,7 @@
 
 
 Cannon::Cannon(b2Vec2 position) : Actor(position) {
-	this->allegiance = Allegiance::PIRATE;
+	this->allegiance = Allegiance::pirate;
 
 	// fix shape to body
 	this->bodyDef.type = b2_staticBody;
