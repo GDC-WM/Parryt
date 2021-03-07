@@ -62,14 +62,16 @@ public:
 	/**
 	 * Set movement direction
 	 */
-	void setMovement(void);
+	void setMovement(const Dir &dir) { this->movementForceDir = dir; };
 
 	/**
-	 * Make the character go left
+	 * Get movement direction
 	 */
-	void stop(void);
+	const Dir &getMovement(void) const { return this->movementForceDir; };
 
-	void collide(Actor &a) override;
+	virtual void collide(Actor &a) override;
+
+	virtual void update(const float &dt) override;
 
 
 protected:
@@ -84,6 +86,11 @@ protected:
 	int maxHealth;
 	float health;
 	//TODO: give every character a SpriteSheet?
+
+	/**
+	 * Make the character apply a stop force
+	 */
+	void stop(void);
 };
 
 
