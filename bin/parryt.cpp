@@ -19,6 +19,8 @@ int main(int argc, char** argv) {
 	musicTrack ShipTrack("../resources/MainTheme.wav");
 	ShipTrack.playTrack();
 
+	playSE Jump("../resources/MainTheme.wav");
+
 	// game loop
 	std::chrono::steady_clock::time_point startTime;
 	while (!logicController->isTerminated()) {
