@@ -1,15 +1,26 @@
-#include <sound_effect.hpp>
+#include "sound_effects.hpp"
+#include "character.hpp"
+#include "pari.hpp"
 
-soundEffect::loadSoundEffectFile(std::string SEPath) {Buffer.loadFromFile(SEPath)}
+soundEffect::soundEffect(std::string SEPath) {Buffer.loadFromFile(SEPath);}
+
+soundEffect::~soundEffect() {}
 
 void soundEffect::setSoundBuffer() {SoundEffect.setBuffer(Buffer);}
 
-void soundEffect::playSE(std::string SEPath) 
+void soundEffect::playSE() 
 {
-    /* Load the file first */
-    loadSoundEffectFile(SEPath);
     /* Set the Sound Buffer */
     setSoundBuffer();
     /* Play the loaded Sound Effect */
     SoundEffect.play();
 }
+
+/* 
+
+Use the Sound Effect like this:
+
+	soundEffect Jump("../resources/MainTheme.wav");
+	Jump.playSE();
+
+*/

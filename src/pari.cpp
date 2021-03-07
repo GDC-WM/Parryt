@@ -5,6 +5,7 @@
 #include "character.hpp"
 #include "pari.hpp"
 #include "sprite_sheet.hpp"
+#include "sound_effects.hpp"
 
 Pari::Pari(b2Vec2 position) : Character(position) {
 	this->allegiance = Allegiance::PARROT;

@@ -1,5 +1,4 @@
-#include <SFML/Audio.hpp>
-#include <iostream>
+#include "SFML/Audio.hpp"
 
 /* Manages all of the music for the game. Will most likely put Sound Effects in a different file. */
 class musicTrack{

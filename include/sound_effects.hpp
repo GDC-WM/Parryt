@@ -7,8 +7,8 @@ class soundEffect {
     /* Use these functions to play, pause, stop, and open music files */
 
     public:
-        loadSoundEffect(std::string SEPath);   /* SE means Sound Effect */
-        ~loadSoundEffect();
+        soundEffect(std::string SEPath);   /* SE means Sound Effect */
+        ~soundEffect();
         void setSoundBuffer();
         void playSE();
 

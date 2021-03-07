@@ -5,6 +5,7 @@
 #include "logic_controller.hpp"
 #include "view_controller.hpp"
 #include "music.hpp"
+#include "sound_effects.hpp"
 
 int main(int argc, char** argv) {
 	std::shared_ptr<LogicController> logicController = std::make_shared<LogicController>();
@@ -18,8 +19,6 @@ int main(int argc, char** argv) {
 	*/
 	musicTrack ShipTrack("../resources/MainTheme.wav");
 	ShipTrack.playTrack();
-
-	playSE Jump("../resources/MainTheme.wav");
 
 	// game loop
 	std::chrono::steady_clock::time_point startTime;
