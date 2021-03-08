@@ -30,7 +30,7 @@ bool GruntView::updateTarget(const Allegiance allegiance){
 		if (a->getAllegiance() == allegiance && a->isTargetable()){
 			if(this->inRange(a)){
 				if(a->getBody()->GetPosition().x < this->grunt->getBody()->GetPosition().x){ 
-					if(this->grunt->getDirection() == Direction::LEFT){
+					if(this->grunt->getDirection() == Dir::left){
 						//looking at it
 						this->target = a;
 						return true;
@@ -43,7 +43,7 @@ bool GruntView::updateTarget(const Allegiance allegiance){
 					}
 				}
 				if(a->getBody()->GetPosition().x > this->grunt->getBody()->GetPosition().x){ 
-					if(this->grunt->getDirection() == Direction::RIGHT){
+					if(this->grunt->getDirection() == Dir::right){
 						//looking at it to the right
 						this->target =a;
 						return true;
@@ -67,7 +67,7 @@ void GruntView::patrol(b2Vec2 post){
 	int leftLim = post.x; //8 is arbitrary
 	int rightLim = post.x +8;
 
-	if(this->grunt->getDirection() == Direction::LEFT){
+	if(this->grunt->getDirection() == Dir::left){
 		if(this->grunt->getBody()->GetPosition().x <= leftLim){
 			//std::cout<<" hit left limit, going right now ";
 			this->grunt->goRight();
@@ -76,7 +76,7 @@ void GruntView::patrol(b2Vec2 post){
 			this->grunt->goLeft();
 		}
 	}
-	if(this->grunt->getDirection() == Direction::RIGHT){
+	if(this->grunt->getDirection() == Dir::right){
 		if(this->grunt->getBody()->GetPosition().x >= rightLim){
 			//std::cout<<" hit right lim going left now ";
 			this->grunt->goLeft();
@@ -108,7 +108,7 @@ void GruntView::chase(){
 
 
 void GruntView::update(const float &dt){
-	if (this->updateTarget(Allegiance::PARROT)){
+	if (this->updateTarget(Allegiance::parrot)){
 		this->chase();
 		this->aimAt();
 	}else{

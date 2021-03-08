@@ -14,19 +14,19 @@
 /*
  * Define what side of the fight that the actor is on
  */
-enum class Allegiance { PARROT, PIRATE, NEUTRAL };
+enum class Allegiance { parrot, pirate, neutral };
 
 
 /*
  * How does this collide?
  */
-enum class CollisionID { SOLID };
+enum class CollisionID { solid };
 
 
 /*
  * Define a direction
  */
-enum class Direction { FRONT, BACK, LEFT, RIGHT, UP, DOWN };
+enum class Dir { front, back, left, right, up, down, none };
 
 
 /*
@@ -118,7 +118,7 @@ public:
 
 
 protected:
-	Allegiance allegiance = Allegiance::NEUTRAL; // neutral default
+	Allegiance allegiance = Allegiance::neutral; // neutral default
 	std::shared_ptr<Room> room;
 	b2BodyDef bodyDef;
 	b2FixtureDef fixtureDef;

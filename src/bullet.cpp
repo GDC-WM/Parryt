@@ -6,7 +6,7 @@
 
 
 Bullet::Bullet(b2Vec2 position, float damage) : Actor(position) {
-	this->allegiance = Allegiance::PIRATE;
+	this->allegiance = Allegiance::pirate;
 
 	this->age = 0;
 

@@ -7,7 +7,7 @@
 #include "sprite_sheet.hpp"
 
 Pari::Pari(b2Vec2 position) : Character(position) {
-	this->allegiance = Allegiance::PARROT;
+	this->allegiance = Allegiance::parrot;
 	this->setTargetable(true);
 
 	this->acceleration = 10;
@@ -59,7 +59,7 @@ void Pari::draw(std::shared_ptr<sf::RenderWindow> window) {
 	else newLoop = this->standLoop;
 
 	// use mirrored sprite if facing left
-	if (this->lookDirection == Direction::LEFT) newLoop = newLoop.mirror();
+	if (this->lookDir == Dir::left) newLoop = newLoop.mirror();
 
 	if (newLoop != this->spriteSheet->getLoop()) {
 		this->spriteSheet->setLoop(newLoop);
