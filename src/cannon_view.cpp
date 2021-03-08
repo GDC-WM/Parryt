@@ -1,6 +1,6 @@
 #include <list>
 #include <memory>
-#include<cmath>
+#include <cmath>
 
 #include "view.hpp"
 #include "cannon_view.hpp"

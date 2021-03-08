@@ -5,7 +5,6 @@
 #include "logic_controller.hpp"
 #include "view_controller.hpp"
 #include "music.hpp"
-#include "sound_effects.hpp"
 
 int main(int argc, char** argv) {
 	std::shared_ptr<LogicController> logicController = std::make_shared<LogicController>();
@@ -14,7 +13,7 @@ int main(int argc, char** argv) {
 	logicController->startDemo();
 
 	/* 
-	Add Music to demo - this works for now;
+	Add music to demo - this works for now;
 	I would like to add conditionals -- for example, "if this level, then play this music", etc.
 	*/
 	musicTrack ShipTrack("../resources/MainTheme.wav");

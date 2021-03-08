@@ -15,3 +15,9 @@ void musicTrack::playTrack(){
     music.setLoop(true);
 }
 
+/*
+    Play music track like this:
+
+	musicTrack ShipTrack("../resources/MainTheme.wav");
+	ShipTrack.playTrack();
+*/

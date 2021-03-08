@@ -1,13 +1,12 @@
 #include <SFML/Audio.hpp>
-#include <iostream>
 
-/* Manages all of the music for the game. Will most likely put Sound Effects in a different file. */
+/* Manages all of the sound effects for the game */
 class soundEffect {
 
     /* Use these functions to play, pause, stop, and open music files */
 
     public:
-        soundEffect(std::string SEPath);   /* SE means Sound Effect */
+        soundEffect(std::string SoundEffectPath);   /* SE means Sound Effect */
         ~soundEffect();
         void setSoundBuffer();
         void playSE();
@@ -17,9 +16,9 @@ class soundEffect {
         sf::SoundBuffer Buffer;
         sf::Sound SoundEffect;
 
-        /*
-        NOTE - Add Sound effects in the game by using this method:
-        sf::SoundBuffer [SOUND_EFFECT_NAME];
-        sf::Sound [SOUND_EFFECT_NAME];
-        */
+/*
+    Add Sound effects in the game by using this method:
+    sf::SoundBuffer [SOUND_EFFECT_NAME];
+    sf::Sound [SOUND_EFFECT_NAME];
+*/
 };
