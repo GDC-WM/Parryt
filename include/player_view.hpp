@@ -26,12 +26,27 @@ private:
 	std::shared_ptr<Character> character;
 
 	/**
-	 * Poll input methods and react accordingly.
+	 * Respond to key press
 	 */
-	void pollInput(void);
+	void pressEvent(sf::Event::KeyEvent key);
 
 	/**
-	 * Poll input events and react accordingly.
+	 * Respond to mouse press
+	 */
+	void pressEvent(sf::Event::MouseButtonEvent button);
+
+	/**
+	 * Respond to key release
+	 */
+	void releaseEvent(sf::Event::KeyEvent key);
+
+	/**
+	 * Respond to mouse release
+	 */
+	void releaseEvent(sf::Event::MouseButtonEvent button);
+
+	/**
+	 * Respond to events
 	 */
 	void listen(void);
 

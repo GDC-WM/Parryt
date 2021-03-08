@@ -8,7 +8,7 @@
 
 
 Cannon::Cannon(b2Vec2 position) : Actor(position) {
-	this->allegiance = Allegiance::PIRATE;
+	this->allegiance = Allegiance::pirate;
 
 	// fix shape to body
 	this->bodyDef.type = b2_staticBody;
@@ -21,13 +21,13 @@ Cannon::Cannon(b2Vec2 position) : Actor(position) {
 	// set carriage
 	carriageTexture.loadFromFile("../resources/cannon-carriage.png");
 	this->carriageSprite = sf::Sprite(carriageTexture, sf::IntRect(0,0,64,64));
-	carriageSprite.setScale(0.08,0.08);
+	carriageSprite.setScale(0.08, 0.08);
 	this->carriageSprite.setOrigin(this->WIDTH * 14, this->HEIGHT * 14 - 10);
 
 	// set barrel
 	barrelTexture.loadFromFile("../resources/cannon-barrel.png");
 	this->barrelSprite = sf::Sprite(barrelTexture, sf::IntRect(0,0,64,64));
-	barrelSprite.setScale(0.08,0.08);
+	barrelSprite.setScale(0.08, 0.08);
 	this->barrelSprite.setOrigin(15, 21.5);
 
 	// set old carriage
@@ -55,6 +55,8 @@ void Cannon::shoot(void) {
 
 void Cannon::update(const float &dt) {
 	this->barrelAngle += this->rotationVelocity;
+	if (this->barrelAngle < this->minAngle) this->barrelAngle = this->minAngle;
+	if (this->barrelAngle > this->maxAngle) this->barrelAngle = this->maxAngle;
 	if (this->loadingCounter > 0) this->loadingCounter--;
 }
 
