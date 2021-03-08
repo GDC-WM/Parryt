@@ -41,7 +41,7 @@ void LogicController::startDemo(void) {
 	this->getCurrentRoom()->addActor(cannon);
 	this->view->addView(cannon);
 
-	
+
 
 	// Add grunt
 	std::shared_ptr<Grunt> grunt = std::make_shared<Grunt>(b2Vec2(30, -5));

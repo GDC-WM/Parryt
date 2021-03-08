@@ -8,15 +8,20 @@
 
 CannonView::CannonView(std::shared_ptr<LogicController> logic, std::shared_ptr<Cannon> cannon) : AIView(logic,cannon) {
 	this->cannon = cannon;
-	this->range = this->cannon->getRange();
+}
+
+
+bool CannonView::inRange(std::shared_ptr<Actor> target) {
+	return AIView::inRange(target); // make this method do something later
 }
 
 
 void CannonView::aimAt(std::shared_ptr<Actor> target) {
 	//calculate angle of target's position using trig
-	b2Vec2 targetDist = target->getBody()->GetPosition() - this->cannon->getBody()->GetPosition();
-	float targetAngle = atan2(targetDist.y, targetDist.x);
-	this->cannon->getOrientation() < targetAngle ? this->cannon->rotCounterclockwise() : this->cannon->rotClockwise();
+	b2Vec2 targetVector = target->getBody()->GetPosition() - this->cannon->getBody()->GetPosition();
+	float relativeAngle = this->cannon->getOrientation() - atan2(targetVector.y, targetVector.x);
+
+	sin(relativeAngle) < 0 ? this->cannon->rotCounterclockwise() : this->cannon->rotClockwise();
 }
 
 
