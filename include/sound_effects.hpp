@@ -1,19 +1,21 @@
-#include "SFML/Audio.hpp"
+#include <SFML/Audio.hpp>
+#include <iostream>
 
 /* Manages all of the music for the game. Will most likely put Sound Effects in a different file. */
-class musicTrack{
+class soundEffect {
 
     /* Use these functions to play, pause, stop, and open music files */
 
     public:
-        musicTrack(std::string musicPath);
-        ~musicTrack();
-        void playTrack();
-        void stopTrack();
-        void pauseTrack();
+        soundEffect(std::string SEPath);   /* SE means Sound Effect */
+        ~soundEffect();
+        void setSoundBuffer();
+        void playSE();
+
 
     private:
-        sf::Music music;
+        sf::SoundBuffer Buffer;
+        sf::Sound SoundEffect;
 
         /*
         NOTE - Add Sound effects in the game by using this method:
