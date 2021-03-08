@@ -9,7 +9,8 @@ void musicTrack::stopTrack() {music.stop();}
 
 void musicTrack::pauseTrack() {music.pause();}
 
-void musicTrack::playTrack(){
+void musicTrack::playTrack()
+{
     music.setVolume(50);
     music.play();
     music.setLoop(true);

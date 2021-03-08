@@ -1,9 +1,9 @@
 #include <SFML/Audio.hpp>
 
-/* Manages all of the music for the game. Will most likely put Sound Effects in a different file. */
+/* Manages all of the music for the game */
 class musicTrack{
 
-    /* Use these functions to play, pause, stop, and open music files */
+    /* Use these functions to play, pause, stop, and open Music files */
 
     public:
         musicTrack(std::string musicPath);

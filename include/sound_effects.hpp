@@ -3,7 +3,7 @@
 /* Manages all of the sound effects for the game */
 class soundEffect {
 
-    /* Use these functions to play, pause, stop, and open music files */
+    /* Use these functions to play and set Sound Effect files */
 
     public:
         soundEffect(std::string SoundEffectPath);   /* SE means Sound Effect */
