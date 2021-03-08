@@ -8,7 +8,7 @@
 
 
 Grunt::Grunt(b2Vec2 position) : Character(position) {
-	this->allegiance = Allegiance::PIRATE;
+	this->allegiance = Allegiance::pirate;
 	this->setTargetable(true);
 	this->post = position;
 
