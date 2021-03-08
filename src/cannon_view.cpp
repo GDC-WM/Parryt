@@ -25,24 +25,8 @@ void CannonView::aimAt(std::shared_ptr<Actor> target) {
 }
 
 
-<<<<<<< HEAD
-=======
-bool CannonView::updateTarget() {
-	std::list<std::shared_ptr<Actor>> actors = this->cannon->getRoom()->getActorList();
-	for (std::shared_ptr<Actor> a : actors) {
-		if (a->getAllegiance() == Allegiance::parrot && a->isTargetable() && this->inRange(a)) {
-			this->target = a;
-			return true;
-		}
-	}
-	this->target = NULL;
-	return false;
-}
-
-
->>>>>>> 017048a6ebc8d4db85a2910e6e9a5d31fbe40165
 void CannonView::update(const float &dt) {
-	if (this->updateTarget(Allegiance::PARROT)) {
+	if (this->updateTarget(Allegiance::parrot)) {
 		this->aimAt(this->target);
 		this->cannon->shoot();
 	}

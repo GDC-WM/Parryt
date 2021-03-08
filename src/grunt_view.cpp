@@ -8,7 +8,7 @@
 
 GruntView::GruntView(std::shared_ptr<LogicController> logic, std::shared_ptr<Grunt> grunt) : AIView(logic, grunt) {
 	this->grunt = grunt;
-	this->range = 10;
+	this->range = 20;
 };
 
 
@@ -30,7 +30,7 @@ bool GruntView::updateTarget(const Allegiance allegiance){
 		if (a->getAllegiance() == allegiance && a->isTargetable()){
 			if(this->inRange(a)){
 				if(a->getBody()->GetPosition().x < this->grunt->getBody()->GetPosition().x){ 
-					if(this->grunt->getDirection() == Dir::left){
+					if(this->grunt->getMovement() == Dir::left){
 						//looking at it
 						this->target = a;
 						return true;
@@ -67,22 +67,22 @@ void GruntView::patrol(b2Vec2 post){
 	int leftLim = post.x; //8 is arbitrary
 	int rightLim = post.x +8;
 
-	if(this->grunt->getDirection() == Dir::left){
+	if(this->grunt->getMovement() == Dir::left){
 		if(this->grunt->getBody()->GetPosition().x <= leftLim){
 			//std::cout<<" hit left limit, going right now ";
-			this->grunt->goRight();
+			this->grunt->setMovement(Dir::right);
 		}else{
 			//std::cout<<" facing left going left ";
-			this->grunt->goLeft();
+			this->grunt->setMovement(Dir::left);
 		}
 	}
-	if(this->grunt->getDirection() == Dir::right){
+	if(this->grunt->getMovement() == Dir::right){
 		if(this->grunt->getBody()->GetPosition().x >= rightLim){
 			//std::cout<<" hit right lim going left now ";
-			this->grunt->goLeft();
+			this->grunt->setMovement(Dir::left);
 		}else{
 			//std::cout<<" facing right going right ";
-			this->grunt->goRight();
+			this->grunt->setMovement(Dir::right);
 		}
 	}
 }
@@ -91,15 +91,15 @@ void GruntView::patrol(b2Vec2 post){
 void GruntView::chase(){
 	if(this->target->getBody()->GetPosition().x < this->grunt->getBody()->GetPosition().x){
 		//target is to the left
-		this->grunt->goLeft();
+		this->grunt->setMovement(Dir::left);
 	}
 	if(this->target->getBody()->GetPosition().x > this->grunt->getBody()->GetPosition().x ){
 		//target is to the right
-		this->grunt->goRight();
+		this->grunt->setMovement(Dir::right);
 	}
 	if(this->target->getBody()->GetPosition().y > this->grunt->getBody()->GetPosition().y){
 		//target is above pirate
-		this->grunt->jump(); 
+		this->grunt->setMovement(Dir::up); 
 
 		//aaron is cool ig
 	}
