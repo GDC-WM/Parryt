@@ -71,7 +71,7 @@ protected:
     int chamberSize = 5;
     int refractoryCounter =0;
     int refractoryTime= 30;
-    int reloadTime = 50;
+    int reloadTime = 100;
     int reloadCounter =0;
 	int dmg = 10;
 

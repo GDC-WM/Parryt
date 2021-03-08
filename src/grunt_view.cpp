@@ -20,6 +20,7 @@ void GruntView::aimAt(){
 	b2Vec2 targetDist = this->target->getBody()->GetPosition() - this->grunt->getBody()->GetPosition();
 	float targetAngle = atan2(targetDist.y, targetDist.x);
 	this->grunt->setGunAngle(targetAngle);
+	this->grunt->shoot();
 }
 
 bool GruntView::updateTarget(const Allegiance allegiance){
@@ -90,19 +91,11 @@ void GruntView::patrol(b2Vec2 post){
 void GruntView::chase(){
 	if(this->target->getBody()->GetPosition().x < this->grunt->getBody()->GetPosition().x){
 		//target is to the left
-		this->aimAt();
-		this->grunt->shoot();
 		this->grunt->goLeft();
-		this->aimAt();
-		this->grunt->shoot();
 	}
 	if(this->target->getBody()->GetPosition().x > this->grunt->getBody()->GetPosition().x ){
 		//target is to the right
-		this->aimAt();
-		this->grunt->shoot();
 		this->grunt->goRight();
-		this->aimAt();
-		this->grunt->shoot();
 	}
 	if(this->target->getBody()->GetPosition().y > this->grunt->getBody()->GetPosition().y){
 		//target is above pirate
@@ -118,7 +111,6 @@ void GruntView::update(const float &dt){
 	if (this->updateTarget(Allegiance::PARROT)){
 		this->chase();
 		this->aimAt();
-		this->grunt->shoot();
 	}else{
 		this->patrol(this->grunt->getPost());
 	}

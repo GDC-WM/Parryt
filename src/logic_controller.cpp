@@ -37,11 +37,10 @@ void LogicController::startDemo(void) {
 	this->view->addView(pari);
 
 	// Add cannon
-	/**
 	std::shared_ptr<Cannon> cannon = std::make_shared<Cannon>(b2Vec2(15.2,-5));
 	this->getCurrentRoom()->addActor(cannon);
 	this->view->addView(cannon);
-	*/ //just for a second lol
+
 	
 
 	// Add grunt
