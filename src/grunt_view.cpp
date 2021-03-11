@@ -13,13 +13,11 @@ GruntView::GruntView(std::shared_ptr<LogicController> logic, std::shared_ptr<Gru
 
 
 void GruntView::aimAt(){
-	//pew pew
-	//theres not really anything to rotate, calculate angle to shoot bullet at?
-	//or just do that in the shoot method? girl idk girl
-	//calculate angle of target's position using trig
+	//so why doesn't he shoot to the left...
 	b2Vec2 targetDist = this->target->getBody()->GetPosition() - this->grunt->getBody()->GetPosition();
-	float targetAngle = atan2(targetDist.y, targetDist.x);
-	this->grunt->setGunAngle(targetAngle);
+	float targetAngle = atan2(targetDist.y, targetDist.x); //returns radians
+	std::cout<<"angle:" << targetAngle;
+	this->grunt->setShootDir(targetDist);
 	this->grunt->shoot();
 }
 
@@ -67,23 +65,14 @@ void GruntView::patrol(b2Vec2 post){
 	int leftLim = post.x; //8 is arbitrary
 	int rightLim = post.x +8;
 
-	if(this->grunt->getMovement() == Dir::left){
-		if(this->grunt->getBody()->GetPosition().x <= leftLim){
-			//std::cout<<" hit left limit, going right now ";
-			this->grunt->setMovement(Dir::right);
-		}else{
-			//std::cout<<" facing left going left ";
-			this->grunt->setMovement(Dir::left);
-		}
+	//this->grunt->setMovement(Dir::left);
+
+	if(this->grunt->getBody()->GetPosition().x >= rightLim){
+		//std::cout<<" hit right lim going left now ";
+		this->grunt->setMovement(Dir::left);
 	}
-	if(this->grunt->getMovement() == Dir::right){
-		if(this->grunt->getBody()->GetPosition().x >= rightLim){
-			//std::cout<<" hit right lim going left now ";
-			this->grunt->setMovement(Dir::left);
-		}else{
-			//std::cout<<" facing right going right ";
-			this->grunt->setMovement(Dir::right);
-		}
+	if(this->grunt->getBody()->GetPosition().x<=leftLim){
+		this->grunt->setMovement(Dir::right);
 	}
 }
 
@@ -95,11 +84,12 @@ void GruntView::chase(){
 	}
 	if(this->target->getBody()->GetPosition().x > this->grunt->getBody()->GetPosition().x ){
 		//target is to the right
+		//std::cout<<"going right chasing";
 		this->grunt->setMovement(Dir::right);
 	}
 	if(this->target->getBody()->GetPosition().y > this->grunt->getBody()->GetPosition().y){
 		//target is above pirate
-		this->grunt->setMovement(Dir::up); 
+		this->grunt->jump(); 
 
 		//aaron is cool ig
 	}

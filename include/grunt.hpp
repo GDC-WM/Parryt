@@ -63,6 +63,8 @@ public:
      */
     void setGunAngle(float angle){this->gunAngle = angle; };
 
+    void setShootDir(b2Vec2 direction){this->shootDir = direction;};
+
 
 	void draw(std::shared_ptr<sf::RenderWindow> window) override;
 
@@ -74,8 +76,9 @@ protected:
     int reloadTime = 100;
     int reloadCounter =0;
 	int dmg = 10;
+    int gunAngle=90;
 
-    int gunAngle = 90;
+    b2Vec2 shootDir;
     
     b2Vec2 post; //default post, should be changed whenever a grunt is added
                                  // unless only 1 grunt per level

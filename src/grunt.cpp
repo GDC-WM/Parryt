@@ -58,10 +58,23 @@ void Grunt::shoot() {
 	this->refractoryCounter = this->refractoryTime;
 	this->bulletCounter--;
 
-	std::shared_ptr<Bullet> bullet = std::make_shared<Bullet>(this->body->GetPosition(), 20);
-	this->room->addActor(bullet); // give actors access to the room they are in
-	bullet->getBody()->ApplyLinearImpulseToCenter(b2Vec2(cos(this->gunAngle) * 150,
-	                                                         sin(this->gunAngle) * 150), true);
+	int correction = 0;
+	if(this->shootDir.x<0){
+		correction+=-1;
+	}
+
+	b2Vec2 newVec = this->body->GetPosition();
+	newVec.x +=correction;
+
+	std::shared_ptr<Bullet> bullet = std::make_shared<Bullet>(newVec, 20);
+	this->room->addActor(bullet); //give actors access to the room they are in
+	int help = 200;
+
+	this->shootDir.x *=150;
+	this->shootDir.y *=150;
+
+
+	bullet->getBody()->ApplyLinearImpulseToCenter(this->shootDir, true); //not fast enough smh
 
 
 }
@@ -92,5 +105,7 @@ void Grunt::update(const float &dt){
 	if(this->reloadCounter>0){
 		this->reloadCounter--;
 	}
+
+	Character::update(dt);
 
 }
