@@ -47,8 +47,6 @@ public:
 
 	void update(const float &dt) override;
 
-	const float &getRange(void) const { return this->range; };
-
 	virtual void draw(std::shared_ptr<sf::RenderWindow> window) override;
 
 
@@ -58,7 +56,6 @@ private:
 	float barrelAngle = M_PI / 2;
 	float minAngle = 9 * M_PI / 16;
 	float maxAngle = M_PI;
-	float range = 30;
 	sf::RectangleShape carriage;
 	sf::RectangleShape barrel;
 
