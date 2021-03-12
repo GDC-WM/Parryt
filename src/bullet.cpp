@@ -18,7 +18,7 @@ Bullet::Bullet(b2Vec2 position, float damage) : Actor(position) {
 	this->fixtureDef.friction = 1.0f;
 
 	// set drawable
-	texture.loadFromFile("../resources/cannonball.png");
+	texture.loadFromFile("../resources/cannonball.png"); // TODO: replace with bullet art
 	this->sprite = sf::Sprite(texture, sf::IntRect(0,0,64,64));
 	sprite.setScale(0.08,0.08);
 	this->sprite.setOrigin(this->RADIUS * 14, this->RADIUS * 14);
@@ -29,12 +29,14 @@ Bullet::Bullet(b2Vec2 position, float damage) : Actor(position) {
 	this->drawable.setRadius(this->RADIUS);
 }
 
+
 void Bullet::update(const float &dt) {
 	this->age++;
 	if (this->age > 90) {
 		this->room->removeActor(this->shared_from_this());
 	}
 }
+
 
 void Bullet::draw(std::shared_ptr<sf::RenderWindow> window) {
 	this->drawable.setPosition(this->getBody()->GetPosition().x,

@@ -74,6 +74,7 @@ void Character::collide(Actor &a) {
 	if (a.getAllegiance() == Allegiance::neutral && a.collides(*this)) this->jumpCounter = 0;
 }
 
+
 void Character::update(const float &dt) {
 	switch (this->movementForceDir) {
 		case Dir::left:

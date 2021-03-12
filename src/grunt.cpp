@@ -44,42 +44,29 @@ Grunt::Grunt(b2Vec2 position) : Character(position) {
 void Grunt::shoot() {
 	//check if grunt reloading
 	//should we make it that he can shout x times in a row and then pauses to reload (more realistic)
-	if(this->bulletCounter<=0){
-		this->reloadCounter=reloadTime;
+	if (this->bulletCounter <= 0) {
+		this->reloadCounter = reloadTime;
 		return;
 	}
-	if(this->reloadCounter >0){
-		return;
-	}
-	if(this->refractoryCounter>0){
-		return;
-	}
+	if (this->reloadCounter > 0 || this->fireRateCounter > 0) return;
 
-	this->refractoryCounter = this->refractoryTime;
+	this->fireRateCounter = this->fireRate;
 	this->bulletCounter--;
 
 	int correction = 0;
-	if(this->shootDir.x<0){
-		correction+=-1;
-	}
+	if (this->shootDir.x < 0) correction++;
 
 	b2Vec2 newVec = this->body->GetPosition();
-	newVec.x +=correction;
+	newVec.x -= correction;
 
 	std::shared_ptr<Bullet> bullet = std::make_shared<Bullet>(newVec, 20);
-	this->room->addActor(bullet); //give actors access to the room they are in
-	int help = 200;
+	this->room->addActor(bullet); // give actors access to the room they are in
 
-	this->shootDir.x *=150;
-	this->shootDir.y *=150;
-
+	this->shootDir.x *= 150;
+	this->shootDir.y *= 150;
 
 	bullet->getBody()->ApplyLinearImpulseToCenter(this->shootDir, true); //not fast enough smh
-
-
 }
-
-
 
 
 void Grunt::draw(std::shared_ptr<sf::RenderWindow> window) {
@@ -95,17 +82,17 @@ void Grunt::draw(std::shared_ptr<sf::RenderWindow> window) {
 	window->draw(this->sprite);
 }
 
-void Grunt::update(const float &dt){
-	if(this->refractoryCounter>0){
-		this->refractoryCounter--;
-	}
-	if(this->reloadCounter ==0){
-		this->bulletCounter = this->chamberSize;
-	}
-	if(this->reloadCounter>0){
-		this->reloadCounter--;
-	}
 
+void Grunt::update(const float &dt){
 	Character::update(dt);
 
+	if (this->fireRateCounter > 0) {
+		this->fireRateCounter--;
+	}
+	if (this->reloadCounter == 0) {
+		this->bulletCounter = this->chamberSize;
+	}
+	if (this->reloadCounter > 0) {
+		this->reloadCounter--;
+	}
 }

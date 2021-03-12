@@ -35,11 +35,10 @@ public:
 	 */
 	void addView(std::shared_ptr<Cannon> a) { this->viewList.push_back(std::make_shared<CannonView>(this->logic, a)); };
 
-
 	/**
 	 * Add GruntView
 	 */
-	void addView(std::shared_ptr<Grunt> a){ this->viewList.push_back(std::make_shared<GruntView>(this->logic, a)); };
+	void addView(std::shared_ptr<Grunt> a) { this->viewList.push_back(std::make_shared<GruntView>(this->logic, a)); };
 
 	/**
 	 * Create a view for the new enemy from logic and add the view to the enemyview list

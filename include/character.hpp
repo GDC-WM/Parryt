@@ -46,9 +46,9 @@ public:
 
 
 	/**
-	 * @return direction looking
+	 * @return look direction
 	 */
-	Dir getDirection(){return this->lookDir;};
+	Dir getLookDir() { return this->lookDir; };
 
 	/**
 	 * Make the character jump

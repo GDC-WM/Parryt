@@ -17,34 +17,31 @@ class GruntView : public AIView {
 public:
 	GruntView(std::shared_ptr<LogicController> logic, std::shared_ptr<Grunt> grunt);
 
-	void update(const float &dt) override;
-
 	bool updateTarget(const Allegiance allegiance);
 
 	/**
 	 * Aims at the target
-	 * 
+	 *
 	 */
 	void aimAt();
-
 
 	/**
 	 * Chases the target
 	 */
 	void chase();
 
-
 	/**
 	 * Ambient movement (patrolling)
 	 * @param post the grunt's area of patrol
 	 */
 	void patrol(b2Vec2 post);
-	
+
+	void update(const float &dt) override;
+
 
 protected:
     std::shared_ptr<Grunt> grunt;
 };
-
 
 
 #endif

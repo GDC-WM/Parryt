@@ -28,7 +28,3 @@ bool AIView::inRange(std::shared_ptr<Actor> target) {
 	b2Vec2 targetDist = target->getBody()->GetPosition() - this->actor->getBody()->GetPosition();
 	return sqrt((pow(targetDist.x, 2) + pow(targetDist.y, 2))) <= this->range;
 }
-
-void AIView::update(const float &dt) {
-	//?? should this be in here? or in individual views
-}

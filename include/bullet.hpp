@@ -17,7 +17,7 @@ public:
 
 	void update(const float &dt) override;
 
-	virtual void draw(std::shared_ptr<sf::RenderWindow> window);
+	void draw(std::shared_ptr<sf::RenderWindow> window) override;
 
 
 private:

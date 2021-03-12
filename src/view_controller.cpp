@@ -14,9 +14,7 @@ ViewController::ViewController(std::shared_ptr<LogicController> logic) {
 }
 
 
-void ViewController::reset(void) {
-
-}
+void ViewController::reset(void) {}
 
 
 void ViewController::update(float dt) {

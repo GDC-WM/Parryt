@@ -16,13 +16,15 @@ public:
 
 	/**
 	 * Checks if specified target is in range of AI
+	 *
 	 * @return if target is out of range
 	 * @param target Target to be checked
 	 */
 	virtual bool inRange(std::shared_ptr<Actor> target);
 
 	/**
-	 * Update target if no target or if target out of range
+	 * Set target to a new one within range
+	 *
 	 * @param allegiance the allegiance that the target should be
 	 * @return True if found a target, false if not
 	 */
@@ -33,7 +35,7 @@ public:
 	 */
 	//void attack();
 
-	virtual void update(const float &dt);
+	virtual void update(const float &dt) {};
 
 
 protected:
