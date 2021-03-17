@@ -30,22 +30,8 @@ Cannonball::Cannonball(b2Vec2 position, float damage) : Actor(position) {
 
 void Cannonball::onCollision(Actor &a) {
 	if (a.getAllegiance() == Allegiance::parrot) {
-		/*
-				// redirect cannonball on Pari contact
-		// note, in the future, Allegiance::parrot won't be limited to Pari, so this wouldn't work
-		// TODO: Perhaps set up Name field in Actor and use a.getName() == "Pari"?
-		std::cout << "cannonball collided with Pari" << std::endl; 
-		if (-M_PI / 2 < angleBetweenPariAndCannonball && angleBetweenPariAndCannonball < M_PI / 2)
-		{
-			// only redirect projectile if mouse cursor is to the right of Pari (for debugging purposes)
-			this->body->SetLinearVelocity(b2Vec2(100 * cos(angleBetweenPariAndCannonball), 100 * sin(angleBetweenPariAndCannonball)));
-		}
-		*/
-
-
+		/* FEATURE: Damages and red overlay character on hit when Pari is not parrying*/
 	}
-	
-	//return a.getBody()->GetLinearVelocity().y < 0; copied from platform.cpp
 }
 
 
