@@ -20,7 +20,7 @@ Bullet::Bullet(b2Vec2 position, float damage) : Actor(position) {
 	// set drawable
 	texture.loadFromFile("../resources/cannonball.png"); // TODO: replace with bullet art
 	this->sprite = sf::Sprite(texture, sf::IntRect(0,0,64,64));
-	sprite.setScale(0.08,0.08);
+	sprite.setScale(0.08f,0.08f);
 	this->sprite.setOrigin(this->RADIUS * 14, this->RADIUS * 14);
 
 	// set old drawable

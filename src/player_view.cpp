@@ -48,6 +48,7 @@ void PlayerView::pressEvent(sf::Event::MouseButtonEvent button) {
 			mousePos = this->window->mapPixelToCoords(sf::Mouse::getPosition(*this->window));
 			// helpful for debugging: left click to see the coordinates
 			std::cout << " \ny: " << mousePos.y << " \nx: " << mousePos.x;
+			
 			break;
 		default:; // ignore other buttons
 	}
@@ -159,8 +160,8 @@ void PlayerView::drawScreen(void) {
 	float vectorBetween[] = { point2[0] - point1[0], point2[1] - point1[1] }; 
 	sf::Vertex line[] =
 	{
-		sf::Vertex(sf::Vector2f(point1[0], point1[1])),
-		sf::Vertex(sf::Vector2f(point2[0], point2[1] - 2 * vectorBetween[1]))
+		sf::Vertex(sf::Vector2f(point1[0], point1[1]), sf::Color::Red),
+		sf::Vertex(sf::Vector2f(point2[0], point2[1]), sf::Color::Red)
 	};
 	this->window->draw(line, 2, sf::Lines);
 

@@ -15,7 +15,7 @@ public:
 
 	Cannonball(b2Vec2 position, float damage);
 
-	void collide(Actor &a) override;
+	void onCollision(Actor &a) override;
 
 	void update(const float &dt) override;
 

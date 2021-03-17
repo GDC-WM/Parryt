@@ -28,9 +28,10 @@ Cannonball::Cannonball(b2Vec2 position, float damage) : Actor(position) {
 	this->drawable.setRadius(this->RADIUS);
 }
 
-void Cannonball::collide(Actor &a) {
+void Cannonball::onCollision(Actor &a) {
 	if (a.getAllegiance() == Allegiance::parrot) {
-		// redirect cannonball on Pari contact
+		/*
+				// redirect cannonball on Pari contact
 		// note, in the future, Allegiance::parrot won't be limited to Pari, so this wouldn't work
 		// TODO: Perhaps set up Name field in Actor and use a.getName() == "Pari"?
 		std::cout << "cannonball collided with Pari" << std::endl; 
@@ -39,6 +40,8 @@ void Cannonball::collide(Actor &a) {
 			// only redirect projectile if mouse cursor is to the right of Pari (for debugging purposes)
 			this->body->SetLinearVelocity(b2Vec2(100 * cos(angleBetweenPariAndCannonball), 100 * sin(angleBetweenPariAndCannonball)));
 		}
+		*/
+
 
 	}
 	
@@ -54,11 +57,6 @@ void Cannonball::update(const float &dt) {
 }
 
 void Cannonball::draw(std::shared_ptr<sf::RenderWindow> window) {
-	//TODO: Get mouse position, must need window object
-	//but very expensive right now as it is in draw, could we access window in Cannonball:collides?
-	float mouseCoordX = window->mapPixelToCoords(sf::Mouse::getPosition(*window)).x - window->getView().getCenter().x;
-	float mouseCoordY = window->mapPixelToCoords(sf::Mouse::getPosition(*window)).y - window->getView().getCenter().y;
-	this ->angleBetweenPariAndCannonball = atan2(mouseCoordY, mouseCoordX);
 	this->drawable.setPosition(this->getBody()->GetPosition().x,
 	                          -this->getBody()->GetPosition().y);
 	this->drawable.setRotation(-this->body->GetAngle() * 180 / M_PI);

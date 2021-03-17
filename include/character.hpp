@@ -75,7 +75,7 @@ public:
 	 */
 	const Dir &getMovement(void) const { return this->movementForceDir; };
 
-	virtual void collide(Actor &a) override;
+	virtual void onCollision(Actor &a) override;
 
 	virtual void update(const float &dt) override;
 
