@@ -4,10 +4,9 @@
 
 #include "view.hpp"
 #include "player_view.hpp"
-#include "character.hpp"
+#include "pari.hpp"
 
-
-PlayerView::PlayerView(std::shared_ptr<LogicController> logic, std::shared_ptr<Character> character) : View(logic) {
+PlayerView::PlayerView(std::shared_ptr<LogicController> logic, std::shared_ptr<Pari> character) : View(logic) {
 	this->logic = logic; // TODO: this happens in view as well, but segfault if not set here
 	this->character = character;
 
@@ -21,6 +20,7 @@ PlayerView::PlayerView(std::shared_ptr<LogicController> logic, std::shared_ptr<C
 	view.setCenter(sf::Vector2f(this->character->getBody()->GetPosition().x,
                                -this->character->getBody()->GetPosition().y));
 	this->window->setView(view);
+	
 }
 
 
@@ -45,11 +45,27 @@ void PlayerView::pressEvent(sf::Event::MouseButtonEvent button) {
 	sf::Vector2f mousePos;
 	switch (button.button) {
 		case sf::Mouse::Left:
+		{
 			mousePos = this->window->mapPixelToCoords(sf::Mouse::getPosition(*this->window));
 			// helpful for debugging: left click to see the coordinates
-			std::cout << " \ny: " << mousePos.y << " \nx: " << mousePos.x;
-			
+			std::cout << " \ny: " << mousePos.y << " \nx: " << mousePos.x << std::endl;
+			std::cout << "time passed: " + std::to_string(std::chrono::duration_cast<std::chrono::milliseconds> (std::chrono::steady_clock::now() - this->lastClickedTime).count()) << std::endl;
+			int deflectCoolDown = 1000; // 1000ms, Pari can only pari every 1 second
+			if (std::chrono::duration_cast<std::chrono::milliseconds> (std::chrono::steady_clock::now() - this->lastClickedTime).count() > deflectCoolDown)
+			{
+				std::cout << "not on cooldown" << std::endl;
+				this->character->setIsDeflecting(true);
+				this->character->setDeflectStartTime(std::chrono::steady_clock::now());
+				this->lastClickedTime = std::chrono::steady_clock::now();
+			}
+			else {
+				std::cout << "on cooldown" << std::endl;
+				this->lastClickedTime = std::chrono::steady_clock::now();
+			}
+
 			break;
+		}
+			
 		default:; // ignore other buttons
 	}
 }

@@ -1,3 +1,4 @@
+#include "..\include\pari.hpp"
 #include <box2d/box2d.h>
 #include <SFML/Graphics.hpp>
 
@@ -35,6 +36,10 @@ Pari::Pari(b2Vec2 position) : Character(position) {
 	this->drawable.setOrigin(this->WIDTH, this->HEIGHT);
 	this->drawable.setFillColor(sf::Color::Green);
 	this->drawable.setSize(sf::Vector2f(this->WIDTH * 2, this->HEIGHT * 2));
+
+	// initialize deflect logic
+	this->isDeflecting = false; 
+	//this->deflectStartTime = std::chrono::steady_clock::now();
 }
 
 
@@ -42,6 +47,12 @@ bool Pari::jump(void) {
 	bool jumped = Character::jump();
 	if (jumped) this->spriteSheet->setOneShot(this->jumpLoop);
 	return jumped;
+}
+
+void Pari::onCollision(Actor &a)
+{
+	if (a.getAllegiance() == Allegiance::neutral && a.shouldCollide(*this)) this->jumpCounter = 0;
+	std::cout << "collision in Pari " + std::to_string(this->isDeflecting) + " " + std::to_string(std::chrono::duration_cast<std::chrono::milliseconds> (std::chrono::steady_clock::now() - this->deflectStartTime).count())  << std::endl;
 }
 
 
