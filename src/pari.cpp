@@ -49,6 +49,7 @@ void Pari::draw(std::shared_ptr<sf::RenderWindow> window) {
 	// old drawable
 	this->drawable.setPosition(this->getBody()->GetPosition().x,
 	                          -this->getBody()->GetPosition().y);
+
 	//window->draw(drawable);
 
 	// set animation

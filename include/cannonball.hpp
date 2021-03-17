@@ -15,6 +15,8 @@ public:
 
 	Cannonball(b2Vec2 position, float damage);
 
+	const bool collides(const Actor &a) const override;
+
 	void update(const float &dt) override;
 
 	virtual void draw(std::shared_ptr<sf::RenderWindow> window);
@@ -27,6 +29,7 @@ private:
 	sf::CircleShape drawable;
 	sf::Texture texture;
 	sf::Sprite sprite;
+	float angleBetweenPariAndCannonball; 
 };
 
 

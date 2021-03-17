@@ -153,6 +153,17 @@ void PlayerView::drawScreen(void) {
 	barrel.setScale(.1,.1);
 	this->window->draw(barrel);
 
+	// temporary add red vector indicating direction to redirect projectiles
+	float point1[] = { window->getView().getCenter().x, window->getView().getCenter().y };
+	float point2[] = { window->mapPixelToCoords(sf::Mouse::getPosition(*window)).x, window->mapPixelToCoords(sf::Mouse::getPosition(*window)).y };
+	float vectorBetween[] = { point2[0] - point1[0], point2[1] - point1[1] }; 
+	sf::Vertex line[] =
+	{
+		sf::Vertex(sf::Vector2f(point1[0], point1[1])),
+		sf::Vertex(sf::Vector2f(point1[0] - vectorBetween[0], point1[1] - vectorBetween[1]))
+	};
+	this->window->draw(line, 2, sf::Lines);
+
 	// draw actors
 	for (auto actor : this->logic->getCurrentRoom()->getActorList()) actor->draw(this->window);
 
