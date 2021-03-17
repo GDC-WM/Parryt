@@ -36,6 +36,9 @@ public:
 
 	const std::chrono::steady_clock::time_point getDeflectStartTime(){return this->deflectStartTime;}
 
+	void setLastAngleBetweenCharacterAndMouse(float angle) { this->lastAngleBetweenCharacterAndMouse = angle;  }
+
+	float getLastAngleBetweenCharacterAndMouse() { return this->lastAngleBetweenCharacterAndMouse; }
 
 private:
 	sf::RectangleShape drawable;
@@ -50,6 +53,7 @@ private:
 protected:
 	bool isDeflecting;
 	std::chrono::steady_clock::time_point deflectStartTime;
+	float lastAngleBetweenCharacterAndMouse;
 };
 
 

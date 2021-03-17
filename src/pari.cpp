@@ -52,7 +52,17 @@ bool Pari::jump(void) {
 void Pari::onCollision(Actor &a)
 {
 	if (a.getAllegiance() == Allegiance::neutral && a.shouldCollide(*this)) this->jumpCounter = 0;
-	std::cout << "collision in Pari " + std::to_string(this->isDeflecting) + " " + std::to_string(std::chrono::duration_cast<std::chrono::milliseconds> (std::chrono::steady_clock::now() - this->deflectStartTime).count())  << std::endl;
+	if (this->isDeflecting && (std::chrono::duration_cast<std::chrono::milliseconds> (std::chrono::steady_clock::now() - this->deflectStartTime).count() <= 200 )) {
+		std::cout << "should deflect" << std::endl; 
+		double projectileVelocityX = a.getBody()->GetLinearVelocity().x; 
+		double projectileVelocityY = a.getBody()->GetLinearVelocity().y; 
+		float angle = this->getLastAngleBetweenCharacterAndMouse(); 
+		a.getBody()->SetLinearVelocity(b2Vec2(50 * cos(-angle), 50*  sin(-angle)));
+	}
+	else {
+
+		std::cout << "no deflect because either never right clicked, or right clicked at wrong time" << std::endl; 
+	}
 }
 
 

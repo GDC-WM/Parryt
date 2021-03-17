@@ -49,21 +49,29 @@ void PlayerView::pressEvent(sf::Event::MouseButtonEvent button) {
 			mousePos = this->window->mapPixelToCoords(sf::Mouse::getPosition(*this->window));
 			// helpful for debugging: left click to see the coordinates
 			std::cout << " \ny: " << mousePos.y << " \nx: " << mousePos.x << std::endl;
-			std::cout << "time passed: " + std::to_string(std::chrono::duration_cast<std::chrono::milliseconds> (std::chrono::steady_clock::now() - this->lastClickedTime).count()) << std::endl;
+
+			
+
+			break;
+		}
+		case sf::Mouse::Right: 
+		{
 			int deflectCoolDown = 1000; // 1000ms, Pari can only pari every 1 second
-			if (std::chrono::duration_cast<std::chrono::milliseconds> (std::chrono::steady_clock::now() - this->lastClickedTime).count() > deflectCoolDown)
+			int msElapsed = std::chrono::duration_cast<std::chrono::milliseconds> (std::chrono::steady_clock::now() - this->lastClickedTime).count();
+			if (msElapsed > deflectCoolDown)
 			{
-				std::cout << "not on cooldown" << std::endl;
 				this->character->setIsDeflecting(true);
 				this->character->setDeflectStartTime(std::chrono::steady_clock::now());
-				this->lastClickedTime = std::chrono::steady_clock::now();
-			}
-			else {
-				std::cout << "on cooldown" << std::endl;
+
+				float mouseCoordX = window->mapPixelToCoords(sf::Mouse::getPosition(*window)).x - window->getView().getCenter().x;
+				float mouseCoordY = window->mapPixelToCoords(sf::Mouse::getPosition(*window)).y - window->getView().getCenter().y;
+				float angleBetweenPariAndCannonball = atan2(mouseCoordY, mouseCoordX);
+				this->character->setLastAngleBetweenCharacterAndMouse(angleBetweenPariAndCannonball);
+
 				this->lastClickedTime = std::chrono::steady_clock::now();
 			}
 
-			break;
+			break; 
 		}
 			
 		default:; // ignore other buttons
