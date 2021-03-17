@@ -15,11 +15,11 @@ public:
 
 	Cannonball(b2Vec2 position, float damage);
 
-	const bool collides(const Actor &a) const override;
+	void collide(Actor &a) override;
 
 	void update(const float &dt) override;
 
-	virtual void draw(std::shared_ptr<sf::RenderWindow> window);
+	void draw(std::shared_ptr<sf::RenderWindow> window) override;
 
 
 private:
