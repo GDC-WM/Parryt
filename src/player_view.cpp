@@ -160,7 +160,7 @@ void PlayerView::drawScreen(void) {
 	sf::Vertex line[] =
 	{
 		sf::Vertex(sf::Vector2f(point1[0], point1[1])),
-		sf::Vertex(sf::Vector2f(point1[0] - vectorBetween[0], point1[1] - vectorBetween[1]))
+		sf::Vertex(sf::Vector2f(point2[0], point2[1] - 2 * vectorBetween[1]))
 	};
 	this->window->draw(line, 2, sf::Lines);
 
