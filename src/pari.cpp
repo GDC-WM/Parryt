@@ -54,10 +54,16 @@ void Pari::onCollision(Actor &a)
 	if (a.getAllegiance() == Allegiance::neutral && a.shouldCollide(*this)) this->jumpCounter = 0;
 	if (this->isDeflecting && (std::chrono::duration_cast<std::chrono::milliseconds> (std::chrono::steady_clock::now() - this->deflectStartTime).count() <= 200 )) {
 		std::cout << "should deflect" << std::endl; 
+
+		// deflect contact object
 		double projectileVelocityX = a.getBody()->GetLinearVelocity().x; 
 		double projectileVelocityY = a.getBody()->GetLinearVelocity().y; 
+		double projectileSpeed = sqrt(pow(projectileVelocityX, 2) + pow(projectileVelocityY, 2)); 
 		float angle = this->getLastAngleBetweenCharacterAndMouse(); 
-		a.getBody()->SetLinearVelocity(b2Vec2(50 * cos(-angle), 50*  sin(-angle)));
+		a.getBody()->SetLinearVelocity(b2Vec2(projectileSpeed * cos(angle), projectileSpeed*  sin(angle)));
+
+		// recoil Pari 
+		this->getBody()->SetLinearVelocity(b2Vec2(-10, -10));
 	}
 	else {
 

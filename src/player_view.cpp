@@ -63,9 +63,9 @@ void PlayerView::pressEvent(sf::Event::MouseButtonEvent button) {
 				this->character->setIsDeflecting(true);
 				this->character->setDeflectStartTime(std::chrono::steady_clock::now());
 
-				float mouseCoordX = window->mapPixelToCoords(sf::Mouse::getPosition(*window)).x - window->getView().getCenter().x;
-				float mouseCoordY = window->mapPixelToCoords(sf::Mouse::getPosition(*window)).y - window->getView().getCenter().y;
-				float angleBetweenPariAndCannonball = atan2(mouseCoordY, mouseCoordX);
+				float mouseCoordX = window->mapPixelToCoords(sf::Mouse::getPosition(*window)).x - this->character->getBody()->GetPosition().x;
+				float mouseCoordY = window->mapPixelToCoords(sf::Mouse::getPosition(*window)).y + this->character->getBody()->GetPosition().y;
+				float angleBetweenPariAndCannonball = -atan2(mouseCoordY, mouseCoordX);
 				this->character->setLastAngleBetweenCharacterAndMouse(angleBetweenPariAndCannonball);
 
 				this->lastClickedTime = std::chrono::steady_clock::now();
