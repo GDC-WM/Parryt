@@ -7,6 +7,7 @@
 #include "character.hpp"
 #include "pari.hpp"
 
+
 PlayerView::PlayerView(std::shared_ptr<LogicController> logic, std::shared_ptr<Pari> character) : View(logic) {
 	this->logic = logic; // TODO: this happens in view as well, but segfault if not set here
 	this->character = character;
@@ -18,8 +19,7 @@ PlayerView::PlayerView(std::shared_ptr<LogicController> logic, std::shared_ptr<P
 	// set view to center on the character
 	sf::View view = this->window->getView();
 	view.setSize(sf::Vector2f(64, 36));
-	view.setCenter(sf::Vector2f(this->character->getBody()->GetPosition().x,
-                               -this->character->getBody()->GetPosition().y));
+	view.setCenter(this->convertVec(this->character->getBody()->GetPosition()));
 	this->window->setView(view);
 
 }
@@ -43,19 +43,16 @@ void PlayerView::pressEvent(sf::Event::KeyEvent key) {
 
 
 void PlayerView::pressEvent(sf::Event::MouseButtonEvent button) {
-	sf::Vector2f mousePos;
+	b2Vec2 mousePos = this->convertVec(this->window->mapPixelToCoords(sf::Mouse::getPosition(*this->window)))
+	                - this->character->getBody()->GetPosition();
 	switch (button.button) {
 		case sf::Mouse::Left: {
-			mousePos = this->window->mapPixelToCoords(sf::Mouse::getPosition(*this->window));
 			// helpful for debugging: left click to see the coordinates
-			std::cout << " \ny: " << mousePos.y << " \nx: " << mousePos.x << std::endl;
+			std::cout << " \nx: " << mousePos.x << " \ny: " << mousePos.y << std::endl;
 			break;
 		}
 		case sf::Mouse::Right: {
-			float mouseCoordX = window->mapPixelToCoords(sf::Mouse::getPosition(*window)).x - this->character->getBody()->GetPosition().x;
-			float mouseCoordY = window->mapPixelToCoords(sf::Mouse::getPosition(*window)).y + this->character->getBody()->GetPosition().y;
-			float parryAngle = -atan2(mouseCoordY, mouseCoordX);
-			this->character->parry(parryAngle);
+			this->character->parry(atan2(mousePos.y, mousePos.x));
 			break;
 		}
 		default:; // ignore other buttons

@@ -62,6 +62,10 @@ private:
 	 * Draw the screen.
 	 */
 	void drawScreen(void);
+
+	b2Vec2 convertVec(sf::Vector2f sfmlVec) { return b2Vec2(sfmlVec.x, -sfmlVec.y); };
+
+	sf::Vector2f convertVec(b2Vec2 b2dVec) { return sf::Vector2f(b2dVec.x, -b2dVec.y); };
 };
 
 
