@@ -6,6 +6,7 @@
 #include "pari.hpp"
 #include "sprite_sheet.hpp"
 
+
 Pari::Pari(b2Vec2 position) : Character(position) {
 	this->allegiance = Allegiance::parrot;
 	this->setTargetable(true);
@@ -58,13 +59,10 @@ bool Pari::parry(float angle) {
 }
 
 
-void Pari::onCollision(Actor &a)
-{
+void Pari::onCollision(Actor &a) {
 	if (a.getAllegiance() == Allegiance::neutral && a.shouldCollide(*this)) this->jumpCounter = 0;
 
 	if (this->isParrying()) {
-		std::cout << "should deflect" << std::endl;
-
 		// deflect contact object
 		b2Vec2 projectileVelocity = a.getBody()->GetLinearVelocity();
 		double projectileSpeed = sqrt(pow(projectileVelocity.x, 2) + pow(projectileVelocity.y, 2));
@@ -73,9 +71,6 @@ void Pari::onCollision(Actor &a)
 
 		// recoil Pari
 		this->getBody()->SetLinearVelocity(b2Vec2(-10, -10));
-	}
-	else {
-		std::cout << "no deflect because either never right clicked, or right clicked at wrong time" << std::endl;
 	}
 }
 
