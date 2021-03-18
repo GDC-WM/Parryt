@@ -4,6 +4,7 @@
 
 #include "view.hpp"
 #include "player_view.hpp"
+#include "character.hpp"
 #include "pari.hpp"
 
 PlayerView::PlayerView(std::shared_ptr<LogicController> logic, std::shared_ptr<Pari> character) : View(logic) {
@@ -44,19 +45,17 @@ void PlayerView::pressEvent(sf::Event::KeyEvent key) {
 void PlayerView::pressEvent(sf::Event::MouseButtonEvent button) {
 	sf::Vector2f mousePos;
 	switch (button.button) {
-		case sf::Mouse::Left:
-		{
+		case sf::Mouse::Left: {
 			mousePos = this->window->mapPixelToCoords(sf::Mouse::getPosition(*this->window));
 			// helpful for debugging: left click to see the coordinates
 			std::cout << " \ny: " << mousePos.y << " \nx: " << mousePos.x << std::endl;
 			break;
 		}
-		case sf::Mouse::Right:
-		{
+		case sf::Mouse::Right: {
 			float mouseCoordX = window->mapPixelToCoords(sf::Mouse::getPosition(*window)).x - this->character->getBody()->GetPosition().x;
 			float mouseCoordY = window->mapPixelToCoords(sf::Mouse::getPosition(*window)).y + this->character->getBody()->GetPosition().y;
-			float parryDirection = -atan2(mouseCoordY, mouseCoordX);
-			this->character->parry(parryDirection);
+			float parryAngle = -atan2(mouseCoordY, mouseCoordX);
+			this->character->parry(parryAngle);
 			break;
 		}
 		default:; // ignore other buttons

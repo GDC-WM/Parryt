@@ -7,8 +7,8 @@
 
 Cannonball::Cannonball(b2Vec2 position, float damage) : Actor(position) {
 	this->allegiance = Allegiance::pirate;
-
 	this->age = 0;
+
 	// fix shape to body
 	this->shape.m_radius = this->RADIUS;
 	this->bodyDef.type = b2_dynamicBody;
@@ -28,9 +28,10 @@ Cannonball::Cannonball(b2Vec2 position, float damage) : Actor(position) {
 	this->drawable.setRadius(this->RADIUS);
 }
 
+
 void Cannonball::onCollision(Actor &a) {
-	if (a.getAllegiance() == Allegiance::parrot) {
-		/* FEATURE: Damages and red overlay character on hit when Pari is not parrying*/
+	if (a.getAllegiance() == Allegiance::parrot && a.isTargetable()) {
+		// TODO: damage the character and destroy itself
 	}
 }
 
@@ -41,6 +42,7 @@ void Cannonball::update(const float &dt) {
 		this->room->removeActor(this->shared_from_this());
 	}
 }
+
 
 void Cannonball::draw(std::shared_ptr<sf::RenderWindow> window) {
 	this->drawable.setPosition(this->getBody()->GetPosition().x,

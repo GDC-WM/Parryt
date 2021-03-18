@@ -25,11 +25,10 @@ public:
 private:
 	b2CircleShape shape;
 	float damage;
-	int age;
+	int age; //TODO: make this based on chrono
 	sf::CircleShape drawable;
 	sf::Texture texture;
 	sf::Sprite sprite;
-	float angleBetweenPariAndCannonball; 
 };
 
 
