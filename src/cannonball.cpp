@@ -1,13 +1,12 @@
 #include <box2d/box2d.h>
 #include <SFML/Graphics.hpp>
-
+# include <iostream>
 #include "actor.hpp"
 #include "cannonball.hpp"
 
 
 Cannonball::Cannonball(b2Vec2 position, float damage) : Actor(position) {
 	this->allegiance = Allegiance::pirate;
-
 	this->age = 0;
 
 	// fix shape to body
@@ -29,12 +28,21 @@ Cannonball::Cannonball(b2Vec2 position, float damage) : Actor(position) {
 	this->drawable.setRadius(this->RADIUS);
 }
 
+
+void Cannonball::onCollision(Actor &a) {
+	if (a.getAllegiance() == Allegiance::parrot && a.isTargetable()) {
+		// TODO: damage the character and destroy itself
+	}
+}
+
+
 void Cannonball::update(const float &dt) {
 	this->age++;
 	if (this->age > 900) {
 		this->room->removeActor(this->shared_from_this());
 	}
 }
+
 
 void Cannonball::draw(std::shared_ptr<sf::RenderWindow> window) {
 	this->drawable.setPosition(this->getBody()->GetPosition().x,

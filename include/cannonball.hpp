@@ -15,15 +15,17 @@ public:
 
 	Cannonball(b2Vec2 position, float damage);
 
+	void onCollision(Actor &a) override;
+
 	void update(const float &dt) override;
 
-	virtual void draw(std::shared_ptr<sf::RenderWindow> window);
+	void draw(std::shared_ptr<sf::RenderWindow> window) override;
 
 
 private:
 	b2CircleShape shape;
 	float damage;
-	int age;
+	int age; //TODO: make this based on chrono
 	sf::CircleShape drawable;
 	sf::Texture texture;
 	sf::Sprite sprite;

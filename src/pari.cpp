@@ -6,6 +6,7 @@
 #include "pari.hpp"
 #include "sprite_sheet.hpp"
 
+
 Pari::Pari(b2Vec2 position) : Character(position) {
 	this->allegiance = Allegiance::parrot;
 	this->setTargetable(true);
@@ -16,6 +17,10 @@ Pari::Pari(b2Vec2 position) : Character(position) {
 	this->maxSpeed = 15;
 	this->maxHealth = 100;
 	this->maxJumps = 2;
+	this->parryDuration = std::chrono::milliseconds(200);
+	this->parryRechargeDuration = std::chrono::seconds(1);
+	// set parry start so Pari can parry right away
+	this->parryStart = std::chrono::steady_clock::now() - this->parryRechargeDuration;
 
 	// fix shape to body
 	this->shape.SetAsBox(this->WIDTH, this->HEIGHT);
@@ -45,10 +50,36 @@ bool Pari::jump(void) {
 }
 
 
+bool Pari::parry(float angle) {
+	if (!this->canParry()) return false;
+
+	this->parryAngle = angle;
+	this->parryStart = std::chrono::steady_clock::now();
+	return true;
+}
+
+
+void Pari::onCollision(Actor &a) {
+	if (a.getAllegiance() == Allegiance::neutral && a.shouldCollide(*this)) this->jumpCounter = 0;
+
+	if (this->isParrying()) {
+		// deflect contact object
+		b2Vec2 projectileVelocity = a.getBody()->GetLinearVelocity();
+		double projectileSpeed = sqrt(pow(projectileVelocity.x, 2) + pow(projectileVelocity.y, 2));
+		a.getBody()->SetLinearVelocity(b2Vec2(projectileSpeed * cos(this->parryAngle),
+		                                      projectileSpeed * sin(this->parryAngle)));
+
+		// recoil Pari
+		this->getBody()->SetLinearVelocity(b2Vec2(-10, -10));
+	}
+}
+
+
 void Pari::draw(std::shared_ptr<sf::RenderWindow> window) {
 	// old drawable
 	this->drawable.setPosition(this->getBody()->GetPosition().x,
 	                          -this->getBody()->GetPosition().y);
+
 	//window->draw(drawable);
 
 	// set animation
