@@ -1,4 +1,3 @@
-#include "..\include\pari.hpp"
 #include <box2d/box2d.h>
 #include <SFML/Graphics.hpp>
 
@@ -52,6 +51,8 @@ bool Pari::jump(void) {
 void Pari::onCollision(Actor &a)
 {
 	if (a.getAllegiance() == Allegiance::neutral && a.shouldCollide(*this)) this->jumpCounter = 0;
+
+	
 	if (this->isDeflecting && (std::chrono::duration_cast<std::chrono::milliseconds> (std::chrono::steady_clock::now() - this->deflectStartTime).count() <= 200 )) {
 		std::cout << "should deflect" << std::endl; 
 
