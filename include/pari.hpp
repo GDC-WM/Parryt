@@ -4,11 +4,11 @@
 
 #include <box2d/box2d.h>
 #include <SFML/Graphics.hpp>
+#include <chrono>
 
 #include "actor.hpp"
 #include "character.hpp"
 #include "sprite_sheet.hpp"
-#include <chrono>
 
 
 /**
@@ -24,23 +24,35 @@ public:
 
 	bool jump(void) override;
 
-	void onCollision(Actor & a);
+	void onCollision(Actor &a) override;
 
 	void draw(std::shared_ptr<sf::RenderWindow> window) override;
 
-	void setIsDeflecting(bool isDeflecting) { this->isDeflecting = isDeflecting; }
+	/**
+	 * @return true if Pari is currently parrying
+	 */
+	const bool isParrying(void) const { return std::chrono::steady_clock::now() - this->parryStart < this->parryDuration; };
 
-	void setDeflectStartTime(std::chrono::steady_clock::time_point deflectStartTime) { this-> deflectStartTime = deflectStartTime; }
+	/**
+	 * @return true if Pari can pari (is not recharging)
+	 */
+	const bool canParry(void) const { return std::chrono::steady_clock::now() - this->parryStart > this->parryRechargeDuration; };
 
-	const bool getIsDeflecting() { return this->isDeflecting; }
+	/**
+	 * Make Pari parry!
+	 *
+	 * @param angle The direction to parry in
+	 * @return whether Pari was able to try to Pari (was not recharging)
+	 */
+	bool parry(float angle);
 
-	const std::chrono::steady_clock::time_point getDeflectStartTime(){return this->deflectStartTime;}
-
-	void setLastAngleBetweenCharacterAndMouse(float angle) { this->lastAngleBetweenCharacterAndMouse = angle;  }
-
-	float getLastAngleBetweenCharacterAndMouse() { return this->lastAngleBetweenCharacterAndMouse; }
 
 private:
+	std::chrono::steady_clock::time_point parryStart;
+	std::chrono::milliseconds parryDuration;
+	std::chrono::milliseconds parryRechargeDuration;
+	float parryAngle;
+
 	sf::RectangleShape drawable;
 	sf::Texture texture;
 	b2PolygonShape shape;
@@ -49,14 +61,7 @@ private:
 	Loop jumpLoop { 28, 3, 170 };
 	std::unique_ptr<SpriteSheet> spriteSheet;
 	sf::Sprite sprite;
-
-protected:
-	bool isDeflecting;
-	std::chrono::steady_clock::time_point deflectStartTime;
-	float lastAngleBetweenCharacterAndMouse;
 };
-
-
 
 
 #endif

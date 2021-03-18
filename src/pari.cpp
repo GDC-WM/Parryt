@@ -16,6 +16,10 @@ Pari::Pari(b2Vec2 position) : Character(position) {
 	this->maxSpeed = 15;
 	this->maxHealth = 100;
 	this->maxJumps = 2;
+	this->parryDuration = std::chrono::milliseconds(200);
+	this->parryRechargeDuration = std::chrono::seconds(1);
+	// set parry start so Pari can parry right away
+	this->parryStart = std::chrono::steady_clock::now() - this->parryRechargeDuration;
 
 	// fix shape to body
 	this->shape.SetAsBox(this->WIDTH, this->HEIGHT);
@@ -35,10 +39,6 @@ Pari::Pari(b2Vec2 position) : Character(position) {
 	this->drawable.setOrigin(this->WIDTH, this->HEIGHT);
 	this->drawable.setFillColor(sf::Color::Green);
 	this->drawable.setSize(sf::Vector2f(this->WIDTH * 2, this->HEIGHT * 2));
-
-	// initialize deflect logic
-	this->isDeflecting = false; 
-	//this->deflectStartTime = std::chrono::steady_clock::now();
 }
 
 
@@ -48,27 +48,34 @@ bool Pari::jump(void) {
 	return jumped;
 }
 
+
+bool Pari::parry(float angle) {
+	if (!this->canParry()) return false;
+
+	this->parryAngle = angle;
+	this->parryStart = std::chrono::steady_clock::now();
+	return true;
+}
+
+
 void Pari::onCollision(Actor &a)
 {
 	if (a.getAllegiance() == Allegiance::neutral && a.shouldCollide(*this)) this->jumpCounter = 0;
 
-	
-	if (this->isDeflecting && (std::chrono::duration_cast<std::chrono::milliseconds> (std::chrono::steady_clock::now() - this->deflectStartTime).count() <= 200 )) {
-		std::cout << "should deflect" << std::endl; 
+	if (this->isParrying()) {
+		std::cout << "should deflect" << std::endl;
 
 		// deflect contact object
-		double projectileVelocityX = a.getBody()->GetLinearVelocity().x; 
-		double projectileVelocityY = a.getBody()->GetLinearVelocity().y; 
-		double projectileSpeed = sqrt(pow(projectileVelocityX, 2) + pow(projectileVelocityY, 2)); 
-		float angle = this->getLastAngleBetweenCharacterAndMouse(); 
-		a.getBody()->SetLinearVelocity(b2Vec2(projectileSpeed * cos(angle), projectileSpeed*  sin(angle)));
+		b2Vec2 projectileVelocity = a.getBody()->GetLinearVelocity();
+		double projectileSpeed = sqrt(pow(projectileVelocity.x, 2) + pow(projectileVelocity.y, 2));
+		a.getBody()->SetLinearVelocity(b2Vec2(projectileSpeed * cos(this->parryAngle),
+		                                      projectileSpeed * sin(this->parryAngle)));
 
-		// recoil Pari 
+		// recoil Pari
 		this->getBody()->SetLinearVelocity(b2Vec2(-10, -10));
 	}
 	else {
-
-		std::cout << "no deflect because either never right clicked, or right clicked at wrong time" << std::endl; 
+		std::cout << "no deflect because either never right clicked, or right clicked at wrong time" << std::endl;
 	}
 }
 

@@ -25,7 +25,6 @@ private:
 	std::shared_ptr<sf::RenderWindow> window;
 	std::shared_ptr<LogicController> logic;
 	std::shared_ptr<Pari> character;
-	std::chrono::steady_clock::time_point lastClickedTime;
 
 	/**
 	 * Respond to key press

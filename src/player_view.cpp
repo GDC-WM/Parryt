@@ -20,7 +20,7 @@ PlayerView::PlayerView(std::shared_ptr<LogicController> logic, std::shared_ptr<P
 	view.setCenter(sf::Vector2f(this->character->getBody()->GetPosition().x,
                                -this->character->getBody()->GetPosition().y));
 	this->window->setView(view);
-	
+
 }
 
 
@@ -49,31 +49,16 @@ void PlayerView::pressEvent(sf::Event::MouseButtonEvent button) {
 			mousePos = this->window->mapPixelToCoords(sf::Mouse::getPosition(*this->window));
 			// helpful for debugging: left click to see the coordinates
 			std::cout << " \ny: " << mousePos.y << " \nx: " << mousePos.x << std::endl;
-
-			
-
 			break;
 		}
-		case sf::Mouse::Right: 
+		case sf::Mouse::Right:
 		{
-			int deflectCoolDown = 1000; // 1000ms, Pari can only pari every 1 second
-			int msElapsed = std::chrono::duration_cast<std::chrono::milliseconds> (std::chrono::steady_clock::now() - this->lastClickedTime).count();
-			if (msElapsed > deflectCoolDown)
-			{
-				this->character->setIsDeflecting(true);
-				this->character->setDeflectStartTime(std::chrono::steady_clock::now());
-
-				float mouseCoordX = window->mapPixelToCoords(sf::Mouse::getPosition(*window)).x - this->character->getBody()->GetPosition().x;
-				float mouseCoordY = window->mapPixelToCoords(sf::Mouse::getPosition(*window)).y + this->character->getBody()->GetPosition().y;
-				float angleBetweenPariAndCannonball = -atan2(mouseCoordY, mouseCoordX);
-				this->character->setLastAngleBetweenCharacterAndMouse(angleBetweenPariAndCannonball);
-
-				this->lastClickedTime = std::chrono::steady_clock::now();
-			}
-
-			break; 
+			float mouseCoordX = window->mapPixelToCoords(sf::Mouse::getPosition(*window)).x - this->character->getBody()->GetPosition().x;
+			float mouseCoordY = window->mapPixelToCoords(sf::Mouse::getPosition(*window)).y + this->character->getBody()->GetPosition().y;
+			float parryDirection = -atan2(mouseCoordY, mouseCoordX);
+			this->character->parry(parryDirection);
+			break;
 		}
-			
 		default:; // ignore other buttons
 	}
 }
@@ -181,7 +166,7 @@ void PlayerView::drawScreen(void) {
 	// temporary add red vector indicating direction to redirect projectiles
 	float point1[] = { window->getView().getCenter().x, window->getView().getCenter().y };
 	float point2[] = { window->mapPixelToCoords(sf::Mouse::getPosition(*window)).x, window->mapPixelToCoords(sf::Mouse::getPosition(*window)).y };
-	float vectorBetween[] = { point2[0] - point1[0], point2[1] - point1[1] }; 
+	float vectorBetween[] = { point2[0] - point1[0], point2[1] - point1[1] };
 	sf::Vertex line[] =
 	{
 		sf::Vertex(sf::Vector2f(point1[0], point1[1]), sf::Color::Red),
