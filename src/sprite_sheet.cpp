@@ -5,14 +5,14 @@
 
 
 SpriteSheet::SpriteSheet(const std::string &spriteSheet, const sf::Vector2i &spriteSize) {
-    // load a sprite sheet
+	// load a sprite sheet
 	this->texture.loadFromFile(spriteSheet);
 
-    // calculate sprite dimensions
+	// calculate sprite dimensions
 	this->sheetSize.x = this->texture.getSize().x / spriteSize.x;
 	this->sheetSize.y = this->texture.getSize().y / spriteSize.y;
 
-    // give sprite a rectangle
+	// give sprite a rectangle
 	this->spriteRect = sf::IntRect(sf::Vector2i(0,0), spriteSize);
 	this->sprite = sf::Sprite(texture, this->spriteRect);
 	this->sprite.setScale(0.08,0.08);
@@ -24,7 +24,7 @@ SpriteSheet::SpriteSheet(const std::string &spriteSheet, const sf::Vector2i &spr
 
 sf::Sprite &SpriteSheet::getSprite(void) {
 	int dt = std::chrono::duration_cast<std::chrono::milliseconds>
-			(std::chrono::steady_clock::now() - this->startTime).count();
+	         (std::chrono::steady_clock::now() - this->startTime).count();
 
 	// check for oneshot
 	Loop curLoop = dt < this->oneShot.frameTime * this->oneShot.frames? this->oneShot : this->baseLoop;

@@ -5,9 +5,10 @@
 #include "view.hpp"
 #include "player_view.hpp"
 #include "character.hpp"
+#include "pari.hpp"
 
 
-PlayerView::PlayerView(std::shared_ptr<LogicController> logic, std::shared_ptr<Character> character) : View(logic) {
+PlayerView::PlayerView(std::shared_ptr<LogicController> logic, std::shared_ptr<Pari> character) : View(logic) {
 	this->logic = logic; // TODO: this happens in view as well, but segfault if not set here
 	this->character = character;
 
@@ -18,38 +19,71 @@ PlayerView::PlayerView(std::shared_ptr<LogicController> logic, std::shared_ptr<C
 	// set view to center on the character
 	sf::View view = this->window->getView();
 	view.setSize(sf::Vector2f(64, 36));
-	view.setCenter(sf::Vector2f(this->character->getBody()->GetPosition().x,
-                               -this->character->getBody()->GetPosition().y));
+	view.setCenter(this->convertVec(this->character->getBody()->GetPosition()));
 	this->window->setView(view);
+
 }
 
 
-// TODO: tie this method to the physics loop
-void PlayerView::pollInput(void) {
-	// mouse
-	//if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) ;
+void PlayerView::pressEvent(sf::Event::KeyEvent key) {
+	switch (key.code) {
+		case sf::Keyboard::Space:
+		case sf::Keyboard::W:
+			this->character->jump();
+			break;
+		case sf::Keyboard::A:
+			this->character->setMovement(Dir::left);
+			break;
+		case sf::Keyboard::D:
+			this->character->setMovement(Dir::right);
+			break;
+		default:; // ignore other keys
+	}
+}
 
-	// keyboard
-	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) /*jump down from platform*/;
-	bool left = sf::Keyboard::isKeyPressed(sf::Keyboard::A);
-	bool right = sf::Keyboard::isKeyPressed(sf::Keyboard::D);
-	if (left) this->character->goLeft();
-	if (right) this->character->goRight();
-	if (!(left || right)) this->character->stop();
-	
-	/* Fix the left and right problem causing weird movements... */
-	if (left && right) this->character->stop();
+
+void PlayerView::pressEvent(sf::Event::MouseButtonEvent button) {
+	b2Vec2 mousePos = this->convertVec(this->window->mapPixelToCoords(sf::Mouse::getPosition(*this->window)))
+	                - this->character->getBody()->GetPosition();
+	switch (button.button) {
+		case sf::Mouse::Left: {
+			// helpful for debugging: left click to see the coordinates
+			std::cout << " \nx: " << mousePos.x << " \ny: " << mousePos.y << std::endl;
+			break;
+		}
+		case sf::Mouse::Right: {
+			this->character->parry(atan2(mousePos.y, mousePos.x));
+			break;
+		}
+		default:; // ignore other buttons
+	}
+}
+
+
+void PlayerView::releaseEvent(sf::Event::KeyEvent key) {
+	switch (key.code) {
+		case sf::Keyboard::A:
+			if (this->character->getMovement() == Dir::left) this->character->setMovement(Dir::none);
+			break;
+		case sf::Keyboard::D:
+			if (this->character->getMovement() == Dir::right) this->character->setMovement(Dir::none);
+			break;
+		default:; // ignore other keys
+	}
+}
+
+
+void PlayerView::releaseEvent(sf::Event::MouseButtonEvent button) {
+	switch (button.button) {
+		case sf::Mouse::Left:
+			break;
+		default:; // ignore other buttons
+	}
 }
 
 
 void PlayerView::listen(void) {
 	sf::Event event;
-	//left click to see the coordinates
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Left)){
-			sf::Vector2i coords = sf::Mouse::getPosition(*window);
-			sf::Vector2f worldPos = this->window->mapPixelToCoords(coords);
-			std::cout<<" \ny: " << worldPos.y<< " \nx: " << worldPos.x;
-		}
 	while (window->pollEvent(event)) {
 		switch (event.type) {
 			case sf::Event::Closed:
@@ -57,14 +91,16 @@ void PlayerView::listen(void) {
 				this->logic->terminate();
 				break;
 			case sf::Event::KeyPressed:
-				switch (event.key.code) {
-					case sf::Keyboard::Space:
-					case sf::Keyboard::W:
-						this->character->jump();
-						break;
-
-					default:; // ignore other keys
-				}
+				this->pressEvent(event.key);
+				break;
+			case sf::Event::KeyReleased:
+				this->releaseEvent(event.key);
+				break;
+			case sf::Event::MouseButtonPressed:
+				this->pressEvent(event.mouseButton);
+				break;
+			case sf::Event::MouseButtonReleased:
+				this->releaseEvent(event.mouseButton);
 				break;
 			default:; // ignore other events
 		}
@@ -123,6 +159,17 @@ void PlayerView::drawScreen(void) {
 	barrel.setScale(.1,.1);
 	this->window->draw(barrel);
 
+	// temporary add red vector indicating direction to redirect projectiles
+	float point1[] = { window->getView().getCenter().x, window->getView().getCenter().y };
+	float point2[] = { window->mapPixelToCoords(sf::Mouse::getPosition(*window)).x, window->mapPixelToCoords(sf::Mouse::getPosition(*window)).y };
+	float vectorBetween[] = { point2[0] - point1[0], point2[1] - point1[1] };
+	sf::Vertex line[] =
+	{
+		sf::Vertex(sf::Vector2f(point1[0], point1[1]), sf::Color::Red),
+		sf::Vertex(sf::Vector2f(point2[0], point2[1]), sf::Color::Red)
+	};
+	this->window->draw(line, 2, sf::Lines);
+
 	// draw actors
 	for (auto actor : this->logic->getCurrentRoom()->getActorList()) actor->draw(this->window);
 
@@ -135,7 +182,6 @@ void PlayerView::drawScreen(void) {
 
 
 void PlayerView::update(const float &dt) {
-	this->pollInput();
 	this->listen();
 	this->drawScreen();
 }

@@ -8,6 +8,7 @@
 
 #include "view.hpp"
 #include "character.hpp"
+#include "pari.hpp"
 
 
 /**
@@ -15,7 +16,7 @@
  */
 class PlayerView : public View {
 public:
-	PlayerView(std::shared_ptr<LogicController> logic, std::shared_ptr<Character> character);
+	PlayerView(std::shared_ptr<LogicController> logic, std::shared_ptr<Pari> character);
 
 	void update(const float &dt);
 
@@ -23,15 +24,30 @@ public:
 private:
 	std::shared_ptr<sf::RenderWindow> window;
 	std::shared_ptr<LogicController> logic;
-	std::shared_ptr<Character> character;
+	std::shared_ptr<Pari> character;
 
 	/**
-	 * Poll input methods and react accordingly.
+	 * Respond to key press
 	 */
-	void pollInput(void);
+	void pressEvent(sf::Event::KeyEvent key);
 
 	/**
-	 * Poll input events and react accordingly.
+	 * Respond to mouse press
+	 */
+	void pressEvent(sf::Event::MouseButtonEvent button);
+
+	/**
+	 * Respond to key release
+	 */
+	void releaseEvent(sf::Event::KeyEvent key);
+
+	/**
+	 * Respond to mouse release
+	 */
+	void releaseEvent(sf::Event::MouseButtonEvent button);
+
+	/**
+	 * Respond to events
 	 */
 	void listen(void);
 
@@ -46,6 +62,10 @@ private:
 	 * Draw the screen.
 	 */
 	void drawScreen(void);
+
+	b2Vec2 convertVec(sf::Vector2f sfmlVec) { return b2Vec2(sfmlVec.x, -sfmlVec.y); };
+
+	sf::Vector2f convertVec(b2Vec2 b2dVec) { return sf::Vector2f(b2dVec.x, -b2dVec.y); };
 };
 
 

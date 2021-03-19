@@ -44,6 +44,12 @@ public:
 	 */
 	const int getMaxHealth(void) const { return this->maxHealth; };
 
+
+	/**
+	 * @return look direction
+	 */
+	Dir getLookDir() { return this->lookDir; };
+
 	/**
 	 * Make the character jump
 	 */
@@ -60,20 +66,23 @@ public:
 	void goRight(void);
 
 	/**
-	 * Make the character go left
+	 * Set movement direction
 	 */
-	void stop(void);
-
-	void collide(Actor &a) override;
+	void setMovement(const Dir &dir) { this->movementForceDir = dir; };
 
 	/**
-	 * @return if the character is resting on the ground
+	 * Get movement direction
 	 */
-	const bool &isGrounded(void);
+	const Dir &getMovement(void) const { return this->movementForceDir; };
+
+	virtual void onCollision(Actor &a) override;
+
+	virtual void update(const float &dt) override;
 
 
 protected:
-	Direction lookDirection = Direction::RIGHT;
+	Dir lookDir = Dir::right;
+	Dir movementForceDir = Dir::none;
 	float jumpImpulse;
 	int maxJumps;
 	int jumpCounter = 0;
@@ -83,6 +92,11 @@ protected:
 	int maxHealth;
 	float health;
 	//TODO: give every character a SpriteSheet?
+
+	/**
+	 * Make the character apply a stop force
+	 */
+	void stop(void);
 };
 
 

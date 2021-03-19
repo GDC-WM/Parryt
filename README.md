@@ -9,13 +9,19 @@
 * Install make, cmake, g++, SFML (and possibly SFML-dev), randr (xorg-dev and libglu1-mesa-dev on Ubuntu), doxygen, and git from your package manager (specific names depend on your distribution.
 * Run the following commands from within the directory you would like the game to be:
 - ```git clone --recursive https://github.com/GDC-WM/Parryt.git```
+
+building box2d (only once needed) 
+
 - ```mkdir Parryt/box2d/build```
 - ```cd Parryt/box2d/build```
 - ```cmake -DBOX2D_BUILD_DOCS=ON ..```
 - ```cmake -build .```
 - ```sudo cmake --build . --target install```
 - ```cd ../..```
-- ```mkdir Debug```
+
+building Parryt
+
+- ```mkdir Debug``` (which makes Parryt/Debug) 
 - ```cd Debug```
 - ```cmake ..```
 - ```make```

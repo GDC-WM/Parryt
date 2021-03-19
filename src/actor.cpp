@@ -7,7 +7,6 @@
 #include "room.hpp"
 
 
-
 Actor::Actor(const b2Vec2 &position) {
 	this->bodyDef.position = position;
 }
