@@ -17,7 +17,7 @@ Pari::Pari(b2Vec2 position) : Character(position) {
 	this->maxSpeed = 15;
 	this->maxHealth = 100;
 	this->maxJumps = 2;
-	this->parryDuration = std::chrono::milliseconds();
+	this->parryDuration = std::chrono::milliseconds(200);
 	this->parryRechargeDuration = std::chrono::seconds(1);
 	// set parry start so Pari can parry right away
 	this->parryStart = std::chrono::steady_clock::now() - this->parryRechargeDuration;
