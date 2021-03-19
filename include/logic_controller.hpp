@@ -18,7 +18,7 @@ class ViewController;
 /**
  * Main logic class that controls everything.
  */
-class LogicController {
+class LogicController  : public std::enable_shared_from_this<LogicController> {
 public:
 	/**
 	 * Main method
@@ -69,7 +69,7 @@ public:
 
 
 private:
-	std::shared_ptr<ViewController> view;
+	std::shared_ptr<ViewController> viewController;
 	std::list<std::shared_ptr<Room>> roomList;
 	std::list<std::shared_ptr<Room>>::iterator currentRoom;
 	bool terminated = false;

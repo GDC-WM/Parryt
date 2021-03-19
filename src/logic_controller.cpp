@@ -18,7 +18,7 @@
 
 
 void LogicController::init(std::shared_ptr<ViewController> view) {
-	this->view = view;
+	this->viewController = view;
 }
 
 
@@ -34,17 +34,17 @@ void LogicController::startDemo(void) {
 	// add pari
 	std::shared_ptr<Pari> pari = std::make_shared<Pari>(b2Vec2(-13,-5));
 	this->getCurrentRoom()->addActor(pari);
-	this->view->addView(pari);
+	this->viewController->addView(std::make_shared<PlayerView>(this->shared_from_this(), pari));
 
 	// add cannon
 	std::shared_ptr<Cannon> cannon = std::make_shared<Cannon>(b2Vec2(15.2,-5));
 	this->getCurrentRoom()->addActor(cannon);
-	this->view->addView(cannon);
+	this->viewController->addView(std::make_shared<CannonView>(this->shared_from_this(), cannon));
 
 	// Add grunt
 	std::shared_ptr<Grunt> grunt = std::make_shared<Grunt>(b2Vec2(30, -5));
 	this->getCurrentRoom()->addActor(grunt);
-	this->view->addView(grunt);
+	this->viewController->addView(std::make_shared<GruntView>(this->shared_from_this(), grunt));
 
 	// Add mast platforms
 	for (int i = 0; i < 32; i += 2) {

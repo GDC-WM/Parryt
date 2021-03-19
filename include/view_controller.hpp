@@ -17,7 +17,7 @@
 
 
 /**
- * Manages all of the different views and game states
+ * Manages all of the views and game states.
  */
 class ViewController {
 public:
@@ -26,22 +26,14 @@ public:
 	void reset();
 
 	/**
-	 * Add PlayerView
+	 * @param view View to add to the view list
 	 */
-	void addView(std::shared_ptr<Pari> a) { this->viewList.push_back(std::make_shared<PlayerView>(this->logic, a)); };
+	void addView(std::shared_ptr<View> view) { this->viewList.push_back(view); };
 
 	/**
-	 * Add CannonView
-	 */
-	void addView(std::shared_ptr<Cannon> a) { this->viewList.push_back(std::make_shared<CannonView>(this->logic, a)); };
-
-	/**
-	 * Add GruntView
-	 */
-	void addView(std::shared_ptr<Grunt> a) { this->viewList.push_back(std::make_shared<GruntView>(this->logic, a)); };
-
-	/**
-	 * Create a view for the new enemy from logic and add the view to the enemyview list
+	 * Update each view.
+	 *
+	 * @param dt length of time to progress for this update
 	 */
 	void update(float dt);
 
