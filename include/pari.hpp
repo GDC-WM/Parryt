@@ -58,7 +58,7 @@ private:
 	b2PolygonShape shape;
 	Loop standLoop { 22, 3, 400 };
 	Loop runLoop { 0, 6, 170 };
-	Loop jumpLoop { 28, 3, 170 };
+	Loop jumpLoop { 28, 5, 170 };
 	std::unique_ptr<SpriteSheet> spriteSheet;
 	sf::Sprite sprite;
 };

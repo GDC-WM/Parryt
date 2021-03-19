@@ -81,13 +81,13 @@ void Character::update(const float &dt) {
 		case Dir::left:
 			if (this->body->GetLinearVelocity().x > -this->maxSpeed)
 				this->body->ApplyForceToCenter(b2Vec2(-this->acceleration - 500, 0), true);
-			/* Refine the lookDirection */
+			//set look direction
 			if (this->body->GetLinearVelocity().x >= -this->maxSpeed && this->body->GetLinearVelocity().x < 0)
 				this->lookDir = Dir::left;
 			break;
 		case Dir::right:
 			if (this->body->GetLinearVelocity().x < this->maxSpeed) this->body->ApplyForceToCenter(b2Vec2(this->acceleration + 500, 0), true);
-				/* Refine the lookDirection */
+			//set look direction
 			if (this->body->GetLinearVelocity().x <= this->maxSpeed && this->body->GetLinearVelocity().x > 0)
 				this->lookDir = Dir::right;
 			break;
