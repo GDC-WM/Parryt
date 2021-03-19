@@ -31,7 +31,9 @@ sf::Sprite &SpriteSheet::getSprite(void) {
 
 	// set frame
 	int n = dt / curLoop.frameTime;
-	this->setFrame(curLoop.start + n % curLoop.frames);
+	int frame = curLoop.start + n % curLoop.frames;
+	if (mirrored) frame += curLoop.frames;
+	this->setFrame(frame);
 	return (this->sprite);
 }
 

@@ -92,7 +92,8 @@ void Pari::draw(std::shared_ptr<sf::RenderWindow> window) {
 	else newLoop = this->standLoop;
 
 	// use mirrored sprite if facing left
-	if (this->lookDir == Dir::left) newLoop = newLoop.mirror();
+	this->spriteSheet->setMirrored(this->lookDir == Dir::left);
+	//TODO: ^this check could be removed if all characters were given a spritesheet
 
 	if (newLoop != this->spriteSheet->getLoop()) {
 		this->spriteSheet->setLoop(newLoop);
