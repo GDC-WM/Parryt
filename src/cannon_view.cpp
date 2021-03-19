@@ -17,7 +17,7 @@ bool CannonView::inRange(std::shared_ptr<Actor> target) {
 
 
 void CannonView::aimAt(std::shared_ptr<Actor> target) {
-	//calculate angle of target's position using trig
+	// calculate angle of target's position
 	b2Vec2 targetVector = target->getBody()->GetPosition() - this->cannon->getBody()->GetPosition();
 	float relativeAngle = this->cannon->getOrientation() - atan2(targetVector.y, targetVector.x);
 

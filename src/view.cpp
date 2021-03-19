@@ -2,5 +2,5 @@
 
 
 View::View(std::shared_ptr<LogicController> logic) {
-    this->logic = logic;
+	this->logic = logic;
 }

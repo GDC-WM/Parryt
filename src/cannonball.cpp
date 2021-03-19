@@ -38,6 +38,8 @@ void Cannonball::onCollision(Actor &a) {
 
 void Cannonball::update(const float &dt) {
 	this->age++;
+
+	// delete old cannonballs
 	if (this->age > 900) {
 		this->room->removeActor(this->shared_from_this());
 	}

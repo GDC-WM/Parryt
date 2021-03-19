@@ -5,6 +5,7 @@
 #include <SFML/Graphics.hpp>
 #include <chrono>
 
+
 //TODO: move this into seperate file, make it a class?
 struct Loop {
 	int start, frames, frameTime;

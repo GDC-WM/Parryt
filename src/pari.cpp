@@ -17,7 +17,7 @@ Pari::Pari(b2Vec2 position) : Character(position) {
 	this->maxSpeed = 15;
 	this->maxHealth = 100;
 	this->maxJumps = 2;
-	this->parryDuration = std::chrono::milliseconds(200);
+	this->parryDuration = std::chrono::milliseconds();
 	this->parryRechargeDuration = std::chrono::seconds(1);
 	// set parry start so Pari can parry right away
 	this->parryStart = std::chrono::steady_clock::now() - this->parryRechargeDuration;
@@ -28,6 +28,7 @@ Pari::Pari(b2Vec2 position) : Character(position) {
 	this->fixtureDef.density = 2.4f;
 	this->fixtureDef.friction = 0.0f;
 
+	// load pari spritesheet
 	this->spriteSheet = std::make_unique<SpriteSheet>("../resources/pari.png", sf::Vector2i(64, 64));
 	this->spriteSheet->setLoop(this->standLoop);
 
@@ -46,6 +47,7 @@ Pari::Pari(b2Vec2 position) : Character(position) {
 bool Pari::jump(void) {
 	bool jumped = Character::jump();
 	if (jumped) this->spriteSheet->setOneShot(this->jumpLoop);
+	// prevents too many jumps
 	return jumped;
 }
 
