@@ -25,7 +25,6 @@ public:
 private:
 	std::shared_ptr<sf::RenderWindow> window;
 	std::shared_ptr<LogicController> logic;
-	std::shared_ptr<Character> character;
 	std::shared_ptr<Pari> character;
 	std::shared_ptr<musicTrack> ShipTrack;
 
