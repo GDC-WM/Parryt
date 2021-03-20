@@ -8,7 +8,7 @@
 
 #include "view.hpp"
 #include "character.hpp"
-
+#include "music.hpp"
 
 /**
  * Draw the screen for the player
@@ -24,6 +24,7 @@ private:
 	std::shared_ptr<sf::RenderWindow> window;
 	std::shared_ptr<LogicController> logic;
 	std::shared_ptr<Character> character;
+	std::shared_ptr<musicTrack> ShipTrack;
 
 	/**
 	 * Respond to key press

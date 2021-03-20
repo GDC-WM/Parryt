@@ -4,20 +4,13 @@
 
 #include "logic_controller.hpp"
 #include "view_controller.hpp"
-#include "music.hpp"
+
 
 int main(int argc, char** argv) {
 	std::shared_ptr<LogicController> logicController = std::make_shared<LogicController>();
 	std::shared_ptr<ViewController> viewController = std::make_shared<ViewController>(logicController);
 	logicController->init(viewController);
 	logicController->startDemo();
-
-	/* 
-	Add music to demo - this works for now;
-	I would like to add conditionals -- for example, "if this level, then play this music", etc.
-	*/
-	musicTrack ShipTrack("../resources/MainTheme.wav");
-	ShipTrack.playTrack();
 
 	// game loop
 	std::chrono::steady_clock::time_point startTime;

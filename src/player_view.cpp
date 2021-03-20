@@ -5,6 +5,7 @@
 #include "view.hpp"
 #include "player_view.hpp"
 #include "character.hpp"
+#include "music.hpp"
 
 
 PlayerView::PlayerView(std::shared_ptr<LogicController> logic, std::shared_ptr<Character> character) : View(logic) {
@@ -21,6 +22,10 @@ PlayerView::PlayerView(std::shared_ptr<LogicController> logic, std::shared_ptr<C
 	view.setCenter(sf::Vector2f(this->character->getBody()->GetPosition().x,
                                -this->character->getBody()->GetPosition().y));
 	this->window->setView(view);
+
+	/* Calling music for the stage: */
+	ShipTrack = std::make_shared<musicTrack>("../resources/MainTheme.wav");
+	ShipTrack->playTrack();
 }
 
 
