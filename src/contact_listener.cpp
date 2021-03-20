@@ -12,8 +12,8 @@ void ContactListener::BeginContact(b2Contact *contact) {
 	Actor* actor2 = reinterpret_cast<Actor*>(contact->GetFixtureB()->GetBody()->GetUserData().pointer);
 
 	// tell the actors that they have collided
-	actor2->collide(*actor1);
-	actor1->collide(*actor2);
+	actor2->onCollision(*actor1);
+	actor1->onCollision(*actor2);
 }
 
 

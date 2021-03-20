@@ -14,6 +14,7 @@ Character::Character(b2Vec2 position) : Actor(position) {
 
 void Character::damage(float damage) {
 	this->health -= damage;
+	// don't update character's health if at max already
 	if (this->health > this->maxHealth) this->health = this->maxHealth;
 	if (this->health < 0) this->health = 0;
 }
@@ -29,7 +30,7 @@ void Character::goLeft(void) {
 	if (this->body->GetLinearVelocity().x > -this->maxSpeed)
 		this->body->ApplyForceToCenter(b2Vec2(-this->acceleration - 500, 0), true);
 
-		/* Refine the lookDirection */
+		// set the look direction
 		if (this->body->GetLinearVelocity().x >= -this->maxSpeed && this->body->GetLinearVelocity().x < 0)
 			this->lookDir = Dir::left;
 
@@ -39,7 +40,7 @@ void Character::goLeft(void) {
 void Character::goRight(void) {
 	if (this->body->GetLinearVelocity().x < this->maxSpeed)
 		this->body->ApplyForceToCenter(b2Vec2(this->acceleration + 500, 0), true);
-		/* Refine the lookDirection */
+		// set the look direction
 	if (this->body->GetLinearVelocity().x <= this->maxSpeed && this->body->GetLinearVelocity().x > 0)
 		this->lookDir = Dir::right;
 
@@ -70,8 +71,8 @@ bool Character::jump(void) {
 }
 
 
-void Character::collide(Actor &a) {
-	if (a.getAllegiance() == Allegiance::neutral && a.collides(*this)) this->jumpCounter = 0;
+void Character::onCollision(Actor &a) {
+	if (a.getAllegiance() == Allegiance::neutral && a.shouldCollide(*this)) this->jumpCounter = 0;
 }
 
 
@@ -80,13 +81,13 @@ void Character::update(const float &dt) {
 		case Dir::left:
 			if (this->body->GetLinearVelocity().x > -this->maxSpeed)
 				this->body->ApplyForceToCenter(b2Vec2(-this->acceleration - 500, 0), true);
-			/* Refine the lookDirection */
+			//set look direction
 			if (this->body->GetLinearVelocity().x >= -this->maxSpeed && this->body->GetLinearVelocity().x < 0)
 				this->lookDir = Dir::left;
 			break;
 		case Dir::right:
 			if (this->body->GetLinearVelocity().x < this->maxSpeed) this->body->ApplyForceToCenter(b2Vec2(this->acceleration + 500, 0), true);
-				/* Refine the lookDirection */
+			//set look direction
 			if (this->body->GetLinearVelocity().x <= this->maxSpeed && this->body->GetLinearVelocity().x > 0)
 				this->lookDir = Dir::right;
 			break;

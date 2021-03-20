@@ -1,5 +1,5 @@
-#ifndef CANNONBALL_HPP
-#define CANNONBALL_HPP
+#ifndef BULLET_HPP
+#define BULLET_HPP
 
 
 #include <box2d/box2d.h>
@@ -9,13 +9,11 @@
 /**
  * Draw the screen for the player
  */
-class Cannonball : public Actor {
+class Bullet : public Actor {
 public:
 	static constexpr float RADIUS = 0.7;
 
-	Cannonball(b2Vec2 position, float damage);
-
-	void onCollision(Actor &a) override;
+	Bullet(b2Vec2 position, float damage);
 
 	void update(const float &dt) override;
 
@@ -25,7 +23,7 @@ public:
 private:
 	b2CircleShape shape;
 	float damage;
-	int age; //TODO: make this based on chrono
+	int age;
 	sf::CircleShape drawable;
 	sf::Texture texture;
 	sf::Sprite sprite;

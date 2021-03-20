@@ -7,6 +7,7 @@
 #include "sprite_sheet.hpp"
 #include "sound_effects.hpp"
 
+
 Pari::Pari(b2Vec2 position) : Character(position) {
 	this->allegiance = Allegiance::parrot;
 	this->setTargetable(true);
@@ -17,6 +18,10 @@ Pari::Pari(b2Vec2 position) : Character(position) {
 	this->maxSpeed = 15;
 	this->maxHealth = 100;
 	this->maxJumps = 2;
+	this->parryDuration = std::chrono::milliseconds(200);
+	this->parryRechargeDuration = std::chrono::seconds(1);
+	// set parry start so Pari can parry right away
+	this->parryStart = std::chrono::steady_clock::now() - this->parryRechargeDuration;
 
 	// fix shape to body
 	this->shape.SetAsBox(this->WIDTH, this->HEIGHT);
@@ -24,6 +29,7 @@ Pari::Pari(b2Vec2 position) : Character(position) {
 	this->fixtureDef.density = 2.4f;
 	this->fixtureDef.friction = 0.0f;
 
+	// load pari spritesheet
 	this->spriteSheet = std::make_unique<SpriteSheet>("../resources/pari.png", sf::Vector2i(64, 64));
 	this->spriteSheet->setLoop(this->standLoop);
 
@@ -42,7 +48,33 @@ Pari::Pari(b2Vec2 position) : Character(position) {
 bool Pari::jump(void) {
 	bool jumped = Character::jump();
 	if (jumped) this->spriteSheet->setOneShot(this->jumpLoop);
+	// prevents too many jumps
 	return jumped;
+}
+
+
+bool Pari::parry(float angle) {
+	if (!this->canParry()) return false;
+
+	this->parryAngle = angle;
+	this->parryStart = std::chrono::steady_clock::now();
+	return true;
+}
+
+
+void Pari::onCollision(Actor &a) {
+	if (a.getAllegiance() == Allegiance::neutral && a.shouldCollide(*this)) this->jumpCounter = 0;
+
+	if (this->isParrying()) {
+		// deflect contact object
+		b2Vec2 projectileVelocity = a.getBody()->GetLinearVelocity();
+		double projectileSpeed = sqrt(pow(projectileVelocity.x, 2) + pow(projectileVelocity.y, 2));
+		a.getBody()->SetLinearVelocity(b2Vec2(projectileSpeed * cos(this->parryAngle),
+		                                      projectileSpeed * sin(this->parryAngle)));
+
+		// recoil Pari
+		this->getBody()->SetLinearVelocity(b2Vec2(-10, -10));
+	}
 }
 
 
@@ -50,6 +82,7 @@ void Pari::draw(std::shared_ptr<sf::RenderWindow> window) {
 	// old drawable
 	this->drawable.setPosition(this->getBody()->GetPosition().x,
 	                          -this->getBody()->GetPosition().y);
+
 	//window->draw(drawable);
 
 	// set animation
@@ -60,7 +93,8 @@ void Pari::draw(std::shared_ptr<sf::RenderWindow> window) {
 	else newLoop = this->standLoop;
 
 	// use mirrored sprite if facing left
-	if (this->lookDir == Dir::left) newLoop = newLoop.mirror();
+	this->spriteSheet->setMirrored(this->lookDir == Dir::left);
+	//TODO: ^this check could be removed if all characters were given a spritesheet
 
 	if (newLoop != this->spriteSheet->getLoop()) {
 		this->spriteSheet->setLoop(newLoop);

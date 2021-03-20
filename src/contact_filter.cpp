@@ -12,5 +12,5 @@ bool ContactFilter::ShouldCollide(b2Fixture *fix1, b2Fixture *fix2) {
 	Actor* actor2 = reinterpret_cast<Actor*>(fix2->GetBody()->GetUserData().pointer);
 
 	// check that BOTH want to collide, otherwise no collision
-	return actor2->collides(*actor1) && actor1->collides(*actor2);
+	return actor2->shouldCollide(*actor1) && actor1->shouldCollide(*actor2);
 }
