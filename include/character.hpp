@@ -44,6 +44,12 @@ public:
 	 */
 	const int getMaxHealth(void) const { return this->maxHealth; };
 
+
+	/**
+	 * @return look direction
+	 */
+	Dir getLookDir() { return this->lookDir; };
+
 	/**
 	 * Make the character jump
 	 */
@@ -69,7 +75,7 @@ public:
 	 */
 	const Dir &getMovement(void) const { return this->movementForceDir; };
 
-	virtual void collide(Actor &a) override;
+	virtual void onCollision(Actor &a) override;
 
 	virtual void update(const float &dt) override;
 

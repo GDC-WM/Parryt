@@ -15,7 +15,7 @@ public:
 
 	Platform(b2Vec2 position, float width);
 
-	const bool collides(const Actor &a) const override;
+	const bool shouldCollide(const Actor &a) const override;
 
 	virtual void draw(std::shared_ptr<sf::RenderWindow> window) override;
 

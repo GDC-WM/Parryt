@@ -79,13 +79,13 @@ public:
 	 *
 	 * @param a Actor it collided with
 	 */
-	virtual void collide(Actor &a) {};
+	virtual void onCollision(Actor &a) {};
 
 	/**
 	 * @param a Actor to test collision of
 	 * @return Whether this would collide with the given actor
 	 */
-	virtual const bool collides(const Actor &a) const { return true; };
+	virtual const bool shouldCollide(const Actor &a) const { return true; };
 
 	/**
 	 * Step the actor forward in time

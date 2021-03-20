@@ -8,14 +8,16 @@
 
 #include "view.hpp"
 #include "character.hpp"
+#include "pari.hpp"
 #include "music.hpp"
+
 
 /**
  * Draw the screen for the player
  */
 class PlayerView : public View {
 public:
-	PlayerView(std::shared_ptr<LogicController> logic, std::shared_ptr<Character> character);
+	PlayerView(std::shared_ptr<LogicController> logic, std::shared_ptr<Pari> character);
 
 	void update(const float &dt);
 
@@ -23,8 +25,9 @@ public:
 private:
 	std::shared_ptr<sf::RenderWindow> window;
 	std::shared_ptr<LogicController> logic;
-	std::shared_ptr<Character> character;
+	std::shared_ptr<Pari> character;
 	std::shared_ptr<musicTrack> ShipTrack;
+
 
 	/**
 	 * Respond to key press
@@ -62,6 +65,10 @@ private:
 	 * Draw the screen.
 	 */
 	void drawScreen(void);
+
+	b2Vec2 convertVec(sf::Vector2f sfmlVec) { return b2Vec2(sfmlVec.x, -sfmlVec.y); };
+
+	sf::Vector2f convertVec(b2Vec2 b2dVec) { return sf::Vector2f(b2dVec.x, -b2dVec.y); };
 };
 
 

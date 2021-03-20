@@ -5,8 +5,10 @@
 #include "view.hpp"
 #include "player_view.hpp"
 #include "character.hpp"
+#include "pari.hpp"
 
-PlayerView::PlayerView(std::shared_ptr<LogicController> logic, std::shared_ptr<Character> character) : View(logic) {
+
+PlayerView::PlayerView(std::shared_ptr<LogicController> logic, std::shared_ptr<Pari> character) : View(logic) {
 	this->logic = logic; // TODO: this happens in view as well, but segfault if not set here
 	this->character = character;
 
@@ -17,8 +19,7 @@ PlayerView::PlayerView(std::shared_ptr<LogicController> logic, std::shared_ptr<C
 	// set view to center on the character
 	sf::View view = this->window->getView();
 	view.setSize(sf::Vector2f(64, 36));
-	view.setCenter(sf::Vector2f(this->character->getBody()->GetPosition().x,
-                               -this->character->getBody()->GetPosition().y));
+	view.setCenter(this->convertVec(this->character->getBody()->GetPosition()));
 	this->window->setView(view);
 
 	/* Calling music for the stage: */
@@ -45,13 +46,18 @@ void PlayerView::pressEvent(sf::Event::KeyEvent key) {
 
 
 void PlayerView::pressEvent(sf::Event::MouseButtonEvent button) {
-	sf::Vector2f mousePos;
+	b2Vec2 mousePos = this->convertVec(this->window->mapPixelToCoords(sf::Mouse::getPosition(*this->window)))
+	                - this->character->getBody()->GetPosition();
 	switch (button.button) {
-		case sf::Mouse::Left:
-			mousePos = this->window->mapPixelToCoords(sf::Mouse::getPosition(*this->window));
+		case sf::Mouse::Left: {
 			// helpful for debugging: left click to see the coordinates
-			std::cout << " \ny: " << mousePos.y << " \nx: " << mousePos.x;
+			std::cout << " \nx: " << mousePos.x << " \ny: " << mousePos.y << std::endl;
 			break;
+		}
+		case sf::Mouse::Right: {
+			this->character->parry(atan2(mousePos.y, mousePos.x));
+			break;
+		}
 		default:; // ignore other buttons
 	}
 }
@@ -155,6 +161,17 @@ void PlayerView::drawScreen(void) {
 	barrel.setPosition(sf::Vector2f(12, 4));
 	barrel.setScale(.1,.1);
 	this->window->draw(barrel);
+
+	// temporary add red vector indicating direction to redirect projectiles
+	float point1[] = { window->getView().getCenter().x, window->getView().getCenter().y };
+	float point2[] = { window->mapPixelToCoords(sf::Mouse::getPosition(*window)).x, window->mapPixelToCoords(sf::Mouse::getPosition(*window)).y };
+	float vectorBetween[] = { point2[0] - point1[0], point2[1] - point1[1] };
+	sf::Vertex line[] =
+	{
+		sf::Vertex(sf::Vector2f(point1[0], point1[1]), sf::Color::Red),
+		sf::Vertex(sf::Vector2f(point2[0], point2[1]), sf::Color::Red)
+	};
+	this->window->draw(line, 2, sf::Lines);
 
 	// draw actors
 	for (auto actor : this->logic->getCurrentRoom()->getActorList()) actor->draw(this->window);
