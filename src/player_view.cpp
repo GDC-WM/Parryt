@@ -5,8 +5,6 @@
 #include "view.hpp"
 #include "player_view.hpp"
 #include "character.hpp"
-#include "music.hpp"
-
 
 PlayerView::PlayerView(std::shared_ptr<LogicController> logic, std::shared_ptr<Character> character) : View(logic) {
 	this->logic = logic; // TODO: this happens in view as well, but segfault if not set here
