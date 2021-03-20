@@ -1,3 +1,6 @@
+#ifndef MUSIC_HPP
+#define MUSIC_HPP
+
 #include <SFML/Audio.hpp>
 
 /* Manages all of the music for the game */
@@ -16,3 +19,5 @@ class musicTrack{
         sf::Music music;
 
 };
+
+#endif
