@@ -58,7 +58,6 @@ void LogicController::startDemo(void) {
 	// Add Wall
 	// std::shared_ptr<Wall> wall1 = std::make_shared<Wall>(b2Vec2(12, 3.8), 3.7);
 	// this->getCurrentRoom()->addActor(wall1);
-
 }
 
 
