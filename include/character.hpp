@@ -66,7 +66,7 @@ public:
 	void goRight(void);
 
 	/**
-	 * Make the character stop
+	 * Set movement direction
 	 */
 	void setMovement(const Dir &dir) { this->movementForceDir = dir; };
 
