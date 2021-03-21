@@ -3,13 +3,13 @@
 
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <list>
 #include <memory>
 
 #include "view.hpp"
 #include "character.hpp"
 #include "pari.hpp"
-#include "music.hpp"
 
 
 /**
@@ -26,7 +26,7 @@ private:
 	std::shared_ptr<sf::RenderWindow> window;
 	std::shared_ptr<LogicController> logic;
 	std::shared_ptr<Pari> character;
-	std::shared_ptr<musicTrack> ShipTrack;
+	std::shared_ptr<sf::Music> Music;
 
 
 	/**

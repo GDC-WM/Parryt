@@ -23,8 +23,8 @@ PlayerView::PlayerView(std::shared_ptr<LogicController> logic, std::shared_ptr<P
 	this->window->setView(view);
 
 	/* Calling music for the stage: */
-	ShipTrack = std::make_shared<musicTrack>("../resources/MainTheme.wav");
-	ShipTrack->playTrack();
+	Music = std::make_shared<sf::Music>("../resources/MainTheme.wav");
+	Music->play();
 }
 
 
