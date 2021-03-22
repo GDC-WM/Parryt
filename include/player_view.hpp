@@ -26,8 +26,8 @@ private:
 	std::shared_ptr<sf::RenderWindow> window;
 	std::shared_ptr<LogicController> logic;
 	std::shared_ptr<Pari> character;
-	std::shared_ptr<sf::Music> Music;
-
+	sf::Music musicTrack;
+	//std::shared_ptr<sf::Music> Track;
 
 	/**
 	 * Respond to key press

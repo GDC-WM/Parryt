@@ -23,10 +23,10 @@ PlayerView::PlayerView(std::shared_ptr<LogicController> logic, std::shared_ptr<P
 	this->window->setView(view);
 
 	/* Calling music for the stage: */
-	Music = std::make_shared<sf::Music>("../resources/MainTheme.wav");
-	Music->play();
-}
+	this->musicTrack.openFromFile("../resources/MainTheme.wav");
+	this->musicTrack.play();
 
+}
 
 void PlayerView::pressEvent(sf::Event::KeyEvent key) {
 	switch (key.code) {
