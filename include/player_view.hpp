@@ -3,6 +3,7 @@
 
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <list>
 #include <memory>
 
@@ -25,6 +26,8 @@ private:
 	std::shared_ptr<sf::RenderWindow> window;
 	std::shared_ptr<LogicController> logic;
 	std::shared_ptr<Pari> character;
+	sf::Music musicTrack;
+	//std::shared_ptr<sf::Music> Track;
 
 	/**
 	 * Respond to key press

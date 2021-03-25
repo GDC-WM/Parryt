@@ -22,8 +22,12 @@ PlayerView::PlayerView(std::shared_ptr<LogicController> logic, std::shared_ptr<P
 	view.setCenter(this->convertVec(this->character->getBody()->GetPosition()));
 	this->window->setView(view);
 
-}
+	/* Calling music for the stage: */
+	this->musicTrack.openFromFile("../resources/MainTheme.wav");
+	this->musicTrack.play();
+	this->musicTrack.setLoop(true);
 
+}
 
 void PlayerView::pressEvent(sf::Event::KeyEvent key) {
 	switch (key.code) {
