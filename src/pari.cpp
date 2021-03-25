@@ -43,14 +43,13 @@ Pari::Pari(b2Vec2 position) : Character(position) {
 	this->drawable.setSize(sf::Vector2f(this->WIDTH * 2, this->HEIGHT * 2));
 }
 
-
 bool Pari::jump(void) {
 	bool jumped = Character::jump();
+	this->spriteSheet->setLoop(this->fallLoop);
 	if (jumped) this->spriteSheet->setOneShot(this->jumpLoop);
 	// prevents too many jumps
 	return jumped;
 }
-
 
 bool Pari::parry(float angle) {
 	if (!this->canParry()) return false;
