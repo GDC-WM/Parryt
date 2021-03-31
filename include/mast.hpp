@@ -12,7 +12,7 @@ class Mast : public Actor {
 public:
 	static constexpr float height = 0.1;
 
-	Mast(b2Vec2 position, float height);
+	Mast(b2Vec2 position, int height);
 
 	virtual void draw(std::shared_ptr<sf::RenderWindow> window);
 

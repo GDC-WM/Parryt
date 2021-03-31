@@ -8,7 +8,7 @@
 
 
 
-Mast::Mast(b2Vec2 position, float height) : Actor(position) {
+Mast::Mast(b2Vec2 position, int height) : Actor(position) {
 
 
 
