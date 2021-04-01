@@ -17,7 +17,7 @@ Cannonball::Cannonball(b2Vec2 position, float damage) : Actor(position) {
 	this->fixtureDef.friction = 3.0f;
 
 	// set drawable
-	texture.loadFromFile("../resources/cannonball.png");
+	texture.loadFromFile("../resources/sussy.png");
 	this->sprite = sf::Sprite(texture, sf::IntRect(0,0,64,64));
 	sprite.setScale(0.08,0.08);
 	this->sprite.setOrigin(this->RADIUS * 14, this->RADIUS * 14);
