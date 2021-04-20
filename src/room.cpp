@@ -14,15 +14,13 @@ Room::Room(void) {
 
 
 void Room::addActor(std::shared_ptr<Actor> actor) {
-	actor->setRoom(this->shared_from_this());
-	// add an actor to the actor queue
+	actor->setRoom(this->world);
 	this->actorList.push_back(actor);
 }
 
 
 void Room::removeActor(std::shared_ptr<Actor> actor) {
-	// probably called when actor dies or is killed
-	this->killList.push_back(actor);
+	this->actorKillList.push_back(actor);
 }
 
 
@@ -37,14 +35,21 @@ void Room::update(const float &dt) {
 
 	// update all actors in the actor list
 	if (this->actorList.size() > 0) {
-		for (std::shared_ptr<Actor> actor : this->actorList) {
-			actor->update(dt);
-		}
+		for (std::shared_ptr<Actor> actor : this->actorList) actor->update(dt);
 	}
 
 	// kill marked actors
-	if (this->killList.size()) {
-		for (std::shared_ptr<Actor> actor : this->killList) this->actorList.remove(actor);
-		this->killList.clear();
+	if (this->actorKillList.size()) {
+		for (std::shared_ptr<Actor> actor : this->actorKillList) {
+			this->actorList.remove(actor);
+			this->world->DestroyBody(actor->getBody());
+		}
+		this->actorKillList.clear();
 	}
+
+	// update all views in the view list
+	if (this->viewList.size() > 0) {
+		for (std::shared_ptr<View> view : this->viewList) view->update(dt);
+	}
+	// TODO: kill marked views
 }

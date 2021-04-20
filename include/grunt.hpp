@@ -21,25 +21,13 @@ public:
 
 	Grunt(b2Vec2 position);
 
-	void update(const float &dt);
+	void update(const float &dt) override;
 
 	/**
 	 * returns the damage the grunt deals
 	 * @return the damage delt by the grunt
 	 */
 	int getDMG(void) { return this->dmg; };
-
-	/**
-	 * gives the grunt a post to patrol
-	 * @param post the coordinates of the center of their post
-	 */
-	void setPost(b2Vec2 post) { this->post = post; };
-
-	/**
-	 * returns the grunt's post
-	 * @return post
-	 */
-	b2Vec2 getPost() { return this->post; };
 
 	/**
 	 * fires a bullet out of the grunt's weapon
@@ -72,7 +60,6 @@ protected:
 	int dmg = 10;
 	int gunAngle = 90;
 	b2Vec2 shootDir;
-	b2Vec2 post; // TODO: move all post code to an ai class.
 
 	sf::RectangleShape drawable;
 	sf::Texture texture;

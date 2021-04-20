@@ -21,7 +21,7 @@
  */
 class ViewController {
 public:
-	ViewController(std::shared_ptr<LogicController> logic);
+	ViewController(std::shared_ptr<GameController> logic);
 
 	void reset();
 
@@ -39,7 +39,7 @@ public:
 
 
 private:
-	std::shared_ptr<LogicController> logic;
+	std::shared_ptr<GameController> logic;
 	std::list<std::shared_ptr<View>> viewList;
 };
 

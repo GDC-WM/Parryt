@@ -6,10 +6,10 @@
 #include <memory>
 #include <box2d/box2d.h>
 
-class Actor;
-
 #include "contact_filter.hpp"
 #include "contact_listener.hpp"
+#include "view.hpp"
+#include "actor.hpp"
 
 
 /*
@@ -30,18 +30,28 @@ public:
 	const std::list<std::shared_ptr<Actor>> &getActorList(void) const { return this->actorList; };
 
 	/**
+	 * Return the list of views.
+	 */
+	const std::list<std::shared_ptr<View>> &getViewList(void) const { return this->viewList; };
+
+	/**
 	 * Add an actor to the list
 	 *
-	 * @param actor actor to add
+	 * @param actor Actor to add
 	 */
 	void addActor(std::shared_ptr<Actor> actor);
 
 	/**
-	 * Remove an actor from the list
+	 * Remove an Actor from the list
 	 *
 	 * @param actor actor to remove
 	 */
 	void removeActor(std::shared_ptr<Actor> actor);
+
+	/**
+	 * @param view View to add to the view list
+	 */
+	void addView(std::shared_ptr<View> view) { this->viewList.push_back(view); };
 
 	void reset(void);
 
@@ -52,7 +62,8 @@ private:
 	// Actor list
 	std::shared_ptr<b2World> world;
 	std::list<std::shared_ptr<Actor>> actorList;
-	std::list<std::shared_ptr<Actor>> killList;
+	std::list<std::shared_ptr<Actor>> actorKillList;
+	std::list<std::shared_ptr<View>> viewList;
 	ContactFilter contact_filter;
 	ContactListener contact_listener;
 };

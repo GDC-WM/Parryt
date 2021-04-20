@@ -1,28 +1,23 @@
 #include <list>
 #include <memory>
 
-#include "logic_controller.hpp"
-#include "view_controller.hpp"
-
+#include "game_controller.hpp"
 #include "room.hpp"
-#include "actor.hpp"
 #include "exit.hpp"
 #include "platform.hpp"
 #include "wall.hpp"
-#include "character.hpp"
 #include "pari.hpp"
 #include "cannon.hpp"
 #include "cannonball.hpp"
 #include "mast.hpp"
 #include "grunt.hpp"
+#include "user_view.hpp"
+#include "cannon_view.hpp"
+#include "grunt_view.hpp"
+#include "patrol_ai.hpp"
 
 
-void LogicController::init(std::shared_ptr<ViewController> view) {
-	this->viewController = view;
-}
-
-
-void LogicController::startDemo(void) {
+void GameController::startDemo(void) {
 	// create room
 	this->roomList.push_front(std::make_shared<Room>());
 	this->currentRoom = this->roomList.begin();
@@ -34,17 +29,18 @@ void LogicController::startDemo(void) {
 	// add pari
 	std::shared_ptr<Pari> pari = std::make_shared<Pari>(b2Vec2(-13,-5));
 	this->getCurrentRoom()->addActor(pari);
-	this->viewController->addView(std::make_shared<PlayerView>(this->shared_from_this(), pari));
+	this->userView = std::make_shared<UserView>(this->shared_from_this(), pari);
+	this->getCurrentRoom()->addView(this->userView);
 
 	// add cannon
 	std::shared_ptr<Cannon> cannon = std::make_shared<Cannon>(b2Vec2(15.2,-5));
 	this->getCurrentRoom()->addActor(cannon);
-	this->viewController->addView(std::make_shared<CannonView>(this->shared_from_this(), cannon));
+	this->getCurrentRoom()->addView(std::make_shared<CannonView>(this->shared_from_this(), cannon));
 
 	// Add grunt
 	std::shared_ptr<Grunt> grunt = std::make_shared<Grunt>(b2Vec2(30, -5));
 	this->getCurrentRoom()->addActor(grunt);
-	this->viewController->addView(std::make_shared<GruntView>(this->shared_from_this(), grunt));
+	this->getCurrentRoom()->addView(std::make_shared<PatrolAI>(this->shared_from_this(), grunt));
 
 	// Add mast platforms
 	for (int i = 0; i < 32; i += 2) {
@@ -61,20 +57,17 @@ void LogicController::startDemo(void) {
 }
 
 
-void LogicController::startMenu(void) {
+void GameController::startMenu(void) {
 	// will start the main menu screen of game
 }
 
 
-void LogicController::reset(void) {
+void GameController::reset(void) {
 	this->roomList.clear();
 	this->getCurrentRoom()->reset();
 }
 
 
-void LogicController::update(const float &dt) {
-	if (!this->paused) {
-		// update the room
-		this->getCurrentRoom()->update(dt);
-	}
+void GameController::update(const float &dt) {
+	this->getCurrentRoom()->update(dt);
 }

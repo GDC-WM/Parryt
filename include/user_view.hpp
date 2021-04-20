@@ -1,5 +1,5 @@
-#ifndef PLAYER_VIEW_HPP
-#define PLAYER_VIEW_HPP
+#ifndef USER_VIEW_HPP
+#define USER_VIEW_HPP
 
 
 #include <SFML/Graphics.hpp>
@@ -14,16 +14,16 @@
 /**
  * Draw the screen for the player
  */
-class PlayerView : public View {
+class UserView : public View {
 public:
-	PlayerView(std::shared_ptr<LogicController> logic, std::shared_ptr<Pari> character);
+	UserView(std::shared_ptr<GameController> logic, std::shared_ptr<Pari> character);
 
 	void update(const float &dt);
 
 
 private:
 	std::shared_ptr<sf::RenderWindow> window;
-	std::shared_ptr<LogicController> logic;
+	std::shared_ptr<GameController> logic;
 	std::shared_ptr<Pari> character;
 
 	/**

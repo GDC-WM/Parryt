@@ -4,7 +4,6 @@
 #include <SFML/Graphics.hpp>
 
 #include "actor.hpp"
-#include "room.hpp"
 
 
 Actor::Actor(const b2Vec2 &position) {
@@ -12,10 +11,9 @@ Actor::Actor(const b2Vec2 &position) {
 }
 
 
-void Actor::setRoom(std::shared_ptr<Room> room) {
+void Actor::setRoom(std::shared_ptr<b2World> world) {
 	// initialize the actor and set its room
-	this->room = room;
-	this->body = this->room->getWorld()->CreateBody(&this->bodyDef);
+	this->body = world->CreateBody(&this->bodyDef);
 	this->body->CreateFixture(&this->fixtureDef);
 
 	// connect the actor to its body

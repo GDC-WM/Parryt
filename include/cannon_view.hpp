@@ -17,7 +17,7 @@
  */
 class CannonView : public AIView {
 public:
-	CannonView(std::shared_ptr<LogicController> logic, std::shared_ptr<Cannon> cannon);
+	CannonView(std::shared_ptr<GameController> logic, std::shared_ptr<Cannon> cannon);
 
 	bool inRange(std::shared_ptr<Actor> target) override;
 

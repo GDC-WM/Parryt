@@ -6,13 +6,13 @@
 #include "grunt_view.hpp"
 #include "grunt.hpp"
 
-GruntView::GruntView(std::shared_ptr<LogicController> logic, std::shared_ptr<Grunt> grunt) : AIView(logic, grunt) {
+PatrolAI::PatrolAI(std::shared_ptr<GameController> logic, std::shared_ptr<Grunt> grunt) : AIView(logic, grunt) {
 	this->grunt = grunt;
 	this->range = 20;
 }
 
 
-void GruntView::aimAt() {
+void PatrolAI::aimAt() {
 	//so why doesn't he shoot to the left...
 	b2Vec2 targetDist = this->target->getBody()->GetPosition() - this->grunt->getBody()->GetPosition();
 	float targetAngle = atan2(targetDist.y, targetDist.x); //returns radians
@@ -21,9 +21,9 @@ void GruntView::aimAt() {
 }
 
 
-bool GruntView::updateTarget(const Allegiance allegiance) {
+bool PatrolAI::updateTarget(const Allegiance allegiance) {
 	b2Vec2 dangerZone = b2Vec2(2, 2);
-	std::list<std::shared_ptr<Actor>> actors = this->actor->getRoom()->getActorList();
+	std::list<std::shared_ptr<Actor>> actors = this->logic->getCurrentRoom()->getActorList();
 	for (std::shared_ptr<Actor> a : actors) {
 		if (!(a->getAllegiance() == allegiance
 		   && a->isTargetable()
@@ -63,7 +63,7 @@ bool GruntView::updateTarget(const Allegiance allegiance) {
 }
 
 
-void GruntView::patrol(b2Vec2 post) {
+void PatrolAI::patrol(void) {
 	int leftLim = post.x; // 8 is arbitrary
 	int rightLim = post.x + 8;
 
@@ -79,7 +79,7 @@ void GruntView::patrol(b2Vec2 post) {
 }
 
 
-void GruntView::chase() {
+void PatrolAI::chase() {
 	if (this->target->getBody()->GetPosition().x < this->grunt->getBody()->GetPosition().x) {
 		//target is to the left
 		this->grunt->setMovement(Dir::left);
@@ -96,12 +96,12 @@ void GruntView::chase() {
 }
 
 
-void GruntView::update(const float &dt) {
+void PatrolAI::update(const float &dt) {
 	if (this->updateTarget(Allegiance::parrot)) {
 		this->chase();
 		this->aimAt();
 	} else {
-		this->patrol(this->grunt->getPost());
+		this->patrol();
 	}
 }
 

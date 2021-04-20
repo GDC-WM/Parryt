@@ -6,18 +6,18 @@
 #include <memory>
 
 #include "actor.hpp"
-#include "logic_controller.hpp"
+#include "game_controller.hpp"
 
 
 class View {
 public:
-	View(std::shared_ptr<LogicController> logic);
+	View(std::shared_ptr<GameController> logic);
 
 	virtual void update(const float &dt) = 0;
 
 
 protected:
-	std::shared_ptr<LogicController> logic;
+	std::shared_ptr<GameController> logic;
 };
 
 

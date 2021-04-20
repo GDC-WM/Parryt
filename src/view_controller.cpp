@@ -9,7 +9,7 @@
 #include "pari.hpp"
 
 
-ViewController::ViewController(std::shared_ptr<LogicController> logic) {
+ViewController::ViewController(std::shared_ptr<GameController> logic) {
 	this->logic = logic;
 }
 

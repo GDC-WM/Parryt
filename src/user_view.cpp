@@ -8,7 +8,7 @@
 #include "pari.hpp"
 
 
-PlayerView::PlayerView(std::shared_ptr<LogicController> logic, std::shared_ptr<Pari> character) : View(logic) {
+UserView::UserView(std::shared_ptr<GameController> logic, std::shared_ptr<Pari> character) : View(logic) {
 	this->logic = logic; // TODO: this happens in view as well, but segfault if not set here
 	this->character = character;
 
@@ -25,7 +25,7 @@ PlayerView::PlayerView(std::shared_ptr<LogicController> logic, std::shared_ptr<P
 }
 
 
-void PlayerView::pressEvent(sf::Event::KeyEvent key) {
+void UserView::pressEvent(sf::Event::KeyEvent key) {
 	switch (key.code) {
 		case sf::Keyboard::Space:
 		case sf::Keyboard::W:
@@ -42,7 +42,7 @@ void PlayerView::pressEvent(sf::Event::KeyEvent key) {
 }
 
 
-void PlayerView::pressEvent(sf::Event::MouseButtonEvent button) {
+void UserView::pressEvent(sf::Event::MouseButtonEvent button) {
 	b2Vec2 mousePos = this->convertVec(this->window->mapPixelToCoords(sf::Mouse::getPosition(*this->window)))
 	                - this->character->getBody()->GetPosition();
 	switch (button.button) {
@@ -60,7 +60,7 @@ void PlayerView::pressEvent(sf::Event::MouseButtonEvent button) {
 }
 
 
-void PlayerView::releaseEvent(sf::Event::KeyEvent key) {
+void UserView::releaseEvent(sf::Event::KeyEvent key) {
 	switch (key.code) {
 		case sf::Keyboard::A:
 			if (this->character->getMovement() == Dir::left) this->character->setMovement(Dir::none);
@@ -73,7 +73,7 @@ void PlayerView::releaseEvent(sf::Event::KeyEvent key) {
 }
 
 
-void PlayerView::releaseEvent(sf::Event::MouseButtonEvent button) {
+void UserView::releaseEvent(sf::Event::MouseButtonEvent button) {
 	switch (button.button) {
 		case sf::Mouse::Left:
 			break;
@@ -82,7 +82,7 @@ void PlayerView::releaseEvent(sf::Event::MouseButtonEvent button) {
 }
 
 
-void PlayerView::listen(void) {
+void UserView::listen(void) {
 	sf::Event event;
 	while (window->pollEvent(event)) {
 		switch (event.type) {
@@ -108,7 +108,7 @@ void PlayerView::listen(void) {
 }
 
 
-void PlayerView::viewFollow(const Actor &actor) {
+void UserView::viewFollow(const Actor &actor) {
 	sf::View view = this->window->getView();
 
 	b2Vec2 actorPosition = actor.getBody()->GetPosition();
@@ -118,7 +118,7 @@ void PlayerView::viewFollow(const Actor &actor) {
 }
 
 
-void PlayerView::drawScreen(void) {
+void UserView::drawScreen(void) {
 	// clear screen
 	this->window->clear(sf::Color::Black);
 
@@ -181,7 +181,7 @@ void PlayerView::drawScreen(void) {
 }
 
 
-void PlayerView::update(const float &dt) {
+void UserView::update(const float &dt) {
 	this->listen();
 	this->drawScreen();
 }

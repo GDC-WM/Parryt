@@ -8,8 +8,6 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
-#include "room.hpp"
-
 
 /*
  * Define what side of the fight that the actor is on
@@ -47,12 +45,7 @@ public:
 	/**
 	 * @param room Add the actor to the given room
 	 */
-	void setRoom(std::shared_ptr<Room> room);
-
-	/**
-	 * @return the room the actor is in
-	 */
-	std::shared_ptr<Room> getRoom(){return this->room;};
+	void setRoom(std::shared_ptr<b2World> world);
 
 	/**
 	 * @return Const pointer to the body
@@ -111,15 +104,9 @@ public:
 	 */
 	void setTargetable(bool targetable) { this->target = targetable; };
 
-	/**
-	 * Destroy the world and all bodies in it
-	 */
-	virtual ~Actor() { this->room->getWorld()->DestroyBody(this->body); };
-
 
 protected:
 	Allegiance allegiance = Allegiance::neutral; // neutral default
-	std::shared_ptr<Room> room;
 	b2BodyDef bodyDef;
 	b2FixtureDef fixtureDef;
 	b2Body *body;

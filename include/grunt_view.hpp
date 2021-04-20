@@ -13,9 +13,9 @@
 /**
  * Draw the screen for the player
  */
-class GruntView : public AIView {
+class PatrolAI : public AIView {
 public:
-	GruntView(std::shared_ptr<LogicController> logic, std::shared_ptr<Grunt> grunt);
+	PatrolAI(std::shared_ptr<GameController> logic, std::shared_ptr<Grunt> grunt);
 
 	bool updateTarget(const Allegiance allegiance);
 
@@ -23,24 +23,31 @@ public:
 	 * Aims at the target
 	 *
 	 */
-	void aimAt();
+	void aimAt(void);
+
+	/**
+	 * gives the grunt a post to patrol
+	 * @param post the coordinates of the center of their post
+	 */
+	void setPost(const b2Vec2 &post) { this->post = post; };
 
 	/**
 	 * Chases the target
 	 */
-	void chase();
+	void chase(void);
 
 	/**
 	 * Ambient movement (patrolling)
 	 * @param post the grunt's area of patrol
 	 */
-	void patrol(b2Vec2 post);
+	void patrol(void);
 
 	void update(const float &dt) override;
 
 
 protected:
-    std::shared_ptr<Grunt> grunt;
+	std::shared_ptr<Grunt> grunt;
+	b2Vec2 post;
 };
 
 

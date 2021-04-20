@@ -5,9 +5,9 @@
 #include <list>
 #include <memory>
 
-class ViewController;
-
 #include "room.hpp"
+#include "view.hpp"
+#include "user_view.hpp"
 #include "actor.hpp"
 #include "exit.hpp"
 #include "platform.hpp"
@@ -18,23 +18,19 @@ class ViewController;
 /**
  * Main logic class that controls everything.
  */
-class LogicController  : public std::enable_shared_from_this<LogicController> {
+class GameController : public std::enable_shared_from_this<GameController> {
 public:
 	/**
 	 * Main method
 	 */
-	LogicController(void) { };
-
-	/**
-	 *
-	 */
-	void init(std::shared_ptr<ViewController> mv);
+	GameController(void) {};
 
 	/**
 	 * Start main menu
 	 */
 	void startMenu(void);
 
+	// TODO: add a method for reading a file for a level and possibly remove the following method
 	/**
 	 * Start a demo of gameplay
 	 */
@@ -69,9 +65,9 @@ public:
 
 
 private:
-	std::shared_ptr<ViewController> viewController;
 	std::list<std::shared_ptr<Room>> roomList;
 	std::list<std::shared_ptr<Room>>::iterator currentRoom;
+	std::shared_ptr<UserView> userView;
 	bool terminated = false;
 	bool paused = false;
 };
