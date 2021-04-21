@@ -66,6 +66,13 @@ bool Character::jump(void) {
 
 	this->body->SetLinearVelocity(b2Vec2(this->body->GetLinearVelocity().x, 0));
 	this->body->ApplyLinearImpulseToCenter(b2Vec2(0, this->jumpImpulse), true);
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+		buffer.loadFromFile("../resources/JumpSE.wav");
+		JumpSE.setBuffer(buffer);
+		JumpSE.play();
+	}
+
 	this->jumpCounter++;
 	return true;
 }

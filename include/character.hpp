@@ -4,6 +4,7 @@
 
 #include <memory>
 #include <box2d/box2d.h>
+#include <SFML/Audio.hpp>
 
 #include "actor.hpp"
 
@@ -91,6 +92,8 @@ protected:
 	float maxSpeed;
 	int maxHealth;
 	float health;
+	sf::SoundBuffer buffer;
+	sf::Sound JumpSE;
 	//TODO: give every character a SpriteSheet?
 
 	/**
