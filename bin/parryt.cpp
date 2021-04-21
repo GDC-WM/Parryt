@@ -3,10 +3,13 @@
 #include <chrono>
 
 #include "game_controller.hpp"
+#include "user_view.hpp"
 
 
 int main(int argc, char** argv) {
 	std::shared_ptr<GameController> game = std::make_shared<GameController>();
+	std::shared_ptr<UserView> user = std::make_shared<UserView>(game);
+
 	game->startDemo();
 
 	// game loop

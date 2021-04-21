@@ -1,5 +1,5 @@
-#ifndef ROOM_HPP
-#define ROOM_HPP
+#ifndef GAME_STATE_HPP
+#define GAME_STATE_HPP
 
 
 #include <list>
@@ -15,9 +15,9 @@
 /*
  * A physical space containing a list of all of the actors
  */
-class Room : public std::enable_shared_from_this<Room> {
+class GameState : public std::enable_shared_from_this<GameState> {
 public:
-	Room(void);
+	GameState(void);
 
 	/**
 	 * Return the world

@@ -16,14 +16,14 @@
  */
 class UserView : public View {
 public:
-	UserView(std::shared_ptr<GameController> logic, std::shared_ptr<Pari> character);
+	UserView(std::shared_ptr<GameController> game);
 
 	void update(const float &dt);
 
 
 private:
 	std::shared_ptr<sf::RenderWindow> window;
-	std::shared_ptr<GameController> logic;
+	std::shared_ptr<GameController> game;
 	std::shared_ptr<Pari> character;
 
 	/**

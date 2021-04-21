@@ -7,6 +7,7 @@
 
 #include "actor.hpp"
 
+
 /*
 * The parent class for all movable characters
 */

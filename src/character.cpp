@@ -5,6 +5,7 @@
 #include "actor.hpp"
 #include "character.hpp"
 
+
 Character::Character(b2Vec2 position) : Actor(position) {
 	bodyDef.fixedRotation = true;
 	this->bodyDef.type = b2_dynamicBody;

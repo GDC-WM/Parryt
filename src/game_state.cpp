@@ -6,30 +6,30 @@
 #include "room.hpp"
 
 
-Room::Room(void) {
+GameState::GameState(void) {
 	this->world = std::make_shared<b2World>(b2Vec2(0,-60)); /* Set Gravity */
 	this->world->SetContactFilter(&this->contact_filter);
 	this->world->SetContactListener(&this->contact_listener);
 }
 
 
-void Room::addActor(std::shared_ptr<Actor> actor) {
+void GameState::addActor(std::shared_ptr<Actor> actor) {
 	actor->setRoom(this->world);
 	this->actorList.push_back(actor);
 }
 
 
-void Room::removeActor(std::shared_ptr<Actor> actor) {
+void GameState::removeActor(std::shared_ptr<Actor> actor) {
 	this->actorKillList.push_back(actor);
 }
 
 
-void Room::reset(void) {
+void GameState::reset(void) {
 	actorList.clear();
 }
 
 
-void Room::update(const float &dt) {
+void GameState::update(const float &dt) {
 	// step the box2d clock forward
 	this->world->Step(dt / 1000, 8, 3); // convert milliseconds to seconds
 

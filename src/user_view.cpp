@@ -3,13 +3,14 @@
 #include <memory>
 
 #include "view.hpp"
-#include "player_view.hpp"
+#include "game_controller.hpp"
+#include "user_view.hpp"
 #include "character.hpp"
 #include "pari.hpp"
 
 
-UserView::UserView(std::shared_ptr<GameController> logic, std::shared_ptr<Pari> character) : View(logic) {
-	this->logic = logic; // TODO: this happens in view as well, but segfault if not set here
+UserView::UserView(std::shared_ptr<GameController> game) : View(game->getGameState()->getModel()) {
+	this->game = game; // TODO: this happens in view as well, but segfault if not set here
 	this->character = character;
 
 	// set window
@@ -88,7 +89,7 @@ void UserView::listen(void) {
 		switch (event.type) {
 			case sf::Event::Closed:
 				window->close();
-				this->logic->terminate();
+				this->game->terminate();
 				break;
 			case sf::Event::KeyPressed:
 				this->pressEvent(event.key);
@@ -171,7 +172,7 @@ void UserView::drawScreen(void) {
 	this->window->draw(line, 2, sf::Lines);
 
 	// draw actors
-	for (auto actor : this->logic->getCurrentRoom()->getActorList()) actor->draw(this->window);
+	for (auto actor : this->game->getCurrentRoom()->getActorList()) actor->draw(this->window);
 
 	// follow character
 	this->viewFollow(*this->character);

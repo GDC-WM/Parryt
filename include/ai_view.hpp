@@ -6,12 +6,13 @@
 #include <memory>
 
 #include "view.hpp"
-#include "character.hpp"
+
+class Actor;
 
 
 class AIView : public View {
 public:
-	AIView(std::shared_ptr<Room> room, std::shared_ptr<Actor> actor);
+	AIView(std::shared_ptr<GameState> room, std::shared_ptr<Actor> actor);
 
 	/**
 	 * Checks if specified target is in range of AI

@@ -1,7 +1,7 @@
 #include "view.hpp"
-#include "game_controller.hpp"
+#include "model.hpp"
 
 
-View::View(std::shared_ptr<GameController> logic) {
-	this->logic = logic;
+View::View(std::shared_ptr<Model> model) {
+	this->model = model;
 }

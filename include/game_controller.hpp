@@ -5,14 +5,8 @@
 #include <list>
 #include <memory>
 
-#include "room.hpp"
-#include "view.hpp"
-#include "user_view.hpp"
-#include "actor.hpp"
-#include "exit.hpp"
-#include "platform.hpp"
-#include "character.hpp"
-#include "pari.hpp"
+
+class GameState;
 
 
 /**
@@ -39,7 +33,7 @@ public:
 	/**
 	 *
 	 */
-	std::shared_ptr<Room> getCurrentRoom(void) const { return *(this->currentRoom); };
+	std::shared_ptr<GameState> getGameState(void) const { return *(this->gameState); };
 
 	/**
 	 * Resets master logic to default state
@@ -61,13 +55,10 @@ public:
 	 */
 	void update(const float &dt);
 
-	sf::Event event;
-
 
 private:
-	std::list<std::shared_ptr<Room>> roomList;
-	std::list<std::shared_ptr<Room>>::iterator currentRoom;
-	std::shared_ptr<UserView> userView;
+	std::list<std::shared_ptr<GameState>> gameStateList;
+	std::list<std::shared_ptr<GameState>>::iterator gameState;
 	bool terminated = false;
 	bool paused = false;
 };
