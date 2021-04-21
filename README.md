@@ -6,7 +6,7 @@
 ![Demo Screenshot](resources/parryt-screenshot.png)
 
 ## Install on Linux:
-* Install make, cmake, g++, SFML (and possibly SFML-dev), randr (xorg-dev and libglu1-mesa-dev on Ubuntu), doxygen, and git from your package manager (specific names depend on your distribution.
+* Install make, cmake, g++, SFML (libsfml-dev on Ubuntu) (and possibly SFML-dev), randr (xorg-dev and libglu1-mesa-dev on Ubuntu), doxygen, and git from your package manager (specific names depend on your distribution.
 * Run the following commands from within the directory you would like the game to be:
 - ```git clone --recursive https://github.com/GDC-WM/Parryt.git```
 

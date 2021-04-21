@@ -71,7 +71,6 @@ bool Character::jump(void) {
 	return true;
 }
 
-
 void Character::onCollision(Actor &a) {
 	if (a.getAllegiance() == Allegiance::neutral && a.shouldCollide(*this)) this->jumpCounter = 0;
 }

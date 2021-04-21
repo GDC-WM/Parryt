@@ -23,8 +23,12 @@ UserView::UserView(std::shared_ptr<GameController> game) : View(game->getGameSta
 	view.setCenter(this->convertVec(this->character->getBody()->GetPosition()));
 	this->window->setView(view);
 
-}
+	/* Calling music for the stage: */
+	this->musicTrack.openFromFile("../resources/MainTheme.wav");
+	this->musicTrack.play();
+	this->musicTrack.setLoop(true);
 
+}
 
 void UserView::pressEvent(sf::Event::KeyEvent key) {
 	switch (key.code) {
