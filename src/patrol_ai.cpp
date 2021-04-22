@@ -24,8 +24,7 @@ void PatrolAI::aimAt() {
 
 bool PatrolAI::updateTarget(const Allegiance allegiance) {
 	b2Vec2 dangerZone = b2Vec2(2, 2);
-	std::list<std::shared_ptr<Actor>> actors = this->model->getActorList();
-	for (std::shared_ptr<Actor> a : actors) {
+	for (std::shared_ptr<Actor> a : this->model->getActorList()) {
 		if (!(a->getAllegiance() == allegiance
 		   && a->isTargetable()
 		   && this->inRange(a)))

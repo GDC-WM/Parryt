@@ -31,14 +31,14 @@ std::shared_ptr<GameState> makeDemo(void) {
 	demo->addActor(ground);
 
 	// add cannon
-	std::shared_ptr<Cannon> cannon = std::make_shared<Cannon>(b2Vec2(15.2,-5), demo->getModel());
-	demo->addActor(cannon);
-	demo->addView(std::make_shared<CannonView>(demo->getModel(), cannon));
+	//std::shared_ptr<Cannon> cannon = std::make_shared<Cannon>(b2Vec2(15.2,-5), demo->getModel());
+	//demo->addActor(cannon);
+	//demo->addView(std::make_shared<CannonView>(demo->getModel(), cannon));
 
 	// Add grunt
-	std::shared_ptr<Grunt> grunt = std::make_shared<Grunt>(b2Vec2(30, -5), demo->getModel());
-	demo->addActor(grunt);
-	demo->addView(std::make_shared<PatrolAI>(demo->getModel(), grunt));
+	//std::shared_ptr<Grunt> grunt = std::make_shared<Grunt>(b2Vec2(30, -5), demo->getModel());
+	//demo->addActor(grunt);
+	//demo->addView(std::make_shared<PatrolAI>(demo->getModel(), grunt));
 
 	// Add mast platforms
 	for (int i = 0; i < 32; i += 2) {
