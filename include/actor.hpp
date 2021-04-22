@@ -104,14 +104,25 @@ public:
 	 */
 	void setTargetable(bool targetable) { this->target = targetable; };
 
+	/**
+	 * Mark the actor for removal.
+	 */
+	void kill(void) { this->dead = true; };
+
+	/**
+	 * Check if the actor as marked for removal.
+	 */
+	const bool &isDead(void) const { return this->dead; };
+
 
 protected:
-	Allegiance allegiance = Allegiance::neutral; // neutral default
+	Allegiance allegiance = Allegiance::neutral;
 	b2BodyDef bodyDef;
 	b2FixtureDef fixtureDef;
 	b2Body *body;
 	b2Vec2 dimensions;
-	bool target = false; // false default
+	bool target = false;
+	bool dead = false;
 };
 
 

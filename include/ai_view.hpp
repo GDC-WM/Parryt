@@ -8,6 +8,7 @@
 #include "view.hpp"
 #include "actor.hpp" // temporarily for access to allegiance until we have a central class with enums
 
+
 class Model;
 class Actor;
 

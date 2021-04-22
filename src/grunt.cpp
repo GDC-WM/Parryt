@@ -1,16 +1,15 @@
 #include <box2d/box2d.h>
 #include <SFML/Graphics.hpp>
 
-#include "actor.hpp"
-#include "character.hpp"
 #include "grunt.hpp"
 #include "bullet.hpp"
+#include "model.hpp"
 
 
-Grunt::Grunt(b2Vec2 position) : Character(position) {
+Grunt::Grunt(b2Vec2 position, std::shared_ptr<Model> model) : Character(position) {
+	this->model = model;
 	this->allegiance = Allegiance::pirate;
 	this->setTargetable(true);
-	this->post = position;
 
 	this->acceleration = 10;
 	this->deceleration = 250;
@@ -60,7 +59,7 @@ void Grunt::shoot() {
 	newVec.x -= correction;
 
 	std::shared_ptr<Bullet> bullet = std::make_shared<Bullet>(newVec, 20);
-	this->room->addActor(bullet); // give actors access to the room they are in
+	this->model->addActor(bullet); // give actors access to the room they are in
 
 	this->shootDir.x *= 150;
 	this->shootDir.y *= 150;

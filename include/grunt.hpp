@@ -5,9 +5,11 @@
 #include <box2d/box2d.h>
 #include <SFML/Graphics.hpp>
 
-#include "actor.hpp"
 #include "character.hpp"
-#include "sprite_sheet.hpp"
+
+
+class SpriteSheet;
+class Model;
 
 
 /*
@@ -19,7 +21,7 @@ public:
 	static constexpr float WIDTH = 0.5;
 	static constexpr float HEIGHT = 1.9; // currently inaccurate height
 
-	Grunt(b2Vec2 position);
+	Grunt(b2Vec2 position, std::shared_ptr<Model> model);
 
 	void update(const float &dt) override;
 
@@ -50,7 +52,8 @@ public:
 	void draw(std::shared_ptr<sf::RenderWindow> window) override;
 
 
-protected:
+private:
+	std::shared_ptr<Model> model;
 	int bulletCounter = 5;
 	int chamberSize = 5;
 	int fireRateCounter = 0;

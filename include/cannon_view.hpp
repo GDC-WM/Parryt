@@ -5,7 +5,6 @@
 #include <list>
 #include <memory>
 
-#include "view.hpp"
 #include "ai_view.hpp"
 
 

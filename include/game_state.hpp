@@ -31,13 +31,6 @@ public:
 	void addActor(std::shared_ptr<Actor> actor);
 
 	/**
-	 * Remove an Actor from the model
-	 *
-	 * @param actor actor to remove
-	 */
-	void removeActor(std::shared_ptr<Actor> actor);
-
-	/**
 	 * @return the list of views.
 	 */
 	const std::list<std::shared_ptr<View>> &getViewList(void) const { return this->viewList; };

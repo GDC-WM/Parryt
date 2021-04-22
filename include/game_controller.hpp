@@ -12,7 +12,7 @@ class GameState;
 /**
  * Main logic class that controls everything.
  */
-class GameController : public std::enable_shared_from_this<GameController> {
+class GameController {
 public:
 	/**
 	 * Main method
@@ -20,23 +20,22 @@ public:
 	GameController(void) {};
 
 	/**
-	 * Start main menu
+	 * Main method
 	 */
-	void startMenu(void);
-
-	// TODO: add a method for reading a file for a level and possibly remove the following method
-	/**
-	 * Start a demo of gameplay
-	 */
-	void startDemo(void);
+	GameController(std::shared_ptr<GameState> state) { this->setGameState(state); };
 
 	/**
 	 *
 	 */
-	std::shared_ptr<GameState> getGameState(void) const { return *(this->gameState); };
+	std::shared_ptr<GameState> getGameState(void) const { return this->gameState; };
 
 	/**
-	 * Resets master logic to default state
+	 *
+	 */
+	void setGameState(std::shared_ptr<GameState> state) { this->gameState = state; };
+
+	/**
+	 * Resets game controller to default
 	 */
 	void reset(void);
 
@@ -57,8 +56,7 @@ public:
 
 
 private:
-	std::list<std::shared_ptr<GameState>> gameStateList;
-	std::list<std::shared_ptr<GameState>>::iterator gameState;
+	std::shared_ptr<GameState> gameState;
 	bool terminated = false;
 	bool paused = false;
 };

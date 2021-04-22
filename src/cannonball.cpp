@@ -41,7 +41,7 @@ void Cannonball::update(const float &dt) {
 
 	// delete old cannonballs
 	if (this->age > 900) {
-		this->room->removeActor(this->shared_from_this());
+		this->kill();
 	}
 }
 

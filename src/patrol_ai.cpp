@@ -2,11 +2,12 @@
 #include <memory>
 #include <cmath>
 
-#include "view.hpp"
-#include "grunt_view.hpp"
+#include "patrol_ai.hpp"
+#include "model.hpp"
 #include "grunt.hpp"
 
-PatrolAI::PatrolAI(std::shared_ptr<GameController> logic, std::shared_ptr<Grunt> grunt) : AIView(logic, grunt) {
+
+PatrolAI::PatrolAI(std::shared_ptr<Model> model, std::shared_ptr<Grunt> grunt) : AIView(model, grunt) {
 	this->grunt = grunt;
 	this->range = 20;
 }
@@ -23,7 +24,7 @@ void PatrolAI::aimAt() {
 
 bool PatrolAI::updateTarget(const Allegiance allegiance) {
 	b2Vec2 dangerZone = b2Vec2(2, 2);
-	std::list<std::shared_ptr<Actor>> actors = this->logic->getCurrentRoom()->getActorList();
+	std::list<std::shared_ptr<Actor>> actors = this->model->getActorList();
 	for (std::shared_ptr<Actor> a : actors) {
 		if (!(a->getAllegiance() == allegiance
 		   && a->isTargetable()

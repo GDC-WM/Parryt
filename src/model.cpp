@@ -21,11 +21,6 @@ void Model::addActor(std::shared_ptr<Actor> actor) {
 }
 
 
-void Model::removeActor(std::shared_ptr<Actor> actor) {
-	this->actorKillList.push_back(actor);
-}
-
-
 void Model::reset(void) {
 	actorList.clear();
 }
@@ -35,17 +30,21 @@ void Model::update(const float &dt) {
 	// step the box2d clock forward
 	this->world->Step(dt / 1000, 8, 3); // convert milliseconds to seconds
 
-	// update all actors in the actor list
+	// update actors in the actor list
 	if (this->actorList.size() > 0) {
-		for (std::shared_ptr<Actor> actor : this->actorList) actor->update(dt);
-	}
+		std::list<std::shared_ptr<Actor>>::iterator actor_iter = this->actorList.begin();
+		while (actor_iter != this->actorList.end()) {
+			std::shared_ptr<Actor> actor = *actor_iter;
+			actor->update(dt);
 
-	// kill marked actors
-	if (this->actorKillList.size()) {
-		for (std::shared_ptr<Actor> actor : this->actorKillList) {
-			this->actorList.remove(actor);
-			this->world->DestroyBody(actor->getBody());
+			// check if dead
+			if (actor->isDead()) {
+				this->world->DestroyBody(actor->getBody());
+				this->actorList.erase(actor_iter);
+				continue;
+			}
+
+			actor_iter++;
 		}
-		this->actorKillList.clear();
 	}
 }

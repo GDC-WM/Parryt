@@ -13,8 +13,7 @@ AIView::AIView(std::shared_ptr<Model> model, std::shared_ptr<Actor> actor) : Vie
 
 
 bool AIView::updateTarget(const Allegiance allegiance) {
-    std::list<std::shared_ptr<Actor>> actors = this->model->getActorList();
-	for (std::shared_ptr<Actor> a : actors) {
+	for (std::shared_ptr<Actor> a : this->model->getActorList()) {
 		if (a->getAllegiance() == allegiance && a->isTargetable() && this->inRange(a)) {
 			this->target = a;
 			return true;
@@ -27,5 +26,5 @@ bool AIView::updateTarget(const Allegiance allegiance) {
 
 bool AIView::inRange(std::shared_ptr<Actor> target) {
 	b2Vec2 targetDist = target->getBody()->GetPosition() - this->actor->getBody()->GetPosition();
-	return sqrt((pow(targetDist.x, 2) + pow(targetDist.y, 2))) <= this->range;
+	return sqrt(pow(targetDist.x, 2) + pow(targetDist.y, 2)) <= this->range;
 }

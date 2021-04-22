@@ -2,9 +2,10 @@
 #include <memory>
 #include <cmath>
 
-#include "view.hpp"
 #include "cannon_view.hpp"
+#include "model.hpp"
 #include "cannon.hpp"
+
 
 CannonView::CannonView(std::shared_ptr<Model> model, std::shared_ptr<Cannon> cannon) : AIView(model, cannon) {
 	this->cannon = cannon;

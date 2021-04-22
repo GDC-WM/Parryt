@@ -10,12 +10,11 @@
 
 
 UserView::UserView(std::shared_ptr<GameController> game) : View(game->getGameState()->getModel()) {
-	this->game = game; // TODO: this happens in view as well, but segfault if not set here
+	this->game = game;
 
 	// create Pari
 	this->character = std::make_shared<Pari>(b2Vec2(-13,-5));
-	this->game->getGameState()->getModel()->addActor(this->character);
-	this->game->getGameState()->getModel()->addView(this->shared_from_this());
+	this->game->getGameState()->addActor(this->character);
 
 	// set window
 	this->window = std::make_shared<sf::RenderWindow>
@@ -31,8 +30,8 @@ UserView::UserView(std::shared_ptr<GameController> game) : View(game->getGameSta
 	this->musicTrack.openFromFile("../resources/MainTheme.wav");
 	this->musicTrack.play();
 	this->musicTrack.setLoop(true);
-
 }
+
 
 void UserView::pressEvent(sf::Event::KeyEvent key) {
 	switch (key.code) {
@@ -180,7 +179,7 @@ void UserView::drawScreen(void) {
 	this->window->draw(line, 2, sf::Lines);
 
 	// draw actors
-	for (auto actor : this->game->getCurrentRoom()->getActorList()) actor->draw(this->window);
+	for (auto actor : this->game->getGameState()->getModel()->getActorList()) actor->draw(this->window);
 
 	// follow character
 	this->viewFollow(*this->character);

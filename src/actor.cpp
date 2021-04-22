@@ -19,4 +19,3 @@ void Actor::setWorld(std::shared_ptr<b2World> world) {
 	// connect the actor to its body
 	this->body->GetUserData().pointer = reinterpret_cast<uintptr_t>(this);
 }
-

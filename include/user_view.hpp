@@ -27,8 +27,8 @@ public:
 
 
 private:
-	std::shared_ptr<sf::RenderWindow> window;
 	std::shared_ptr<GameController> game;
+	std::shared_ptr<sf::RenderWindow> window;
 	std::shared_ptr<Pari> character;
 	sf::Music musicTrack;
 	//std::shared_ptr<sf::Music> Track;

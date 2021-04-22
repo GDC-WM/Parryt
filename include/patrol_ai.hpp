@@ -1,21 +1,23 @@
-#ifndef GRUNT_VIEW_HPP
-#define GRUNT_VIEW_HPP
+#ifndef PATROL_AI_HPP
+#define PATROL_AI_HPP
 
 #include <list>
 #include <memory>
 
-#include "logic_controller.hpp"
-#include "view.hpp"
-#include "character.hpp"
-#include "grunt.hpp"
 #include "ai_view.hpp"
+
+
+class Model;
+class Actor;
+class Grunt;
+
 
 /**
  * Draw the screen for the player
  */
 class PatrolAI : public AIView {
 public:
-	PatrolAI(std::shared_ptr<GameController> logic, std::shared_ptr<Grunt> grunt);
+	PatrolAI(std::shared_ptr<Model> model, std::shared_ptr<Grunt> grunt);
 
 	bool updateTarget(const Allegiance allegiance);
 

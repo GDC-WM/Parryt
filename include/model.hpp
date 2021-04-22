@@ -37,13 +37,6 @@ public:
 	 */
 	void addActor(std::shared_ptr<Actor> actor);
 
-	/**
-	 * Remove an Actor from the list
-	 *
-	 * @param actor actor to remove
-	 */
-	void removeActor(std::shared_ptr<Actor> actor);
-
 	void reset(void);
 
 	void update(const float &dt);
@@ -52,7 +45,6 @@ public:
 private:
 	std::shared_ptr<b2World> world;
 	std::list<std::shared_ptr<Actor>> actorList;
-	std::list<std::shared_ptr<Actor>> actorKillList;
 	ContactFilter contact_filter;
 	ContactListener contact_listener;
 };
