@@ -1,17 +1,19 @@
 #include <list>
 #include <memory>
 
-#include "view.hpp"
-#include "actor.hpp"
 #include "ai_view.hpp"
+#include "model.hpp"
+#include "actor.hpp"
 
-AIView::AIView(std::shared_ptr<GameController> logic, std::shared_ptr<Actor> actor) : View(logic) {
+
+AIView::AIView(std::shared_ptr<Model> model, std::shared_ptr<Actor> actor) : View(model) {
 	this->actor = actor;
 	this->range = 30;
 }
 
+
 bool AIView::updateTarget(const Allegiance allegiance) {
-    std::list<std::shared_ptr<Actor>> actors = this->logic->getCurrentRoom()->getActorList();
+    std::list<std::shared_ptr<Actor>> actors = this->model->getActorList();
 	for (std::shared_ptr<Actor> a : actors) {
 		if (a->getAllegiance() == allegiance && a->isTargetable() && this->inRange(a)) {
 			this->target = a;
@@ -21,6 +23,7 @@ bool AIView::updateTarget(const Allegiance allegiance) {
 	this->target = NULL;
 	return false;
 }
+
 
 bool AIView::inRange(std::shared_ptr<Actor> target) {
 	b2Vec2 targetDist = target->getBody()->GetPosition() - this->actor->getBody()->GetPosition();

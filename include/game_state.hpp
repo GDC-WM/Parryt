@@ -8,6 +8,7 @@
 
 class Model;
 class View;
+class Actor;
 
 
 /*
@@ -21,6 +22,20 @@ public:
 	 * @return the model
 	 */
 	const std::shared_ptr<Model> getModel(void) const { return this->model; };
+
+	/**
+	 * Add an actor to the model
+	 *
+	 * @param actor Actor to add
+	 */
+	void addActor(std::shared_ptr<Actor> actor);
+
+	/**
+	 * Remove an Actor from the model
+	 *
+	 * @param actor actor to remove
+	 */
+	void removeActor(std::shared_ptr<Actor> actor);
 
 	/**
 	 * @return the list of views.

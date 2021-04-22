@@ -16,7 +16,7 @@ Model::Model(void) {
 
 
 void Model::addActor(std::shared_ptr<Actor> actor) {
-	actor->setRoom(this->world);
+	actor->setWorld(this->world);
 	this->actorList.push_back(actor);
 }
 

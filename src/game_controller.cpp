@@ -1,8 +1,10 @@
 #include <list>
 #include <memory>
+#include <box2d/box2d.h>
 
 #include "game_controller.hpp"
 #include "game_state.hpp"
+#include "model.hpp"
 
 #include "exit.hpp"
 #include "platform.hpp"
@@ -34,12 +36,12 @@ void GameController::startDemo(void) {
 	// add cannon
 	std::shared_ptr<Cannon> cannon = std::make_shared<Cannon>(b2Vec2(15.2,-5));
 	this->getGameState()->addActor(cannon);
-	this->getGameState()->addView(std::make_shared<CannonView>(this->shared_from_this(), cannon));
+	this->getGameState()->addView(std::make_shared<CannonView>(cannon));
 
 	// Add grunt
 	std::shared_ptr<Grunt> grunt = std::make_shared<Grunt>(b2Vec2(30, -5));
 	this->getGameState()->addActor(grunt);
-	this->getGameState()->addView(std::make_shared<PatrolAI>(this->shared_from_this(), grunt));
+	this->getGameState()->addView(std::make_shared<PatrolAI>(grunt));
 
 	// Add mast platforms
 	for (int i = 0; i < 32; i += 2) {

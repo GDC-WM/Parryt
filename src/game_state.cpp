@@ -12,6 +12,16 @@ GameState::GameState(void) {
 }
 
 
+void GameState::addActor(std::shared_ptr<Actor> actor) {
+	this->model->addActor(actor);
+}
+
+
+void GameState::removeActor(std::shared_ptr<Actor> actor) {
+	this->model->removeActor(actor);
+}
+
+
 void GameState::reset(void) {
 	this->model->reset();
 }

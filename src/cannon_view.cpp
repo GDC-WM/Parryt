@@ -6,7 +6,7 @@
 #include "cannon_view.hpp"
 #include "cannon.hpp"
 
-CannonView::CannonView(std::shared_ptr<GameController> logic, std::shared_ptr<Cannon> cannon) : AIView(logic,cannon) {
+CannonView::CannonView(std::shared_ptr<Model> model, std::shared_ptr<Cannon> cannon) : AIView(model, cannon) {
 	this->cannon = cannon;
 }
 

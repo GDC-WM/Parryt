@@ -5,11 +5,13 @@
 #include <list>
 #include <memory>
 
-#include "logic_controller.hpp"
 #include "view.hpp"
-#include "actor.hpp"
-#include "cannon.hpp"
 #include "ai_view.hpp"
+
+
+class Model;
+class Actor;
+class Cannon;
 
 
 /**
@@ -17,7 +19,7 @@
  */
 class CannonView : public AIView {
 public:
-	CannonView(std::shared_ptr<GameController> logic, std::shared_ptr<Cannon> cannon);
+	CannonView(std::shared_ptr<Model> model, std::shared_ptr<Cannon> cannon);
 
 	bool inRange(std::shared_ptr<Actor> target) override;
 

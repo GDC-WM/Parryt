@@ -27,25 +27,6 @@ void Character::heal(int healAmount) {
 }
 
 
-void Character::goLeft(void) {
-	if (this->body->GetLinearVelocity().x > -this->maxSpeed)
-		this->body->ApplyForceToCenter(b2Vec2(-this->acceleration - 500, 0), true);
-
-		// set the look direction
-		if (this->body->GetLinearVelocity().x >= -this->maxSpeed && this->body->GetLinearVelocity().x < 0)
-			this->lookDir = Dir::left;
-}
-
-
-void Character::goRight(void) {
-	if (this->body->GetLinearVelocity().x < this->maxSpeed)
-		this->body->ApplyForceToCenter(b2Vec2(this->acceleration + 500, 0), true);
-		// set the look direction
-	if (this->body->GetLinearVelocity().x <= this->maxSpeed && this->body->GetLinearVelocity().x > 0)
-		this->lookDir = Dir::right;
-}
-
-
 void Character::stop(void) {
 	b2Vec2 velocity = this->body->GetLinearVelocity();
 	if (abs(velocity.x) >= 5) {

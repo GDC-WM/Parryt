@@ -57,16 +57,6 @@ public:
 	virtual bool jump(void);
 
 	/**
-	 * Make the character go left
-	 */
-	void goLeft(void);
-
-	/**
-	 * Make the character go Right
-	 */
-	void goRight(void);
-
-	/**
 	 * Set movement direction
 	 */
 	void setMovement(const Dir &dir) { this->movementForceDir = dir; };

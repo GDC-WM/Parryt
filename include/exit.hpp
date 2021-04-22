@@ -5,7 +5,9 @@
 #include <memory>
 
 #include "actor.hpp"
-#include "room.hpp"
+
+
+class GameState;
 
 
 /*
