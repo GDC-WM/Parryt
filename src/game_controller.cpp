@@ -30,8 +30,6 @@ void GameController::startDemo(void) {
 	// add pari
 	std::shared_ptr<Pari> pari = std::make_shared<Pari>(b2Vec2(-13,-5));
 	this->getGameState()->addActor(pari);
-	this->userView = std::make_shared<UserView>(this->shared_from_this(), pari);
-	this->getGameState()->addView(this->userView);
 
 	// add cannon
 	std::shared_ptr<Cannon> cannon = std::make_shared<Cannon>(b2Vec2(15.2,-5));

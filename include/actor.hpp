@@ -45,7 +45,7 @@ public:
 	/**
 	 * @param room Add the actor to the given room
 	 */
-	void setRoom(std::shared_ptr<b2World> world);
+	void setWorld(std::shared_ptr<b2World> world);
 
 	/**
 	 * @return Const pointer to the body

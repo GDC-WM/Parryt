@@ -2,16 +2,20 @@
 #include <list>
 #include <memory>
 
-#include "view.hpp"
-#include "game_controller.hpp"
 #include "user_view.hpp"
-#include "character.hpp"
+#include "game_controller.hpp"
+#include "game_state.hpp"
+#include "model.hpp"
 #include "pari.hpp"
 
 
 UserView::UserView(std::shared_ptr<GameController> game) : View(game->getGameState()->getModel()) {
 	this->game = game; // TODO: this happens in view as well, but segfault if not set here
-	this->character = character;
+
+	// create Pari
+	this->character = std::make_shared<Pari>(b2Vec2(-13,-5));
+	this->game->getGameState()->getModel()->addActor(this->character);
+	this->game->getGameState()->getModel()->addView(this->shared_from_this());
 
 	// set window
 	this->window = std::make_shared<sf::RenderWindow>

@@ -6,47 +6,26 @@
 #include <memory>
 #include <box2d/box2d.h>
 
-#include "contact_filter.hpp"
-#include "contact_listener.hpp"
-#include "view.hpp"
-#include "actor.hpp"
+class Model;
+class View;
 
 
 /*
- * A physical space containing a list of all of the actors
+ * A state of the game (grouping of the views and model)
  */
 class GameState : public std::enable_shared_from_this<GameState> {
 public:
 	GameState(void);
 
 	/**
-	 * Return the world
+	 * @return the model
 	 */
-	const std::shared_ptr<b2World> getWorld(void) const { return this->world; };
+	const std::shared_ptr<Model> getModel(void) const { return this->model; };
 
 	/**
-	 * Return the list of actors.
-	 */
-	const std::list<std::shared_ptr<Actor>> &getActorList(void) const { return this->actorList; };
-
-	/**
-	 * Return the list of views.
+	 * @return the list of views.
 	 */
 	const std::list<std::shared_ptr<View>> &getViewList(void) const { return this->viewList; };
-
-	/**
-	 * Add an actor to the list
-	 *
-	 * @param actor Actor to add
-	 */
-	void addActor(std::shared_ptr<Actor> actor);
-
-	/**
-	 * Remove an Actor from the list
-	 *
-	 * @param actor actor to remove
-	 */
-	void removeActor(std::shared_ptr<Actor> actor);
 
 	/**
 	 * @param view View to add to the view list
@@ -59,13 +38,9 @@ public:
 
 
 private:
-	// Actor list
-	std::shared_ptr<b2World> world;
-	std::list<std::shared_ptr<Actor>> actorList;
-	std::list<std::shared_ptr<Actor>> actorKillList;
+	std::shared_ptr<Model> model;
 	std::list<std::shared_ptr<View>> viewList;
-	ContactFilter contact_filter;
-	ContactListener contact_listener;
+	std::list<std::shared_ptr<View>> viewKillList;
 };
 
 

@@ -34,7 +34,6 @@ void Character::goLeft(void) {
 		// set the look direction
 		if (this->body->GetLinearVelocity().x >= -this->maxSpeed && this->body->GetLinearVelocity().x < 0)
 			this->lookDir = Dir::left;
-
 }
 
 
@@ -44,7 +43,6 @@ void Character::goRight(void) {
 		// set the look direction
 	if (this->body->GetLinearVelocity().x <= this->maxSpeed && this->body->GetLinearVelocity().x > 0)
 		this->lookDir = Dir::right;
-
 }
 
 

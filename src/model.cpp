@@ -2,34 +2,36 @@
 #include <memory>
 #include <box2d/box2d.h>
 
+#include "model.hpp"
 #include "actor.hpp"
-#include "room.hpp"
+#include "contact_filter.hpp"
+#include "contact_listener.hpp"
 
 
-GameState::GameState(void) {
+Model::Model(void) {
 	this->world = std::make_shared<b2World>(b2Vec2(0,-60)); /* Set Gravity */
 	this->world->SetContactFilter(&this->contact_filter);
 	this->world->SetContactListener(&this->contact_listener);
 }
 
 
-void GameState::addActor(std::shared_ptr<Actor> actor) {
+void Model::addActor(std::shared_ptr<Actor> actor) {
 	actor->setRoom(this->world);
 	this->actorList.push_back(actor);
 }
 
 
-void GameState::removeActor(std::shared_ptr<Actor> actor) {
+void Model::removeActor(std::shared_ptr<Actor> actor) {
 	this->actorKillList.push_back(actor);
 }
 
 
-void GameState::reset(void) {
+void Model::reset(void) {
 	actorList.clear();
 }
 
 
-void GameState::update(const float &dt) {
+void Model::update(const float &dt) {
 	// step the box2d clock forward
 	this->world->Step(dt / 1000, 8, 3); // convert milliseconds to seconds
 
@@ -46,10 +48,4 @@ void GameState::update(const float &dt) {
 		}
 		this->actorKillList.clear();
 	}
-
-	// update all views in the view list
-	if (this->viewList.size() > 0) {
-		for (std::shared_ptr<View> view : this->viewList) view->update(dt);
-	}
-	// TODO: kill marked views
 }

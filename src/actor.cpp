@@ -11,7 +11,7 @@ Actor::Actor(const b2Vec2 &position) {
 }
 
 
-void Actor::setRoom(std::shared_ptr<b2World> world) {
+void Actor::setWorld(std::shared_ptr<b2World> world) {
 	// initialize the actor and set its room
 	this->body = world->CreateBody(&this->bodyDef);
 	this->body->CreateFixture(&this->fixtureDef);

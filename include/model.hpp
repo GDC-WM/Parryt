@@ -8,7 +8,9 @@
 
 #include "contact_filter.hpp"
 #include "contact_listener.hpp"
-#include "actor.hpp"
+
+
+class Actor;
 
 
 /*
@@ -48,7 +50,6 @@ public:
 
 
 private:
-	// Actor list
 	std::shared_ptr<b2World> world;
 	std::list<std::shared_ptr<Actor>> actorList;
 	std::list<std::shared_ptr<Actor>> actorKillList;

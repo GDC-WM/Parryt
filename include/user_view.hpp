@@ -2,20 +2,24 @@
 #define USER_VIEW_HPP
 
 
-#include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp>
 #include <list>
 #include <memory>
+#include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
+#include <box2d/box2d.h>
 
 #include "view.hpp"
-#include "character.hpp"
-#include "pari.hpp"
+
+
+class GameController;
+class Actor;
+class Pari;
 
 
 /**
  * Draw the screen for the player
  */
-class UserView : public View {
+class UserView : public View, public std::enable_shared_from_this<UserView> {
 public:
 	UserView(std::shared_ptr<GameController> game);
 
