@@ -5,6 +5,7 @@
 #include "actor.hpp"
 #include "character.hpp"
 
+
 Character::Character(b2Vec2 position) : Actor(position) {
 	bodyDef.fixedRotation = true;
 	this->bodyDef.type = b2_dynamicBody;
@@ -23,27 +24,6 @@ void Character::damage(float damage) {
 void Character::heal(int healAmount) {
 	this->health += healAmount;
 	if (this->health > this->maxHealth) this->health = this->maxHealth;
-}
-
-
-void Character::goLeft(void) {
-	if (this->body->GetLinearVelocity().x > -this->maxSpeed)
-		this->body->ApplyForceToCenter(b2Vec2(-this->acceleration - 500, 0), true);
-
-		// set the look direction
-		if (this->body->GetLinearVelocity().x >= -this->maxSpeed && this->body->GetLinearVelocity().x < 0)
-			this->lookDir = Dir::left;
-
-}
-
-
-void Character::goRight(void) {
-	if (this->body->GetLinearVelocity().x < this->maxSpeed)
-		this->body->ApplyForceToCenter(b2Vec2(this->acceleration + 500, 0), true);
-		// set the look direction
-	if (this->body->GetLinearVelocity().x <= this->maxSpeed && this->body->GetLinearVelocity().x > 0)
-		this->lookDir = Dir::right;
-
 }
 
 

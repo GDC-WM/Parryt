@@ -8,6 +8,7 @@
 
 #include "actor.hpp"
 
+
 /*
 * The parent class for all movable characters
 */
@@ -55,16 +56,6 @@ public:
 	 * Make the character jump
 	 */
 	virtual bool jump(void);
-
-	/**
-	 * Make the character go left
-	 */
-	void goLeft(void);
-
-	/**
-	 * Make the character go Right
-	 */
-	void goRight(void);
 
 	/**
 	 * Set movement direction

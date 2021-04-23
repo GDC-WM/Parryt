@@ -6,7 +6,6 @@
 #include <SFML/Graphics.hpp>
 #include <chrono>
 
-#include "actor.hpp"
 #include "character.hpp"
 #include "sprite_sheet.hpp"
 

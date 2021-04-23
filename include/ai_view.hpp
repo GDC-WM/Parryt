@@ -5,14 +5,17 @@
 #include <list>
 #include <memory>
 
-#include "logic_controller.hpp"
 #include "view.hpp"
-#include "character.hpp"
+#include "actor.hpp" // temporarily for access to allegiance until we have a central class with enums
+
+
+class Model;
+class Actor;
 
 
 class AIView : public View {
 public:
-	AIView(std::shared_ptr<LogicController> logic, std::shared_ptr<Actor> actor);
+	AIView(std::shared_ptr<Model> model, std::shared_ptr<Actor> actor);
 
 	/**
 	 * Checks if specified target is in range of AI
@@ -41,8 +44,8 @@ public:
 protected:
 	int range;
 	std::shared_ptr<Actor> actor;
-	std::shared_ptr<LogicController> logic;
 	std::shared_ptr<Actor> target;
+	std::shared_ptr<Model> model;
 };
 
 

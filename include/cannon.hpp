@@ -7,6 +7,10 @@
 
 #include "actor.hpp"
 
+
+class Model;
+
+
 /**
  * Draw the screen for the player
  */
@@ -18,7 +22,7 @@ public:
 	sf::Vector2f barrelDimensions{2, 0.5};
 	static constexpr float ROTATION_SPEED = M_PI / 6; // per second
 
-	Cannon(b2Vec2 position);
+	Cannon(b2Vec2 position, std::shared_ptr<Model> model);
 
 	/*
 	 * Returns angle of the barrel
@@ -51,6 +55,7 @@ public:
 
 
 private:
+	std::shared_ptr<Model> model;
 	b2PolygonShape shape;
 	float rotationVelocity = 0;
 	float barrelAngle = M_PI / 2;

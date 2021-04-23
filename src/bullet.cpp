@@ -33,7 +33,7 @@ Bullet::Bullet(b2Vec2 position, float damage) : Actor(position) {
 void Bullet::update(const float &dt) {
 	this->age++;
 	if (this->age > 90) {
-		this->room->removeActor(this->shared_from_this());
+		this->kill();
 	}
 }
 

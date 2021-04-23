@@ -2,15 +2,19 @@
 #include <list>
 #include <memory>
 
-#include "view.hpp"
-#include "player_view.hpp"
-#include "character.hpp"
+#include "user_view.hpp"
+#include "game_controller.hpp"
+#include "game_state.hpp"
+#include "model.hpp"
 #include "pari.hpp"
 
 
-PlayerView::PlayerView(std::shared_ptr<LogicController> logic, std::shared_ptr<Pari> character) : View(logic) {
-	this->logic = logic; // TODO: this happens in view as well, but segfault if not set here
-	this->character = character;
+UserView::UserView(std::shared_ptr<GameController> game) : View(game->getGameState()->getModel()) {
+	this->game = game;
+
+	// create Pari
+	this->character = std::make_shared<Pari>(b2Vec2(-13,-5));
+	this->game->getGameState()->addActor(this->character);
 
 	// set window
 	this->window = std::make_shared<sf::RenderWindow>
@@ -26,10 +30,10 @@ PlayerView::PlayerView(std::shared_ptr<LogicController> logic, std::shared_ptr<P
 	this->musicTrack.openFromFile("../resources/MainTheme.wav");
 	this->musicTrack.play();
 	this->musicTrack.setLoop(true);
-
 }
 
-void PlayerView::pressEvent(sf::Event::KeyEvent key) {
+
+void UserView::pressEvent(sf::Event::KeyEvent key) {
 	switch (key.code) {
 		case sf::Keyboard::Space:
 		case sf::Keyboard::W:
@@ -46,7 +50,7 @@ void PlayerView::pressEvent(sf::Event::KeyEvent key) {
 }
 
 
-void PlayerView::pressEvent(sf::Event::MouseButtonEvent button) {
+void UserView::pressEvent(sf::Event::MouseButtonEvent button) {
 	b2Vec2 mousePos = this->convertVec(this->window->mapPixelToCoords(sf::Mouse::getPosition(*this->window)))
 	                - this->character->getBody()->GetPosition();
 	switch (button.button) {
@@ -64,7 +68,7 @@ void PlayerView::pressEvent(sf::Event::MouseButtonEvent button) {
 }
 
 
-void PlayerView::releaseEvent(sf::Event::KeyEvent key) {
+void UserView::releaseEvent(sf::Event::KeyEvent key) {
 	switch (key.code) {
 		case sf::Keyboard::A:
 			if (this->character->getMovement() == Dir::left) this->character->setMovement(Dir::none);
@@ -77,7 +81,7 @@ void PlayerView::releaseEvent(sf::Event::KeyEvent key) {
 }
 
 
-void PlayerView::releaseEvent(sf::Event::MouseButtonEvent button) {
+void UserView::releaseEvent(sf::Event::MouseButtonEvent button) {
 	switch (button.button) {
 		case sf::Mouse::Left:
 			break;
@@ -86,13 +90,13 @@ void PlayerView::releaseEvent(sf::Event::MouseButtonEvent button) {
 }
 
 
-void PlayerView::listen(void) {
+void UserView::listen(void) {
 	sf::Event event;
 	while (window->pollEvent(event)) {
 		switch (event.type) {
 			case sf::Event::Closed:
 				window->close();
-				this->logic->terminate();
+				this->game->terminate();
 				break;
 			case sf::Event::KeyPressed:
 				this->pressEvent(event.key);
@@ -112,7 +116,7 @@ void PlayerView::listen(void) {
 }
 
 
-void PlayerView::viewFollow(const Actor &actor) {
+void UserView::viewFollow(const Actor &actor) {
 	sf::View view = this->window->getView();
 
 	b2Vec2 actorPosition = actor.getBody()->GetPosition();
@@ -122,7 +126,7 @@ void PlayerView::viewFollow(const Actor &actor) {
 }
 
 
-void PlayerView::drawScreen(void) {
+void UserView::drawScreen(void) {
 	// clear screen
 	this->window->clear(sf::Color::Black);
 
@@ -175,7 +179,7 @@ void PlayerView::drawScreen(void) {
 	this->window->draw(line, 2, sf::Lines);
 
 	// draw actors
-	for (auto actor : this->logic->getCurrentRoom()->getActorList()) actor->draw(this->window);
+	for (auto actor : this->game->getGameState()->getModel()->getActorList()) actor->draw(this->window);
 
 	// follow character
 	this->viewFollow(*this->character);
@@ -185,7 +189,7 @@ void PlayerView::drawScreen(void) {
 }
 
 
-void PlayerView::update(const float &dt) {
+void UserView::update(const float &dt) {
 	this->listen();
 	this->drawScreen();
 }

@@ -1,30 +1,35 @@
-#ifndef PLAYER_VIEW_HPP
-#define PLAYER_VIEW_HPP
+#ifndef USER_VIEW_HPP
+#define USER_VIEW_HPP
 
 
-#include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp>
 #include <list>
 #include <memory>
+#include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
+#include <box2d/box2d.h>
 
 #include "view.hpp"
-#include "character.hpp"
-#include "pari.hpp"
+
+
+class GameController;
+class Actor;
+class Pari;
 
 
 /**
  * Draw the screen for the player
  */
-class PlayerView : public View {
+class UserView : public View, public std::enable_shared_from_this<UserView> {
 public:
-	PlayerView(std::shared_ptr<LogicController> logic, std::shared_ptr<Pari> character);
+	UserView(std::shared_ptr<GameController> game);
 
+	//TODO: remove dt from all current updates, and add variableUpdate(dt) method.
 	void update(const float &dt);
 
 
 private:
+	std::shared_ptr<GameController> game;
 	std::shared_ptr<sf::RenderWindow> window;
-	std::shared_ptr<LogicController> logic;
 	std::shared_ptr<Pari> character;
 	sf::Music musicTrack;
 	//std::shared_ptr<sf::Music> Track;

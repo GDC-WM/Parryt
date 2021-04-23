@@ -1,8 +1,6 @@
 #include <box2d/box2d.h>
 #include <SFML/Graphics.hpp>
 
-#include "actor.hpp"
-#include "character.hpp"
 #include "pari.hpp"
 #include "sprite_sheet.hpp"
 

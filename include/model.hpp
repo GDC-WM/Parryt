@@ -1,23 +1,24 @@
-#ifndef ROOM_HPP
-#define ROOM_HPP
+#ifndef MODEL_HPP
+#define MODEL_HPP
 
 
 #include <list>
 #include <memory>
 #include <box2d/box2d.h>
 
-class Actor;
-
 #include "contact_filter.hpp"
 #include "contact_listener.hpp"
+
+
+class Actor;
 
 
 /*
  * A physical space containing a list of all of the actors
  */
-class Room : public std::enable_shared_from_this<Room> {
+class Model : public std::enable_shared_from_this<Model> {
 public:
-	Room(void);
+	Model(void);
 
 	/**
 	 * Return the world
@@ -27,21 +28,14 @@ public:
 	/**
 	 * Return the list of actors.
 	 */
-	const std::list<std::shared_ptr<Actor>> &getActorList(void) const { return this->actorList; };
+	const std::list<std::shared_ptr<Actor>> &getActorList(void) { return this->actorList; };
 
 	/**
 	 * Add an actor to the list
 	 *
-	 * @param actor actor to add
+	 * @param actor Actor to add
 	 */
 	void addActor(std::shared_ptr<Actor> actor);
-
-	/**
-	 * Remove an actor from the list
-	 *
-	 * @param actor actor to remove
-	 */
-	void removeActor(std::shared_ptr<Actor> actor);
 
 	void reset(void);
 
@@ -49,10 +43,8 @@ public:
 
 
 private:
-	// Actor list
 	std::shared_ptr<b2World> world;
 	std::list<std::shared_ptr<Actor>> actorList;
-	std::list<std::shared_ptr<Actor>> killList;
 	ContactFilter contact_filter;
 	ContactListener contact_listener;
 };

@@ -5,19 +5,19 @@
 #include <list>
 #include <memory>
 
-#include "actor.hpp"
-#include "logic_controller.hpp"
+
+class Model;
 
 
 class View {
 public:
-	View(std::shared_ptr<LogicController> logic);
+	View(std::shared_ptr<Model> model);
 
 	virtual void update(const float &dt) = 0;
 
 
 protected:
-	std::shared_ptr<LogicController> logic;
+	std::shared_ptr<Model> model;
 };
 
 

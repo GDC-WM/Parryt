@@ -2,11 +2,13 @@
 #include <memory>
 #include <cmath>
 
-#include "view.hpp"
 #include "cannon_view.hpp"
+#include "model.hpp"
 #include "cannon.hpp"
 
-CannonView::CannonView(std::shared_ptr<LogicController> logic, std::shared_ptr<Cannon> cannon) : AIView(logic,cannon) {
+
+CannonView::CannonView(std::shared_ptr<Model> model, std::shared_ptr<Cannon> cannon) : AIView(model, cannon) {
+	this->model = model;
 	this->cannon = cannon;
 }
 

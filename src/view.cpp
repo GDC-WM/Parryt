@@ -1,6 +1,7 @@
 #include "view.hpp"
+#include "model.hpp"
 
 
-View::View(std::shared_ptr<LogicController> logic) {
-	this->logic = logic;
+View::View(std::shared_ptr<Model> model) {
+	this->model = model;
 }

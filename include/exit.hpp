@@ -5,7 +5,9 @@
 #include <memory>
 
 #include "actor.hpp"
-#include "room.hpp"
+
+
+class GameState;
 
 
 /*
@@ -21,14 +23,14 @@ public:
 
 	void setDestination(std::shared_ptr<Exit> destination) { this->destination = destination; };
 
-	const std::shared_ptr<Room> getRoom(void) const { return this->room; };
+	const std::shared_ptr<GameState> getRoom(void) const { return this->room; };
 
-	void setRoom(std::shared_ptr<Room> room) { this->room = room; };
+	void setRoom(std::shared_ptr<GameState> room) { this->room = room; };
 
 
 protected:
 	std::shared_ptr<Exit> destination;
-	std::shared_ptr<Room> room;
+	std::shared_ptr<GameState> room;
 };
 
 

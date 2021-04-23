@@ -2,12 +2,13 @@
 #include <SFML/Graphics.hpp>
 #include <list>
 
-#include "actor.hpp"
 #include "cannon.hpp"
 #include "cannonball.hpp"
+#include "model.hpp"
 
 
-Cannon::Cannon(b2Vec2 position) : Actor(position) {
+Cannon::Cannon(b2Vec2 position, std::shared_ptr<Model> model) : Actor(position) {
+	this->model = model;
 	this->allegiance = Allegiance::pirate;
 
 	// fix shape to body
@@ -47,7 +48,7 @@ void Cannon::shoot(void) {
 
 	this->loadingCounter = this->LOAD_TIME;
 	std::shared_ptr<Cannonball> cannonball = std::make_shared<Cannonball>(this->body->GetPosition(), 20);
-	this->room->addActor(cannonball); // give actors access to the room they are in
+	this->model->addActor(cannonball);
 	cannonball->getBody()->ApplyLinearImpulseToCenter(b2Vec2(cos(this->barrelAngle) * 150,
 	                                                         sin(this->barrelAngle) * 150), true);
 }

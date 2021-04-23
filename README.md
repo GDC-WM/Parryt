@@ -2,6 +2,9 @@
 * A platformer game following Pari the parrot man, defender of... parrots.
 * Will involve a satisfying parrying mechanic.
 * Uses C++, the SFML graphics library, and the Box2D physics engine
+* Code dependency layout (sorta):
+  UserView <- GameController <- GameState <- View <- Model <- Actor
+                                          <- Model <- Actor
 
 ![Demo Screenshot](resources/parryt-screenshot.png)
 
@@ -10,7 +13,7 @@
 * Run the following commands from within the directory you would like the game to be:
 - ```git clone --recursive https://github.com/GDC-WM/Parryt.git```
 
-building box2d (only once needed) 
+building box2d (only once needed)
 
 - ```mkdir Parryt/box2d/build```
 - ```cd Parryt/box2d/build```
@@ -21,7 +24,7 @@ building box2d (only once needed)
 
 building Parryt
 
-- ```mkdir Debug``` (which makes Parryt/Debug) 
+- ```mkdir Debug``` (which makes Parryt/Debug)
 - ```cd Debug```
 - ```cmake ..```
 - ```make```
@@ -39,7 +42,7 @@ building Parryt
 2. Download a Linux distribution (At least Ubuntu 18.04 and 20.02 both worked following these steps)
 3. Set up your freshly installed distribution for package downloading
 4. Download specified packages above (cmake, g++, SFML...)
-5. Download X11 server and configure it, allowing GUIs. 
+5. Download X11 server and configure it, allowing GUIs.
 6. Run commands starting from ```git clone...``` in the "Linux instrutions section" of the README.
 
 **1. Download WSL2 on windows**
@@ -47,8 +50,8 @@ building Parryt
 
 **2. Download a Linux distribution**
 1. If you have followed WSL2 instructions completely, you will have installed a Linux distribution like Ubuntu
-2. If you have not installed a Linux Distribution, just install Ubuntu from the Windows Store 
-   
+2. If you have not installed a Linux Distribution, just install Ubuntu from the Windows Store
+
 **3. Set up your freshly installed distribution for package downloading**
 1. Open up your distribution
 2. Make a username and password as prompted, note, you won't see the password you typed for security measures
@@ -63,14 +66,14 @@ building Parryt
 ```sudo apt install cmake, g++, ... as specified above```
 
 **5. Download X11 server and configure it, allowing GUIs.**
-1. Follow https://www.youtube.com/watch?v=4SZXbl9KVsw&t=153s&ab_channel=RickMakes 
+1. Follow https://www.youtube.com/watch?v=4SZXbl9KVsw&t=153s&ab_channel=RickMakes
 2. Summary: Install VcXsrv windows x server & set a few environment variables
 
 **6. Run commands starting from ```git clone...``` in the "Linux instrutions section" of the README.**
 
 **Issues**
 1. Ubuntu Installer raises error "The requested operation could not be completed due to a virtual disk system limitation"?
-   
+
    Go to ```C:\Users\<your username>\AppData\Local\Packages``` and locate the folder in which your linux distribution is installed (for Ubuntu, it is CanonicalGroupLimited...). Right click => properties => advanced => uncheck compress contents to save disk space
 
 2.  After ```sudo apt update```, ```sudo apt install <packagename>``` yields ```E: Unable to locate package <packagename>```
@@ -78,11 +81,11 @@ building Parryt
     Solve: first, try: ```sudo apt update -o Acquire::ForceIPv4=true```
     If no luck, do you use Symantec antivirus? If so, disable it. If it still
     doesn't work, also consult the #4139 thread listed in issue #3.
-3. X11 not launching? 
-    
+3. X11 not launching?
+
     Solve: https://github.com/microsoft/WSL/issues/4139
-    
-    TLDR: open windows firewall settings, and remove WSL connection for each of the Domain, Private, and Public profiles  
+
+    TLDR: open windows firewall settings, and remove WSL connection for each of the Domain, Private, and Public profiles
 
 
 ## Install on Windows (possibly outdated):
