@@ -11,8 +11,6 @@ class Model;
 
 class View {
 public:
-	View(void);
-
 	View(std::shared_ptr<Model> model);
 
 	virtual void update(const float &dt) = 0;

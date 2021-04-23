@@ -28,7 +28,7 @@ public:
 	/**
 	 * Return the list of actors.
 	 */
-	std::list<std::shared_ptr<Actor>> getActorList(void) { return this->actorList; };
+	const std::list<std::shared_ptr<Actor>> &getActorList(void) { return this->actorList; };
 
 	/**
 	 * Add an actor to the list

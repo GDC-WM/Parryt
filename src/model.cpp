@@ -39,9 +39,9 @@ void Model::update(const float &dt) {
 
 			// check if dead
 			if (actor->isDead()) {
-				this->world->DestroyBody(actor->getBody());
-				this->actorList.erase(actor_iter);
-				continue;
+				//this->world->DestroyBody(actor->getBody());
+				//this->actorList.erase(actor_iter);
+				//continue;
 			}
 
 			actor_iter++;

@@ -8,6 +8,7 @@
 
 
 CannonView::CannonView(std::shared_ptr<Model> model, std::shared_ptr<Cannon> cannon) : AIView(model, cannon) {
+	this->model = model;
 	this->cannon = cannon;
 }
 

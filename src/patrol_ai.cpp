@@ -8,6 +8,7 @@
 
 
 PatrolAI::PatrolAI(std::shared_ptr<Model> model, std::shared_ptr<Grunt> grunt) : AIView(model, grunt) {
+	this->model = model;
 	this->grunt = grunt;
 	this->range = 20;
 }
