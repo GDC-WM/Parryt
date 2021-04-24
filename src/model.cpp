@@ -31,18 +31,17 @@ void Model::update(const float &dt) {
 	this->world->Step(dt / 1000, 8, 3); // convert milliseconds to seconds
 
 	// update actors in the actor list
-	std::list<std::shared_ptr<Actor>>::iterator actor_iter = this->actorList.begin();
-	while (actor_iter != this->actorList.end()) {
-		std::shared_ptr<Actor> actor = *actor_iter;
+	std::list<std::shared_ptr<Actor>>::iterator actorIter = this->actorList.begin();
+	while (actorIter != this->actorList.end()) {
+		std::shared_ptr<Actor> actor = *actorIter;
 		actor->update(dt);
 
-		// check if dead
+		// remove if dead
 		if (actor->isDead()) {
 			this->world->DestroyBody(actor->getBody());
-			this->actorList.erase(actor_iter++);
+			actorIter = this->actorList.erase(actorIter);
+			continue;
 		}
-		else{
-			actor_iter++;
-		}
+		actorIter++;
 	}
 }
