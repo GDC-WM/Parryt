@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <list>
 #include <memory>
+#include <chrono>
 
 #include "user_view.hpp"
 #include "game_controller.hpp"
@@ -44,6 +45,9 @@ void UserView::pressEvent(sf::Event::KeyEvent key) {
 			break;
 		case sf::Keyboard::D:
 			this->character->setMovement(Dir::right);
+			break;
+		case sf::Keyboard::P:
+			this->game->togglePause();
 			break;
 		default:; // ignore other keys
 	}
@@ -191,5 +195,5 @@ void UserView::drawScreen(void) {
 
 void UserView::update(void) {
 	this->listen();
-	this->drawScreen();
+	this->lastUpdate = std::chrono::steady_clock::now();
 }

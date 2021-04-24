@@ -61,7 +61,8 @@ int main(int argc, char** argv) {
 	while (user->isRunning()) {
 		nextUpdate += std::chrono::milliseconds(16);
 
-		game->update();
+		game->isPaused()? user->update() : game->update();
+		user->drawScreen();
 
 		std::this_thread::sleep_for(nextUpdate - std::chrono::steady_clock::now());
 	}

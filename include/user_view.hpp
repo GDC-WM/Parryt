@@ -27,13 +27,17 @@ public:
 
 	void terminate(void) { this->running = false; };
 
-	void update(void) override;
+	/**
+	 * Draw the screen.
+	 */
+	void drawScreen(void);
 
-	void update(const float &dt);
+	void update(void) override;
 
 
 private:
 	bool running = true;
+	std::chrono::steady_clock::time_point lastUpdate;
 	std::shared_ptr<GameController> game;
 	std::shared_ptr<sf::RenderWindow> window;
 	std::shared_ptr<Pari> character;
@@ -71,11 +75,6 @@ private:
 	 * @param actor to center on
 	 */
 	void viewFollow(const Actor &actor);
-
-	/**
-	 * Draw the screen.
-	 */
-	void drawScreen(void);
 
 	b2Vec2 convertVec(sf::Vector2f sfmlVec) { return b2Vec2(sfmlVec.x, -sfmlVec.y); };
 
