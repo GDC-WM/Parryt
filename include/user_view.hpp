@@ -23,11 +23,21 @@ class UserView : public View, public std::enable_shared_from_this<UserView> {
 public:
 	UserView(std::shared_ptr<GameController> game);
 
-	//TODO: remove dt from all current updates, and add variableUpdate(dt) method.
-	void update(const float &dt);
+	const bool &isRunning(void) { return this->running; };
+
+	void terminate(void) { this->running = false; };
+
+	/**
+	 * Draw the screen.
+	 */
+	void drawScreen(void);
+
+	void update(void) override;
 
 
 private:
+	bool running = true;
+	std::chrono::steady_clock::time_point lastUpdate;
 	std::shared_ptr<GameController> game;
 	std::shared_ptr<sf::RenderWindow> window;
 	std::shared_ptr<Pari> character;
@@ -65,11 +75,6 @@ private:
 	 * @param actor to center on
 	 */
 	void viewFollow(const Actor &actor);
-
-	/**
-	 * Draw the screen.
-	 */
-	void drawScreen(void);
 
 	b2Vec2 convertVec(sf::Vector2f sfmlVec) { return b2Vec2(sfmlVec.x, -sfmlVec.y); };
 

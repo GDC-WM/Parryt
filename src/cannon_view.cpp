@@ -27,7 +27,7 @@ void CannonView::aimAt(std::shared_ptr<Actor> target) {
 }
 
 
-void CannonView::update(const float &dt) {
+void CannonView::update(void) {
 	if (this->updateTarget(Allegiance::parrot)) {
 		this->aimAt(this->target);
 		this->cannon->shoot();

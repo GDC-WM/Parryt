@@ -29,7 +29,7 @@ public:
 	 */
 	void aimAt(std::shared_ptr<Actor> t);
 
-	void update(const float &dt) override;
+	void update(void) override;
 
 
 private:

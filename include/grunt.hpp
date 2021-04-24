@@ -23,7 +23,7 @@ public:
 
 	Grunt(b2Vec2 position, std::shared_ptr<Model> model);
 
-	void update(const float &dt) override;
+	void update(void) override;
 
 	/**
 	 * returns the damage the grunt deals

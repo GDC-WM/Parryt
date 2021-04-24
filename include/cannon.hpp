@@ -49,7 +49,7 @@ public:
 	 */
 	void rotateStop(void) { this->rotationVelocity = 0; };
 
-	void update(const float &dt) override;
+	void update(void) override;
 
 	virtual void draw(std::shared_ptr<sf::RenderWindow> window) override;
 

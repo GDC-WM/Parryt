@@ -17,7 +17,7 @@ public:
 
 	void onCollision(Actor &a) override;
 
-	void update(const float &dt) override;
+	void update(void) override;
 
 	void draw(std::shared_ptr<sf::RenderWindow> window) override;
 

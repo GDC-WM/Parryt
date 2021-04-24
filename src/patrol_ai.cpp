@@ -97,7 +97,7 @@ void PatrolAI::chase() {
 }
 
 
-void PatrolAI::update(const float &dt) {
+void PatrolAI::update(void) {
 	if (this->updateTarget(Allegiance::parrot)) {
 		this->chase();
 		this->aimAt();

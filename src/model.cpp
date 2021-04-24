@@ -26,15 +26,15 @@ void Model::reset(void) {
 }
 
 
-void Model::update(const float &dt) {
+void Model::update(void) {
 	// step the box2d clock forward
-	this->world->Step(dt / 1000, 8, 3); // convert milliseconds to seconds
+	this->world->Step(16.0f / 1000, 8, 3); // convert milliseconds to seconds
 
 	// update actors in the actor list
 	std::list<std::shared_ptr<Actor>>::iterator actorIter = this->actorList.begin();
 	while (actorIter != this->actorList.end()) {
 		std::shared_ptr<Actor> actor = *actorIter;
-		actor->update(dt);
+		actor->update();
 
 		// remove if dead
 		if (actor->isDead()) {
