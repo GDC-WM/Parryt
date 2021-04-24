@@ -47,6 +47,7 @@ void UserView::pressEvent(sf::Event::KeyEvent key) {
 			this->character->setMovement(Dir::right);
 			break;
 		case sf::Keyboard::P:
+		case sf::Keyboard::Escape:
 			this->game->togglePause();
 			break;
 		default:; // ignore other keys
