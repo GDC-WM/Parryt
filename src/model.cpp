@@ -31,7 +31,6 @@ void Model::update(const float &dt) {
 	this->world->Step(dt / 1000, 8, 3); // convert milliseconds to seconds
 
 	// update actors in the actor list
-	std::list<std::shared_ptr<Actor>> killList;
 	std::list<std::shared_ptr<Actor>>::iterator actor_iter = this->actorList.begin();
 	while (actor_iter != this->actorList.end()) {
 		std::shared_ptr<Actor> actor = *actor_iter;
@@ -39,20 +38,11 @@ void Model::update(const float &dt) {
 
 		// check if dead
 		if (actor->isDead()) {
-			killList.push_back(actor);
+			this->world->DestroyBody(actor->getBody());
+			this->actorList.erase(actor_iter++);
 		}
-
-		actor_iter++;
+		else{
+			actor_iter++;
+		}
 	}
-
-	//TODO: Put the following in the previous loop and use erase. Currently ugly and slow.
-	actor_iter = killList.begin();
-	while (actor_iter != killList.end()) {
-		std::shared_ptr<Actor> actor = *actor_iter;
-		this->world->DestroyBody(actor->getBody());
-		this->actorList.remove(actor);
-
-		actor_iter++;
-	}
-
 }
