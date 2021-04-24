@@ -62,7 +62,7 @@ void Character::onCollision(Actor &a) {
 }
 
 
-void Character::update(const float &dt) {
+void Character::update(void) {
 	switch (this->movementForceDir) {
 		case Dir::left:
 			if (this->body->GetLinearVelocity().x > -this->maxSpeed)

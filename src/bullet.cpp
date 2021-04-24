@@ -30,7 +30,7 @@ Bullet::Bullet(b2Vec2 position, float damage) : Actor(position) {
 }
 
 
-void Bullet::update(const float &dt) {
+void Bullet::update(void) {
 	this->age++;
 	if (this->age > 90) {
 		this->kill();

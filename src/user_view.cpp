@@ -96,7 +96,7 @@ void UserView::listen(void) {
 		switch (event.type) {
 			case sf::Event::Closed:
 				window->close();
-				this->game->terminate();
+				this->terminate();
 				break;
 			case sf::Event::KeyPressed:
 				this->pressEvent(event.key);
@@ -189,7 +189,7 @@ void UserView::drawScreen(void) {
 }
 
 
-void UserView::update(const float &dt) {
+void UserView::update(void) {
 	this->listen();
 	this->drawScreen();
 }

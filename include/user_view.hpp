@@ -23,11 +23,17 @@ class UserView : public View, public std::enable_shared_from_this<UserView> {
 public:
 	UserView(std::shared_ptr<GameController> game);
 
-	//TODO: remove dt from all current updates, and add variableUpdate(dt) method.
+	const bool &isRunning(void) { return this->running; };
+
+	void terminate(void) { this->running = false; };
+
+	void update(void) override;
+
 	void update(const float &dt);
 
 
 private:
+	bool running = true;
 	std::shared_ptr<GameController> game;
 	std::shared_ptr<sf::RenderWindow> window;
 	std::shared_ptr<Pari> character;

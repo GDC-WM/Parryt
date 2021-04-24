@@ -82,8 +82,8 @@ void Grunt::draw(std::shared_ptr<sf::RenderWindow> window) {
 }
 
 
-void Grunt::update(const float &dt){
-	Character::update(dt);
+void Grunt::update(void){
+	Character::update();
 
 	if (this->fireRateCounter > 0) {
 		this->fireRateCounter--;

@@ -22,12 +22,12 @@ void GameState::reset(void) {
 }
 
 
-void GameState::update(const float &dt) {
-	this->model->update(dt);
+void GameState::update(void) {
+	this->model->update();
 
 	// update all views in the view list
 	if (this->viewList.size() > 0) {
-		for (std::shared_ptr<View> view : this->viewList) view->update(dt);
+		for (std::shared_ptr<View> view : this->viewList) view->update();
 	}
 	// TODO: kill marked views
 }

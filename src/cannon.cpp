@@ -54,7 +54,7 @@ void Cannon::shoot(void) {
 }
 
 
-void Cannon::update(const float &dt) {
+void Cannon::update(void) {
 	// update barrel angle
 	this->barrelAngle += this->rotationVelocity;
 	if (this->barrelAngle < this->minAngle) this->barrelAngle = this->minAngle;
