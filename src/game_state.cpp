@@ -23,13 +23,11 @@ void GameState::reset(void) {
 
 
 void GameState::update(void) {
-	this->lock = true;
 	this->model->update();
 
 	// update all views in the view list
 	if (this->viewList.size() > 0) {
 		for (std::shared_ptr<View> view : this->viewList) view->update();
 	}
-	this->lock = false;
 	// TODO: kill marked views
 }
