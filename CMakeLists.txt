@@ -15,7 +15,7 @@
 project(parryt)
 
 # Minimum Cmake Version
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 3.2)
 
 
 #####################
@@ -32,6 +32,9 @@ endif()
 
 # Set include directories
 include_directories(${parryt_SOURCE_DIR}/include)
+
+# Add threading
+find_package(Threads REQUIRED)
 
 # Get CPP files
 file(GLOB SRC src/*cpp)
@@ -119,6 +122,6 @@ foreach(EXEC ${EXECLIST})
   endif()
 
   # link in box2d
-  target_link_libraries(${EXECNAME} PRIVATE box2d)
+  target_link_libraries(${EXECNAME} PRIVATE box2d Threads::Threads)
   message("-- Adding executable: ${EXECNAME}")
 endforeach(EXEC)
