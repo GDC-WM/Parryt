@@ -5,6 +5,7 @@
 #include <list>
 #include <memory>
 #include <box2d/box2d.h>
+#include <queue>
 
 #include "contact_filter.hpp"
 #include "contact_listener.hpp"
@@ -12,6 +13,20 @@
 
 class Actor;
 
+/**
+ * comparator function for shared pointers
+ */ 
+struct SharedComparator {
+    template <typename T>
+    bool operator()(const std::shared_ptr<T>& lhs,
+                    const std::shared_ptr<T>& rhs) const
+    {
+        return (*lhs) < (*rhs);
+    }
+};
+
+
+typedef std::priority_queue<std::shared_ptr<Actor>, std::vector<std::shared_ptr<Actor>>, SharedComparator> ActorPriorityQueue;
 
 /*
  * A physical space containing a list of all of the actors
@@ -31,6 +46,11 @@ public:
 	const std::list<std::shared_ptr<Actor>> &getActorList(void) { return this->actorList; };
 
 	/**
+	 * @return actorPriorityQueue
+	 */
+	const ActorPriorityQueue &getActorPriorityQueue(void) {return this -> actorPriorityQueue; };
+
+	/**
 	 * Add an actor to the list
 	 *
 	 * @param actor Actor to add
@@ -42,9 +62,13 @@ public:
 	void update(void);
 
 
+
+
+
 private:
 	std::shared_ptr<b2World> world;
 	std::list<std::shared_ptr<Actor>> actorList;
+  ActorPriorityQueue actorPriorityQueue;
 	ContactFilter contact_filter;
 	ContactListener contact_listener;
 };

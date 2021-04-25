@@ -114,6 +114,15 @@ public:
 	 */
 	const bool &isDead(void) const { return this->dead; };
 
+	/**
+	 * @return priority
+	 */
+	const int &getPriority(void) const{ return this -> priority; };
+
+	/**
+	 * Check if actor is less than by priority
+	 */
+	const bool operator<(const Actor& right) const{ return this -> getPriority() < right.getPriority(); };
 
 protected:
 	Allegiance allegiance = Allegiance::neutral;
@@ -123,6 +132,8 @@ protected:
 	b2Vec2 dimensions;
 	bool target = false;
 	bool dead = false;
+	//higher priority actors are drawn first
+	int priority = 0;
 };
 
 

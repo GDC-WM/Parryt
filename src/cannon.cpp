@@ -10,6 +10,7 @@
 Cannon::Cannon(b2Vec2 position, std::shared_ptr<Model> model) : Actor(position) {
 	this->model = model;
 	this->allegiance = Allegiance::pirate;
+	this->priority = 1;
 
 	// fix shape to body
 	this->bodyDef.type = b2_staticBody;

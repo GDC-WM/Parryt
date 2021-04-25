@@ -1,6 +1,7 @@
 #include <list>
 #include <memory>
 #include <box2d/box2d.h>
+#include <queue>
 
 #include "model.hpp"
 #include "actor.hpp"
@@ -18,6 +19,7 @@ Model::Model(void) {
 void Model::addActor(std::shared_ptr<Actor> actor) {
 	actor->setWorld(this->world);
 	this->actorList.push_back(actor);
+	this->actorPriorityQueue.push(actor);
 }
 
 
