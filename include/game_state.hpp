@@ -44,7 +44,9 @@ public:
 
 	void update(void);
 
-	const bool isLocked(void) { return this->lock; };
+	const bool &isLocked(void) const { return this->lock; };
+
+	void setLocked(void) { this->lock = true; };
 
 
 private:
