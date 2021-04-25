@@ -184,8 +184,6 @@ void UserView::drawScreen(void) {
 	this->window->draw(line, 2, sf::Lines);
 
 	// draw actors
-	//for (auto actor : this->game->getGameState()->getModel()->getActorList()) actor->draw(this->window);
-
 	ActorPriorityQueue actorPriorityQueue = this->game->getGameState()->getModel()->getActorPriorityQueue();
 	while(!actorPriorityQueue.empty()){
 		if(!actorPriorityQueue.top()->isDead())
