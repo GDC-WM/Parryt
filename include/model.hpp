@@ -15,7 +15,7 @@ class Actor;
 
 /**
  * comparator function for shared pointers
- */ 
+ */
 struct SharedComparator {
     template <typename T>
     bool operator()(const std::shared_ptr<T>& lhs,
@@ -25,7 +25,9 @@ struct SharedComparator {
     }
 };
 
-
+/**
+ * priority queue for actors to be drawn in correct order
+ */
 typedef std::priority_queue<std::shared_ptr<Actor>, std::vector<std::shared_ptr<Actor>>, SharedComparator> ActorPriorityQueue;
 
 /*
