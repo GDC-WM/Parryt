@@ -49,7 +49,6 @@ private:
 	std::shared_ptr<Model> model;
 	std::list<std::shared_ptr<View>> viewList;
 	std::list<std::shared_ptr<View>> viewKillList;
-	bool lock = false;
 };
 
 
