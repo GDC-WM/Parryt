@@ -1,6 +1,6 @@
-#include <vector>
 #include <memory>
 #include <box2d/box2d.h>
+#include <list>
 
 #include "model.hpp"
 #include "actor.hpp"
@@ -17,8 +17,7 @@ Model::Model(void) {
 
 void Model::addActor(std::shared_ptr<Actor> actor) {
 	actor->setWorld(this->world);
-	auto position = std::lower_bound(this->actorList.begin(),this->actorList.end(),actor, SharedComparator());
-	this->actorList.insert(position, actor);
+	this->actorList.insert(std::lower_bound(this->actorList.begin(),this->actorList.end(),actor, SharedComparator()), actor);
 }
 
 
@@ -32,7 +31,7 @@ void Model::update(void) {
 	this->world->Step(16.0f / 1000, 8, 3); // convert milliseconds to seconds
 
 	// update actors in the actor list
-	std::vector<std::shared_ptr<Actor>>::iterator actorIter = this->actorList.begin();
+	std::list<std::shared_ptr<Actor>>::iterator actorIter = this->actorList.begin();
 	while (actorIter != this->actorList.end()) {
 		std::shared_ptr<Actor> actor = *actorIter;
 		actor->update();

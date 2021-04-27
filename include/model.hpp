@@ -5,7 +5,7 @@
 #include <memory>
 #include <box2d/box2d.h>
 #include <queue>
-#include <vector>
+#include <list>
 
 #include "contact_filter.hpp"
 #include "contact_listener.hpp"
@@ -42,7 +42,7 @@ public:
 	/**
 	 * Return the list of actors.
 	 */
-	const std::vector<std::shared_ptr<Actor>> &getActorList(void) { return this->actorList; };
+	const std::list<std::shared_ptr<Actor>> &getActorList(void) { return this->actorList; };
 
 	/**
 	 * Add an actor to the list
@@ -61,7 +61,7 @@ public:
 
 private:
 	std::shared_ptr<b2World> world;
-	std::vector<std::shared_ptr<Actor>> actorList;
+	std::list<std::shared_ptr<Actor>> actorList;
 	ContactFilter contact_filter;
 	ContactListener contact_listener;
 };

@@ -1,7 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <memory>
 #include <chrono>
-#include <vector>
 #include <list>
 
 #include "user_view.hpp"
