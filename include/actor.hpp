@@ -117,12 +117,17 @@ public:
 	/**
 	 * @return priority
 	 */
-	const int &getPriority(void) const{ return this -> priority; };
+	const int &getPriority(void) const{ return this->priority; };
+
+	/**
+	 * sets Priority, higher priority actors are drawn first on screen.
+	 */
+	void setPriority(int priority) {this->priority = priority ;};
 
 	/**
 	 * Check if actor is less than by priority
 	 */
-	const bool operator<(const Actor& right) const{ return this -> getPriority() < right.getPriority(); };
+	const bool operator>(const Actor& right) const{ return this -> getPriority() > right.getPriority(); };
 
 protected:
 	Allegiance allegiance = Allegiance::neutral;
@@ -132,7 +137,6 @@ protected:
 	b2Vec2 dimensions;
 	bool target = false;
 	bool dead = false;
-	//higher priority actors are drawn first
 	int priority = 0;
 };
 

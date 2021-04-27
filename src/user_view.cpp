@@ -1,7 +1,8 @@
 #include <SFML/Graphics.hpp>
-#include <list>
 #include <memory>
 #include <chrono>
+#include <vector>
+#include <list>
 
 #include "user_view.hpp"
 #include "game_controller.hpp"
@@ -184,12 +185,7 @@ void UserView::drawScreen(void) {
 	this->window->draw(line, 2, sf::Lines);
 
 	// draw actors
-	ActorPriorityQueue actorPriorityQueue = this->game->getGameState()->getModel()->getActorPriorityQueue();
-	while(!actorPriorityQueue.empty()){
-		if(!actorPriorityQueue.top()->isDead())
-			actorPriorityQueue.top()->draw(this->window);
-		actorPriorityQueue.pop();
-	}
+	for(auto actor : this->game->getGameState()->getModel()->getActorList()) actor->draw(this->window);
 
 	// follow character
 	this->viewFollow(*this->character);

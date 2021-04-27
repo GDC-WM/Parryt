@@ -2,10 +2,10 @@
 #define MODEL_HPP
 
 
-#include <list>
 #include <memory>
 #include <box2d/box2d.h>
 #include <queue>
+#include <vector>
 
 #include "contact_filter.hpp"
 #include "contact_listener.hpp"
@@ -21,14 +21,11 @@ struct SharedComparator {
     bool operator()(const std::shared_ptr<T>& lhs,
                     const std::shared_ptr<T>& rhs) const
     {
-        return (*lhs) < (*rhs);
+        return (*lhs) > (*rhs);
     }
 };
 
-/**
- * priority queue for actors to be drawn in correct order
- */
-typedef std::priority_queue<std::shared_ptr<Actor>, std::vector<std::shared_ptr<Actor>>, SharedComparator> ActorPriorityQueue;
+
 
 /*
  * A physical space containing a list of all of the actors
@@ -45,12 +42,7 @@ public:
 	/**
 	 * Return the list of actors.
 	 */
-	const std::list<std::shared_ptr<Actor>> &getActorList(void) { return this->actorList; };
-
-	/**
-	 * @return actorPriorityQueue
-	 */
-	const ActorPriorityQueue &getActorPriorityQueue(void) {return this -> actorPriorityQueue; };
+	const std::vector<std::shared_ptr<Actor>> &getActorList(void) { return this->actorList; };
 
 	/**
 	 * Add an actor to the list
@@ -69,8 +61,7 @@ public:
 
 private:
 	std::shared_ptr<b2World> world;
-	std::list<std::shared_ptr<Actor>> actorList;
-  ActorPriorityQueue actorPriorityQueue;
+	std::vector<std::shared_ptr<Actor>> actorList;
 	ContactFilter contact_filter;
 	ContactListener contact_listener;
 };
