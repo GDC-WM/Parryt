@@ -9,6 +9,7 @@ Cannonball::Cannonball(b2Vec2 position, float damage) : Actor(position) {
 	this->allegiance = Allegiance::pirate;
 	this->age = 0;
 	this->setPriority(2);
+	this->damage = damage;
 
 	// fix shape to body
 	this->shape.m_radius = this->RADIUS;
@@ -33,6 +34,8 @@ Cannonball::Cannonball(b2Vec2 position, float damage) : Actor(position) {
 void Cannonball::onCollision(Actor &a) {
 	if (a.getAllegiance() == Allegiance::parrot && a.isTargetable()) {
 		// TODO: damage the character and destroy itself
+		this->kill();
+		a.damage(this->damage);
 	}
 }
 
