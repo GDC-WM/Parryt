@@ -22,7 +22,7 @@ Cannon::Cannon(b2Vec2 position, std::shared_ptr<Model> model) : Actor(position) 
 	// load barrel spritesheet
 	this->spriteSheet = std::make_unique<SpriteSheet>("../resources/cannon-barrel-spritesheet.png", sf::Vector2i(64, 64));
 	this->spriteSheet->setLoop(this->idleLoop);
-	this->spriteSheet->getSprite().setOrigin(this->WIDTH * 14, this->HEIGHT * 14);
+	this->spriteSheet->getSprite().setOrigin(this->WIDTH * 14, this->HEIGHT * 14 + 4);
 
 	// set carriage
 	carriageTexture.loadFromFile("../resources/cannon-carriage.png");
