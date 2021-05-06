@@ -34,7 +34,7 @@ std::shared_ptr<GameState> makeDemo(void) {
 	demo->addView(std::make_shared<CannonView>(demo->getModel(), cannon));
 
 	// Add grunt
-	std::shared_ptr<Grunt> grunt = std::make_shared<Grunt>(b2Vec2(30, -5), demo->getModel());
+	std::shared_ptr<Grunt> grunt = std::make_shared<Grunt>(b2Vec2(100, -5), demo->getModel());
 	demo->addActor(grunt);
 	demo->addView(std::make_shared<PatrolAI>(demo->getModel(), grunt));
 
