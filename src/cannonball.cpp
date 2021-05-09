@@ -36,7 +36,7 @@ void Cannonball::onCollision(Actor &a) {
 }
 
 
-void Cannonball::update(const float &dt) {
+void Cannonball::update(void) {
 	this->age++;
 
 	// delete old cannonballs

@@ -44,7 +44,7 @@ public:
 	 */
 	void patrol(void);
 
-	void update(const float &dt) override;
+	void update(void) override;
 
 
 protected:

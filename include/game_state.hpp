@@ -42,7 +42,7 @@ public:
 
 	void reset(void);
 
-	void update(const float &dt);
+	void update(void);
 
 
 private:

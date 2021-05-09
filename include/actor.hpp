@@ -85,7 +85,7 @@ public:
 	 *
 	 * @param dt Time forward in milliseconds
 	 */
-	virtual void update(const float &dt) {};
+	virtual void update(void) {};
 
 	/**
 	 * Tell actor to draw itself

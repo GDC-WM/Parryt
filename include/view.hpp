@@ -13,7 +13,7 @@ class View {
 public:
 	View(std::shared_ptr<Model> model);
 
-	virtual void update(const float &dt) = 0;
+	virtual void update(void) = 0;
 
 
 protected:

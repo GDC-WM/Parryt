@@ -15,7 +15,7 @@ public:
 
 	Bullet(b2Vec2 position, float damage);
 
-	void update(const float &dt) override;
+	void update(void) override;
 
 	void draw(std::shared_ptr<sf::RenderWindow> window) override;
 

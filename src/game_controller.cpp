@@ -12,6 +12,6 @@ void GameController::reset(void) {
 }
 
 
-void GameController::update(const float &dt) {
-	if (this->getGameState()) this->getGameState()->update(dt);
+void GameController::update(void) {
+	if (this->getGameState()) this->getGameState()->update();
 }

@@ -35,29 +35,33 @@ public:
 	void setGameState(std::shared_ptr<GameState> state) { this->gameState = state; };
 
 	/**
-	 * Resets game controller to default
+	 * Resets game controller to default.
 	 */
 	void reset(void);
 
 	/**
-	 * Terminate the application?
+	 * @return pause state of the application
 	 */
-	bool isTerminated(void) { return this->terminated; };
+	const bool &isPaused(void) { return this->paused; };
 
 	/**
-	 * Terminate the application
+	 * Play/pause the application.
 	 */
-	void terminate(void) { this->terminated = true; };
+	void togglePause(void) { this->paused = !this->paused; };
+
+	/**
+	 * @param state New pause state of the application
+	 */
+	void togglePause(bool state) { this->paused = state; };
 
 	/**
 	 *
 	 */
-	void update(const float &dt);
+	void update(void);
 
 
 private:
 	std::shared_ptr<GameState> gameState;
-	bool terminated = false;
 	bool paused = false;
 };
 

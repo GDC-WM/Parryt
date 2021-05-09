@@ -31,7 +31,7 @@ Grunt::Grunt(b2Vec2 position, std::shared_ptr<Model> model) : Character(position
 	texture.loadFromFile("../resources/pirate.png");
 	this->sprite = sf::Sprite(texture, sf::IntRect(0,0,64,64));
 	sprite.setScale(0.08,0.08); //hardcoding BAD
-	this->sprite.setOrigin(32 * .08, 32 * .08);
+	this->sprite.setOrigin(32 * .08, 32 * .08 + 23);
 
 	//set old drawable
 	this->drawable.setOrigin(this->WIDTH, this->HEIGHT);
@@ -82,8 +82,8 @@ void Grunt::draw(std::shared_ptr<sf::RenderWindow> window) {
 }
 
 
-void Grunt::update(const float &dt){
-	Character::update(dt);
+void Grunt::update(void){
+	Character::update();
 
 	if (this->fireRateCounter > 0) {
 		this->fireRateCounter--;

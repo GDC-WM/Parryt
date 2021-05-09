@@ -69,7 +69,7 @@ public:
 
 	virtual void onCollision(Actor &a) override;
 
-	virtual void update(const float &dt) override;
+	virtual void update(void) override;
 
 
 protected:
