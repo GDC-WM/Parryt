@@ -29,7 +29,7 @@ void Character::heal(int healAmount) {
 
 void Character::stop(void) {
 	b2Vec2 velocity = this->body->GetLinearVelocity();
-	if (abs(velocity.x) >= 5) {
+	if (abs(velocity.x) >= 1) {
 		float stopForce = -velocity.x / abs(velocity.x) * this->deceleration;
 		//TODO: stephen make ^this^ not dumb
 		this->body->ApplyForceToCenter(b2Vec2(stopForce, 0), true);
@@ -66,16 +66,26 @@ void Character::update(void) {
 	switch (this->movementForceDir) {
 		case Dir::left:
 			if (this->body->GetLinearVelocity().x > -this->maxSpeed)
-				this->body->ApplyForceToCenter(b2Vec2(-this->acceleration - 500, 0), true);
+				this->body->ApplyForceToCenter(b2Vec2(-this->acceleration, 0), true);
 			//set look direction
 			if (this->body->GetLinearVelocity().x >= -this->maxSpeed && this->body->GetLinearVelocity().x < 0)
 				this->lookDir = Dir::left;
+			//If relatively fast, be able to stop quickly and go in the other direction
+			if (this->body->GetLinearVelocity().x <= this->maxSpeed && this->body->GetLinearVelocity().x > 0) {
+				this->stop();
+				this->body->ApplyForceToCenter(b2Vec2(-100, 0), true);
+			}
 			break;
 		case Dir::right:
-			if (this->body->GetLinearVelocity().x < this->maxSpeed) this->body->ApplyForceToCenter(b2Vec2(this->acceleration + 500, 0), true);
+			if (this->body->GetLinearVelocity().x < this->maxSpeed) this->body->ApplyForceToCenter(b2Vec2(this->acceleration, 0), true);
 			//set look direction
 			if (this->body->GetLinearVelocity().x <= this->maxSpeed && this->body->GetLinearVelocity().x > 0)
 				this->lookDir = Dir::right;
+			//If relatively fast, be able to stop quickly and go in the other direction
+			if (this->body->GetLinearVelocity().x >= -this->maxSpeed && this->body->GetLinearVelocity().x < 0) {
+				this->stop();
+				this->body->ApplyForceToCenter(b2Vec2(100, 0), true);
+			}
 			break;
 		case Dir::none:
 			this->stop();
