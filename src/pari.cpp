@@ -9,12 +9,12 @@ Pari::Pari(b2Vec2 position) : Character(position) {
 	this->allegiance = Allegiance::parrot;
 	this->setTargetable(true);
 
-	this->acceleration = 225;
+	this->acceleration = 200;
 	this->deceleration = 225;
 	this->jumpImpulse = 300;
 	this->maxSpeed = 20;
 	this->maxHealth = 100;
-	this->maxJumps = 1;
+	this->maxJumps = 2;
 	this->parryDuration = std::chrono::milliseconds(200);
 	this->parryRechargeDuration = std::chrono::seconds(1);
 	// set parry start so Pari can parry right away

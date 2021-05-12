@@ -73,7 +73,7 @@ void Character::update(void) {
 			//If relatively fast, be able to stop quickly and go in the other direction
 			if (this->body->GetLinearVelocity().x <= this->maxSpeed && this->body->GetLinearVelocity().x > 0) {
 				this->stop();
-				this->body->ApplyForceToCenter(b2Vec2(-100, 0), true);
+				this->body->ApplyForceToCenter(b2Vec2(-25, 0), true);
 			}
 			break;
 		case Dir::right:
@@ -84,7 +84,7 @@ void Character::update(void) {
 			//If relatively fast, be able to stop quickly and go in the other direction
 			if (this->body->GetLinearVelocity().x >= -this->maxSpeed && this->body->GetLinearVelocity().x < 0) {
 				this->stop();
-				this->body->ApplyForceToCenter(b2Vec2(100, 0), true);
+				this->body->ApplyForceToCenter(b2Vec2(25, 0), true);
 			}
 			break;
 		case Dir::none:
