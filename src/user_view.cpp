@@ -184,7 +184,7 @@ void UserView::drawScreen(void) {
 	this->window->draw(line, 2, sf::Lines);
 
 	// draw actors
-	for(auto actor : this->game->getGameState()->getModel()->getActorList()) actor->draw(this->window);
+	for (auto actor : this->game->getGameState()->getModel()->getActorList()) actor->draw(this->window);
 
 	// follow character
 	this->viewFollow(*this->character);

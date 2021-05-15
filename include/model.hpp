@@ -2,29 +2,15 @@
 #define MODEL_HPP
 
 
+#include <list>
 #include <memory>
 #include <box2d/box2d.h>
-#include <queue>
-#include <list>
 
 #include "contact_filter.hpp"
 #include "contact_listener.hpp"
 
 
 class Actor;
-
-/**
- * comparator function for shared pointers
- */
-struct SharedComparator {
-    template <typename T>
-    bool operator()(const std::shared_ptr<T>& lhs,
-                    const std::shared_ptr<T>& rhs) const
-    {
-        return (*lhs) > (*rhs);
-    }
-};
-
 
 
 /*
@@ -54,9 +40,6 @@ public:
 	void reset(void);
 
 	void update(void);
-
-
-
 
 
 private:

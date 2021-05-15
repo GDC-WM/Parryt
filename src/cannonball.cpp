@@ -8,7 +8,7 @@
 Cannonball::Cannonball(b2Vec2 position, float damage) : Actor(position) {
 	this->allegiance = Allegiance::pirate;
 	this->age = 0;
-	this->setPriority(2);
+	this->priority = 11;
 	this->damage = damage;
 
 	// fix shape to body

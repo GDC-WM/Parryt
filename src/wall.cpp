@@ -7,7 +7,7 @@
 
 Wall::Wall(b2Vec2 position, float height) : Actor(position) {
 	this->shape.SetAsBox(this->WIDTH, height);
-	this->priority = 1;
+	this->priority = 5;
 
 	// fix shape to body
 	this->bodyDef.type = b2_staticBody;

@@ -1,11 +1,21 @@
+#include <list>
 #include <memory>
 #include <box2d/box2d.h>
-#include <list>
 
 #include "model.hpp"
 #include "actor.hpp"
 #include "contact_filter.hpp"
 #include "contact_listener.hpp"
+
+
+/**
+ * comparator function for shared pointers
+ */
+struct ActorPrioritizer {
+	bool operator()(std::shared_ptr<Actor> lhs, std::shared_ptr<Actor> rhs) const {
+		return lhs->getPriority() < rhs->getPriority();
+	}
+};
 
 
 Model::Model(void) {
@@ -17,7 +27,7 @@ Model::Model(void) {
 
 void Model::addActor(std::shared_ptr<Actor> actor) {
 	actor->setWorld(this->world);
-	this->actorList.insert(std::lower_bound(this->actorList.begin(),this->actorList.end(),actor, SharedComparator()), actor);
+	this->actorList.insert(std::lower_bound(this->actorList.begin(), this->actorList.end(), actor, ActorPrioritizer()), actor);
 }
 
 

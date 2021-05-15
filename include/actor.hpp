@@ -125,14 +125,10 @@ public:
 	void setPriority(int priority) {this->priority = priority ;};
 
 	/**
-	 * Check if actor is less than by priority
-	 */
-	const bool operator>(const Actor& right) const{ return this -> getPriority() > right.getPriority(); };
-	
-	/**
 	 * @param damage Amount of damage to do
 	 */
 	virtual void damage(float damage) {};
+
 
 protected:
 	Allegiance allegiance = Allegiance::neutral;

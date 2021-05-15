@@ -9,6 +9,7 @@
 Grunt::Grunt(b2Vec2 position, std::shared_ptr<Model> model) : Character(position) {
 	this->model = model;
 	this->allegiance = Allegiance::pirate;
+	this->priority = 30;
 	this->setTargetable(true);
 
 	this->acceleration = 10;
