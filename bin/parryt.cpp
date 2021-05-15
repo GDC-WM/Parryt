@@ -34,7 +34,7 @@ std::shared_ptr<GameState> makeDemo(void) {
 	demo->addView(std::make_shared<CannonView>(demo->getModel(), cannon));
 
 	// Add grunt
-	std::shared_ptr<Grunt> grunt = std::make_shared<Grunt>(b2Vec2(30, -5), demo->getModel());
+	std::shared_ptr<Grunt> grunt = std::make_shared<Grunt>(b2Vec2(100, -5), demo->getModel());
 	demo->addActor(grunt);
 	demo->addView(std::make_shared<PatrolAI>(demo->getModel(), grunt));
 
@@ -51,22 +51,34 @@ std::shared_ptr<GameState> makeDemo(void) {
 }
 
 
-int main(int argc, char** argv) {
-	std::shared_ptr<GameController> game = std::make_shared<GameController>(makeDemo());
-	std::shared_ptr<UserView> user = std::make_shared<UserView>(game);
-	game->getGameState()->addView(user);
-
-	// game loop
+void gameUpdate(std::shared_ptr<GameController> game, std::shared_ptr<UserView> user) {
 	std::chrono::steady_clock::time_point nextUpdate = std::chrono::steady_clock::now();
 	while (user->isRunning()) {
 		nextUpdate += std::chrono::milliseconds(16);
 
 		game->isPaused()? user->update() : game->update();
-		user->drawScreen();
+		user->drawScreen(); //temporarily put this here until drawing is sorted out
 
 		std::this_thread::sleep_for(nextUpdate - std::chrono::steady_clock::now());
 	}
+}
 
+
+void drawUpdate(std::shared_ptr<GameController> game, std::shared_ptr<UserView> user) {
+	while (user->isRunning()) {
+		user->drawScreen();
+	}
+}
+
+
+int main(int argc, char** argv) {
+	std::shared_ptr<GameController> game = std::make_shared<GameController>(makeDemo());
+	std::shared_ptr<UserView> user = std::make_shared<UserView>(game);
+	game->getGameState()->addView(user);
+
+	std::thread gameThread(gameUpdate, game, user);
+	//std::thread drawThread(drawUpdate, game, user);
+	gameThread.join();
+	//drawThread.join();
 	return 0;
 }
-	//TODO: separate variable rate graphics loop

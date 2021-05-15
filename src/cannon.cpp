@@ -20,38 +20,23 @@ Cannon::Cannon(b2Vec2 position, std::shared_ptr<Model> model) : Actor(position) 
 	this->fixtureDef.density = 1.0f;
 	this->fixtureDef.friction = 0.3f;
 
+	// load barrel spritesheet
+	this->spriteSheet = std::make_unique<SpriteSheet>("../resources/cannon-barrel.png", sf::Vector2i(64, 64));
+	this->spriteSheet->setLoop(this->idleLoop);
+	this->spriteSheet->getSprite().setOrigin(this->WIDTH * 14, this->HEIGHT * 14 + 4);
+
 	// set carriage
 	carriageTexture.loadFromFile("../resources/cannon-carriage.png");
 	this->carriageSprite = sf::Sprite(carriageTexture, sf::IntRect(0,0,64,64));
 	carriageSprite.setScale(0.08, 0.08);
 	this->carriageSprite.setOrigin(this->WIDTH * 14, this->HEIGHT * 14 - 10);
-
-	// set barrel
-	barrelTexture.loadFromFile("../resources/cannon-barrel.png");
-	this->barrelSprite = sf::Sprite(barrelTexture, sf::IntRect(0,0,64,64));
-	barrelSprite.setScale(0.08, 0.08);
-	this->barrelSprite.setOrigin(15, 21.5);
-
-	// set old carriage
-	this->carriage.setOrigin(this->WIDTH, this->HEIGHT);
-	this->carriage.setFillColor(sf::Color::Red);
-	this->carriage.setSize(sf::Vector2f(this->WIDTH * 2, this->HEIGHT * 2));
-
-	// set old barrel
-	this->barrel.setOrigin(0, this->barrelDimensions.y);
-	this->barrel.setFillColor(sf::Color::White);
-	this->barrel.setSize(sf::Vector2f(this->barrelDimensions.x * 2, this->barrelDimensions.y * 2));
 }
 
 
 void Cannon::shoot(void) {
 	if (this->loadingCounter > 0) return;
-
+	this->spriteSheet->setOneShot(this->shootLoop);
 	this->loadingCounter = this->LOAD_TIME;
-	std::shared_ptr<Cannonball> cannonball = std::make_shared<Cannonball>(this->body->GetPosition(), 20);
-	this->model->addActor(cannonball);
-	cannonball->getBody()->ApplyLinearImpulseToCenter(b2Vec2(cos(this->barrelAngle) * 150,
-	                                                         sin(this->barrelAngle) * 150), true);
 }
 
 
@@ -60,25 +45,24 @@ void Cannon::update(void) {
 	this->barrelAngle += this->rotationVelocity;
 	if (this->barrelAngle < this->minAngle) this->barrelAngle = this->minAngle;
 	if (this->barrelAngle > this->maxAngle) this->barrelAngle = this->maxAngle;
-	if (this->loadingCounter > 0) this->loadingCounter--;
+
+	// deal with shooting
+	if (this->loadingCounter == 0) return;
+	this->loadingCounter--;
+	if (this->loadingCounter == this->LOAD_TIME - 40) {
+		std::shared_ptr<Cannonball> cannonball = std::make_shared<Cannonball>(this->body->GetPosition(), 20);
+		this->model->addActor(cannonball);
+		cannonball->getBody()->ApplyLinearImpulseToCenter(b2Vec2(cos(this->barrelAngle) * 150,
+	                                                             sin(this->barrelAngle) * 150), true);
+	}
 }
 
 
 void Cannon::draw(std::shared_ptr<sf::RenderWindow> window) {
-	this->carriage.setPosition(this->getBody()->GetPosition().x,
-	                          -this->getBody()->GetPosition().y);
-	this->carriage.setRotation(-this->body->GetAngle() * 180 / M_PI);
-	//window->draw(carriage);
-
-	this->barrel.setPosition(this->getBody()->GetPosition().x,
-	                        -this->getBody()->GetPosition().y);
-	this->barrel.setRotation(-this->barrelAngle * 180 / M_PI);
-	//window->draw(barrel);
-
-	this->barrelSprite.setPosition(this->getBody()->GetPosition().x,
-	                              -this->getBody()->GetPosition().y - this->barrelDimensions.y);
-	this->barrelSprite.setRotation(-this->barrelAngle * 180 / M_PI);
-	window->draw(barrelSprite);
+	this->spriteSheet->getSprite().setPosition(this->getBody()->GetPosition().x,
+	                                          -this->getBody()->GetPosition().y - this->barrelDimensions.y);
+	this->spriteSheet->getSprite().setRotation(-this->barrelAngle * 180 / M_PI);
+	window->draw(spriteSheet->getSprite());
 
 	this->carriageSprite.setPosition(this->getBody()->GetPosition().x,
 	                                -this->getBody()->GetPosition().y);

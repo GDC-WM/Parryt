@@ -6,6 +6,7 @@
 #include <box2d/box2d.h>
 
 #include "actor.hpp"
+#include "sprite_sheet.hpp"
 
 
 class Model;
@@ -61,13 +62,12 @@ private:
 	float barrelAngle = M_PI / 2;
 	float minAngle = 9 * M_PI / 16;
 	float maxAngle = M_PI;
-	sf::RectangleShape carriage;
-	sf::RectangleShape barrel;
 
 	sf::Texture carriageTexture;
 	sf::Sprite carriageSprite;
-	sf::Texture barrelTexture;
-	sf::Sprite barrelSprite;
+	std::unique_ptr<SpriteSheet> spriteSheet;
+	Loop shootLoop { 0, 18, 40 };
+	Loop idleLoop { 0, 1, 1 };
 
 	int loadingCounter = 0;
 };
