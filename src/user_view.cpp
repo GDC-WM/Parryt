@@ -1,7 +1,7 @@
 #include <SFML/Graphics.hpp>
+#include <list>
 #include <memory>
 #include <chrono>
-#include <list>
 
 #include "user_view.hpp"
 #include "game_controller.hpp"
