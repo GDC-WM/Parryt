@@ -18,6 +18,10 @@ void Character::damage(float damage) {
 	// don't update character's health if at max already
 	if (this->health > this->maxHealth) this->health = this->maxHealth;
 	if (this->health < 0) this->health = 0;
+	//TODO Switch to damage sound in the future
+	buffer.loadFromFile("../resources/JumpSE.wav");
+	JumpSE.setBuffer(buffer);
+	JumpSE.play();
 }
 
 
@@ -47,7 +51,7 @@ bool Character::jump(void) {
 	this->body->SetLinearVelocity(b2Vec2(this->body->GetLinearVelocity().x, 0));
 	this->body->ApplyLinearImpulseToCenter(b2Vec2(0, this->jumpImpulse), true);
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) || sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
 		buffer.loadFromFile("../resources/JumpSE.wav");
 		JumpSE.setBuffer(buffer);
 		JumpSE.play();

@@ -8,6 +8,16 @@
 #include "contact_listener.hpp"
 
 
+/**
+ * comparator function for shared pointers
+ */
+struct ActorPrioritizer {
+	bool operator()(std::shared_ptr<Actor> lhs, std::shared_ptr<Actor> rhs) const {
+		return lhs->getPriority() < rhs->getPriority();
+	}
+};
+
+
 Model::Model(void) {
 	this->world = std::make_shared<b2World>(b2Vec2(0,-60)); /* Set Gravity */
 	this->world->SetContactFilter(&this->contact_filter);
@@ -17,7 +27,7 @@ Model::Model(void) {
 
 void Model::addActor(std::shared_ptr<Actor> actor) {
 	actor->setWorld(this->world);
-	this->actorList.push_back(actor);
+	this->actorList.insert(std::lower_bound(this->actorList.begin(), this->actorList.end(), actor, ActorPrioritizer()), actor);
 }
 
 

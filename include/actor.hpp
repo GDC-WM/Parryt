@@ -114,6 +114,21 @@ public:
 	 */
 	const bool &isDead(void) const { return this->dead; };
 
+	/**
+	 * @return priority
+	 */
+	const int &getPriority(void) const{ return this->priority; };
+
+	/**
+	 * sets Priority, higher priority actors are drawn first on screen.
+	 */
+	void setPriority(int priority) {this->priority = priority ;};
+
+	/**
+	 * @param damage Amount of damage to do
+	 */
+	virtual void damage(float damage) {};
+
 
 protected:
 	Allegiance allegiance = Allegiance::neutral;
@@ -123,6 +138,7 @@ protected:
 	b2Vec2 dimensions;
 	bool target = false;
 	bool dead = false;
+	int priority = 0;
 };
 
 
