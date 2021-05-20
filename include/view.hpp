@@ -9,9 +9,11 @@
 class Model;
 
 
-class View {
+class View : public std::enable_shared_from_this<View> {
 public:
-	View(std::shared_ptr<Model> model);
+	View(void) {};
+
+	View(std::shared_ptr<Model> model) { this->model = model; };
 
 	virtual void update(void) = 0;
 
