@@ -21,7 +21,6 @@ std::unordered_map<std::string, std::vector<std::string>> tokenize(std::ifstream
 
 	std::string line;
 	while (getline(file, line) && !line.empty()) {
-		std::cout << line << "\n";
 		int start = 0;
 		int end = line.find("=");
 		std::string key = line.substr(start, end - start);
@@ -49,11 +48,21 @@ std::shared_ptr<GameState> GameStateFactory::build(std::string filename) {
 		if (line.at(0) == '[') {
 			std::string header = line.substr(1, line.find(']') - 1);
 			auto tokens = tokenize(file);
-			std::cout << header;
 			if (header == "platform") {
 				std::vector<std::string> pos = tokens["pos"];
-				std::cout << pos[0];
 				demo->addActor(std::make_shared<Platform>(b2Vec2(stoi(pos[0]), stoi(pos[1])), stoi(tokens["width"][0])));
+			}
+			else if (header == "cannon/cannonai") {
+				std::vector<std::string> pos = tokens["pos"];
+				auto actor = std::make_shared<Cannon>(b2Vec2(stoi(pos[0]), stoi(pos[1])), demo->getModel());
+				demo->addActor(actor);
+				demo->addView(std::make_shared<CannonView>(demo->getModel(), actor));
+			}
+			else if (header == "grunt/patrolai") {
+				std::vector<std::string> pos = tokens["pos"];
+				auto actor = std::make_shared<Grunt>(b2Vec2(stoi(pos[0]), stoi(pos[1])), demo->getModel());
+				demo->addActor(actor);
+				demo->addView(std::make_shared<PatrolAI>(demo->getModel(), actor));
 			}
 		}
 	}
