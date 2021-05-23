@@ -1,4 +1,6 @@
 #include <memory>
+#include <vector>
+#include <unordered_map>
 #include <fstream>
 
 #include "game_state_factory.hpp"
@@ -14,19 +16,48 @@
 #include "patrol_ai.hpp"
 
 
+std::unordered_map<std::string, std::vector<std::string>> tokenize(std::ifstream &file) {
+	std::unordered_map<std::string, std::vector<std::string>> tokens;
+
+	std::string line;
+	while (getline(file, line) && !line.empty()) {
+		std::cout << line << "\n";
+		int start = 0;
+		int end = line.find("=");
+		std::string key = line.substr(start, end - start);
+
+		std::vector<std::string> values;
+		while (end != -1) {
+			start = end + 1;
+			end = line.find(",", start);
+			values.push_back(line.substr(start, end - start));
+		}
+
+		tokens[key] = values;
+	}
+	return tokens;
+}
+
+
 std::shared_ptr<GameState> GameStateFactory::build(std::string filename) {
 	std::shared_ptr<GameState> demo = std::make_shared<GameState>();
 	std::ifstream file;
 	file.open(filename, std::ios::in);
 
 	std::string line;
-	while (file >> line) {
-		std::cout << line.substr(0, line.find("="));
+	while (getline(file, line)) {
+		if (line.at(0) == '[') {
+			std::string header = line.substr(1, line.find(']') - 1);
+			auto tokens = tokenize(file);
+			std::cout << header;
+			if (header == "platform") {
+				std::vector<std::string> pos = tokens["pos"];
+				std::cout << pos[0];
+				demo->addActor(std::make_shared<Platform>(b2Vec2(stoi(pos[0]), stoi(pos[1])), stoi(tokens["width"][0])));
+			}
+		}
 	}
 
 	file.close();
 	return demo;
 }
-
-
-std::ifstream readSection(std::ifstream file);
