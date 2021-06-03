@@ -45,7 +45,6 @@ private:
 	GameStateFactory gameStateFactory;
 	std::shared_ptr<Pari> character;
 	sf::Music musicTrack;
-	std::shared_ptr<sf::Music> Track;
 
 	/**
 	 * Respond to key press
