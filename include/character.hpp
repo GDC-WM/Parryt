@@ -19,7 +19,7 @@ public:
 	/**
 	 * @param damage Amount of damage to do
 	 */
-	virtual void damage(float damage);
+	virtual void damage(float damage) override;
 
 	/**
 	 * @param healAmount Amount to heal

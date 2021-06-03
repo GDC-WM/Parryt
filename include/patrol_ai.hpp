@@ -17,7 +17,7 @@ class Grunt;
  */
 class PatrolAI : public AIView {
 public:
-	PatrolAI(std::shared_ptr<Model> model, std::shared_ptr<Grunt> grunt);
+	PatrolAI(std::shared_ptr<Model> model, std::shared_ptr<Grunt> grunt, b2Vec2 post, int patrolRange);
 
 	bool updateTarget(const Allegiance allegiance);
 
@@ -26,12 +26,6 @@ public:
 	 *
 	 */
 	void aimAt(void);
-
-	/**
-	 * gives the grunt a post to patrol
-	 * @param post the coordinates of the center of their post
-	 */
-	void setPost(const b2Vec2 &post) { this->post = post; };
 
 	/**
 	 * Chases the target
@@ -50,6 +44,7 @@ public:
 protected:
 	std::shared_ptr<Grunt> grunt;
 	b2Vec2 post;
+	int patrolRange;
 };
 
 

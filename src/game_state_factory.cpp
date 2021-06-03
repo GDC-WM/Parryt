@@ -62,7 +62,7 @@ std::shared_ptr<GameState> GameStateFactory::build(std::string filename) {
 				std::vector<std::string> pos = tokens["pos"];
 				auto actor = std::make_shared<Grunt>(b2Vec2(stoi(pos[0]), stoi(pos[1])), demo->getModel());
 				demo->addActor(actor);
-				demo->addView(std::make_shared<PatrolAI>(demo->getModel(), actor));
+				demo->addView(std::make_shared<PatrolAI>(demo->getModel(), actor, b2Vec2(stoi(pos[0]), stoi(pos[1])), stoi(tokens["patrol_range"][0])));
 			}
 		}
 	}
