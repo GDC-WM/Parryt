@@ -6,15 +6,17 @@
 #include "user_view.hpp"
 #include "game_controller.hpp"
 #include "game_state.hpp"
+#include "game_state_factory.hpp"
 #include "model.hpp"
 #include "pari.hpp"
 
 
-UserView::UserView(std::shared_ptr<GameController> game) : View(game->getGameState()->getModel()) {
+UserView::UserView(std::shared_ptr<GameController> game) {
 	this->game = game;
+	this->game->setGameState(this->gameStateFactory.build("../levels/demo.ini"));
 
-	// create Pari
-	this->character = std::make_shared<Pari>(b2Vec2(-13,-5));
+	// add Pari to game
+	this->character = std::make_shared<Pari>(b2Vec2(-13,-5)); // TODO: read Pari position from level file
 	this->game->getGameState()->addActor(this->character);
 
 	// set window

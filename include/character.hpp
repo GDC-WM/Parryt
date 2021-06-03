@@ -19,7 +19,7 @@ public:
 	/**
 	 * @param damage Amount of damage to do
 	 */
-	virtual void damage(float damage);
+	virtual void damage(float damage) override;
 
 	/**
 	 * @param healAmount Amount to heal
@@ -83,8 +83,8 @@ protected:
 	float maxSpeed;
 	int maxHealth;
 	float health;
-	// sf::SoundBuffer buffer;
-	// sf::Sound JumpSE;
+	sf::SoundBuffer buffer;
+	sf::Sound JumpSE;
 	//TODO: give every character a SpriteSheet?
 
 	/**

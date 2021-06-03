@@ -9,6 +9,7 @@
 Grunt::Grunt(b2Vec2 position, std::shared_ptr<Model> model) : Character(position) {
 	this->model = model;
 	this->allegiance = Allegiance::pirate;
+	this->priority = 30;
 	this->setTargetable(true);
 
 	this->acceleration = 10;
@@ -31,7 +32,7 @@ Grunt::Grunt(b2Vec2 position, std::shared_ptr<Model> model) : Character(position
 	texture.loadFromFile("../resources/pirate.png");
 	this->sprite = sf::Sprite(texture, sf::IntRect(0,0,64,64));
 	sprite.setScale(0.08,0.08); //hardcoding BAD
-	this->sprite.setOrigin(32 * .08, 32 * .08);
+	this->sprite.setOrigin(32 * .08, 32 * .08 + 23);
 
 	//set old drawable
 	this->drawable.setOrigin(this->WIDTH, this->HEIGHT);
