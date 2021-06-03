@@ -7,10 +7,12 @@
 #include "grunt.hpp"
 
 
-PatrolAI::PatrolAI(std::shared_ptr<Model> model, std::shared_ptr<Grunt> grunt) : AIView(model, grunt) {
+PatrolAI::PatrolAI(std::shared_ptr<Model> model, std::shared_ptr<Grunt> grunt, b2Vec2 post, int patrolRange) : AIView(model, grunt) {
 	this->model = model;
 	this->grunt = grunt;
 	this->range = 20;
+	this->post = post;
+	this->patrolRange = patrolRange;
 }
 
 
@@ -65,8 +67,8 @@ bool PatrolAI::updateTarget(const Allegiance allegiance) {
 
 
 void PatrolAI::patrol(void) {
-	int leftLim = post.x; // 8 is arbitrary
-	int rightLim = post.x + 8;
+	int leftLim = post.x-this->patrolRange; // 8 is arbitrary
+	int rightLim = post.x + this->patrolRange;
 
 	//this->grunt->setMovement(Dir::left);
 

@@ -28,9 +28,9 @@ UserView::UserView(std::shared_ptr<GameController> game) : View(game->getGameSta
 	this->window->setView(view);
 
 	/* Calling music for the stage: */
-	this->musicTrack.openFromFile("../resources/MainTheme.wav");
-	this->musicTrack.play();
-	this->musicTrack.setLoop(true);
+//	this->musicTrack.openFromFile("../resources/MainTheme.wav");
+//	this->musicTrack.play();
+//	this->musicTrack.setLoop(true);
 }
 
 

@@ -83,8 +83,8 @@ protected:
 	float maxSpeed;
 	int maxHealth;
 	float health;
-	sf::SoundBuffer buffer;
-	sf::Sound JumpSE;
+	// sf::SoundBuffer buffer;
+	// sf::Sound JumpSE;
 	//TODO: give every character a SpriteSheet?
 
 	/**
