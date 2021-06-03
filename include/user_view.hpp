@@ -44,8 +44,8 @@ private:
 	std::shared_ptr<sf::RenderWindow> window;
 	GameStateFactory gameStateFactory;
 	std::shared_ptr<Pari> character;
-	//sf::Music musicTrack;
-	//std::shared_ptr<sf::Music> Track;
+	sf::Music musicTrack;
+	std::shared_ptr<sf::Music> Track;
 
 	/**
 	 * Respond to key press
