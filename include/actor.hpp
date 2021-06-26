@@ -126,8 +126,14 @@ public:
 
 	/**
 	 * @param damage Amount of damage to do
+	 *
+	 * @return whether the item took damage or not
 	 */
-	virtual void damage(float damage) {};
+	virtual bool damage(float damage) { return false; };
+
+	b2Vec2 convertVec(sf::Vector2f sfmlVec) { return b2Vec2(sfmlVec.x, -sfmlVec.y); };
+
+	sf::Vector2f convertVec(b2Vec2 b2dVec) { return sf::Vector2f(b2dVec.x, -b2dVec.y); };
 
 
 protected:

@@ -39,10 +39,8 @@ void Bullet::update(void) {
 }
 
 void Bullet::onCollision(Actor &a) {
-	if (a.getAllegiance() == Allegiance::parrot && a.isTargetable()) {
-		// TODO: damage the character and destroy itself
-		this->kill();
-		a.damage(this->damage);
+	if (a.getAllegiance() != this->getAllegiance() && a.isTargetable()) {
+		if (a.damage(this->damage)) this->kill();
 	}
 }
 
