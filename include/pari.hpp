@@ -21,6 +21,13 @@ public:
 
 	Pari(b2Vec2 position);
 
+	/**
+	 * @param damage Amount of damage to do
+	 *
+	 * @return whether the item took damage or not
+	 */
+	virtual bool damage(float damage) override;
+
 	bool jump(void) override;
 
 	void onCollision(Actor &a) override;

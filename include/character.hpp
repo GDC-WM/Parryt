@@ -18,8 +18,10 @@ public:
 
 	/**
 	 * @param damage Amount of damage to do
+	 *
+	 * @return whether the item took damage or not
 	 */
-	virtual void damage(float damage) override;
+	virtual bool damage(float damage) override;
 
 	/**
 	 * @param healAmount Amount to heal
@@ -91,6 +93,13 @@ protected:
 	 * Make the character apply a stop force
 	 */
 	void stop(void);
+
+	/**
+	 * Tell actor to draw its health bar
+	 *
+	 * @param window Window to draw itself on
+	 */
+	virtual void drawHealthBar(std::shared_ptr<sf::RenderWindow> window, float y);
 };
 
 

@@ -50,7 +50,7 @@ void Cannon::update(void) {
 	if (this->loadingCounter == 0) return;
 	this->loadingCounter--;
 	if (this->loadingCounter == this->LOAD_TIME - 40) {
-		std::shared_ptr<Cannonball> cannonball = std::make_shared<Cannonball>(this->body->GetPosition(), 20);
+		std::shared_ptr<Cannonball> cannonball = std::make_shared<Cannonball>(this->body->GetPosition(), 100);
 		this->model->addActor(cannonball);
 		cannonball->getBody()->ApplyLinearImpulseToCenter(b2Vec2(cos(this->barrelAngle) * 150,
 	                                                             sin(this->barrelAngle) * 150), true);

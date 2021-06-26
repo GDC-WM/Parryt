@@ -13,15 +13,16 @@ Character::Character(b2Vec2 position) : Actor(position) {
 }
 
 
-void Character::damage(float damage) {
+bool Character::damage(float damage) {
 	this->health -= damage;
 	// don't update character's health if at max already
 	if (this->health > this->maxHealth) this->health = this->maxHealth;
-	if (this->health < 0) this->health = 0;
+	if (this->health <= 0) this->kill();
 	//TODO Switch to damage sound in the future
 	this->buffer.loadFromFile("../resources/JumpSE.wav");
 	JumpSE.setBuffer(buffer);
 	JumpSE.play();
+	return true;
 }
 
 
@@ -61,8 +62,20 @@ bool Character::jump(void) {
 	return true;
 }
 
+
 void Character::onCollision(Actor &a) {
 	if (a.getAllegiance() == Allegiance::neutral && a.shouldCollide(*this)) this->jumpCounter = 0;
+}
+
+
+void Character::drawHealthBar(std::shared_ptr<sf::RenderWindow> window, float y) {
+	sf::RectangleShape healthBar(sf::Vector2f(5.0 * float(this->health) / float(this->getMaxHealth()), 0.2));
+	sf::Vector2f position = convertVec(this->getBody()->GetPosition());
+	position.x -= 2.5;
+	position.y -= y;
+	healthBar.setPosition(position);
+	healthBar.setFillColor(sf::Color::Red);
+	window->draw(healthBar);
 }
 
 

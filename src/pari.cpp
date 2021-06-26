@@ -14,7 +14,7 @@ Pari::Pari(b2Vec2 position) : Character(position) {
 	this->deceleration = 250;
 	this->jumpImpulse = 235;
 	this->maxSpeed = 15;
-	this->maxHealth = 100;
+	this->health = this->maxHealth = 10000; // he thicc
 	this->maxJumps = 2;
 	this->parryDuration = std::chrono::milliseconds(200);
 	this->parryRechargeDuration = std::chrono::seconds(1);
@@ -33,14 +33,19 @@ Pari::Pari(b2Vec2 position) : Character(position) {
 
 	// set drawable
 	this->sprite = sf::Sprite(texture, sf::IntRect(0,0,64,64));
-	this->sprite.setScale(0.08,0.08); //hardcoding bad
-	this->sprite.setOrigin(32 * .08, 32 * .08);
 
 	// set old drawable
 	this->drawable.setOrigin(this->WIDTH, this->HEIGHT);
 	this->drawable.setFillColor(sf::Color::Green);
 	this->drawable.setSize(sf::Vector2f(this->WIDTH * 2, this->HEIGHT * 2));
 }
+
+bool Pari::damage(float damage) {
+	if (this->isParrying()) return false;
+	Character::damage(damage);
+	return true;
+}
+
 
 bool Pari::jump(void) {
 	bool jumped = Character::jump();
@@ -49,6 +54,7 @@ bool Pari::jump(void) {
 	// prevents too many jumps
 	return jumped;
 }
+
 
 bool Pari::parry(float angle) {
 	if (!this->canParry()) return false;
@@ -68,9 +74,11 @@ void Pari::onCollision(Actor &a) {
 		double projectileSpeed = sqrt(pow(projectileVelocity.x, 2) + pow(projectileVelocity.y, 2));
 		a.getBody()->SetLinearVelocity(b2Vec2(projectileSpeed * cos(this->parryAngle),
 		                                      projectileSpeed * sin(this->parryAngle)));
+		a.setAllegiance(Allegiance::parrot);
 
 		// recoil Pari
-		this->getBody()->SetLinearVelocity(b2Vec2(-10, -10));
+		this->getBody()->SetLinearVelocity(b2Vec2(-0.05 * projectileSpeed * cos(this->parryAngle),
+		                                          -0.05 * projectileSpeed * sin(this->parryAngle)));
 	}
 }
 
@@ -79,6 +87,7 @@ void Pari::draw(std::shared_ptr<sf::RenderWindow> window) {
 	// old drawable
 	this->drawable.setPosition(this->getBody()->GetPosition().x,
 	                          -this->getBody()->GetPosition().y);
+	this->drawHealthBar(window, 5);
 
 	//window->draw(drawable);
 

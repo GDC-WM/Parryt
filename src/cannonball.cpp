@@ -32,10 +32,8 @@ Cannonball::Cannonball(b2Vec2 position, float damage) : Actor(position) {
 
 
 void Cannonball::onCollision(Actor &a) {
-	if (a.getAllegiance() == Allegiance::parrot && a.isTargetable()) {
-		// TODO: damage the character and destroy itself
-		this->kill();
-		a.damage(this->damage);
+	if (a.getAllegiance() != this->getAllegiance() && a.isTargetable()) {
+		if (a.damage(this->damage)) this->kill();
 	}
 }
 
