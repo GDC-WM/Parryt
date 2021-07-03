@@ -32,9 +32,10 @@ int main(int argc, char** argv) {
 	std::shared_ptr<UserView> user = std::make_shared<UserView>(game);
 	game->getGameState()->addView(user);
 
-	std::thread gameThread(gameRunner, game, user);
+	gameRunner(game, user);
+	//std::thread gameThread(gameRunner, game, user);
 	//std::thread drawThread(drawRunner, game, user);
-	gameThread.join();
+	//gameThread.join();
 	//drawThread.join();
 	return 0;
 }
