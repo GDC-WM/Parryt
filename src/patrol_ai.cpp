@@ -25,7 +25,7 @@ void PatrolAI::aimAt() {
 }
 
 
-bool PatrolAI::updateTarget(const Allegiance allegiance) {
+bool PatrolAI::updateTarget(const glob::Allegiance allegiance) {
 	b2Vec2 dangerZone = b2Vec2(2, 2);
 	for (std::shared_ptr<Actor> a : this->model->getActorList()) {
 		if (!(a->getAllegiance() == allegiance
@@ -34,7 +34,7 @@ bool PatrolAI::updateTarget(const Allegiance allegiance) {
 			continue;
 
 		if (a->getBody()->GetPosition().x < this->grunt->getBody()->GetPosition().x) {
-			if (this->grunt->getMovement() == Dir::left) {
+			if (this->grunt->getMovement() == glob::Dir::left) {
 				//looking at it
 				this->target = a;
 				return true;
@@ -48,7 +48,7 @@ bool PatrolAI::updateTarget(const Allegiance allegiance) {
 		}
 
 		if (a->getBody()->GetPosition().x > this->grunt->getBody()->GetPosition().x) {
-			if (this->grunt->getLookDir() == Dir::right) {
+			if (this->grunt->getLookDir() == glob::Dir::right) {
 				//looking at it to the right
 				this->target = a;
 				return true;
@@ -70,14 +70,14 @@ void PatrolAI::patrol(void) {
 	int leftLim = post.x-this->patrolRange; // 8 is arbitrary
 	int rightLim = post.x + this->patrolRange;
 
-	//this->grunt->setMovement(Dir::left);
+	//this->grunt->setMovement(glob::Dir::left);
 
 	if (this->grunt->getBody()->GetPosition().x >= rightLim) {
 		//std::cout<<" hit right lim going left now ";
-		this->grunt->setMovement(Dir::left);
+		this->grunt->setMovement(glob::Dir::left);
 	}
 	if (this->grunt->getBody()->GetPosition().x <= leftLim) {
-		this->grunt->setMovement(Dir::right);
+		this->grunt->setMovement(glob::Dir::right);
 	}
 }
 
@@ -85,12 +85,12 @@ void PatrolAI::patrol(void) {
 void PatrolAI::chase() {
 	if (this->target->getBody()->GetPosition().x < this->grunt->getBody()->GetPosition().x) {
 		//target is to the left
-		this->grunt->setMovement(Dir::left);
+		this->grunt->setMovement(glob::Dir::left);
 	}
 	if (this->target->getBody()->GetPosition().x > this->grunt->getBody()->GetPosition().x) {
 		//target is to the right
 		//std::cout<<"going right chasing";
-		this->grunt->setMovement(Dir::right);
+		this->grunt->setMovement(glob::Dir::right);
 	}
 	if (this->target->getBody()->GetPosition().y > this->grunt->getBody()->GetPosition().y) {
 		//target is above pirate
@@ -100,7 +100,7 @@ void PatrolAI::chase() {
 
 
 void PatrolAI::update(void) {
-	if (this->updateTarget(Allegiance::parrot)) {
+	if (this->updateTarget(glob::Allegiance::parrot)) {
 		this->chase();
 		this->aimAt();
 	} else {

@@ -6,7 +6,7 @@
 
 
 Pari::Pari(b2Vec2 position) : Character(position) {
-	this->allegiance = Allegiance::parrot;
+	this->allegiance = glob::Allegiance::parrot;
 	this->priority = 100;
 	this->setTargetable(true);
 
@@ -66,7 +66,7 @@ bool Pari::parry(float angle) {
 
 
 void Pari::onCollision(Actor &a) {
-	if (a.getAllegiance() == Allegiance::neutral && a.shouldCollide(*this)) this->jumpCounter = 0;
+	if (a.getAllegiance() == glob::Allegiance::neutral && a.shouldCollide(*this)) this->jumpCounter = 0;
 
 	if (this->isParrying()) {
 		// deflect contact object
@@ -74,7 +74,7 @@ void Pari::onCollision(Actor &a) {
 		double projectileSpeed = sqrt(pow(projectileVelocity.x, 2) + pow(projectileVelocity.y, 2));
 		a.getBody()->SetLinearVelocity(b2Vec2(projectileSpeed * cos(this->parryAngle),
 		                                      projectileSpeed * sin(this->parryAngle)));
-		a.setAllegiance(Allegiance::parrot);
+		a.setAllegiance(glob::Allegiance::parrot);
 
 		// recoil Pari
 		this->getBody()->SetLinearVelocity(b2Vec2(-0.05 * projectileSpeed * cos(this->parryAngle),
@@ -99,7 +99,7 @@ void Pari::draw(std::shared_ptr<sf::RenderWindow> window) {
 	else newLoop = this->standLoop;
 
 	// use mirrored sprite if facing left
-	this->spriteSheet->setMirrored(this->lookDir == Dir::left);
+	this->spriteSheet->setMirrored(this->lookDir == glob::Dir::left);
 	//TODO: ^this check could be removed if all characters were given a spritesheet
 
 	if (newLoop != this->spriteSheet->getLoop()) {
@@ -107,8 +107,8 @@ void Pari::draw(std::shared_ptr<sf::RenderWindow> window) {
 		this->spriteSheet->restart();
 	}
 
-	this->spriteSheet->getSprite().setPosition(this->body->GetPosition().x - 32 * .08,
-	                                          -this->body->GetPosition().y - 32 * .08 - 0.5);
+	this->spriteSheet->getSprite().setPosition(this->body->GetPosition().x - 32 * glob::scale,
+	                                          -this->body->GetPosition().y - 32 * glob::scale - 0.5);
 
 	window->draw(this->spriteSheet->getSprite());
 }

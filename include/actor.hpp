@@ -6,25 +6,8 @@
 #include <memory>
 #include <box2d/box2d.h>
 #include <SFML/Graphics.hpp>
-#include <iostream>
 
-
-/*
- * Define what side of the fight that the actor is on
- */
-enum class Allegiance { parrot, pirate, neutral };
-
-
-/*
- * How does this collide?
- */
-enum class CollisionID { solid };
-
-
-/*
- * Define a direction
- */
-enum class Dir { front, back, left, right, up, down, none };
+#include "glob.hpp"
 
 
 /*
@@ -60,12 +43,12 @@ public:
 	/**
 	 * @return Allegiance of the actor
 	 */
-	const Allegiance &getAllegiance(void) const { return this->allegiance; };
+	const glob::Allegiance &getAllegiance(void) const { return this->allegiance; };
 
 	/**
 	 * @param allegiance New allegiance of the actor
 	 */
-	void setAllegiance(const Allegiance &allegiance) { this->allegiance = allegiance; };
+	void setAllegiance(const glob::Allegiance &allegiance) { this->allegiance = allegiance; };
 
 	/**
 	 * Tell the actor it collided with the given actor
@@ -117,12 +100,12 @@ public:
 	/**
 	 * @return priority
 	 */
-	const int &getPriority(void) const{ return this->priority; };
+	const int &getPriority(void) const { return this->priority; };
 
 	/**
 	 * sets Priority, higher priority actors are drawn first on screen.
 	 */
-	void setPriority(int priority) {this->priority = priority ;};
+	void setPriority(int priority) { this->priority = priority; };
 
 	/**
 	 * @param damage Amount of damage to do
@@ -131,13 +114,9 @@ public:
 	 */
 	virtual bool damage(float damage) { return false; };
 
-	b2Vec2 convertVec(sf::Vector2f sfmlVec) { return b2Vec2(sfmlVec.x, -sfmlVec.y); };
-
-	sf::Vector2f convertVec(b2Vec2 b2dVec) { return sf::Vector2f(b2dVec.x, -b2dVec.y); };
-
 
 protected:
-	Allegiance allegiance = Allegiance::neutral;
+	glob::Allegiance allegiance = glob::Allegiance::neutral;
 	b2BodyDef bodyDef;
 	b2FixtureDef fixtureDef;
 	b2Body *body;

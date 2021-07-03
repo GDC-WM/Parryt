@@ -12,7 +12,7 @@ AIView::AIView(std::shared_ptr<Model> model, std::shared_ptr<Actor> actor) : Vie
 }
 
 
-bool AIView::updateTarget(const Allegiance allegiance) {
+bool AIView::updateTarget(const glob::Allegiance allegiance) {
 	if (!this->model) return false;
 	for (std::shared_ptr<Actor> a : this->model->getActorList()) {
 		if (a->getAllegiance() == allegiance && a->isTargetable() && this->inRange(a)) {

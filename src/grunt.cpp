@@ -8,7 +8,7 @@
 
 Grunt::Grunt(b2Vec2 position, std::shared_ptr<Model> model) : Character(position) {
 	this->model = model;
-	this->allegiance = Allegiance::pirate;
+	this->allegiance = glob::Allegiance::pirate;
 	this->priority = 30;
 	this->setTargetable(true);
 
@@ -31,7 +31,7 @@ Grunt::Grunt(b2Vec2 position, std::shared_ptr<Model> model) : Character(position
 	// set drawable
 	this->texture.loadFromFile("../resources/pirate.png");
 	this->sprite = sf::Sprite(this->texture, sf::IntRect(0,0,64,64));
-	this->sprite.setScale(0.08,0.08); //hardcoding BAD
+	this->sprite.setScale(glob::scale, glob::scale); //hardcoding BAD
 	this->sprite.setOrigin(8, 30);
 
 	//set old drawable
@@ -71,11 +71,11 @@ void Grunt::shoot() {
 
 void Grunt::draw(std::shared_ptr<sf::RenderWindow> window) {
 	// old drawable
-	this->drawable.setPosition(convertVec(this->getBody()->GetPosition()));
+	this->drawable.setPosition(glob::convertVec(this->getBody()->GetPosition()));
 	//window->draw(drawable);
 
 	// For now we just draw the static image.
-	this->sprite.setPosition(convertVec(this->getBody()->GetPosition()));
+	this->sprite.setPosition(glob::convertVec(this->getBody()->GetPosition()));
 	this->drawHealthBar(window, 5);
 
 	window->draw(this->sprite);

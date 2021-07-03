@@ -6,7 +6,7 @@
 
 
 Bullet::Bullet(b2Vec2 position, float damage) : Actor(position) {
-	this->allegiance = Allegiance::pirate;
+	this->allegiance = glob::Allegiance::pirate;
 	this->priority = 10;
 	this->age = 0;
 	this->damage = damage;
@@ -21,7 +21,7 @@ Bullet::Bullet(b2Vec2 position, float damage) : Actor(position) {
 	// set drawable
 	texture.loadFromFile("../resources/cannonball.png"); // TODO: replace with bullet art
 	this->sprite = sf::Sprite(texture, sf::IntRect(0,0,64,64));
-	sprite.setScale(0.08f,0.08f);
+	sprite.setScale(glob::scale,glob::scale);
 	this->sprite.setOrigin(this->RADIUS * 14, this->RADIUS * 14);
 
 	// set old drawable
