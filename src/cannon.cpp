@@ -9,7 +9,7 @@
 
 Cannon::Cannon(b2Vec2 position, std::shared_ptr<Model> model) : Actor(position) {
 	this->model = model;
-	this->allegiance = Allegiance::pirate;
+	this->allegiance = glob::Allegiance::pirate;
 	this->priority = 20;
 
 	// fix shape to body
@@ -28,7 +28,7 @@ Cannon::Cannon(b2Vec2 position, std::shared_ptr<Model> model) : Actor(position) 
 	// set carriage
 	carriageTexture.loadFromFile("../resources/cannon-carriage.png");
 	this->carriageSprite = sf::Sprite(carriageTexture, sf::IntRect(0,0,64,64));
-	carriageSprite.setScale(0.08, 0.08);
+	carriageSprite.setScale(glob::scale, glob::scale);
 	this->carriageSprite.setOrigin(this->WIDTH * 14, this->HEIGHT * 14 - 10);
 }
 

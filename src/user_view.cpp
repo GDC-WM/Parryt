@@ -2,6 +2,7 @@
 #include <list>
 #include <memory>
 #include <chrono>
+#include <iostream>
 
 #include "user_view.hpp"
 #include "game_controller.hpp"
@@ -26,7 +27,7 @@ UserView::UserView(std::shared_ptr<GameController> game) {
 	// set view to center on the character
 	sf::View view = this->window->getView();
 	view.setSize(sf::Vector2f(64, 36));
-	view.setCenter(this->convertVec(this->character->getBody()->GetPosition()));
+	view.setCenter(glob::convertVec(this->character->getBody()->GetPosition()));
 	this->window->setView(view);
 
 	/* Calling music for the stage: */
@@ -43,10 +44,10 @@ void UserView::pressEvent(sf::Event::KeyEvent key) {
 			this->character->jump();
 			break;
 		case sf::Keyboard::A:
-			this->character->setMovement(Dir::left);
+			this->character->setMovement(glob::Dir::left);
 			break;
 		case sf::Keyboard::D:
-			this->character->setMovement(Dir::right);
+			this->character->setMovement(glob::Dir::right);
 			break;
 		case sf::Keyboard::P:
 		case sf::Keyboard::Escape:
@@ -58,7 +59,7 @@ void UserView::pressEvent(sf::Event::KeyEvent key) {
 
 
 void UserView::pressEvent(sf::Event::MouseButtonEvent button) {
-	b2Vec2 mousePos = this->convertVec(this->window->mapPixelToCoords(sf::Mouse::getPosition(*this->window)))
+	b2Vec2 mousePos = glob::convertVec(this->window->mapPixelToCoords(sf::Mouse::getPosition(*this->window)))
 	                - this->character->getBody()->GetPosition();
 	switch (button.button) {
 		case sf::Mouse::Left: {
@@ -78,10 +79,10 @@ void UserView::pressEvent(sf::Event::MouseButtonEvent button) {
 void UserView::releaseEvent(sf::Event::KeyEvent key) {
 	switch (key.code) {
 		case sf::Keyboard::A:
-			if (this->character->getMovement() == Dir::left) this->character->setMovement(Dir::none);
+			if (this->character->getMovement() == glob::Dir::left) this->character->setMovement(glob::Dir::none);
 			break;
 		case sf::Keyboard::D:
-			if (this->character->getMovement() == Dir::right) this->character->setMovement(Dir::none);
+			if (this->character->getMovement() == glob::Dir::right) this->character->setMovement(glob::Dir::none);
 			break;
 		default:; // ignore other keys
 	}

@@ -52,7 +52,7 @@ public:
 	/**
 	 * @return look direction
 	 */
-	Dir getLookDir() { return this->lookDir; };
+	glob::Dir getLookDir() { return this->lookDir; };
 
 	/**
 	 * Make the character jump
@@ -62,12 +62,12 @@ public:
 	/**
 	 * Set movement direction
 	 */
-	void setMovement(const Dir &dir) { this->movementForceDir = dir; };
+	void setMovement(const glob::Dir &dir) { this->movementForceDir = dir; };
 
 	/**
 	 * Get movement direction
 	 */
-	const Dir &getMovement(void) const { return this->movementForceDir; };
+	const glob::Dir &getMovement(void) const { return this->movementForceDir; };
 
 	virtual void onCollision(Actor &a) override;
 
@@ -75,8 +75,8 @@ public:
 
 
 protected:
-	Dir lookDir = Dir::right;
-	Dir movementForceDir = Dir::none;
+	glob::Dir lookDir = glob::Dir::right;
+	glob::Dir movementForceDir = glob::Dir::none;
 	float jumpImpulse;
 	int maxJumps;
 	int jumpCounter = 0;

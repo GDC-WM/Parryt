@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <chrono>
 
+#include <glob.hpp>
 #include "sprite_sheet.hpp"
 
 
@@ -15,7 +16,7 @@ SpriteSheet::SpriteSheet(const std::string &spriteSheet, const sf::Vector2i &spr
 	// give sprite a rectangle
 	this->spriteRect = sf::IntRect(sf::Vector2i(0,0), spriteSize);
 	this->sprite = sf::Sprite(texture, this->spriteRect);
-	this->sprite.setScale(0.08,0.08);
+	this->sprite.setScale(glob::scale, glob::scale);
 	this->sprite.setOrigin(spriteSize.x * .04, spriteSize.y * .04);
 	this->startTime = std::chrono::steady_clock::now();
 

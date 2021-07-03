@@ -31,7 +31,7 @@ public:
 	 * @param allegiance the allegiance that the target should be
 	 * @return True if found a target, false if not
 	 */
-	bool updateTarget(const Allegiance allegiance);
+	bool updateTarget(const glob::Allegiance allegiance);
 
 	/**
 	 * Attacks the current target

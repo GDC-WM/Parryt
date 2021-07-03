@@ -19,7 +19,7 @@ class PatrolAI : public AIView {
 public:
 	PatrolAI(std::shared_ptr<Model> model, std::shared_ptr<Grunt> grunt, b2Vec2 post, int patrolRange);
 
-	bool updateTarget(const Allegiance allegiance);
+	bool updateTarget(const glob::Allegiance allegiance);
 
 	/**
 	 * Aims at the target

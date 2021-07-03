@@ -64,13 +64,13 @@ bool Character::jump(void) {
 
 
 void Character::onCollision(Actor &a) {
-	if (a.getAllegiance() == Allegiance::neutral && a.shouldCollide(*this)) this->jumpCounter = 0;
+	if (a.getAllegiance() == glob::Allegiance::neutral && a.shouldCollide(*this)) this->jumpCounter = 0;
 }
 
 
 void Character::drawHealthBar(std::shared_ptr<sf::RenderWindow> window, float y) {
 	sf::RectangleShape healthBar(sf::Vector2f(5.0 * float(this->health) / float(this->getMaxHealth()), 0.2));
-	sf::Vector2f position = convertVec(this->getBody()->GetPosition());
+	sf::Vector2f position = glob::convertVec(this->getBody()->GetPosition());
 	position.x -= 2.5;
 	position.y -= y;
 	healthBar.setPosition(position);
@@ -81,20 +81,20 @@ void Character::drawHealthBar(std::shared_ptr<sf::RenderWindow> window, float y)
 
 void Character::update(void) {
 	switch (this->movementForceDir) {
-		case Dir::left:
+		case glob::Dir::left:
 			if (this->body->GetLinearVelocity().x > -this->maxSpeed)
 				this->body->ApplyForceToCenter(b2Vec2(-this->acceleration - 500, 0), true);
 			//set look direction
 			if (this->body->GetLinearVelocity().x >= -this->maxSpeed && this->body->GetLinearVelocity().x < 0)
-				this->lookDir = Dir::left;
+				this->lookDir = glob::Dir::left;
 			break;
-		case Dir::right:
+		case glob::Dir::right:
 			if (this->body->GetLinearVelocity().x < this->maxSpeed) this->body->ApplyForceToCenter(b2Vec2(this->acceleration + 500, 0), true);
 			//set look direction
 			if (this->body->GetLinearVelocity().x <= this->maxSpeed && this->body->GetLinearVelocity().x > 0)
-				this->lookDir = Dir::right;
+				this->lookDir = glob::Dir::right;
 			break;
-		case Dir::none:
+		case glob::Dir::none:
 			this->stop();
 			break;
 		default:; // ignore other directions
