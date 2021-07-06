@@ -6,25 +6,8 @@
 #include <memory>
 #include <box2d/box2d.h>
 #include <SFML/Graphics.hpp>
-#include <iostream>
 
-
-/*
- * Define what side of the fight that the actor is on
- */
-enum class Allegiance { parrot, pirate, neutral };
-
-
-/*
- * How does this collide?
- */
-enum class CollisionID { solid };
-
-
-/*
- * Define a direction
- */
-enum class Dir { front, back, left, right, up, down, none };
+#include "glob.hpp"
 
 
 /*
@@ -60,12 +43,12 @@ public:
 	/**
 	 * @return Allegiance of the actor
 	 */
-	const Allegiance &getAllegiance(void) const { return this->allegiance; };
+	const glob::Allegiance &getAllegiance(void) const { return this->allegiance; };
 
 	/**
 	 * @param allegiance New allegiance of the actor
 	 */
-	void setAllegiance(const Allegiance &allegiance) { this->allegiance = allegiance; };
+	void setAllegiance(const glob::Allegiance &allegiance) { this->allegiance = allegiance; };
 
 	/**
 	 * Tell the actor it collided with the given actor
@@ -114,15 +97,33 @@ public:
 	 */
 	const bool &isDead(void) const { return this->dead; };
 
+	/**
+	 * @return priority
+	 */
+	const int &getPriority(void) const { return this->priority; };
+
+	/**
+	 * sets Priority, higher priority actors are drawn first on screen.
+	 */
+	void setPriority(int priority) { this->priority = priority; };
+
+	/**
+	 * @param damage Amount of damage to do
+	 *
+	 * @return whether the item took damage or not
+	 */
+	virtual bool damage(float damage) { return false; };
+
 
 protected:
-	Allegiance allegiance = Allegiance::neutral;
+	glob::Allegiance allegiance = glob::Allegiance::neutral;
 	b2BodyDef bodyDef;
 	b2FixtureDef fixtureDef;
 	b2Body *body;
 	b2Vec2 dimensions;
 	bool target = false;
 	bool dead = false;
+	int priority = 0;
 };
 
 

@@ -1,13 +1,14 @@
 #include <box2d/box2d.h>
 #include <SFML/Graphics.hpp>
-# include <iostream>
 #include "actor.hpp"
 #include "cannonball.hpp"
 
 
 Cannonball::Cannonball(b2Vec2 position, float damage) : Actor(position) {
-	this->allegiance = Allegiance::pirate;
+	this->allegiance = glob::Allegiance::pirate;
 	this->age = 0;
+	this->priority = 11;
+	this->damage = damage;
 
 	// fix shape to body
 	this->shape.m_radius = this->RADIUS;
@@ -19,7 +20,7 @@ Cannonball::Cannonball(b2Vec2 position, float damage) : Actor(position) {
 	// set drawable
 	texture.loadFromFile("../resources/cannonball.png");
 	this->sprite = sf::Sprite(texture, sf::IntRect(0,0,64,64));
-	sprite.setScale(0.08,0.08);
+	sprite.setScale(glob::scale, glob::scale);
 	this->sprite.setOrigin(this->RADIUS * 14, this->RADIUS * 14);
 
 	// set old drawable
@@ -30,8 +31,8 @@ Cannonball::Cannonball(b2Vec2 position, float damage) : Actor(position) {
 
 
 void Cannonball::onCollision(Actor &a) {
-	if (a.getAllegiance() == Allegiance::parrot && a.isTargetable()) {
-		// TODO: damage the character and destroy itself
+	if (a.getAllegiance() != this->getAllegiance() && a.isTargetable()) {
+		if (a.damage(this->damage)) this->kill();
 	}
 }
 

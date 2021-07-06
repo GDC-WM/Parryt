@@ -13,11 +13,16 @@ Character::Character(b2Vec2 position) : Actor(position) {
 }
 
 
-void Character::damage(float damage) {
+bool Character::damage(float damage) {
 	this->health -= damage;
 	// don't update character's health if at max already
 	if (this->health > this->maxHealth) this->health = this->maxHealth;
-	if (this->health < 0) this->health = 0;
+	if (this->health <= 0) this->kill();
+	//TODO Switch to damage sound in the future
+	this->buffer.loadFromFile("../resources/JumpSE.wav");
+	JumpSE.setBuffer(buffer);
+	JumpSE.play();
+	return true;
 }
 
 
@@ -47,7 +52,7 @@ bool Character::jump(void) {
 	this->body->SetLinearVelocity(b2Vec2(this->body->GetLinearVelocity().x, 0));
 	this->body->ApplyLinearImpulseToCenter(b2Vec2(0, this->jumpImpulse), true);
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) || sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
 		buffer.loadFromFile("../resources/JumpSE.wav");
 		JumpSE.setBuffer(buffer);
 		JumpSE.play();
@@ -57,37 +62,39 @@ bool Character::jump(void) {
 	return true;
 }
 
+
 void Character::onCollision(Actor &a) {
-	if (a.getAllegiance() == Allegiance::neutral && a.shouldCollide(*this)) this->jumpCounter = 0;
+	if (a.getAllegiance() == glob::Allegiance::neutral && a.shouldCollide(*this)) this->jumpCounter = 0;
+}
+
+
+void Character::drawHealthBar(std::shared_ptr<sf::RenderWindow> window, float y) {
+	sf::RectangleShape healthBar(sf::Vector2f(5.0 * float(this->health) / float(this->getMaxHealth()), 0.2));
+	sf::Vector2f position = glob::convertVec(this->getBody()->GetPosition());
+	position.x -= 2.5;
+	position.y -= y;
+	healthBar.setPosition(position);
+	healthBar.setFillColor(sf::Color::Red);
+	window->draw(healthBar);
 }
 
 
 void Character::update(void) {
 	switch (this->movementForceDir) {
-		case Dir::left:
+		case glob::Dir::left:
 			if (this->body->GetLinearVelocity().x > -this->maxSpeed)
 				this->body->ApplyForceToCenter(b2Vec2(-this->acceleration, 0), true);
 			//set look direction
 			if (this->body->GetLinearVelocity().x >= -this->maxSpeed && this->body->GetLinearVelocity().x < 0)
-				this->lookDir = Dir::left;
-			//If relatively fast, be able to stop quickly and go in the other direction
-			if (this->body->GetLinearVelocity().x <= this->maxSpeed && this->body->GetLinearVelocity().x > 0) {
-				this->stop();
-				this->body->ApplyForceToCenter(b2Vec2(-25, 0), true);
-			}
+				this->lookDir = glob::Dir::left;
 			break;
-		case Dir::right:
-			if (this->body->GetLinearVelocity().x < this->maxSpeed) this->body->ApplyForceToCenter(b2Vec2(this->acceleration, 0), true);
+		case glob::Dir::right:
+			if (this->body->GetLinearVelocity().x < this->maxSpeed) this->body->ApplyForceToCenter(b2Vec2(this->acceleration + 500, 0), true);
 			//set look direction
 			if (this->body->GetLinearVelocity().x <= this->maxSpeed && this->body->GetLinearVelocity().x > 0)
-				this->lookDir = Dir::right;
-			//If relatively fast, be able to stop quickly and go in the other direction
-			if (this->body->GetLinearVelocity().x >= -this->maxSpeed && this->body->GetLinearVelocity().x < 0) {
-				this->stop();
-				this->body->ApplyForceToCenter(b2Vec2(25, 0), true);
-			}
+				this->lookDir = glob::Dir::right;
 			break;
-		case Dir::none:
+		case glob::Dir::none:
 			this->stop();
 			break;
 		default:; // ignore other directions

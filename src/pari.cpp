@@ -6,14 +6,15 @@
 
 
 Pari::Pari(b2Vec2 position) : Character(position) {
-	this->allegiance = Allegiance::parrot;
+	this->allegiance = glob::Allegiance::parrot;
+	this->priority = 100;
 	this->setTargetable(true);
 
 	this->acceleration = 200;
 	this->deceleration = 225;
 	this->jumpImpulse = 300;
 	this->maxSpeed = 20;
-	this->maxHealth = 100;
+	this->health = this->maxHealth = 10000; // he thicc
 	this->maxJumps = 2;
 	this->parryDuration = std::chrono::milliseconds(200);
 	this->parryRechargeDuration = std::chrono::seconds(1);
@@ -32,14 +33,19 @@ Pari::Pari(b2Vec2 position) : Character(position) {
 
 	// set drawable
 	this->sprite = sf::Sprite(texture, sf::IntRect(0,0,64,64));
-	this->sprite.setScale(0.08,0.08); //hardcoding bad
-	this->sprite.setOrigin(32 * .08, 32 * .08);
 
 	// set old drawable
 	this->drawable.setOrigin(this->WIDTH, this->HEIGHT);
 	this->drawable.setFillColor(sf::Color::Green);
 	this->drawable.setSize(sf::Vector2f(this->WIDTH * 2, this->HEIGHT * 2));
 }
+
+bool Pari::damage(float damage) {
+	if (this->isParrying()) return false;
+	Character::damage(damage);
+	return true;
+}
+
 
 bool Pari::jump(void) {
 	bool jumped = Character::jump();
@@ -48,6 +54,7 @@ bool Pari::jump(void) {
 	// prevents too many jumps
 	return jumped;
 }
+
 
 bool Pari::parry(float angle) {
 	if (!this->canParry()) return false;
@@ -59,7 +66,7 @@ bool Pari::parry(float angle) {
 
 
 void Pari::onCollision(Actor &a) {
-	if (a.getAllegiance() == Allegiance::neutral && a.shouldCollide(*this)) this->jumpCounter = 0;
+	if (a.getAllegiance() == glob::Allegiance::neutral && a.shouldCollide(*this)) this->jumpCounter = 0;
 
 	if (this->isParrying()) {
 		// deflect contact object
@@ -67,9 +74,11 @@ void Pari::onCollision(Actor &a) {
 		double projectileSpeed = sqrt(pow(projectileVelocity.x, 2) + pow(projectileVelocity.y, 2));
 		a.getBody()->SetLinearVelocity(b2Vec2(projectileSpeed * cos(this->parryAngle),
 		                                      projectileSpeed * sin(this->parryAngle)));
+		a.setAllegiance(glob::Allegiance::parrot);
 
 		// recoil Pari
-		this->getBody()->SetLinearVelocity(b2Vec2(-10, -10));
+		this->getBody()->SetLinearVelocity(b2Vec2(-0.05 * projectileSpeed * cos(this->parryAngle),
+		                                          -0.05 * projectileSpeed * sin(this->parryAngle)));
 	}
 }
 
@@ -78,6 +87,7 @@ void Pari::draw(std::shared_ptr<sf::RenderWindow> window) {
 	// old drawable
 	this->drawable.setPosition(this->getBody()->GetPosition().x,
 	                          -this->getBody()->GetPosition().y);
+	this->drawHealthBar(window, 5);
 
 	//window->draw(drawable);
 
@@ -89,7 +99,7 @@ void Pari::draw(std::shared_ptr<sf::RenderWindow> window) {
 	else newLoop = this->standLoop;
 
 	// use mirrored sprite if facing left
-	this->spriteSheet->setMirrored(this->lookDir == Dir::left);
+	this->spriteSheet->setMirrored(this->lookDir == glob::Dir::left);
 	//TODO: ^this check could be removed if all characters were given a spritesheet
 
 	if (newLoop != this->spriteSheet->getLoop()) {
@@ -97,8 +107,8 @@ void Pari::draw(std::shared_ptr<sf::RenderWindow> window) {
 		this->spriteSheet->restart();
 	}
 
-	this->spriteSheet->getSprite().setPosition(this->body->GetPosition().x - 32 * .08,
-	                                          -this->body->GetPosition().y - 32 * .08 - 0.5);
+	this->spriteSheet->getSprite().setPosition(this->body->GetPosition().x - 32 * glob::scale,
+	                                          -this->body->GetPosition().y - 32 * glob::scale - 0.5);
 
 	window->draw(this->spriteSheet->getSprite());
 }

@@ -16,6 +16,13 @@ public:
 	Bullet(b2Vec2 position, float damage);
 
 	void update(void) override;
+	
+	/**
+	 * Tell the actor it collided with the given actor
+	 *
+	 * @param a Actor it collided with
+	 */
+	virtual void onCollision(Actor &a);
 
 	void draw(std::shared_ptr<sf::RenderWindow> window) override;
 

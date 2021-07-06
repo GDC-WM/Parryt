@@ -19,7 +19,7 @@ class Model;
 class Grunt : public Character {
 public:
 	static constexpr float WIDTH = 0.5;
-	static constexpr float HEIGHT = 1.9; // currently inaccurate height
+	static constexpr float HEIGHT = 1.7; // currently inaccurate height
 
 	Grunt(b2Vec2 position, std::shared_ptr<Model> model);
 

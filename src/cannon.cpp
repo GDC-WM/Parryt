@@ -9,7 +9,8 @@
 
 Cannon::Cannon(b2Vec2 position, std::shared_ptr<Model> model) : Actor(position) {
 	this->model = model;
-	this->allegiance = Allegiance::pirate;
+	this->allegiance = glob::Allegiance::pirate;
+	this->priority = 20;
 
 	// fix shape to body
 	this->bodyDef.type = b2_staticBody;
@@ -27,7 +28,7 @@ Cannon::Cannon(b2Vec2 position, std::shared_ptr<Model> model) : Actor(position) 
 	// set carriage
 	carriageTexture.loadFromFile("../resources/cannon-carriage.png");
 	this->carriageSprite = sf::Sprite(carriageTexture, sf::IntRect(0,0,64,64));
-	carriageSprite.setScale(0.08, 0.08);
+	carriageSprite.setScale(glob::scale, glob::scale);
 	this->carriageSprite.setOrigin(this->WIDTH * 14, this->HEIGHT * 14 - 10);
 }
 
@@ -49,7 +50,7 @@ void Cannon::update(void) {
 	if (this->loadingCounter == 0) return;
 	this->loadingCounter--;
 	if (this->loadingCounter == this->LOAD_TIME - 40) {
-		std::shared_ptr<Cannonball> cannonball = std::make_shared<Cannonball>(this->body->GetPosition(), 20);
+		std::shared_ptr<Cannonball> cannonball = std::make_shared<Cannonball>(this->body->GetPosition(), 100);
 		this->model->addActor(cannonball);
 		cannonball->getBody()->ApplyLinearImpulseToCenter(b2Vec2(cos(this->barrelAngle) * 150,
 	                                                             sin(this->barrelAngle) * 150), true);
