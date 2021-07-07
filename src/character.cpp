@@ -84,12 +84,27 @@ void Character::update(void) {
 		case glob::Dir::left:
 			if (this->body->GetLinearVelocity().x > -this->maxSpeed)
 				this->body->ApplyForceToCenter(b2Vec2(-this->acceleration, 0), true);
+			
+			//If relatively fast, be able to stop quickly and go in the other direction
+			if (this->body->GetLinearVelocity().x <= this->maxSpeed && this->body->GetLinearVelocity().x > 5) {
+				this->lookDir = glob::Dir::left;
+				this->body->ApplyForceToCenter(b2Vec2(3 * -this->acceleration, 0), true);
+			}
+			
 			//set look direction
 			if (this->body->GetLinearVelocity().x >= -this->maxSpeed && this->body->GetLinearVelocity().x < 0)
 				this->lookDir = glob::Dir::left;
 			break;
 		case glob::Dir::right:
-			if (this->body->GetLinearVelocity().x < this->maxSpeed) this->body->ApplyForceToCenter(b2Vec2(this->acceleration + 500, 0), true);
+			if (this->body->GetLinearVelocity().x < this->maxSpeed) 
+				this->body->ApplyForceToCenter(b2Vec2(this->acceleration, 0), true);
+			
+			//If relatively fast, be able to stop quickly and go in the other direction
+			if (this->body->GetLinearVelocity().x >= -this->maxSpeed && this->body->GetLinearVelocity().x < -5) {
+				this->lookDir = glob::Dir::right;
+				this->body->ApplyForceToCenter(b2Vec2(3 * this->acceleration, 0), true);
+			}
+			
 			//set look direction
 			if (this->body->GetLinearVelocity().x <= this->maxSpeed && this->body->GetLinearVelocity().x > 0)
 				this->lookDir = glob::Dir::right;
