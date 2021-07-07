@@ -10,8 +10,8 @@ Pari::Pari(b2Vec2 position) : Character(position) {
 	this->priority = 100;
 	this->setTargetable(true);
 
-	this->acceleration = 200;
-	this->deceleration = 225;
+	this->acceleration = 150;
+	this->deceleration = 200;
 	this->jumpImpulse = 300;
 	this->maxSpeed = 20;
 	this->health = this->maxHealth = 10000; // he thicc
