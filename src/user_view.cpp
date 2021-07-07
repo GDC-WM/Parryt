@@ -30,8 +30,10 @@ UserView::UserView(std::shared_ptr<GameController> game) {
 	view.setCenter(glob::convertVec(this->character->getBody()->GetPosition()));
 	this->window->setView(view);
 
-	/* Calling music for the stage: */
+	/* Calling and playing music for the stage: */
 	this->musicTrack.openFromFile("../resources/MainTheme.wav");
+	this->musicTrack.play();
+	this->musicTrack.setLoop(true);
 }
 
 
