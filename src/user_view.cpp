@@ -32,12 +32,6 @@ UserView::UserView(std::shared_ptr<GameController> game) {
 
 	/* Calling music for the stage: */
 	this->musicTrack.openFromFile("../resources/MainTheme.wav");
-	
-	if (game->isPaused() == true){
-		this->musicTrack.pause();
-	} else {
-		this->musicTrack.play();
-		}
 }
 
 
