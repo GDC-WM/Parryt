@@ -168,13 +168,6 @@ void UserView::drawScreen(void) {
 	mast.setScale(.2, .2);
 	this->window->draw(mast);
 
-	// temporary barrel drawing
-	texture.loadFromFile("../resources/barrel.png");
-	sf::Sprite barrel(texture, sf::IntRect(0,0,64,64));
-	barrel.setPosition(sf::Vector2f(12, 4));
-	barrel.setScale(.1,.1);
-	this->window->draw(barrel);
-
 	// temporary add red vector indicating direction to redirect projectiles
 	float point1[] = { window->getView().getCenter().x, window->getView().getCenter().y };
 	float point2[] = { window->mapPixelToCoords(sf::Mouse::getPosition(*window)).x, window->mapPixelToCoords(sf::Mouse::getPosition(*window)).y };
