@@ -15,6 +15,7 @@
 #include "cannon_view.hpp"
 #include "patrol_ai.hpp"
 #include "barrel.hpp"
+#include "mast.hpp"
 
 std::unordered_map<std::string, std::vector<std::string>> tokenize(std::ifstream &file) {
 	std::unordered_map<std::string, std::vector<std::string>> tokens;
@@ -69,6 +70,11 @@ std::shared_ptr<GameState> GameStateFactory::build(std::string filename) {
 				auto actor = std::make_shared<Barrel>(b2Vec2(stoi(pos[0]), stoi(pos[1])));
 				demo->addActor(actor);
 			}
+			/* else if (header == "mast") {
+				std::vector<std::string> pos = tokens["pos"];
+				auto actor = std::make_shared<Mast>(b2Vec2(stoi(pos[0]), stoi(pos[1])));
+				demo->addActor(actor);
+			} */
 		}
 	}
 
