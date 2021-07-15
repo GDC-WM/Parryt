@@ -17,7 +17,7 @@ UserView::UserView(std::shared_ptr<GameController> game) {
 	this->game->setGameState(this->gameStateFactory.build("../levels/demo.ini"));
 
 	// add Pari to game
-	this->character = std::make_shared<Pari>(b2Vec2(-13,-5)); // TODO: read Pari position from level file
+	this->character = std::make_shared<Pari>(b2Vec2(-30,-8)); // TODO: read Pari position from level file
 	this->game->getGameState()->addActor(this->character);
 
 	// set window
@@ -162,11 +162,11 @@ void UserView::drawScreen(void) {
 	this->window->draw(ship);
 
 	// temporary mast drawing
-	texture.loadFromFile("../resources/mast.png");
-	sf::Sprite mast(texture, sf::IntRect(0, 0, 128, 512));
-	mast.setPosition(sf::Vector2f(12, -92));
-	mast.setScale(.2, .2);
-	this->window->draw(mast);
+	/* texture.loadFromFile("../resources/mast.png"); */
+	/* sf::Sprite mast(texture, sf::IntRect(0, 0, 128, 512)); */
+	/* mast.setPosition(sf::Vector2f(12, -92)); */
+	/* mast.setScale(.2, .2); */
+	/* this->window->draw(mast); */
 
 	// temporary add red vector indicating direction to redirect projectiles
 	float point1[] = { window->getView().getCenter().x, window->getView().getCenter().y };
