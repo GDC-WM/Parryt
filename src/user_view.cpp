@@ -30,7 +30,7 @@ UserView::UserView(std::shared_ptr<GameController> game) {
 	view.setCenter(glob::convertVec(this->character->getBody()->GetPosition()));
 	this->window->setView(view);
 
-	/* Calling music for the stage: */
+	/* Calling and playing music for the stage: */
 	this->musicTrack.openFromFile("../resources/MainTheme.wav");
 	this->musicTrack.play();
 	this->musicTrack.setLoop(true);
@@ -49,8 +49,8 @@ void UserView::pressEvent(sf::Event::KeyEvent key) {
 		case sf::Keyboard::D:
 			this->character->setMovement(glob::Dir::right);
 			break;
-		case sf::Keyboard::P:
 		case sf::Keyboard::Escape:
+		case sf::Keyboard::P:
 			this->game->togglePause();
 			break;
 		default:; // ignore other keys

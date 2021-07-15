@@ -10,10 +10,10 @@ Pari::Pari(b2Vec2 position) : Character(position) {
 	this->priority = 100;
 	this->setTargetable(true);
 
-	this->acceleration = 10;
-	this->deceleration = 250;
-	this->jumpImpulse = 235;
-	this->maxSpeed = 15;
+	this->acceleration = 150;
+	this->deceleration = 200;
+	this->jumpImpulse = 300;
+	this->maxSpeed = 20;
 	this->health = this->maxHealth = 10000; // he thicc
 	this->maxJumps = 2;
 	this->parryDuration = std::chrono::milliseconds(200);
