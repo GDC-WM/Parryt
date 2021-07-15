@@ -70,11 +70,11 @@ std::shared_ptr<GameState> GameStateFactory::build(std::string filename) {
 				auto actor = std::make_shared<Barrel>(b2Vec2(stoi(pos[0]), stoi(pos[1])));
 				demo->addActor(actor);
 			}
-			/* else if (header == "mast") {
+			else if (header == "mast") {
 				std::vector<std::string> pos = tokens["pos"];
 				auto actor = std::make_shared<Mast>(b2Vec2(stoi(pos[0]), stoi(pos[1])));
 				demo->addActor(actor);
-			} */
+			}
 		}
 	}
 

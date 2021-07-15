@@ -6,9 +6,10 @@
 #include "actor.hpp"
 
 Barrel::Barrel(b2Vec2 position) : Actor(position) {
+
 	// set shape
 	this->barrelShape.SetAsBox(this->WIDTH,this->HEIGHT);
-	this->priority = 7;
+	this->priority = 8;
 
 	// fix shape to body
 	this->bodyDef.type = b2_dynamicBody;
@@ -23,6 +24,7 @@ Barrel::Barrel(b2Vec2 position) : Actor(position) {
 	// set scale and origin
 	barrelSprite.setScale(glob::scale,glob::scale);
 	this->barrelSprite.setOrigin(this->WIDTH * 14 + 7.5, this->HEIGHT * 14 + 15);
+
 }
 
 // barrel should collide with player

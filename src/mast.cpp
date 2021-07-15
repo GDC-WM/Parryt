@@ -10,18 +10,28 @@
 
 Mast::Mast(b2Vec2 position) : Actor(position) {
 
+    // set shape
+    this->mastShape.SetAsBox(this->WIDTH, this->HEIGHT);
+    this->priority = 6;
+
+    // fix shape to body
     this->bodyDef.type = b2_staticBody;
-    
-    this->mastShape.SetAsBox(1, this->HEIGHT);
+    this->fixtureDef.shape = &this->mastShape;
+    this->fixtureDef.density = 3.0f;
+	this->fixtureDef.friction = 0.7f;
 
     // load image
     MastTexture.loadFromFile("../resources/mast.png");
     this->mastSprite = sf::Sprite(MastTexture);
     
     // set scale and origin
-    mastSprite.setScale(glob::scale,glob::scale);
-	this->mastSprite.setOrigin(1, 1);
+    mastSprite.setScale(.20,.20);
+	this->mastSprite.setOrigin(this->WIDTH, this->HEIGHT);
 
+}
+// Testing; mast should not collide with player
+const bool Mast::shouldCollide(const Actor &a) const {
+	return false;
 }
 
 void Mast::draw(std::shared_ptr<sf::RenderWindow> window) {

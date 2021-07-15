@@ -10,6 +10,8 @@
 
 class Mast : public Actor {
 public:
+	// set Width and Height of mast
+	static constexpr float WIDTH = 1.9;
 	static constexpr float HEIGHT = 0.1;
 
 	Mast(b2Vec2 position);
