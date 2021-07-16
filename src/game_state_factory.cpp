@@ -15,7 +15,6 @@
 #include "cannon_view.hpp"
 #include "patrol_ai.hpp"
 #include "barrel.hpp"
-#include "mast.hpp"
 
 std::unordered_map<std::string, std::vector<std::string>> tokenize(std::ifstream &file) {
 	std::unordered_map<std::string, std::vector<std::string>> tokens;
@@ -40,7 +39,7 @@ std::unordered_map<std::string, std::vector<std::string>> tokenize(std::ifstream
 
 
 std::shared_ptr<GameState> GameStateFactory::build(std::string filename) {
-	std::shared_ptr<GameState> demo = std::make_shared<GameState>();
+	std::shared_ptr<GameState> gameState = std::make_shared<GameState>();
 	std::ifstream file;
 	file.open(filename, std::ios::in);
 
@@ -51,33 +50,33 @@ std::shared_ptr<GameState> GameStateFactory::build(std::string filename) {
 			auto tokens = tokenize(file);
 			if (header == "platform") {
 				std::vector<std::string> pos = tokens["pos"];
-				demo->addActor(std::make_shared<Platform>(b2Vec2(stoi(pos[0]), stoi(pos[1])), stoi(tokens["width"][0])));
+				gameState->addActor(std::make_shared<Platform>(b2Vec2(stoi(pos[0]), stoi(pos[1])), stoi(tokens["width"][0])));
 			}
 			else if (header == "cannon/cannonai") {
 				std::vector<std::string> pos = tokens["pos"];
-				auto actor = std::make_shared<Cannon>(b2Vec2(stoi(pos[0]), stoi(pos[1])), demo->getModel());
-				demo->addActor(actor);
-				demo->addView(std::make_shared<CannonView>(demo->getModel(), actor));
+				auto actor = std::make_shared<Cannon>(b2Vec2(stoi(pos[0]), stoi(pos[1])), gameState->getModel());
+				gameState->addActor(actor);
+				gameState->addView(std::make_shared<CannonView>(gameState->getModel(), actor));
 			}
 			else if (header == "grunt/patrolai") {
 				std::vector<std::string> pos = tokens["pos"];
-				auto actor = std::make_shared<Grunt>(b2Vec2(stoi(pos[0]), stoi(pos[1])), demo->getModel());
-				demo->addActor(actor);
-				demo->addView(std::make_shared<PatrolAI>(demo->getModel(), actor, b2Vec2(stoi(pos[0]), stoi(pos[1])), stoi(tokens["patrol_range"][0])));
+				auto actor = std::make_shared<Grunt>(b2Vec2(stoi(pos[0]), stoi(pos[1])), gameState->getModel());
+				gameState->addActor(actor);
+				gameState->addView(std::make_shared<PatrolAI>(gameState->getModel(), actor, b2Vec2(stoi(pos[0]), stoi(pos[1])), stoi(tokens["patrol_range"][0])));
 			}
 			else if (header == "barrel") {
 				std::vector<std::string> pos = tokens["pos"];
 				auto actor = std::make_shared<Barrel>(b2Vec2(stoi(pos[0]), stoi(pos[1])));
-				demo->addActor(actor);
+				gameState->addActor(actor);
 			}
 			else if (header == "mast") {
 				std::vector<std::string> pos = tokens["pos"];
-				auto actor = std::make_shared<Mast>(b2Vec2(stoi(pos[0]), stoi(pos[1])));
-				demo->addActor(actor);
+				auto actor = std::make_shared<Mast>(b2Vec2(stoi(pos[0]), stoi(pos[1])), gameState);
+				gameState->addActor(actor);
 			}
 		}
 	}
 
 	file.close();
-	return demo;
+	return gameState;
 }

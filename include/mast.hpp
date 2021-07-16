@@ -5,8 +5,9 @@
 #include <box2d/box2d.h>
 
 #include "actor.hpp"
-#include "platform.hpp"
 
+class Platform;
+class GameState;
 
 class Mast : public Actor {
 public:
@@ -14,7 +15,7 @@ public:
 	static constexpr float WIDTH = 1.9;
 	static constexpr float HEIGHT = 0.1;
 
-	Mast(b2Vec2 position);
+	Mast(b2Vec2 position, std::shared_ptr<GameState> gameState);
 
 	const bool shouldCollide(const Actor &a) const override;
 

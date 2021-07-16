@@ -24,7 +24,6 @@ Barrel::Barrel(b2Vec2 position) : Actor(position) {
 	// set scale and origin
 	barrelSprite.setScale(glob::scale,glob::scale);
 	this->barrelSprite.setOrigin(this->WIDTH * 14 + 7.5, this->HEIGHT * 14 + 15);
-
 }
 
 // barrel should collide with player

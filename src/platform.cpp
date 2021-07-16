@@ -18,7 +18,7 @@ Platform::Platform(b2Vec2 position, float width) : Actor(position) {
 
 	// set drawable
 	this->drawable.setOrigin(width, 0);
-	sf::Color color(255, 0, 0);
+	sf::Color color(125, 2, 2);
 	this->drawable.setFillColor(color);
 	this->drawable.setSize(sf::Vector2f(width * 2, this->HEIGHT * 2));
 }
