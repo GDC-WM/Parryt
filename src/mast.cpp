@@ -29,7 +29,9 @@ Mast::Mast(b2Vec2 position, std::shared_ptr<GameState> gameState) : Actor(positi
 	this->mastSprite.setOrigin(this->WIDTH, this->HEIGHT);
 
 	// add five platforms to the mast (not sure how to do...)
-	auto object = std::make_shared<Platform>(b2Vec2(this->mastSprite.getPosition().x,this->mastSprite.getPosition().y),5);
+	auto object = std::make_shared<Platform>(position,10);
+    int numPlatforms;
+    for (numPlatforms = 0; numPlatforms < 5; numPlatforms++)
 	gameState->addActor(object);
 
 }
