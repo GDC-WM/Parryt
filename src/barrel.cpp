@@ -6,9 +6,10 @@
 #include "actor.hpp"
 
 Barrel::Barrel(b2Vec2 position) : Actor(position) {
+
 	// set shape
 	this->barrelShape.SetAsBox(this->WIDTH,this->HEIGHT);
-	this->priority = 7;
+	this->priority = 8;
 
 	// fix shape to body
 	this->bodyDef.type = b2_dynamicBody;

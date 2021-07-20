@@ -8,7 +8,7 @@
 Platform::Platform(b2Vec2 position, float width) : Actor(position) {
 	// set shape
 	this->shape.SetTwoSided(b2Vec2(-width,0), b2Vec2(width,0));
-	this->priority = 6;
+	this->priority = 7;
 
 	// fix shape to body
 	this->bodyDef.type = b2_staticBody;

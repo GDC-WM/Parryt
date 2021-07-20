@@ -161,13 +161,6 @@ void UserView::drawScreen(void) {
 	ship.setScale(0.125, 0.125);
 	this->window->draw(ship);
 
-	// temporary mast drawing
-	/* texture.loadFromFile("../resources/mast.png"); */
-	/* sf::Sprite mast(texture, sf::IntRect(0, 0, 128, 512)); */
-	/* mast.setPosition(sf::Vector2f(12, -92)); */
-	/* mast.setScale(.2, .2); */
-	/* this->window->draw(mast); */
-
 	// temporary add red vector indicating direction to redirect projectiles
 	float point1[] = { window->getView().getCenter().x, window->getView().getCenter().y };
 	float point2[] = { window->mapPixelToCoords(sf::Mouse::getPosition(*window)).x, window->mapPixelToCoords(sf::Mouse::getPosition(*window)).y };

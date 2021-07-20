@@ -5,23 +5,28 @@
 #include <box2d/box2d.h>
 
 #include "actor.hpp"
-#include "platform.hpp"
 
+class Platform;
+class GameState;
 
 class Mast : public Actor {
 public:
-	static constexpr float height = 0.1;
+	// set Width and Height of mast
+	static constexpr float WIDTH = 1.9;
+	static constexpr float HEIGHT = 0.1;
 
-	Mast(b2Vec2 position, float height);
+	Mast(b2Vec2 position, std::shared_ptr<GameState> gameState, int nPlatforms);
 
-	virtual void draw(std::shared_ptr<sf::RenderWindow> window);
+	const bool shouldCollide(const Actor &a) const override;
+
+	virtual void draw(std::shared_ptr<sf::RenderWindow> window) override;
 
 private:
-	b2PolygonShape shape;
+	b2PolygonShape mastShape;
 	b2Vec2 coords;
 	sf::RectangleShape drawable;
-	sf::Texture texture;
-	sf::Sprite sprite;
+	sf::Texture MastTexture;
+	sf::Sprite mastSprite;
 };
 
 
