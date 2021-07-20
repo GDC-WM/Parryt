@@ -71,7 +71,8 @@ std::shared_ptr<GameState> GameStateFactory::build(std::string filename) {
 			}
 			else if (header == "mast") {
 				std::vector<std::string> pos = tokens["pos"];
-				auto actor = std::make_shared<Mast>(b2Vec2(stoi(pos[0]), stoi(pos[1])), gameState);
+				// int maxPlatforms = stoi(tokens["nplatforms"][0]);
+				auto actor = std::make_shared<Mast>(b2Vec2(stoi(pos[0]), stoi(pos[1])), gameState, stoi(tokens["nplatforms"][0]));
 				gameState->addActor(actor);
 			}
 		}

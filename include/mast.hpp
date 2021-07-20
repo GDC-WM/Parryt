@@ -15,7 +15,7 @@ public:
 	static constexpr float WIDTH = 1.9;
 	static constexpr float HEIGHT = 0.1;
 
-	Mast(b2Vec2 position, std::shared_ptr<GameState> gameState);
+	Mast(b2Vec2 position, std::shared_ptr<GameState> gameState, int nPlatforms);
 
 	const bool shouldCollide(const Actor &a) const override;
 

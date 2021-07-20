@@ -7,8 +7,9 @@
 #include "platform.hpp"
 
 #include "game_state.hpp"
+#include "game_state_factory.hpp"
 
-Mast::Mast(b2Vec2 position, std::shared_ptr<GameState> gameState) : Actor(position) {
+Mast::Mast(b2Vec2 position, std::shared_ptr<GameState> gameState, int nPlatforms) : Actor(position) {
 
 	// set shape
 	this->mastShape.SetAsBox(this->WIDTH, this->HEIGHT);
@@ -28,12 +29,19 @@ Mast::Mast(b2Vec2 position, std::shared_ptr<GameState> gameState) : Actor(positi
 	mastSprite.setScale(.20,.20);
 	this->mastSprite.setOrigin(this->WIDTH, this->HEIGHT);
 
-	// add five platforms to the mast (not sure how to do...)
-	auto object = std::make_shared<Platform>(position,10);
-    int numPlatforms;
-    for (numPlatforms = 0; numPlatforms < 5; numPlatforms++)
-	    gameState->addActor(object);
-
+	// add 'x' platforms to the mast
+	// set constants
+	
+	const float yMast = position.y;
+	const float xMast = position.x + 12.5;
+	// loop for 'x' amount of times
+	for (int i = 0; i < nPlatforms; i++) {
+		float hPlatform =  position.y - (yMast / nPlatforms);
+		position.Set(xMast, hPlatform);
+		printf("\n\nx:%f\n\ny:%f", position.x, position.y);
+		auto object = std::make_shared<Platform>(position,5);
+		gameState->addActor(object);
+	}
 }
 // Testing; mast should not collide with player
 const bool Mast::shouldCollide(const Actor &a) const {
