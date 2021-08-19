@@ -12,8 +12,8 @@ Grunt::Grunt(b2Vec2 position, std::shared_ptr<Model> model) : Character(position
 	this->priority = 30;
 	this->setTargetable(true);
 
-	this->acceleration = 10;
-	this->deceleration = 250;
+	this->acceleration = 150;
+	this->deceleration = 200;
 	this->jumpImpulse = 200;
 	this->maxSpeed = 15;
 	this->health = this->maxHealth = 100;
@@ -25,8 +25,8 @@ Grunt::Grunt(b2Vec2 position, std::shared_ptr<Model> model) : Character(position
 	// fix shape to body
 	this->shape.SetAsBox(this->WIDTH, this->HEIGHT);
 	this->fixtureDef.shape = &this->shape;
-	this->fixtureDef.density = 2.0f;
-	this->fixtureDef.friction = 1.0f;
+	this->fixtureDef.density = 2.4f;
+	this->fixtureDef.friction = 0.0f;
 
 	// set drawable
 	this->texture.loadFromFile("../resources/pirate.png");
