@@ -4,7 +4,6 @@
 #include "pari.hpp"
 #include "sprite_sheet.hpp"
 
-
 Pari::Pari(b2Vec2 position) : Character(position) {
 	this->allegiance = glob::Allegiance::parrot;
 	this->priority = 100;

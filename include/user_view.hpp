@@ -11,12 +11,12 @@
 
 #include "view.hpp"
 #include "game_state_factory.hpp"
-
+#include "dialog.hpp"
 
 class GameController;
 class Actor;
 class Pari;
-
+class DialogSystem;
 
 /**
  * Draw the screen for the player
@@ -44,6 +44,7 @@ private:
 	std::shared_ptr<sf::RenderWindow> window;
 	GameStateFactory gameStateFactory;
 	std::shared_ptr<Pari> character;
+	std::shared_ptr<DialogSystem> dialog;
 	sf::Music musicTrack;
 
 	/**
