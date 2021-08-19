@@ -20,8 +20,6 @@ void DialogSystem::Advance(std::string FileName) {
 
 void DialogSystem::End() {}
 
-void DialogSystem::End() {}
-
 void DialogSystem::Load_SetDialogText(std::string FontPath,std::string FileName) {
 
 	dialogFont.loadFromFile(FontPath);
