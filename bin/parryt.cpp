@@ -12,7 +12,7 @@ void gameRunner(std::shared_ptr<GameController> game, std::shared_ptr<UserView> 
 	while (user->isRunning()) {
 		nextUpdate += std::chrono::milliseconds(16);
 
-		game->isPaused()? user->update() : game->update();
+		game->isPaused() || game->isInDialogMode()? user->update() : game->update();
 		user->drawScreen(); //temporarily put this here until drawing is sorted out
 
 		std::this_thread::sleep_for(nextUpdate - std::chrono::steady_clock::now());

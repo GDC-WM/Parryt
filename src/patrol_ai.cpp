@@ -30,8 +30,10 @@ bool PatrolAI::updateTarget(const glob::Allegiance allegiance) {
 	for (std::shared_ptr<Actor> a : this->model->getActorList()) {
 		if (!(a->getAllegiance() == allegiance
 		   && a->isTargetable()
-		   && this->inRange(a)))
+		   && this->inRange(a))) {
+			
 			continue;
+		}
 
 		if (a->getBody()->GetPosition().x < this->grunt->getBody()->GetPosition().x) {
 			if (this->grunt->getMovement() == glob::Dir::left) {
@@ -100,6 +102,7 @@ void PatrolAI::chase() {
 
 
 void PatrolAI::update(void) {
+	DialogSystem intro;
 	if (this->updateTarget(glob::Allegiance::parrot)) {
 		this->chase();
 		this->aimAt();

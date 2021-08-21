@@ -10,24 +10,35 @@ bool DialogSystem::ReturnBoolIsInDialog() {
 	return isInDialog;
 }
 
-void DialogSystem::Advance(std::string FileName) {
+void DialogSystem::Load_SetDialogText(std::string fontPath, std::string fileName) {
 
-	std::fstream input(FileName);
+	dialogFont.~Font();
+	dialogFont.loadFromFile(fontPath);
+	dialogText.setFont(dialogFont);
+
+	this->fileName = fileName;
+	std::ifstream input(this->fileName);
 	getline(input,dialogContent);
 	dialogText.setString(dialogContent);
+}
+
+void DialogSystem::Advance() {
+
+	if (isInDialog) {
+		std::ifstream input(this->fileName);
+		if (getline(input,dialogContent)) {
+		dialogText.setString(dialogContent);
+		} else {
+			DialogSystem::End();
+		}
+
+	}
 
 }
 
-void DialogSystem::End() {}
+void DialogSystem::End() {
 
-void DialogSystem::Load_SetDialogText(std::string FontPath,std::string FileName) {
-
-	dialogFont.loadFromFile(FontPath);
-	dialogText.setFont(dialogFont);
-
-	std::fstream input(FileName);
-	getline(input,dialogContent);
-	dialogText.setString(dialogContent);
+	dialogText.setString("");
 
 }
 
@@ -131,7 +142,6 @@ void DialogSystem::SetDialogBoxPosition(float posx, float posy) {
 
 void DialogSystem::DrawDialog(std::shared_ptr<sf::RenderWindow> window) {
 
-	isInDialog = true;
 	window->draw(dialogBox);
 	window->draw(dialogText);
 

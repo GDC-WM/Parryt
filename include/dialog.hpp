@@ -16,18 +16,18 @@
 
 #include "user_view.hpp"
 
-class DialogSystem {
+class DialogSystem : private sf::Font {
 public:
 	DialogSystem();
 	~DialogSystem();
-	void Advance(std::string FileName);
+	void Advance();
 	void End();
 	bool ReturnBoolIsInDialog();
 
 	enum textStyle {Underline, Bold, Underline_Bold};
 	enum SetColor {White, Red, Blue, Green};
 
-	void Load_SetDialogText(std::string FontPath,std::string FileName);
+	void Load_SetDialogText(std::string fontPath,std::string filePath);
 	void SetDialogTextScale_Size(float xscale,float yscale, int charSize);
 	void SetDialogTextStyle_Color(textStyle style,SetColor textColor);
 	void SetDialogTextPosition(float posx,float posy);
@@ -43,6 +43,9 @@ private:
 	sf::Text dialogText;
 	sf::Font dialogFont;
 	sf::RectangleShape dialogBox;
+	std::ifstream input;
+	std::string fileName;
+	
 };
 
 #endif
