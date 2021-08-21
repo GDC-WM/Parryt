@@ -7,7 +7,7 @@ DialogSystem::DialogSystem() {
 DialogSystem::~DialogSystem() {}
 
 bool DialogSystem::ReturnBoolIsInDialog() {
-	return isInDialog;
+	return this->game->isInDialogMode();
 }
 
 void DialogSystem::Load_SetDialogText(std::string fontPath, std::string fileName) {
@@ -17,23 +17,16 @@ void DialogSystem::Load_SetDialogText(std::string fontPath, std::string fileName
 	dialogText.setFont(dialogFont);
 
 	this->fileName = fileName;
-	std::ifstream input(this->fileName);
-	getline(input,dialogContent);
-	dialogText.setString(dialogContent);
+
+	this->input.open(this->fileName, std::ios::in);
+	getline(this->input,this->dialogContent);
+	this->dialogText.setString(this->dialogContent);
+	this->input.close();
 }
 
 void DialogSystem::Advance() {
 
-	if (isInDialog) {
-		std::ifstream input(this->fileName);
-		if (getline(input,dialogContent)) {
-		dialogText.setString(dialogContent);
-		} else {
-			DialogSystem::End();
-		}
-
-	}
-
+	
 }
 
 void DialogSystem::End() {

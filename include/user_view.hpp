@@ -16,7 +16,6 @@
 class GameController;
 class Actor;
 class Pari;
-class DialogSystem;
 
 /**
  * Draw the screen for the player
@@ -46,6 +45,7 @@ private:
 	std::shared_ptr<Pari> character;
 	std::shared_ptr<DialogSystem> dialog;
 	sf::Music musicTrack;
+	DialogSystem gruntDialog;
 
 	/**
 	 * Respond to key press

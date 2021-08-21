@@ -39,7 +39,6 @@ UserView::UserView(std::shared_ptr<GameController> game) {
 
 
 void UserView::pressEvent(sf::Event::KeyEvent key) {
-	DialogSystem test;
 	switch (key.code) {
 		case sf::Keyboard::Space:
 		case sf::Keyboard::W:
@@ -56,7 +55,7 @@ void UserView::pressEvent(sf::Event::KeyEvent key) {
 			this->game->togglePause();
 			break;
 		case sf::Keyboard::Enter:
-			test.Advance();
+			gruntDialog.Advance();
 			break;
 		default:; // ignore other keys
 	}
@@ -179,12 +178,11 @@ void UserView::drawScreen(void) {
 	this->window->draw(line, 2, sf::Lines);
 
 	if(this->character->getBody()->GetPosition().x >= 10 ) {
-		DialogSystem test;
-		test.Load_SetDialogText("../resources/arial.ttf", "../resources/Test.txt");
-		test.SetDialogTextPosition(10,0);
-		test.SetDialogTextScale_Size(.07,.07,30);
+		gruntDialog.Load_SetDialogText("../resources/arial.ttf", "../resources/Test.txt");
+		gruntDialog.SetDialogTextPosition(10,0);
+		gruntDialog.SetDialogTextScale_Size(.07,.07,30);
 		this->game->toggleDialog(true);
-		test.DrawDialog(this->window);
+		gruntDialog.DrawDialog(this->window);
 	}
 
 	// draw actors

@@ -10,13 +10,14 @@
 #include <box2d/box2d.h>
 
 #include <iostream>
+#include <sstream>
 #include <fstream>
 #include <string>
 #include <memory>
 
-#include "user_view.hpp"
+#include "game_controller.hpp"
 
-class DialogSystem : private sf::Font {
+class DialogSystem {
 public:
 	DialogSystem();
 	~DialogSystem();
@@ -38,14 +39,13 @@ public:
 
 	void DrawDialog(std::shared_ptr<sf::RenderWindow> window);
 private:
-	bool isInDialog;
+	std::shared_ptr<GameController> game;
 	std::string dialogContent;
 	sf::Text dialogText;
 	sf::Font dialogFont;
 	sf::RectangleShape dialogBox;
 	std::ifstream input;
 	std::string fileName;
-	
 };
 
 #endif
