@@ -180,6 +180,7 @@ void UserView::drawScreen(void) {
 
 	if(this->character->getBody()->GetPosition().x >= 10 ) {
 		gruntDialog.LoadDialogText("../resources/arial.ttf", "../resources/Test.txt");
+		gruntDialog.SetInitialDialogText();
 		gruntDialog.SetDialogTextPosition(10,0);
 		gruntDialog.SetDialogTextScale_Size(.07,.07,30);
 		this->game->toggleDialog(true);

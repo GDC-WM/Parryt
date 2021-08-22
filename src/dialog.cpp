@@ -27,50 +27,43 @@ void DialogSystem::LoadDialogText(std::string fontPath, std::string fileName) {
 }
 
 void DialogSystem::SetInitialDialogText(){
-
+	
+	if (this->enterKeyPressed == 0) {
 	this->input.open(this->fileName, std::ios::in);
 	getline(this->input,this->dialogContent);
-	this->input.close();
 	this->dialogText.setString(this->dialogContent);
-	this->dialogContent.clear();
-	this->enterKeyPressed = this->enterKeyPressed + 1;
+	ReturnEnterKeyPressed();
+	} else 
+		return;
+	//this->input.close();
 
 }
 
 void DialogSystem::Advance() {
 
-	this->input.open(this->fileName, std::ios::in);
-	
-	for (int i = 0; i <= this->enterKeyPressed; ++i)
-		getline(this->input, this->dialogContent);
-		//std::cout << "i:" << i << std::endl; //debugging
+	//this->input.open(this->fileName, std::ios::in);
 
-	this->input.close();
-
-	//Check input
-
-	if (this->dialogContent != "") {
-
-		std::cout << "enter:" << enterKeyPressed << std::endl; //debugging
+	if (getline(this->input, this->dialogContent) && this->dialogContent != "") {
 
 		this->dialogText.setString(this->dialogContent);
 
-		ReturnEnterKeyPressed();
+		// std::cout << "enter:" << enterKeyPressed << std::endl; //debugging
+		// std::string msg = this->dialogText.getString(); //debugging
+		// std::cout << msg << std::endl; //debugging
 
 	} else {
-
 		this->dialogText.setString("");
 		this->dialogContent.clear();
 		//this->game->toggleDialog(); //currently segfaults
+		this->input.close();
 		return;
-
 	}
 
 }
 
 void DialogSystem::End() {
 
-	dialogText.setString("");
+
 
 }
 
