@@ -24,11 +24,12 @@ public:
 	void Advance();
 	void End();
 	bool ReturnBoolIsInDialog();
-
+	int ReturnEnterKeyPressed();
 	enum textStyle {Underline, Bold, Underline_Bold};
 	enum SetColor {White, Red, Blue, Green};
 
-	void Load_SetDialogText(std::string fontPath,std::string filePath);
+	void LoadDialogText(std::string fontPath,std::string filePath);
+	void SetInitialDialogText();
 	void SetDialogTextScale_Size(float xscale,float yscale, int charSize);
 	void SetDialogTextStyle_Color(textStyle style,SetColor textColor);
 	void SetDialogTextPosition(float posx,float posy);
@@ -40,12 +41,14 @@ public:
 	void DrawDialog(std::shared_ptr<sf::RenderWindow> window);
 private:
 	std::shared_ptr<GameController> game;
+	std::string initialDialogContent;
 	std::string dialogContent;
 	sf::Text dialogText;
 	sf::Font dialogFont;
 	sf::RectangleShape dialogBox;
 	std::ifstream input;
 	std::string fileName;
+	int enterKeyPressed = 0;
 };
 
 #endif

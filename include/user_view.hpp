@@ -38,6 +38,7 @@ public:
 
 private:
 	bool running = true;
+	std::shared_ptr<int> returnKey = 0;
 	std::chrono::steady_clock::time_point lastUpdate;
 	std::shared_ptr<GameController> game;
 	std::shared_ptr<sf::RenderWindow> window;

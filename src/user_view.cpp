@@ -55,7 +55,8 @@ void UserView::pressEvent(sf::Event::KeyEvent key) {
 			this->game->togglePause();
 			break;
 		case sf::Keyboard::Enter:
-			gruntDialog.Advance();
+			if (this->game->isInDialogMode())
+				gruntDialog.Advance();
 			break;
 		default:; // ignore other keys
 	}
@@ -178,7 +179,7 @@ void UserView::drawScreen(void) {
 	this->window->draw(line, 2, sf::Lines);
 
 	if(this->character->getBody()->GetPosition().x >= 10 ) {
-		gruntDialog.Load_SetDialogText("../resources/arial.ttf", "../resources/Test.txt");
+		gruntDialog.LoadDialogText("../resources/arial.ttf", "../resources/Test.txt");
 		gruntDialog.SetDialogTextPosition(10,0);
 		gruntDialog.SetDialogTextScale_Size(.07,.07,30);
 		this->game->toggleDialog(true);
