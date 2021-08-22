@@ -182,7 +182,7 @@ void UserView::drawScreen(void) {
 		gruntDialog.LoadDialogText("../resources/arial.ttf", "../resources/Test.txt");
 		gruntDialog.SetInitialDialogText();
 		gruntDialog.SetDialogTextPosition(10,0);
-		gruntDialog.SetDialogTextScale_Size(.07,.07,30);
+		gruntDialog.SetDialogTextScale_Size(.05,.05,30);
 		this->game->toggleDialog(true);
 		gruntDialog.DrawDialog(this->window);
 	}

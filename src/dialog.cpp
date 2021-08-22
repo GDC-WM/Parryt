@@ -19,9 +19,7 @@ void DialogSystem::LoadDialogText(std::string fontPath, std::string fileName) {
 	dialogFont.~Font();
 	dialogFont.loadFromFile(fontPath);
 	dialogText.setFont(dialogFont);
-
 	this->fileName = fileName;
-	
 	//DialogSystem::SetInitialDialogText();
 
 }
@@ -29,10 +27,12 @@ void DialogSystem::LoadDialogText(std::string fontPath, std::string fileName) {
 void DialogSystem::SetInitialDialogText(){
 	
 	if (this->enterKeyPressed == 0) {
-	this->input.open(this->fileName, std::ios::in);
-	getline(this->input,this->dialogContent);
-	this->dialogText.setString(this->dialogContent);
-	ReturnEnterKeyPressed();
+
+		this->input.open(this->fileName, std::ios::in);
+		getline(this->input,this->dialogContent);
+		this->dialogText.setString(this->dialogContent);
+		ReturnEnterKeyPressed();
+
 	} else 
 		return;
 	//this->input.close();
@@ -52,11 +52,13 @@ void DialogSystem::Advance() {
 		// std::cout << msg << std::endl; //debugging
 
 	} else {
+
 		this->dialogText.setString("");
 		this->dialogContent.clear();
 		//this->game->toggleDialog(); //currently segfaults
 		this->input.close();
 		return;
+
 	}
 
 }
