@@ -6,8 +6,8 @@ DialogSystem::DialogSystem() {
 
 DialogSystem::~DialogSystem() {}
 
-bool DialogSystem::ReturnBoolIsInDialog() {
-	return this->game->isInDialogMode();
+bool DialogSystem::GetEndOfDialog() {
+	return this->endOfDialog;
 }
 
 int DialogSystem::ReturnEnterKeyPressed() {
@@ -21,6 +21,12 @@ void DialogSystem::LoadDialogText(std::string fontPath, std::string fileName) {
 	dialogText.setFont(dialogFont);
 	this->fileName = fileName;
 	//DialogSystem::SetInitialDialogText();
+
+}
+
+std::string DialogSystem::GetDialogString() {
+
+	return this->dialogText.getString();
 
 }
 
@@ -45,6 +51,7 @@ void DialogSystem::Advance() {
 
 	if (getline(this->input, this->dialogContent) && this->dialogContent != "") {
 
+		this->endOfDialog = false;
 		this->dialogText.setString(this->dialogContent);
 
 		// std::cout << "enter:" << enterKeyPressed << std::endl; //debugging
@@ -57,6 +64,7 @@ void DialogSystem::Advance() {
 		this->dialogContent.clear();
 		//this->game->toggleDialog(); //currently segfaults
 		this->input.close();
+		this->endOfDialog = true;
 		return;
 
 	}
@@ -79,6 +87,9 @@ void DialogSystem::SetDialogTextScale_Size(float xscale,float yscale, int charSi
 void DialogSystem::SetDialogTextStyle_Color(textStyle style,SetColor textColor) {
 
 	switch (style) {
+		case Regular:
+			dialogText.setStyle(sf::Text::Regular);
+			break;
 		case Underline:
 			dialogText.setStyle(sf::Text::Underlined);
 			break;
@@ -115,6 +126,15 @@ void DialogSystem::SetDialogTextPosition(float posx,float posy) {
 
 	dialogText.setPosition(posx, posy);
 
+}
+
+bool DialogSystem::FindDialogString(std::string substr) {
+	
+	std::string line = this->dialogText.getString();
+	if (line.find(substr) != std::string::npos)
+		return true;
+
+	return false;
 }
 
 void DialogSystem::SetDialogBoxStyle(int outlineThickness, SetColor FillColor, SetColor outlineColor) {

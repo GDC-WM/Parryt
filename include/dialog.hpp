@@ -23,16 +23,18 @@ public:
 	~DialogSystem();
 	void Advance();
 	void End();
-	bool ReturnBoolIsInDialog();
+	bool GetEndOfDialog();
 	int ReturnEnterKeyPressed();
-	enum textStyle {Underline, Bold, Underline_Bold};
+	enum textStyle {Regular, Underline, Bold, Underline_Bold};
 	enum SetColor {White, Red, Blue, Green};
 
 	void LoadDialogText(std::string fontPath,std::string filePath);
+	std::string GetDialogString();
 	void SetInitialDialogText();
 	void SetDialogTextScale_Size(float xscale,float yscale, int charSize);
 	void SetDialogTextStyle_Color(textStyle style,SetColor textColor);
 	void SetDialogTextPosition(float posx,float posy);
+	bool FindDialogString(std::string substr);
 
 	void SetDialogBoxSize(int sizex,int sizey);
 	void SetDialogBoxStyle(int outlineThickness, SetColor FillColor, SetColor outlineColor);
@@ -41,7 +43,6 @@ public:
 	void DrawDialog(std::shared_ptr<sf::RenderWindow> window);
 private:
 	std::shared_ptr<GameController> game;
-	std::string initialDialogContent;
 	std::string dialogContent;
 	sf::Text dialogText;
 	sf::Font dialogFont;
@@ -49,6 +50,7 @@ private:
 	std::ifstream input;
 	std::string fileName;
 	int enterKeyPressed = 0;
+	bool endOfDialog = false;
 };
 
 #endif

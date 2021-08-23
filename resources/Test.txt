@@ -1,7 +1,7 @@
-This is a test.
-Example Text.
-More tests.
-Testing.
-Greetings.
-Testing1.
-
+Grunt: Who are you?
+Pari: My name is Pari--the protagonist of the game "Parryt".
+Grunt: Huh? "Parry" "T" or "Parryt" as in parrot?...
+Grunt: Whatever...
+Grunt: Pari, just try to... 
+Grunt: PARRY...
+Grunt: my attacks!

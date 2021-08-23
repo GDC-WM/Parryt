@@ -178,13 +178,25 @@ void UserView::drawScreen(void) {
 	};
 	this->window->draw(line, 2, sf::Lines);
 
-	if(this->character->getBody()->GetPosition().x >= 10 ) {
+	if(this->character->getBody()->GetPosition().x >= 30 ) {
+
 		gruntDialog.LoadDialogText("../resources/arial.ttf", "../resources/Test.txt");
 		gruntDialog.SetInitialDialogText();
-		gruntDialog.SetDialogTextPosition(10,0);
-		gruntDialog.SetDialogTextScale_Size(.05,.05,30);
-		this->game->toggleDialog(true);
+		gruntDialog.SetDialogTextPosition(this->character->getBody()->GetPosition().x - 25,
+										  this->character->getBody()->GetPosition().y + 3);
+		gruntDialog.SetDialogTextScale_Size(.05,.05,32);
+
+		if (gruntDialog.FindDialogString("PARRY"))
+			gruntDialog.SetDialogTextStyle_Color(gruntDialog.Bold,gruntDialog.Red);
+		else
+			gruntDialog.SetDialogTextStyle_Color(gruntDialog.Regular, gruntDialog.White);
+
+		if (gruntDialog.GetEndOfDialog())
+			this->game->toggleDialog(false);
+		else
+			this->game->toggleDialog(true);
 		gruntDialog.DrawDialog(this->window);
+
 	}
 
 	// draw actors
