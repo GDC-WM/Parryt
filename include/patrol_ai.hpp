@@ -5,12 +5,10 @@
 #include <memory>
 
 #include "ai_view.hpp"
-#include "dialog.hpp"
 
 class Model;
 class Actor;
 class Grunt;
-class Dialog;
 
 
 /**
@@ -44,8 +42,6 @@ public:
 
 protected:
 	std::shared_ptr<Grunt> grunt;
-	//std::shared_ptr<DialogSystem> dialog;
-	std::shared_ptr<sf::RenderWindow> window;
 	b2Vec2 post;
 	int patrolRange;
 };

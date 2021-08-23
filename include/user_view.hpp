@@ -17,6 +17,7 @@ class GameController;
 class Actor;
 class Pari;
 
+
 /**
  * Draw the screen for the player
  */
@@ -43,7 +44,6 @@ private:
 	std::shared_ptr<sf::RenderWindow> window;
 	GameStateFactory gameStateFactory;
 	std::shared_ptr<Pari> character;
-	std::shared_ptr<DialogSystem> dialog;
 	sf::Music musicTrack;
 	DialogSystem gruntDialog;
 
