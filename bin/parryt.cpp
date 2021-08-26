@@ -19,14 +19,6 @@ void gameRunner(std::shared_ptr<GameController> game, std::shared_ptr<UserView> 
 	}
 }
 
-
-void drawRunner(std::shared_ptr<GameController> game, std::shared_ptr<UserView> user) {
-	while (user->isRunning()) {
-		user->drawScreen();
-	}
-}
-
-
 int main(int argc, char** argv) {
 	std::shared_ptr<GameController> game = std::make_shared<GameController>();
 	std::shared_ptr<UserView> user = std::make_shared<UserView>(game);
