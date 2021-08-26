@@ -32,7 +32,7 @@ Cannonball::Cannonball(b2Vec2 position, float damage) : Actor(position) {
 
 void Cannonball::onCollision(Actor &a) {
 	if (a.getAllegiance() != this->getAllegiance() && a.isTargetable() 
-	    && this->body->GetLinearVelocity().Length() > 5) {
+	    && this->getBody()->GetLinearVelocity().Length() > 5) {
 		if (a.damage(this->damage)) this->kill();
 	}
 }
