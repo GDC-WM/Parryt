@@ -6,10 +6,6 @@ DialogSystem::DialogSystem() {
 
 DialogSystem::~DialogSystem() {}
 
-bool DialogSystem::GetEndOfDialog() {
-	return this->endOfDialog;
-}
-
 int DialogSystem::ReturnEnterKeyPressed() {
 	return this->enterKeyPressed = this->enterKeyPressed + 1;
 }
@@ -71,9 +67,9 @@ void DialogSystem::Advance() {
 
 }
 
-void DialogSystem::End() {
+bool DialogSystem::GetEndOfDialog() {
 
-
+	return this->endOfDialog;
 
 }
 
