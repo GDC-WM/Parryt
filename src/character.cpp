@@ -19,9 +19,9 @@ bool Character::damage(float damage) {
 	if (this->health > this->maxHealth) this->health = this->maxHealth;
 	if (this->health <= 0) this->kill();
 	//TODO Switch to damage sound in the future
-	this->buffer.loadFromFile("../resources/JumpSE.wav");
-	JumpSE.setBuffer(buffer);
-	JumpSE.play();
+	// this->buffer.loadFromFile("../resources/JumpSE.wav");
+	// JumpSE.setBuffer(buffer);
+	// JumpSE.play();
 	return true;
 }
 

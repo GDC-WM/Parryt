@@ -66,7 +66,9 @@ private:
 	Loop runLoop { 0, 6, 170 };
 	Loop jumpLoop { 28, 1, 500 };
 	Loop fallLoop {30, 1, 500};
+	Loop parryLoop {0,3,50};
 	std::unique_ptr<SpriteSheet> spriteSheet;
+	std::unique_ptr<SpriteSheet> parrySpriteSheet;
 	sf::Sprite sprite;
 };
 

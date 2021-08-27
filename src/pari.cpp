@@ -31,6 +31,10 @@ Pari::Pari(b2Vec2 position) : Character(position) {
 	this->spriteSheet = std::make_unique<SpriteSheet>("../resources/pari.png", sf::Vector2i(64, 64));
 	this->spriteSheet->setLoop(this->standLoop);
 
+	//load parry spritesheet
+	this->parrySpriteSheet = std::make_unique<SpriteSheet>("../resources/parry-animation-draft.png", sf::Vector2i(64, 64));
+	this->parrySpriteSheet->setLoop(this->parryLoop);
+
 	// set drawable
 	this->sprite = sf::Sprite(texture, sf::IntRect(0,0,64,64));
 
@@ -58,9 +62,11 @@ bool Pari::jump(void) {
 
 bool Pari::parry(float angle) {
 	if (!this->canParry()) return false;
-
 	this->parryAngle = angle;
 	this->parryStart = std::chrono::steady_clock::now();
+	bool parry = this->isParrying();
+	this->parrySpriteSheet->setLoop(this->parryLoop);
+	if (parry) this->parrySpriteSheet->setOneShot(this->parryLoop);
 	return true;
 }
 
@@ -109,6 +115,12 @@ void Pari::draw(std::shared_ptr<sf::RenderWindow> window) {
 
 	this->spriteSheet->getSprite().setPosition(this->body->GetPosition().x - 32 * glob::scale,
 	                                          -this->body->GetPosition().y - 32 * glob::scale - 0.5);
+	
+	this->parrySpriteSheet->getSprite().setPosition(this->body->GetPosition().x - 32 * glob::scale,
+	                                          -this->body->GetPosition().y - 32 * glob::scale - 0.5);
 
-	window->draw(this->spriteSheet->getSprite());
+	if(this->isParrying())
+		window->draw(this->parrySpriteSheet->getSprite());
+	else
+		window->draw(this->spriteSheet->getSprite());
 }
