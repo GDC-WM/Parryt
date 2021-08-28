@@ -10,13 +10,13 @@ Pari::Pari(b2Vec2 position) : Character(position) {
 	this->priority = 100;
 	this->setTargetable(true);
 
-	this->acceleration = 150;
+	this->acceleration = 175;
 	this->deceleration = 200;
-	this->jumpImpulse = 300;
+	this->jumpImpulse = 340;
 	this->maxSpeed = 20;
 	this->health = this->maxHealth = 10000; // he thicc
-	this->maxJumps = 2;
-	this->parryDuration = std::chrono::milliseconds(200);
+	this->maxJumps = 1;
+	this->parryDuration = std::chrono::milliseconds(600);
 	this->parryRechargeDuration = std::chrono::seconds(1);
 	// set parry start so Pari can parry right away
 	this->parryStart = std::chrono::steady_clock::now() - this->parryRechargeDuration;
@@ -28,7 +28,7 @@ Pari::Pari(b2Vec2 position) : Character(position) {
 	this->fixtureDef.friction = 0.0f;
 
 	// load pari spritesheet
-	this->spriteSheet = std::make_unique<SpriteSheet>("../resources/pari.png", sf::Vector2i(64, 64));
+	this->spriteSheet = std::make_unique<SpriteSheet>("../resources/pari-draft.png", sf::Vector2i(64, 64));
 	this->spriteSheet->setLoop(this->standLoop);
 
 	//load parry spritesheet
@@ -54,7 +54,8 @@ bool Pari::damage(float damage) {
 bool Pari::jump(void) {
 	bool jumped = Character::jump();
 	this->spriteSheet->setLoop(this->fallLoop);
-	if (jumped) this->spriteSheet->setOneShot(this->jumpLoop);
+	std::cout << jumped << std::endl;
+	if (jumped) this->spriteSheet->setOneShot(this->fallLoop);
 	// prevents too many jumps
 	return jumped;
 }
@@ -72,7 +73,7 @@ bool Pari::parry(float angle) {
 
 
 void Pari::onCollision(Actor &a) {
-	if (a.getAllegiance() == glob::Allegiance::neutral && a.shouldCollide(*this)) this->jumpCounter = 0;
+	this->jumpCounter = 0;
 
 	if (this->isParrying()) {
 		// deflect contact object
@@ -106,6 +107,7 @@ void Pari::draw(std::shared_ptr<sf::RenderWindow> window) {
 
 	// use mirrored sprite if facing left
 	this->spriteSheet->setMirrored(this->lookDir == glob::Dir::left);
+	this->parrySpriteSheet->setMirrored(this->lookDir == glob::Dir::left);
 	//TODO: ^this check could be removed if all characters were given a spritesheet
 
 	if (newLoop != this->spriteSheet->getLoop()) {
