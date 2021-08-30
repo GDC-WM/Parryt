@@ -61,7 +61,7 @@ private:
 	float rotationVelocity = 0;
 	float barrelAngle = M_PI / 2;
 	float minAngle = 9 * M_PI / 16;
-	float maxAngle = M_PI;
+	float maxAngle = 15 * M_PI / 16;
 
 	sf::Texture carriageTexture;
 	sf::Sprite carriageSprite;
