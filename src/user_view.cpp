@@ -33,8 +33,8 @@ UserView::UserView(std::shared_ptr<GameController> game) {
 
 	/* Calling and playing music for the stage: */
 	this->musicTrack.openFromFile("../resources/MainTheme.wav");
-	this->musicTrack.play();
 	this->musicTrack.setLoop(true);
+	this->musicTrack.play();
 }
 
 
@@ -53,6 +53,8 @@ void UserView::pressEvent(sf::Event::KeyEvent key) {
 		case sf::Keyboard::Escape:
 		case sf::Keyboard::P:
 			this->game->togglePause();
+				if (this->game->isPaused()) this->musicTrack.setVolume(5);
+				else this->musicTrack.setVolume(100);
 			break;
 		case sf::Keyboard::Enter:
 			if (this->game->isInDialogMode())

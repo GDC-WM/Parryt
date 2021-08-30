@@ -62,8 +62,8 @@ void Grunt::shoot() {
 	std::shared_ptr<Bullet> bullet = std::make_shared<Bullet>(newVec, 50);
 	this->model->addActor(bullet); // give actors access to the room they are in
 
-	this->shootDir.x *= 150;
-	this->shootDir.y *= 150;
+	this->shootDir.x *= 4;
+	this->shootDir.y *= 10;
 
 	bullet->getBody()->ApplyLinearImpulseToCenter(this->shootDir, true); //not fast enough smh
 }

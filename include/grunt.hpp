@@ -57,8 +57,8 @@ private:
 	int bulletCounter = 5;
 	int chamberSize = 5;
 	int fireRateCounter = 0;
-	int fireRate = 30;
-	int reloadTime = 100;
+	int fireRate = 100;
+	int reloadTime = 150;
 	int reloadCounter = 0;
 	int dmg = 10;
 	int gunAngle = 90;

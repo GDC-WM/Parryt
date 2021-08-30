@@ -8,7 +8,7 @@
 
 #include "character.hpp"
 #include "sprite_sheet.hpp"
-
+#include <iostream>
 
 /**
  * The main character
@@ -64,9 +64,11 @@ private:
 	b2PolygonShape shape;
 	Loop standLoop { 22, 3, 400 };
 	Loop runLoop { 0, 6, 170 };
-	Loop jumpLoop { 28, 1, 500 };
-	Loop fallLoop {30, 1, 500};
+	Loop jumpLoop { 28, 1, 50 };
+	Loop fallLoop { 32, 1, 50 };
+	Loop parryLoop { 0, 3, 200 };
 	std::unique_ptr<SpriteSheet> spriteSheet;
+	std::unique_ptr<SpriteSheet> parrySpriteSheet;
 	sf::Sprite sprite;
 };
 
