@@ -11,7 +11,7 @@
 
 #include "view.hpp"
 #include "game_state_factory.hpp"
-
+#include "dialog.hpp"
 
 class GameController;
 class Actor;
@@ -45,6 +45,7 @@ private:
 	GameStateFactory gameStateFactory;
 	std::shared_ptr<Pari> character;
 	sf::Music musicTrack;
+	DialogSystem gruntDialog;
 
 	/**
 	 * Respond to key press

@@ -55,6 +55,21 @@ public:
 	void togglePause(bool state) { this->paused = state; };
 
 	/**
+	 * @return pause state of the application
+	 */
+	const bool &isInDialogMode(void) { return this->isInDialog; };
+
+	/**
+	 * Play/pause the application when in dialog.
+	 */
+	void toggleDialog(void) { this->isInDialog = !this->isInDialog; };
+
+	/**
+	 * @param state New pause state of the application while in dialog
+	 */
+	void toggleDialog(bool state) { this->isInDialog = state; };
+
+	/**
 	 *
 	 */
 	void update(void);
@@ -63,6 +78,7 @@ public:
 private:
 	std::shared_ptr<GameState> gameState;
 	bool paused = false;
+	bool isInDialog = false;
 };
 
 

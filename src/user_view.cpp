@@ -10,6 +10,7 @@
 #include "game_state_factory.hpp"
 #include "model.hpp"
 #include "pari.hpp"
+#include "dialog.hpp"
 
 
 UserView::UserView(std::shared_ptr<GameController> game) {
@@ -52,6 +53,10 @@ void UserView::pressEvent(sf::Event::KeyEvent key) {
 		case sf::Keyboard::Escape:
 		case sf::Keyboard::P:
 			this->game->togglePause();
+			break;
+		case sf::Keyboard::Enter:
+			if (this->game->isInDialogMode())
+				gruntDialog.Advance();
 			break;
 		default:; // ignore other keys
 	}
@@ -163,7 +168,8 @@ void UserView::drawScreen(void) {
 
 	// temporary add red vector indicating direction to redirect projectiles
 	float point1[] = { window->getView().getCenter().x, window->getView().getCenter().y };
-	float point2[] = { window->mapPixelToCoords(sf::Mouse::getPosition(*window)).x, window->mapPixelToCoords(sf::Mouse::getPosition(*window)).y };
+	float point2[] = { window->mapPixelToCoords(sf::Mouse::getPosition(*window)).x, 
+			   window->mapPixelToCoords(sf::Mouse::getPosition(*window)).y };
 	float vectorBetween[] = { point2[0] - point1[0], point2[1] - point1[1] };
 	sf::Vertex line[] =
 	{
@@ -172,8 +178,31 @@ void UserView::drawScreen(void) {
 	};
 	this->window->draw(line, 2, sf::Lines);
 
+	if(this->character->getBody()->GetPosition().x >= 30) {
+
+		gruntDialog.LoadDialogText("../resources/arial.ttf", "../resources/Test.txt");
+		gruntDialog.SetInitialDialogText();
+		gruntDialog.SetDialogTextPosition(this->character->getBody()->GetPosition().x - 25,
+										  this->character->getBody()->GetPosition().y);
+		gruntDialog.SetDialogTextScale_Size(.05,.05,32);
+
+		if (gruntDialog.FindDialogString("PARRY"))
+			gruntDialog.SetDialogTextStyle_Color(gruntDialog.Bold,gruntDialog.Red);
+		else
+			gruntDialog.SetDialogTextStyle_Color(gruntDialog.Regular, gruntDialog.White);
+
+		if (gruntDialog.GetEndOfDialog())
+			this->game->toggleDialog(false);
+		else
+			this->game->toggleDialog(true);
+
+		gruntDialog.DrawDialog(this->window);
+
+	}
+
 	// draw actors
-	for (auto actor : this->game->getGameState()->getModel()->getActorList()) actor->draw(this->window);
+	for (auto actor : this->game->getGameState()->getModel()->getActorList()) 
+		actor->draw(this->window);
 
 	// follow character
 	this->viewFollow(*this->character);

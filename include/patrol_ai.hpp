@@ -6,7 +6,6 @@
 
 #include "ai_view.hpp"
 
-
 class Model;
 class Actor;
 class Grunt;
