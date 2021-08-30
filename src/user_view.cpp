@@ -72,6 +72,8 @@ void UserView::pressEvent(sf::Event::MouseButtonEvent button) {
 		case sf::Mouse::Left: {
 			// helpful for debugging: left click to see the coordinates
 			std::cout << " \nx: " << mousePos.x << " \ny: " << mousePos.y << std::endl;
+			if (this->game->isInDialogMode())
+				gruntDialog.Advance();
 			break;
 		}
 		case sf::Mouse::Right: {
@@ -180,12 +182,12 @@ void UserView::drawScreen(void) {
 	};
 	this->window->draw(line, 2, sf::Lines);
 
-	if(this->character->getBody()->GetPosition().x >= 30) {
+	if(this->character->getBody()->GetPosition().x >= 25 && this->character->getBody()->GetPosition().y < -8) {
 
 		gruntDialog.LoadDialogText("../resources/arial.ttf", "../resources/Test.txt");
 		gruntDialog.SetInitialDialogText();
 		gruntDialog.SetDialogTextPosition(this->character->getBody()->GetPosition().x - 25,
-										  this->character->getBody()->GetPosition().y);
+										  this->character->getBody()->GetPosition().y * .05 - 8);
 		gruntDialog.SetDialogTextScale_Size(.05,.05,32);
 
 		if (gruntDialog.FindDialogString("PARRY"))

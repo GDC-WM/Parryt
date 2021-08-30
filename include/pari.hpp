@@ -8,7 +8,7 @@
 
 #include "character.hpp"
 #include "sprite_sheet.hpp"
-#include <iostream>
+
 
 /**
  * The main character

@@ -54,8 +54,7 @@ bool Pari::damage(float damage) {
 bool Pari::jump(void) {
 	bool jumped = Character::jump();
 	this->spriteSheet->setLoop(this->fallLoop);
-	std::cout << jumped << std::endl;
-	if (jumped) this->spriteSheet->setOneShot(this->fallLoop);
+	if (jumped) this->spriteSheet->setOneShot(this->jumpLoop);
 	// prevents too many jumps
 	return jumped;
 }
