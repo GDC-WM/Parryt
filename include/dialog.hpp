@@ -22,6 +22,7 @@
  */
 class DialogSystem {
 public:
+
 	/*
 	 * Usual class constructor
 	 */
@@ -50,12 +51,12 @@ public:
 	/*
 	 * @enum creates custom types of variables for styles of text (globally accessible)
 	 */
-	enum textStyle {Regular, Underline, Bold, Underline_Bold};
+	enum TEXTSTYLE {Regular, Underline, Bold, Underline_Bold};
 
 	/*
 	 * @enum creates custom types of variables for colors (globally accessible)
 	 */
-	enum setColor {White, Red, Blue, Green};
+	enum SETCOLOR {White, Red, Blue, Green};
 
 	/*
 	 * @param load font and dialog filepaths
@@ -78,17 +79,40 @@ public:
 	void setDialogTextScale_Size(float xscale,float yscale, int charSize);
 
 	/*
-	 * @params Use enum declarations to 
+	 * @params Use enum declarations to set style and text color
 	 */
-	void setDialogTextStyle_Color(textStyle style,setColor textColor);
+	void setDialogTextStyle_Color(TEXTSTYLE style,SETCOLOR textColor);
+
+	/*
+	 * @params set the position
+	 */
 	void setDialogTextPosition(float posx,float posy);
+
+	/*
+	 * @params find a phrase in a string; substr stands for substring
+	 */
 	bool findDialogString(std::string substr);
 
+	/*
+	 * @params set the size of the rect box according to x and y
+	 */
 	void setDialogBoxSize(int sizex,int sizey);
-	void setDialogBoxStyle(int outlineThickness, setColor FillColor, setColor outlineColor);
+
+	/*
+	 * @params Use enum declarations to set outline, fill color and outline color
+	 */
+	void setDialogBoxStyle(int outlineThickness, SETCOLOR FillColor, SETCOLOR outlineColor);
+
+	/*
+	 * @params Set the position of the rect box
+	 */
 	void setDialogBoxPosition(float posx, float posy);
 
+	/*
+	 * @params Draw the dialog on the main window
+	 */
 	void drawDialog(std::shared_ptr<sf::RenderWindow> window);
+
 private:
 	std::shared_ptr<GameController> game;
 	std::string dialogContent;

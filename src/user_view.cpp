@@ -182,25 +182,25 @@ void UserView::drawScreen(void) {
 	};
 	this->window->draw(line, 2, sf::Lines);
 
-	if(this->character->getBody()->GetPosition().x >= 25 && this->character->getBody()->GetPosition().y < -8) {
+	if (this->character->getBody()->GetPosition().x >= 25 && this->character->getBody()->GetPosition().y < -8) {
 
-		gruntDialog.loadDialogText("../resources/arial.ttf", "../resources/Test.txt");
-		gruntDialog.setInitialDialogText();
-		gruntDialog.setDialogTextPosition(this->character->getBody()->GetPosition().x - 25,
+		this->gruntDialog.loadDialogText("../resources/arial.ttf", "../resources/Test.txt");
+		this->gruntDialog.setInitialDialogText();
+		this->gruntDialog.setDialogTextPosition(this->character->getBody()->GetPosition().x - 25,
 										  this->character->getBody()->GetPosition().y * .05 - 8);
-		gruntDialog.setDialogTextScale_Size(.05,.05,32);
+		this->gruntDialog.setDialogTextScale_Size(.05,.05,32);
 
-		if (gruntDialog.findDialogString("PARRY"))
-			gruntDialog.setDialogTextStyle_Color(gruntDialog.Bold,gruntDialog.Red);
-		else
-			gruntDialog.setDialogTextStyle_Color(gruntDialog.Regular, gruntDialog.White);
+			if (this->gruntDialog.findDialogString("PARRY"))
+				this->gruntDialog.setDialogTextStyle_Color(this->gruntDialog.Bold, this->gruntDialog.Red);
+			else
+				this->gruntDialog.setDialogTextStyle_Color(this->gruntDialog.Regular, this->gruntDialog.White);
 
-		if (gruntDialog.getEndOfDialog())
-			this->game->toggleDialog(false);
-		else
-			this->game->toggleDialog(true);
+			if (this->gruntDialog.getEndOfDialog())
+				this->game->toggleDialog(false);
+			else
+				this->game->toggleDialog(true);
 
-		gruntDialog.drawDialog(this->window);
+		this->gruntDialog.drawDialog(this->window);
 
 	}
 

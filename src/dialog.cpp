@@ -7,7 +7,9 @@ DialogSystem::DialogSystem() {
 DialogSystem::~DialogSystem() {}
 
 int DialogSystem::returnEnterKeyPressed() {
+
 	return this->enterKeyPressed = this->enterKeyPressed + 1;
+	
 }
 
 void DialogSystem::loadDialogText(std::string fontPath, std::string fileName) {
@@ -16,7 +18,6 @@ void DialogSystem::loadDialogText(std::string fontPath, std::string fileName) {
 	dialogFont.loadFromFile(fontPath);
 	dialogText.setFont(dialogFont);
 	this->fileName = fileName;
-	//DialogSystem::SetInitialDialogText();
 
 }
 
@@ -31,22 +32,15 @@ void DialogSystem::setInitialDialogText(){
 
 	} else 
 		return;
-	//this->input.close();
 
 }
 
 void DialogSystem::advance() {
 
-	//this->input.open(this->fileName, std::ios::in);
-
 	if (getline(this->input, this->dialogContent) && this->dialogContent != "") {
 
 		this->endOfDialog = false;
 		this->dialogText.setString(this->dialogContent);
-
-		// std::cout << "enter:" << enterKeyPressed << std::endl; //debugging
-		// std::string msg = this->dialogText.getString(); //debugging
-		// std::cout << msg << std::endl; //debugging
 
 	} else {
 
@@ -74,7 +68,7 @@ void DialogSystem::setDialogTextScale_Size(float xscale, float yscale, int charS
 
 }
 
-void DialogSystem::setDialogTextStyle_Color(textStyle style, setColor textColor) {
+void DialogSystem::setDialogTextStyle_Color(TEXTSTYLE style, SETCOLOR textColor) {
 
 	switch (style) {
 		case Regular:
@@ -125,9 +119,10 @@ bool DialogSystem::findDialogString(std::string substr) {
 		return true;
 
 	return false;
+
 }
 
-void DialogSystem::setDialogBoxStyle(int outlineThickness, setColor FillColor, setColor outlineColor) {
+void DialogSystem::setDialogBoxStyle(int outlineThickness, SETCOLOR FillColor, SETCOLOR outlineColor) {
 
 	dialogBox.setOutlineThickness(outlineThickness);
 
@@ -174,7 +169,9 @@ void DialogSystem::setDialogBoxSize(int sizex,int sizey) {
 }
 
 void DialogSystem::setDialogBoxPosition(float posx, float posy) {
+
 	dialogBox.setPosition(sf::Vector2f(posx,posy));
+
 }
 
 void DialogSystem::drawDialog(std::shared_ptr<sf::RenderWindow> window) {
