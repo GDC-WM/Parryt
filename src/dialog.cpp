@@ -6,11 +6,11 @@ DialogSystem::DialogSystem() {
 
 DialogSystem::~DialogSystem() {}
 
-int DialogSystem::ReturnEnterKeyPressed() {
+int DialogSystem::returnEnterKeyPressed() {
 	return this->enterKeyPressed = this->enterKeyPressed + 1;
 }
 
-void DialogSystem::LoadDialogText(std::string fontPath, std::string fileName) {
+void DialogSystem::loadDialogText(std::string fontPath, std::string fileName) {
 
 	dialogFont.~Font();
 	dialogFont.loadFromFile(fontPath);
@@ -20,20 +20,14 @@ void DialogSystem::LoadDialogText(std::string fontPath, std::string fileName) {
 
 }
 
-std::string DialogSystem::GetDialogString() {
-
-	return this->dialogText.getString();
-
-}
-
-void DialogSystem::SetInitialDialogText(){
+void DialogSystem::setInitialDialogText(){
 	
 	if (this->enterKeyPressed == 0) {
 
 		this->input.open(this->fileName, std::ios::in);
 		getline(this->input,this->dialogContent);
 		this->dialogText.setString(this->dialogContent);
-		ReturnEnterKeyPressed();
+		returnEnterKeyPressed();
 
 	} else 
 		return;
@@ -41,7 +35,7 @@ void DialogSystem::SetInitialDialogText(){
 
 }
 
-void DialogSystem::Advance() {
+void DialogSystem::advance() {
 
 	//this->input.open(this->fileName, std::ios::in);
 
@@ -67,20 +61,20 @@ void DialogSystem::Advance() {
 
 }
 
-bool DialogSystem::GetEndOfDialog() {
+bool DialogSystem::getEndOfDialog() {
 
 	return this->endOfDialog;
 
 }
 
-void DialogSystem::SetDialogTextScale_Size(float xscale,float yscale, int charSize) {
+void DialogSystem::setDialogTextScale_Size(float xscale, float yscale, int charSize) {
 
 	dialogText.setScale(xscale, yscale);
 	dialogText.setCharacterSize(charSize);
 
 }
 
-void DialogSystem::SetDialogTextStyle_Color(textStyle style,SetColor textColor) {
+void DialogSystem::setDialogTextStyle_Color(textStyle style, setColor textColor) {
 
 	switch (style) {
 		case Regular:
@@ -118,13 +112,13 @@ void DialogSystem::SetDialogTextStyle_Color(textStyle style,SetColor textColor) 
 
 }
 
-void DialogSystem::SetDialogTextPosition(float posx,float posy) {
+void DialogSystem::setDialogTextPosition(float posx,float posy) {
 
 	dialogText.setPosition(posx, posy);
 
 }
 
-bool DialogSystem::FindDialogString(std::string substr) {
+bool DialogSystem::findDialogString(std::string substr) {
 	
 	std::string line = this->dialogText.getString();
 	if (line.find(substr) != std::string::npos)
@@ -133,7 +127,7 @@ bool DialogSystem::FindDialogString(std::string substr) {
 	return false;
 }
 
-void DialogSystem::SetDialogBoxStyle(int outlineThickness, SetColor FillColor, SetColor outlineColor) {
+void DialogSystem::setDialogBoxStyle(int outlineThickness, setColor FillColor, setColor outlineColor) {
 
 	dialogBox.setOutlineThickness(outlineThickness);
 
@@ -173,17 +167,17 @@ void DialogSystem::SetDialogBoxStyle(int outlineThickness, SetColor FillColor, S
 	
 }
 
-void DialogSystem::SetDialogBoxSize(int sizex,int sizey) {
+void DialogSystem::setDialogBoxSize(int sizex,int sizey) {
 
 	dialogBox.setSize(sf::Vector2f(sizex,sizey));
 
 }
 
-void DialogSystem::SetDialogBoxPosition(float posx, float posy) {
+void DialogSystem::setDialogBoxPosition(float posx, float posy) {
 	dialogBox.setPosition(sf::Vector2f(posx,posy));
 }
 
-void DialogSystem::DrawDialog(std::shared_ptr<sf::RenderWindow> window) {
+void DialogSystem::drawDialog(std::shared_ptr<sf::RenderWindow> window) {
 
 	window->draw(dialogBox);
 	window->draw(dialogText);

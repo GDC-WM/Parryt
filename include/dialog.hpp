@@ -35,17 +35,17 @@ public:
 	/*
 	 * @return the next line of the dialog
 	 */
-	void Advance();
+	void advance();
 
 	/*
 	 * @return the bool "endOfDialog"
 	 */
-	bool GetEndOfDialog();
+	bool getEndOfDialog();
 
 	/*
 	 * @return the int "enterKeyPressed"
 	 */
-	int ReturnEnterKeyPressed();
+	int returnEnterKeyPressed();
 
 	/*
 	 * @enum creates custom types of variables for styles of text (globally accessible)
@@ -55,40 +55,40 @@ public:
 	/*
 	 * @enum creates custom types of variables for colors (globally accessible)
 	 */
-	enum SetColor {White, Red, Blue, Green};
+	enum setColor {White, Red, Blue, Green};
 
 	/*
 	 * @param load font and dialog filepaths
 	 */
-	void LoadDialogText(std::string fontPath,std::string filePath);
+	void loadDialogText(std::string fontPath,std::string filePath);
 
 	/*
 	 * @return the current line of the dialog file
 	 */
-	std::string GetDialogString();
+	std::string setDialogString();
 
 	/*
 	 * @return set and draw the initial Dialog Text (first line of dialog file)
 	 */
-	void SetInitialDialogText();
+	void setInitialDialogText();
 
 	/*
 	 * @params Text scale and size (x,y,int) of the Dialogue
 	 */
-	void SetDialogTextScale_Size(float xscale,float yscale, int charSize);
+	void setDialogTextScale_Size(float xscale,float yscale, int charSize);
 
 	/*
 	 * @params Use enum declarations to 
 	 */
-	void SetDialogTextStyle_Color(textStyle style,SetColor textColor);
-	void SetDialogTextPosition(float posx,float posy);
-	bool FindDialogString(std::string substr);
+	void setDialogTextStyle_Color(textStyle style,setColor textColor);
+	void setDialogTextPosition(float posx,float posy);
+	bool findDialogString(std::string substr);
 
-	void SetDialogBoxSize(int sizex,int sizey);
-	void SetDialogBoxStyle(int outlineThickness, SetColor FillColor, SetColor outlineColor);
-	void SetDialogBoxPosition(float posx, float posy);
+	void setDialogBoxSize(int sizex,int sizey);
+	void setDialogBoxStyle(int outlineThickness, setColor FillColor, setColor outlineColor);
+	void setDialogBoxPosition(float posx, float posy);
 
-	void DrawDialog(std::shared_ptr<sf::RenderWindow> window);
+	void drawDialog(std::shared_ptr<sf::RenderWindow> window);
 private:
 	std::shared_ptr<GameController> game;
 	std::string dialogContent;

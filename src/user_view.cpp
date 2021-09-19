@@ -58,7 +58,7 @@ void UserView::pressEvent(sf::Event::KeyEvent key) {
 			break;
 		case sf::Keyboard::Enter:
 			if (this->game->isInDialogMode())
-				gruntDialog.Advance();
+				gruntDialog.advance();
 			break;
 		default:; // ignore other keys
 	}
@@ -73,7 +73,7 @@ void UserView::pressEvent(sf::Event::MouseButtonEvent button) {
 			// helpful for debugging: left click to see the coordinates
 			std::cout << " \nx: " << mousePos.x << " \ny: " << mousePos.y << std::endl;
 			if (this->game->isInDialogMode())
-				gruntDialog.Advance();
+				gruntDialog.advance();
 			break;
 		}
 		case sf::Mouse::Right: {
@@ -184,23 +184,23 @@ void UserView::drawScreen(void) {
 
 	if(this->character->getBody()->GetPosition().x >= 25 && this->character->getBody()->GetPosition().y < -8) {
 
-		gruntDialog.LoadDialogText("../resources/arial.ttf", "../resources/Test.txt");
-		gruntDialog.SetInitialDialogText();
-		gruntDialog.SetDialogTextPosition(this->character->getBody()->GetPosition().x - 25,
+		gruntDialog.loadDialogText("../resources/arial.ttf", "../resources/Test.txt");
+		gruntDialog.setInitialDialogText();
+		gruntDialog.setDialogTextPosition(this->character->getBody()->GetPosition().x - 25,
 										  this->character->getBody()->GetPosition().y * .05 - 8);
-		gruntDialog.SetDialogTextScale_Size(.05,.05,32);
+		gruntDialog.setDialogTextScale_Size(.05,.05,32);
 
-		if (gruntDialog.FindDialogString("PARRY"))
-			gruntDialog.SetDialogTextStyle_Color(gruntDialog.Bold,gruntDialog.Red);
+		if (gruntDialog.findDialogString("PARRY"))
+			gruntDialog.setDialogTextStyle_Color(gruntDialog.Bold,gruntDialog.Red);
 		else
-			gruntDialog.SetDialogTextStyle_Color(gruntDialog.Regular, gruntDialog.White);
+			gruntDialog.setDialogTextStyle_Color(gruntDialog.Regular, gruntDialog.White);
 
-		if (gruntDialog.GetEndOfDialog())
+		if (gruntDialog.getEndOfDialog())
 			this->game->toggleDialog(false);
 		else
 			this->game->toggleDialog(true);
 
-		gruntDialog.DrawDialog(this->window);
+		gruntDialog.drawDialog(this->window);
 
 	}
 
