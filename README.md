@@ -1,94 +1,65 @@
-# Parryt
+## DESCRIPTION
 * A platformer game following Pari the parrot man, defender of... parrots.
-* Will involve a satisfying parrying mechanic.
+* Contains a satisfying parrying mechanic.
 * Uses C++, the SFML graphics library, and the Box2D physics engine
-* Code dependency layout (sorta):
-  UserView <- GameController <- GameState <- View <- Model <- Actor
-                                          <- Model <- Actor
-
+* General class hierarchy: `UserView <- GameController <- GameState <- View <- Model <- Actor`
 ![Demo Screenshot](resources/parryt-screenshot.png)
 
-## Install on Linux:
-* Install make, cmake, g++, SFML (libsfml-dev on Ubuntu) (and possibly SFML-dev), randr (xorg-dev and libglu1-mesa-dev on Ubuntu), doxygen, and git from your package manager (specific names depend on your distribution.
-* Run the following commands from within the directory you would like the game to be:
-- ```git clone --recursive https://github.com/GDC-WM/Parryt.git```
 
-building box2d (only once needed)
+## BUILD/RUN (from source)
+Dependencies: make, cmake, gcc, sfml, box2d
 
-- ```mkdir Parryt/box2d/build```
-- ```cd Parryt/box2d/build```
-- ```cmake -DBOX2D_BUILD_DOCS=ON ..```
-- ```cmake -build .```
-- ```sudo cmake --build . --target install```
-- ```cd ../..```
+### Linux
+Arch/Manjaro:
+```shell
+sudo pacman -S cmake make gcc box2d sfml git
+git clone https://github.com/GDC-WM/Parryt.git
+mkdir Parryt/Debug
+cd Parryt/Debug
+cmake ..
+make
+./parryt
+```
 
-building Parryt
+Other:
+* Install make, cmake, gcc, SFML (libsfml-dev on Ubuntu) (and possibly SFML-dev), randr (xorg-dev and libglu1-mesa-dev on Ubuntu), doxygen, and git from your package manager (specific names depend on your distribution.
+* Clone the repo with box2d submodule:
 
-- ```mkdir Debug``` (which makes Parryt/Debug)
-- ```cd Debug```
-- ```cmake ..```
-- ```make```
-- ```./parryt```
+```
+git clone --recursive https://github.com/GDC-WM/Parryt.git
+```
 
+* Build box2d:
 
-## Install on Mac:
-* Install Homebrew and follow instructions for Linux.
+```shell
+mkdir Parryt/box2d/build
+cd Parryt/box2d/build
+cmake -DBOX2D_BUILD_DOCS=ON ..
+cmake -build .
+sudo cmake --build . --target install
+cd ../../..
+```
 
-## Install on WSL (Windows Subsytem for Linux)
-
-**Macro Steps**
-
-1. Download WSL2 (Windows Subsytem for Linux) on Windows
-2. Download a Linux distribution (At least Ubuntu 18.04 and 20.02 both worked following these steps)
-3. Set up your freshly installed distribution for package downloading
-4. Download specified packages above (cmake, g++, SFML...)
-5. Download X11 server and configure it, allowing GUIs.
-6. Run commands starting from ```git clone...``` in the "Linux instrutions section" of the README.
-
-**1. Download WSL2 on windows**
-1. Follow https://docs.microsoft.com/en-us/windows/wsl/install-win10
-
-**2. Download a Linux distribution**
-1. If you have followed WSL2 instructions completely, you will have installed a Linux distribution like Ubuntu
-2. If you have not installed a Linux Distribution, just install Ubuntu from the Windows Store
-
-**3. Set up your freshly installed distribution for package downloading**
-1. Open up your distribution
-2. Make a username and password as prompted, note, you won't see the password you typed for security measures
-3. Run the following
-- ```sudo apt update```
-- ```sudo apt install sl```
-- ```sl```
-- If you see a steamlocomotive running through, you are good!
-
-**4. Download specified packages above (cmake, g++, SFML...)**
-
-```sudo apt install cmake, g++, ... as specified above```
-
-**5. Download X11 server and configure it, allowing GUIs.**
-1. Follow https://www.youtube.com/watch?v=4SZXbl9KVsw&t=153s&ab_channel=RickMakes
-2. Summary: Install VcXsrv windows x server & set a few environment variables
-
-**6. Run commands starting from ```git clone...``` in the "Linux instrutions section" of the README.**
-
-**Issues**
-1. Ubuntu Installer raises error "The requested operation could not be completed due to a virtual disk system limitation"?
-
-   Go to ```C:\Users\<your username>\AppData\Local\Packages``` and locate the folder in which your linux distribution is installed (for Ubuntu, it is CanonicalGroupLimited...). Right click => properties => advanced => uncheck compress contents to save disk space
-
-2.  After ```sudo apt update```, ```sudo apt install <packagename>``` yields ```E: Unable to locate package <packagename>```
-
-    Solve: first, try: ```sudo apt update -o Acquire::ForceIPv4=true```
-    If no luck, do you use Symantec antivirus? If so, disable it. If it still
-    doesn't work, also consult the #4139 thread listed in issue #3.
-3. X11 not launching?
-
-    Solve: https://github.com/microsoft/WSL/issues/4139
-
-    TLDR: open windows firewall settings, and remove WSL connection for each of the Domain, Private, and Public profiles
+* Build/run Parryt:
+```shell
+mkdir Parryt/Debug
+cd Parryt/Debug
+cmake ..
+make
+./parryt
+```
 
 
-## Install on Windows (possibly outdated):
+### MacOS
+* Install Homebrew (a package manager) and follow the instructions for Linux.
+
+
+### Windows
+
+Use [this video](https://linuxconfig.org/install-manjaro-in-virtualbox) to install Manjaro in a Virtual Machine, then follow our Manjaro Linux build instructions
+
+**WARNING**: The following alternative method doesn't work with Box2D
+
 **Download CMake**
 1. Follow this link and go to “Download Latest Release”: https://cmake.org/
 2. Under Binary distributions, download the appropriate installer for your OS. (you can install the zip file but you will have to manually add CMake to your path if you do)
