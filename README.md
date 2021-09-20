@@ -3,6 +3,7 @@
 * Contains a satisfying parrying mechanic.
 * Uses C++, the SFML graphics library, and the Box2D physics engine
 * General class hierarchy: `UserView <- GameController <- GameState <- View <- Model <- Actor`
+
 ![Demo Screenshot](resources/parryt-screenshot.png)
 
 
@@ -51,14 +52,14 @@ make
 
 
 ### MacOS
-* Install Homebrew (a package manager) and follow the instructions for Linux.
+* Install [Homebrew](https://brew.sh/) (a package manager), then follow our instructions for Linux.
 
 
 ### Windows
 
-Use [this video](https://linuxconfig.org/install-manjaro-in-virtualbox) to install Manjaro in a Virtual Machine, then follow our Manjaro Linux build instructions
+Use [this article](https://linuxconfig.org/install-manjaro-in-virtualbox) to install Manjaro Linux in a Virtual Machine, then follow our Manjaro build instructions
 
-**WARNING**: The following alternative method doesn't work with Box2D
+**WARNING**: The following alternative Windows method doesn't work with Box2D, just stick to a VM.
 
 **Download CMake**
 1. Follow this link and go to “Download Latest Release”: https://cmake.org/
