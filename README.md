@@ -35,11 +35,11 @@ sudo cmake --build . --target install
 cd ../..
 ```
 
-### MacOS (untested)
+### MacOS
 * Run `echo "export LIBRARY_PATH=\"$LIBRARY_PATH:/usr/local/lib\"" >> ~/.zshenv`. This adds a necessary line to your .zshenv file.
+* Close the terminal and open a new one.
 * Install [Homebrew](https://brew.sh/) (a package manager).
 * Run `brew install cmake make gcc box2d sfml git`.
-* Possibly also need to run `brew install libx11 libxrandr`.
 
 ### Windows
 * Use [this article](https://linuxconfig.org/install-manjaro-in-virtualbox) to install Manjaro Linux in a Virtual Machine.
