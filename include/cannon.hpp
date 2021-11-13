@@ -1,21 +1,22 @@
 #ifndef CANNON_HPP
 #define CANNON_HPP
 
-
-#include <cmath>
 #include <box2d/box2d.h>
 
 #include "actor.hpp"
 #include "sprite_sheet.hpp"
 
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
 
 class Model;
-
 
 /**
  * Draw the screen for the player
  */
-class Cannon : public Actor {
+class Cannon : public Actor
+{
 public:
 	static constexpr float WIDTH = 1;
 	static constexpr float HEIGHT = 1.2;
@@ -54,7 +55,6 @@ public:
 
 	virtual void draw(std::shared_ptr<sf::RenderWindow> window) override;
 
-
 private:
 	std::shared_ptr<Model> model;
 	b2PolygonShape shape;
@@ -66,11 +66,10 @@ private:
 	sf::Texture carriageTexture;
 	sf::Sprite carriageSprite;
 	std::unique_ptr<SpriteSheet> spriteSheet;
-	Loop shootLoop { 0, 18, 40 };
-	Loop idleLoop { 0, 1, 1 };
+	Loop shootLoop{0, 18, 40};
+	Loop idleLoop{0, 1, 1};
 
 	int loadingCounter = 0;
 };
-
 
 #endif

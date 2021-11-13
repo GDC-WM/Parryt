@@ -6,6 +6,9 @@
 #include "cannonball.hpp"
 #include "model.hpp"
 
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
 
 Cannon::Cannon(b2Vec2 position, std::shared_ptr<Model> model) : Actor(position) {
 	this->model = model;
